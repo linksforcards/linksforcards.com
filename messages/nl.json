@@ -16,10 +16,10 @@
     "homeDescription": "Ik ben Magnus Schmidt. Ik verzamel Pokémon-kaarten bij winkels in Europa en de Verenigde Staten, maak set- en generatiebinders vol en geef die binders aan kinderen. Deze pagina is het openbare verslag.",
     "bindersTitle": "Binders en Pokédex",
     "bindersDescription": "De lijsten van mijn set- en generatiebinders, met wat ik al heb en wat nog ontbreekt.",
-    "generationTitle": "Generatie {gen} · {region}",
-    "generationDescription": "Generatie {gen} ({region}): ik heb {collected} van {total} soorten.",
-    "setTitle": "{name}",
-    "setDescription": "{name}: ik heb {collected} van {total} kaarten uit deze set.",
+    "generationTitle": "Generatie {gen} checklist · alle {total}",
+    "generationDescription": "Alle {total} soorten van generatie {gen} ({region}), met de sets waarin ze voorkomen. Ik heb er {collected} van {total}.",
+    "setTitle": "{name} kaartenlijst en checklist",
+    "setDescription": "{name} kaartenlijst en checklist uit de serie {series}, verschenen op {date}. {total} kaarten. Ik heb er {collected}.",
     "partnersTitle": "Dank",
     "partnersDescription": "Winkels die kaarten voor de binders hebben gestuurd. Elke naam linkt naar die winkel.",
     "updatesTitle": "Notities",
@@ -32,7 +32,15 @@
     "imprintDescription": "Contact met Magnus Schmidt, de persoon die verantwoordelijk is voor LinksForCards.",
     "notFoundTitle": "Pagina niet gevonden",
     "ogTitle": "Ik verzamel kaarten en geef de binders weg.",
-    "ogAlt": "LinksForCards, een persoonlijk project van Magnus Schmidt"
+    "ogAlt": "LinksForCards, een persoonlijk project van Magnus Schmidt",
+    "collectionsTitle": "Checklists voor Pokémon-binders",
+    "collectionsDescription": "Kaartenlijsten van de sets, checklists van de generaties en een pagina voor elke Pokémon. Een gevulde balk is wat ik al heb.",
+    "seriesTitle": "{series}-kaartenlijsten",
+    "seriesDescription": "Kaartenlijsten en checklists van de serie {series}. {count} sets.",
+    "speciesTitle": "{name} kaartenlijst",
+    "speciesDescription": "{name} kaartenlijst. Pokédex {dex}, generatie {gen} ({region}). {total} kaarten in {sets} sets.",
+    "guidesTitle": "Notities bij de binder",
+    "guidesDescription": "Hoe ik een Pokémon-binder orden, wat ik met bulkkaarten doe, en hoe een afgewerkte binder naar een kind gaat."
   },
   "nav": {
     "primary": "Pagina's",
@@ -45,7 +53,10 @@
     "donations": "Weggegeven",
     "privacy": "Privacy",
     "imprint": "Colofon",
-    "breadcrumbs": "Kruimelpad"
+    "breadcrumbs": "Kruimelpad",
+    "collections": "Collecties",
+    "guides": "Gidsen",
+    "related": "Gerelateerd"
   },
   "footer": {
     "disclaimer": "LinksForCards is een onofficieel fanproject van Magnus Schmidt. Het is niet gelieerd aan en niet onderschreven door Nintendo, Creatures, Game Freak of The Pokémon Company.",
@@ -127,12 +138,13 @@
     "supertypeE": "Energie",
     "supertypeO": "Overig",
     "progress": "{collected} van {total}",
-    "back": "Alle binders",
+    "back": "Alle collecties",
     "prev": "Vorige",
     "next": "Volgende",
     "page": "{page} / {pages}",
     "pages": "Pagina's",
-    "cardAlt": "{name} – {set} #{number}"
+    "cardAlt": "{name} – {set} #{number}",
+    "print": "Deze checklist afdrukken"
   },
   "partners": {
     "kicker": "Winkels",
@@ -183,5 +195,95 @@
     "h1": "Deze pagina zit niet in de binder.",
     "body": "Het adres hoort bij niets op de site.",
     "home": "Terug naar het begin"
+  },
+  "collectionsPage": {
+    "kicker": "Checklists",
+    "intro": "Kaartenlijsten van de sets, checklists van de generaties en een pagina voor elke Pokémon. Een gevulde balk is wat ik al heb.",
+    "generations": "Generatiebinders",
+    "sets": "Sets per serie",
+    "pokedex": "Pokédex",
+    "pokedexIntro": "Elke Pokémon in de nationale dex, met een eigen kaartenlijst.",
+    "searchPokedex": "Zoek in de Pokédex",
+    "searchPlaceholder": "Naam of nummer",
+    "noPokemon": "Geen Pokémon gevonden.",
+    "letters": "Eerste letter",
+    "guides": "Gidsen"
+  },
+  "seriesPage": {
+    "intro": "{series} heeft {count} sets in deze lijst. Elke setpagina is de kaartenlijst en de checklist.",
+    "other": "Andere series"
+  },
+  "setPage": {
+    "intro": "{name} verscheen op {date} in de serie {series}. Deze kaartenlijst heeft {total} kaarten. Ik heb er {collected}.",
+    "notableLead": "Pokémon in deze set zijn onder meer",
+    "noPokemon": "Deze setlijst heeft geen Pokémon-kaarten.",
+    "kinds": "Kaarten in deze lijst: {list}.",
+    "related": "Meer sets in {series}",
+    "gens": "Generatiebinders die deze kaarten kunnen vullen"
+  },
+  "speciesPage": {
+    "intro": "{name} is Pokédex {dex} in generatie {gen} ({region}). Deze lijst heeft {total} kaarten in {sets} sets. De vroegste is {firstSet} ({firstDate}). De nieuwste is {latestSet} ({latestDate}).",
+    "have": "Ik heb {collected} van deze kaarten genoteerd.",
+    "none": "Ik heb nog geen kaart van {name} genoteerd.",
+    "kinds": "In deze lijst: {list}.",
+    "binder": "Open de generatie {gen}-binder bij {dex}",
+    "setsHeading": "Sets met {name}"
+  },
+  "generationPage": {
+    "prints": "{count} drukken",
+    "other": "Andere generatiebinders"
+  },
+  "guides": {
+    "kicker": "Uit de binder",
+    "indexIntro": "Drie notities: hoe ik een binder orden, wat ik met bulk doe, en hoe een afgewerkte binder vertrekt.",
+    "updated": "Bijgewerkt op {date}",
+    "organize": {
+      "title": "Hoe ik een Pokémon-binder orden",
+      "description": "Set-binders en generatiebinders, en hoe ik een regel afvink als de kaart in de binder zit.",
+      "h1": "Hoe ik een Pokémon-binder orden",
+      "lede": "Ik houd twee soorten binders bij. Een set-binder houdt één set in de volgorde van het verzamelnummer. Een generatiebinder houdt één kaart van elke soort uit die generatie, uit elke set en in elke taal.",
+      "s1h": "Een set-binder",
+      "s1": "Een set-binder volgt het verzamelnummer uit de openbare kaartenlijst. Paldean Fates is het voorbeeld dat ik in gedachten houd: de hele set, op volgorde, zonder iets expres weg te laten. De kaartenlijst op elke setpagina is die volgorde. Ik vink een regel af als de kaart in de binder zit, en ik kijk in de binder voordat ik de set af noem.",
+      "s2h": "Een generatiebinder",
+      "s2": "Een generatiebinder heeft één kaart van elke soort nodig. Generatie 1 is de oorspronkelijke 151. Generatie 1 tot en met 9 zijn 1.025 soorten. Elke druk telt, en elke taal telt. Een Magikarp uit de bulk vult een regel net zo goed als een holo. De generatiepagina noemt elke soort, het Pokédexnummer en een paar sets waarin die voorkomt.",
+      "s3h": "Waar ik begin",
+      "s3": "Ik begin met generatie 1 en één set. De pagina Collecties is de lijst van beide. Als een regel en de binder niet overeenkomen, telt de binder: ik noem een binder pas af als ik de pagina's heb omgeslagen.",
+      "faq1q": "Heeft een generatiebinder elke druk nodig?",
+      "faq1a": "Nee. Eén kaart van elke soort is genoeg. De set-binder is de lijst die elke kaart van die set nodig heeft.",
+      "faq2q": "Waar staat de checklist?",
+      "faq2a": "Elke set heeft een kaartenlijst, en elke generatie heeft een checklist. De pagina Collecties linkt naar beide."
+    },
+    "bulk": {
+      "title": "Wat ik met bulkkaarten doe",
+      "description": "Bulk vult de binders. Ik sorteer op set en kijk daarna welke soort nog leeg is.",
+      "h1": "Wat ik met bulkkaarten doe",
+      "lede": "Bulk is de gewone stapel: commons, dubbele en de Magikarp die weer opduikt. Die stapel vult een binder.",
+      "s1h": "Eerst op set sorteren",
+      "s1": "Ik sorteer een pakket op set voordat ik iets anders bekijk. Een kaart die bij een open regel in een set-binder past, gaat daarheen. De setpagina toont het verzamelnummer en of de regel gevuld is.",
+      "s2h": "Daarna de generatiebinders",
+      "s2": "Een extra kaart kan een ontbrekende soort in een generatiebinder vullen. Elke set en elke taal telt. Ik heb er één per soort nodig. Is de regel al gevuld, dan blijft de extra in de bulkdoos.",
+      "s3h": "Wat de openbare pagina toont",
+      "s3": "Openbare pagina's tonen de naam, de set en of de regel gevuld is. Ze tonen geen verkoopprijs. Een gevulde balk betekent dat de kaart genoteerd is, verder niets.",
+      "faq1q": "Is een Magikarp uit de bulk de moeite om te noteren?",
+      "faq1a": "Ja, als de regel voor die soort nog leeg is. De moeite slaat hier op de checklist, niet op een prijs.",
+      "faq2q": "Wat gebeurt er met de extra's?",
+      "faq2a": "Extra's blijven tot een binder ze nodig heeft, of tot een afgewerkte binder naar een kind gaat."
+    },
+    "donating": {
+      "title": "Pokémon-kaarten aan kinderen geven",
+      "description": "Hoe ik Pokémon-kaarten weggeef. Een afgewerkte binder gaat naar een kind, en de openbare lijst noteert de ontvanger en de datum.",
+      "h1": "Pokémon-kaarten aan kinderen geven",
+      "lede": "Ik geef Pokémon-kaarten weg door een afgewerkte binder te overhandigen. De binders gaan naar kinderen: een ziekenhuisafdeling, een opvang, een naschoolse club. Ik schrijf elke binder op die vertrekt.",
+      "s1h": "Alleen een complete binder",
+      "s1": "Ik geef alleen een binder af die ik als af heb gemarkeerd. Een halfvolle binder blijft bij mij tot de ontbrekende regels gevuld zijn. Losse kaarten geef ik niet af. Die blijven hier en vullen de volgende binder.",
+      "s2h": "Wat de openbare lijst toont",
+      "s2": "De openbare lijst toont de ontvanger en de datum. Ze toont geen verkoopprijs en niet wat een kaart zou opbrengen.",
+      "s3h": "Extra kaarten",
+      "s3": "Heb je extra kaarten of bulk voor de binders, schrijf me op magnus@linksforcards.com. Winkels die kaarten sturen, worden bij naam bedankt.",
+      "faq1q": "Neem je losse bulk aan?",
+      "faq1a": "Ja. Losse bulk is welkom. Ik sorteer die in de binders.",
+      "faq2q": "Tonen de openbare pagina's wat een kaart waard is?",
+      "faq2a": "Nee. Openbare pagina's tonen nooit wat een kaart waard is."
+    }
   }
 }

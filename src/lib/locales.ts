@@ -65,3 +65,34 @@ export const HREFLANG_TARGETS: { code: string; locale: Locale }[] = [
 ];
 
 export const OG_LOCALES = ["en_US", "en_GB", "en_IE", "de_DE", "de_AT", "de_CH", "fr_FR", "fr_BE", "nl_NL", "nl_BE", "sv_SE", "nb_NO", "fi_FI", "pl_PL", "it_IT", "es_ES"] as const;
+
+export const OG_PAGE_LOCALE: Record<(typeof OG_LOCALES)[number], Locale> = {
+  en_US: "us",
+  en_GB: "uk",
+  en_IE: "uk",
+  de_DE: "de",
+  de_AT: "de",
+  de_CH: "de",
+  fr_FR: "fr",
+  fr_BE: "fr",
+  nl_NL: "nl",
+  nl_BE: "nl",
+  sv_SE: "sv",
+  nb_NO: "no",
+  fi_FI: "fi",
+  pl_PL: "pl",
+  it_IT: "it",
+  es_ES: "es",
+};
+
+/**
+ * Species pages are indexed where the Pokédex name is translated: English,
+ * German, French, Spanish, and Italian. Dutch, Swedish, Norwegian, Finnish,
+ * and Polish reuse the English name, so those URLs stay in the language menu
+ * but are noindex and left out of hreflang and the sitemap.
+ */
+export const SPECIES_INDEX_LOCALES = ["us", "uk", "de", "fr", "es", "it"] as const satisfies readonly Locale[];
+
+export function speciesPageIndexed(locale: string): boolean {
+  return (SPECIES_INDEX_LOCALES as readonly string[]).includes(locale);
+}

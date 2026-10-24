@@ -87,7 +87,9 @@ The committed dataset no longer includes Cardmarket or TCGplayer prices. The adm
 
 ## Languages
 
-`/` is a language picker and the `x-default` URL. US English is `/us` and UK English is `/uk` (Ireland is listed with the UK shops). The other languages stay at `/de`, `/fr`, `/it`, `/es`, `/nl`, `/sv`, `/no`, `/fi`, and `/pl`. There is no IP redirect. Old unprefixed English pages, such as `/binders`, redirect once to the UK URL. `/en` redirects to the picker. The language menu links to the same page in the other language. Each language's shop list uses the countries in `src/lib/shop-locales.ts`. Card totals stay site-wide.
+`/` is a language picker and the `x-default` URL. US English is `/us` and UK English is `/uk` (Ireland is listed with the UK shops). The other languages stay at `/de`, `/fr`, `/it`, `/es`, `/nl`, `/sv`, `/no`, `/fi`, and `/pl`. There is no IP redirect. Old unprefixed English pages redirect once to the UK URL. `/binders` and `/{locale}/binders` redirect once to the collections URL. `/en` redirects to the picker. The language menu links to the same page in the other language. Each language's shop list uses the countries in `src/lib/shop-locales.ts`. Card totals stay site-wide.
+
+Collections are `/{locale}/collections` (sets by series, generation binders, and a Pokédex index). A series is `/{locale}/collections/series/{slug}`, a set is `/{locale}/collections/set/{setId}`, and a generation is `/{locale}/collections/generation/{1-9}`. Each Pokémon is `/{locale}/pokedex/{number}` from 1 to 1,025. Guides are `/{locale}/guides`. Species pages are indexed for US English, UK English, German, French, Spanish, and Italian, where the Pokédex name is translated. Dutch, Swedish, Norwegian, Finnish, and Polish still render the page for the language menu, with `noindex` and without an hreflang entry, because the name would only repeat the English one. Sitemaps are split by locale and type: `/sitemap/{locale}-pages.xml`, `-sets`, `-guides`, and `-species` for the indexed languages.
 
 ## Type
 

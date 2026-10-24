@@ -1,39 +1,68 @@
-import { getSets } from "./catalog";
-import { GENERATIONS } from "./generations";
-import { isLocale, LOCALES } from "./locales";
+import { getMeta, getSets, setsBySeries } from "./catalog";
+import { GENERATIONS, SPECIES_TOTAL } from "./generations";
+import { GUIDE_SLUGS, GUIDE_UPDATED } from "./guides";
+import { isLocale, LOCALES, SPECIES_INDEX_LOCALES, speciesPageIndexed } from "./locales";
 import { localePath } from "./routing";
 import { hreflangMap } from "./seo";
+import { seriesSlug } from "./series";
 import { absoluteUrl } from "./site";
 
-export const SITEMAP_IDS = ["root", ...LOCALES] as const;
+const PAGE_PATHS = ["/", "/collections", "/guides", "/partners", "/updates", "/donations", "/privacy", "/imprint"];
 
-const LAST_MODIFIED = "2026-10-24";
-
-export function publicPaths(): string[] {
-  return [
-    "/",
-    "/binders",
-    "/partners",
-    "/updates",
-    "/donations",
-    "/privacy",
-    "/imprint",
-    ...GENERATIONS.map((generation) => `/binders/generation/${generation.id}`),
-    ...getSets().map((set) => `/binders/set/${set.id}`),
-  ];
+function catalogLastMod(): string {
+  return getMeta().builtAt.slice(0, 10);
 }
+
+export function sitemapIds(): string[] {
+  const ids = ["root"];
+  for (const locale of LOCALES) {
+    ids.push(`${locale}-pages`, `${locale}-sets`, `${locale}-guides`);
+    if (speciesPageIndexed(locale)) ids.push(`${locale}-species`);
+  }
+  return ids;
+}
+
+export const SITEMAP_IDS = sitemapIds();
 
 export type SitemapEntry = { url: string; lastModified: string; languages: Record<string, string> };
 
+function pagePaths(): string[] {
+  return [
+    ...PAGE_PATHS,
+    ...GENERATIONS.map((generation) => `/collections/generation/${generation.id}`),
+    ...setsBySeries().map((group) => `/collections/series/${seriesSlug(group.series)}`),
+  ];
+}
+
+function pathsFor(kind: string): string[] {
+  if (kind === "pages") return pagePaths();
+  if (kind === "sets") return getSets().map((set) => `/collections/set/${set.id}`);
+  if (kind === "guides") return GUIDE_SLUGS.map((slug) => `/guides/${slug}`);
+  if (kind === "species") {
+    const paths: string[] = [];
+    for (let dex = 1; dex <= SPECIES_TOTAL; dex += 1) paths.push(`/pokedex/${dex}`);
+    return paths;
+  }
+  return [];
+}
+
 export function sitemapEntries(id: string): SitemapEntry[] | null {
   if (id === "root") {
-    return [{ url: absoluteUrl("/"), lastModified: LAST_MODIFIED, languages: hreflangMap("/") }];
+    return [{ url: absoluteUrl("/"), lastModified: catalogLastMod(), languages: hreflangMap("/") }];
   }
-  if (!isLocale(id)) return null;
-  return publicPaths().map((path) => ({
-    url: absoluteUrl(localePath(id, path)),
-    lastModified: LAST_MODIFIED,
-    languages: hreflangMap(path),
+  const split = id.match(/^([a-z]{2})-(pages|sets|guides|species)$/);
+  if (!split) return null;
+  const locale = split[1] ?? "";
+  const kind = split[2] ?? "";
+  if (!isLocale(locale)) return null;
+  if (kind === "species" && !speciesPageIndexed(locale)) return null;
+  const catalogDate = catalogLastMod();
+  const languagesFor = (path: string) =>
+    kind === "species" ? hreflangMap(path, SPECIES_INDEX_LOCALES) : hreflangMap(path);
+  return pathsFor(kind).map((path) => ({
+    url: absoluteUrl(localePath(locale, path)),
+    lastModified: kind === "guides" ? GUIDE_UPDATED : catalogDate,
+    languages: languagesFor(path),
   }));
 }
 
@@ -54,8 +83,8 @@ export function renderUrlset(entries: SitemapEntry[]): string {
 }
 
 export function renderSitemapIndex(): string {
-  const body = SITEMAP_IDS.map(
-    (id) => `<sitemap>\n<loc>${xml(absoluteUrl(`/sitemap/${id}.xml`))}</loc>\n</sitemap>`,
-  ).join("\n");
+  const body = SITEMAP_IDS.map((id) => `<sitemap>\n<loc>${xml(absoluteUrl(`/sitemap/${id}.xml`))}</loc>\n</sitemap>`).join(
+    "\n",
+  );
   return `<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${body}\n</sitemapindex>\n`;
 }

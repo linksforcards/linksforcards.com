@@ -8,7 +8,6 @@ import { htmlLang, LOCALES } from "@/lib/locales";
 import { site } from "@/lib/site";
 import "@/styles/globals.css";
 
-export const revalidate = 60;
 export const dynamicParams = false;
 
 export function generateStaticParams() {

@@ -6,17 +6,20 @@ import { Checklist } from "@/components/site/checklist";
 import { DoodleCluster } from "@/components/site/doodles";
 import { JsonLd } from "@/components/site/json-ld";
 import { ProgressBar } from "@/components/site/progress-bar";
+import { RelatedLinks } from "@/components/site/related-links";
 import { SiteLinks } from "@/components/site/site-links";
-import { speciesName, speciesNamesAreTranslated } from "@/lib/catalog";
+import { getSet, speciesName, speciesNamesAreTranslated } from "@/lib/catalog";
 import { fill, formatInt } from "@/lib/format";
 import { formatDexNumber, GENERATIONS, generationById } from "@/lib/generations";
 import { readLocale } from "@/lib/i18n";
 import { breadcrumbNode, itemListNode, ldGraph, pageNode } from "@/lib/jsonld";
 import { localePath } from "@/lib/routing";
 import { pageMetadata } from "@/lib/seo";
+import { speciesByDex } from "@/lib/species-index";
+import { absoluteUrl } from "@/lib/site";
 import { loadPublic, markFor, speciesInRange } from "@/lib/stats";
 
-export const revalidate = 60;
+export const revalidate = 3600;
 export const dynamicParams = false;
 
 export function generateStaticParams() {
@@ -32,15 +35,15 @@ export async function generateMetadata({
   const { gen } = await params;
   const generation = generationById(Number(gen));
   if (!generation) return {};
-  const region = m.regions[generation.id - 1];
+  const region = m.regions[generation.id - 1] ?? "";
+  const total = generation.end - generation.start + 1;
   const snapshot = await loadPublic();
   const collected = speciesInRange(snapshot.species, generation.start, generation.end);
-  const total = generation.end - generation.start + 1;
   return pageMetadata(
     locale,
-    `/binders/generation/${generation.id}`,
-    fill(m.meta.generationTitle, { gen: generation.id, region }),
-    fill(m.meta.generationDescription, { gen: generation.id, region, collected, total }),
+    `/collections/generation/${generation.id}`,
+    fill(m.meta.generationTitle, { gen: generation.id, region, total: formatInt(total, locale), collected: formatInt(collected, locale) }),
+    fill(m.meta.generationDescription, { gen: generation.id, region, total: formatInt(total, locale), collected: formatInt(collected, locale) }),
   );
 }
 
@@ -50,7 +53,7 @@ export default async function GenerationPage({ params }: { params: Promise<{ loc
   const generation = generationById(Number(gen));
   if (!generation) notFound();
   const snapshot = await loadPublic();
-  const region = m.regions[generation.id - 1];
+  const region = m.regions[generation.id - 1] ?? "";
   const total = generation.end - generation.start + 1;
   const collected = speciesInRange(snapshot.species, generation.start, generation.end);
   const have = new Set(snapshot.species);
@@ -59,33 +62,52 @@ export default async function GenerationPage({ params }: { params: Promise<{ loc
     collected: formatInt(collected, locale),
     total: formatInt(total, locale),
   });
-  const title = fill(m.meta.generationTitle, { gen: generation.id, region });
-  const path = `/binders/generation/${generation.id}`;
+  const title = fill(m.meta.generationTitle, {
+    gen: generation.id,
+    region,
+    total: formatInt(total, locale),
+    collected: formatInt(collected, locale),
+  });
+  const path = `/collections/generation/${generation.id}`;
   const rows = [];
   for (let dex = generation.start; dex <= generation.end; dex += 1) {
+    const record = speciesByDex(dex);
+    const names = (record?.setIds ?? []).slice(0, 3).map((id) => getSet(id)?.name ?? id);
+    const extra = (record?.setIds.length ?? 0) - names.length;
+    const setLabel = extra > 0 ? `${names.join(", ")} ${fill(m.home.andMore, { count: formatInt(extra, locale) })}` : names.join(", ");
+    const prints = fill(m.generationPage.prints, { count: formatInt(record?.printings.length ?? 0, locale) });
     rows.push({
       key: String(dex),
       title: `${formatDexNumber(dex)} ${speciesName(dex, locale)}`,
-      detail: "",
+      detail: setLabel ? `${prints} · ${setLabel}` : prints,
       have: have.has(dex),
+      href: localePath(locale, `/pokedex/${dex}`),
     });
   }
   const crumbs = [
     { name: m.nav.home, href: localePath(locale, "/") },
-    { name: m.nav.binders, href: localePath(locale, "/binders") },
-    { name: title, href: localePath(locale, path) },
+    { name: m.nav.collections, href: localePath(locale, "/collections") },
+    { name: fill(m.home.genLink, { gen: generation.id }), href: localePath(locale, path) },
   ];
   const list = itemListNode(
     localePath(locale, path),
     title,
-    rows.map((row) => ({ name: row.title })),
+    rows.map((row) => ({
+      name: row.title,
+      url: absoluteUrl(row.href),
+    })),
   );
   const page = pageNode({
     kind: "CollectionPage",
     locale,
     path,
     name: title,
-    description: fill(m.meta.generationDescription, { gen: generation.id, region, collected, total }),
+    description: fill(m.meta.generationDescription, {
+      gen: generation.id,
+      region,
+      collected: formatInt(collected, locale),
+      total: formatInt(total, locale),
+    }),
   }) as CollectionPage;
   Object.assign(page, { mainEntity: { "@id": String(list["@id"]) } });
   const graph = ldGraph([page, list, breadcrumbNode(crumbs)]);
@@ -97,7 +119,7 @@ export default async function GenerationPage({ params }: { params: Promise<{ loc
         <DoodleCluster />
         <Breadcrumbs label={m.nav.breadcrumbs} items={crumbs} />
         <p className="kicker">
-          <a href={localePath(locale, "/binders")}>{m.checklist.back}</a>
+          <a href={localePath(locale, "/collections")}>{m.checklist.back}</a>
         </p>
         <h1>{title}</h1>
       </section>
@@ -122,6 +144,14 @@ export default async function GenerationPage({ params }: { params: Promise<{ loc
       {mark?.status === "given_away" ? <p className="banner">{m.checklist.markedGiven}</p> : null}
       {mark?.status === "completed" ? <p className="banner">{m.checklist.markedComplete}</p> : null}
       <Checklist rows={rows} labels={m.checklist} />
+      <h2>{m.generationPage.other}</h2>
+      <RelatedLinks
+        label={m.nav.related}
+        links={GENERATIONS.filter((item) => item.id !== generation.id).map((item) => ({
+          href: localePath(locale, `/collections/generation/${item.id}`),
+          name: `${fill(m.home.genLink, { gen: item.id })} · ${m.regions[item.id - 1]}`,
+        }))}
+      />
       <SiteLinks locale={locale} m={m} current={path} />
     </>
   );

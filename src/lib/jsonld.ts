@@ -1,5 +1,6 @@
 import type {
   AboutPage,
+  Article,
   Blog,
   BlogPosting,
   BreadcrumbList,
@@ -25,7 +26,7 @@ export type ListEntry = { name: string; url?: string };
 export type FaqPair = { q: string; a: string };
 export type NoteEntry = { id: string; title: string; body: string; publishedAt: string };
 
-export type PageKind = "AboutPage" | "WebPage" | "CollectionPage" | "ContactPage" | "Blog";
+export type PageKind = "AboutPage" | "WebPage" | "CollectionPage" | "ContactPage" | "Blog" | "Article";
 
 const ORG = absoluteUrl("/#organization");
 const PERSON = absoluteUrl("/#magnus");
@@ -96,9 +97,11 @@ export function pageNode(options: {
   path: string;
   name: string;
   description: string;
-}): AboutPage | WebPage | CollectionPage | ContactPage | Blog {
+  datePublished?: string;
+  dateModified?: string;
+}): AboutPage | WebPage | CollectionPage | ContactPage | Blog | Article {
   const url = options.locale === "en" ? absoluteUrl(options.path) : absoluteUrl(localePath(options.locale, options.path));
-  return {
+  const page = {
     "@type": options.kind,
     "@id": `${url}#webpage`,
     url,
@@ -109,12 +112,21 @@ export function pageNode(options: {
     publisher: { "@id": ORG },
     breadcrumb: { "@id": `${url}#breadcrumb` },
     image: {
-      "@type": "ImageObject",
+      "@type": "ImageObject" as const,
       url: absoluteUrl(options.locale === "en" ? "/og/uk" : `/og/${options.locale}`),
       width: "1200",
       height: "630",
     },
   };
+  if (options.kind !== "Article") return page;
+  return Object.assign(page, {
+    "@id": `${url}#article`,
+    headline: options.name,
+    datePublished: options.datePublished,
+    dateModified: options.dateModified ?? options.datePublished,
+    author: { "@id": PERSON },
+    mainEntityOfPage: { "@id": `${url}#article` },
+  });
 }
 
 export function faqNode(pageHref: string, pairs: FaqPair[]): FAQPage {

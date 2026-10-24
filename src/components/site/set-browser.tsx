@@ -8,6 +8,7 @@ import { ProgressBar } from "./progress-bar";
 
 type Group = {
   series: string;
+  slug: string;
   sets: { id: string; name: string; collected: number; count: number }[];
 };
 
@@ -42,7 +43,9 @@ export function SetBrowser({
       {visible.length === 0 ? <p>{labels.empty}</p> : null}
       {visible.map((group) => (
         <section key={group.series} className="series">
-          <h3>{group.series}</h3>
+          <h3>
+            <a href={localePath(locale, `/collections/series/${group.slug}`)}>{group.series}</a>
+          </h3>
           <ul className="set-list">
             {group.sets.map((set) => {
               const label = fill(labels.progress, {
@@ -51,7 +54,7 @@ export function SetBrowser({
               });
               return (
                 <li key={set.id}>
-                  <a href={localePath(locale, `/binders/set/${set.id}`)}>{set.name}</a>
+                  <a href={localePath(locale, `/collections/set/${set.id}`)}>{set.name}</a>
                   <ProgressBar value={set.collected} max={set.count} label={`${set.name}: ${label}`} />
                   <span className="count">{label}</span>
                 </li>

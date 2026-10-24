@@ -3,32 +3,42 @@ import type { CollectionPage } from "schema-dts";
 import { Breadcrumbs } from "@/components/site/breadcrumbs";
 import { DoodleCluster } from "@/components/site/doodles";
 import { JsonLd } from "@/components/site/json-ld";
+import { PokedexBrowser } from "@/components/site/pokedex-browser";
 import { ProgressBar } from "@/components/site/progress-bar";
+import { RelatedLinks } from "@/components/site/related-links";
 import { SetBrowser } from "@/components/site/set-browser";
 import { SiteLinks } from "@/components/site/site-links";
-import { getMeta, getSetCards, setsBySeries, speciesNamesAreTranslated } from "@/lib/catalog";
+import { getMeta, getSetCards, setsBySeries, speciesName, speciesNamesAreTranslated } from "@/lib/catalog";
 import { fill, formatDay, formatInt } from "@/lib/format";
-import { GENERATIONS } from "@/lib/generations";
+import { GENERATIONS, SPECIES_TOTAL } from "@/lib/generations";
 import { readLocale } from "@/lib/i18n";
+import { intlLocale } from "@/lib/locales";
 import { breadcrumbNode, itemListNode, ldGraph, pageNode } from "@/lib/jsonld";
 import { localePath } from "@/lib/routing";
 import { pageMetadata } from "@/lib/seo";
+import { seriesSlug } from "@/lib/series";
 import { absoluteUrl } from "@/lib/site";
 import { loadPublic, speciesInRange } from "@/lib/stats";
 
-export const revalidate = 60;
+export const revalidate = 3600;
+
+function letterOf(name: string, locale: Parameters<typeof intlLocale>[0]): string {
+  const char = Array.from(name)[0] ?? "#";
+  return char.toLocaleUpperCase(intlLocale(locale));
+}
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale, m } = await readLocale(params);
-  return pageMetadata(locale, "/binders", m.meta.bindersTitle, m.meta.bindersDescription);
+  return pageMetadata(locale, "/collections", m.meta.collectionsTitle, m.meta.collectionsDescription);
 }
 
-export default async function BindersPage({ params }: { params: Promise<{ locale: string }> }) {
+export default async function CollectionsPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale, m } = await readLocale(params);
   const snapshot = await loadPublic();
   const meta = getMeta();
   const groups = setsBySeries().map((group) => ({
     series: group.series,
+    slug: seriesSlug(group.series),
     sets: group.sets.map((set) => ({
       id: set.id,
       name: set.name,
@@ -36,29 +46,40 @@ export default async function BindersPage({ params }: { params: Promise<{ locale
       count: getSetCards(set.id)?.length ?? set.count,
     })),
   }));
-
+  const dexEntries = [];
+  for (let dex = 1; dex <= SPECIES_TOTAL; dex += 1) dexEntries.push({ dex, name: speciesName(dex, locale) });
+  dexEntries.sort((a, b) => a.name.localeCompare(b.name, intlLocale(locale), { sensitivity: "base" }) || a.dex - b.dex);
+  const guides = [
+    ["organize-binder", m.guides.organize.title],
+    ["bulk-cards", m.guides.bulk.title],
+    ["donating-cards", m.guides.donating.title],
+  ] as const;
   const crumbs = [
     { name: m.nav.home, href: localePath(locale, "/") },
-    { name: m.nav.binders, href: localePath(locale, "/binders") },
+    { name: m.nav.collections, href: localePath(locale, "/collections") },
   ];
-  const list = itemListNode(localePath(locale, "/binders"), m.bindersPage.h1, [
+  const list = itemListNode(localePath(locale, "/collections"), m.meta.collectionsTitle, [
     ...GENERATIONS.map((generation) => ({
       name: `${fill(m.home.genLink, { gen: generation.id })} · ${m.regions[generation.id - 1]}`,
-      url: absoluteUrl(localePath(locale, `/binders/generation/${generation.id}`)),
+      url: absoluteUrl(localePath(locale, `/collections/generation/${generation.id}`)),
     })),
     ...groups.flatMap((group) =>
       group.sets.map((set) => ({
         name: set.name,
-        url: absoluteUrl(localePath(locale, `/binders/set/${set.id}`)),
+        url: absoluteUrl(localePath(locale, `/collections/set/${set.id}`)),
       })),
     ),
+    ...guides.map(([slug, title]) => ({
+      name: title,
+      url: absoluteUrl(localePath(locale, `/guides/${slug}`)),
+    })),
   ]);
   const page = pageNode({
     kind: "CollectionPage",
     locale,
-    path: "/binders",
-    name: m.meta.bindersTitle,
-    description: m.meta.bindersDescription,
+    path: "/collections",
+    name: m.meta.collectionsTitle,
+    description: m.meta.collectionsDescription,
   }) as CollectionPage;
   Object.assign(page, { mainEntity: { "@id": String(list["@id"]) } });
   const graph = ldGraph([page, list, breadcrumbNode(crumbs)]);
@@ -69,9 +90,9 @@ export default async function BindersPage({ params }: { params: Promise<{ locale
       <section className="page-head">
         <DoodleCluster />
         <Breadcrumbs label={m.nav.breadcrumbs} items={crumbs} />
-        <p className="kicker">{m.bindersPage.kicker}</p>
-        <h1>{m.bindersPage.h1}</h1>
-        <p className="lede">{m.bindersPage.intro}</p>
+        <p className="kicker">{m.collectionsPage.kicker}</p>
+        <h1>{m.meta.collectionsTitle}</h1>
+        <p className="lede">{m.collectionsPage.intro}</p>
       </section>
       <p>{m.bindersPage.anyLanguage}</p>
       <p>
@@ -81,7 +102,7 @@ export default async function BindersPage({ params }: { params: Promise<{ locale
       </p>
       <p>{fill(m.bindersPage.checklistSource, { date: formatDay(meta.builtAt, locale) })}</p>
       {meta.maxDexSeen > 1025 ? <p>{m.bindersPage.aboveDex}</p> : null}
-      <h2>{m.bindersPage.generations}</h2>
+      <h2>{m.collectionsPage.generations}</h2>
       <ul className="gen-list">
         {GENERATIONS.map((generation) => {
           const collected = speciesInRange(snapshot.species, generation.start, generation.end);
@@ -93,14 +114,14 @@ export default async function BindersPage({ params }: { params: Promise<{ locale
           });
           return (
             <li key={generation.id}>
-              <a href={localePath(locale, `/binders/generation/${generation.id}`)}>{label}</a>
+              <a href={localePath(locale, `/collections/generation/${generation.id}`)}>{label}</a>
               <ProgressBar value={collected} max={total} label={`${label}: ${progressLabel}`} />
               <span className="count">{progressLabel}</span>
             </li>
           );
         })}
       </ul>
-      <h2>{m.bindersPage.sets}</h2>
+      <h2>{m.collectionsPage.sets}</h2>
       <SetBrowser
         groups={groups}
         locale={locale}
@@ -111,7 +132,28 @@ export default async function BindersPage({ params }: { params: Promise<{ locale
           progress: m.checklist.progress,
         }}
       />
-      <SiteLinks locale={locale} m={m} current="/binders" />
+      <h2>{m.collectionsPage.pokedex}</h2>
+      <p>{m.collectionsPage.pokedexIntro}</p>
+      <PokedexBrowser
+        entries={dexEntries}
+        locale={locale}
+        initialLetter={letterOf(dexEntries[0]?.name ?? "A", locale)}
+        labels={{
+          search: m.collectionsPage.searchPokedex,
+          placeholder: m.collectionsPage.searchPlaceholder,
+          empty: m.collectionsPage.noPokemon,
+          letters: m.collectionsPage.letters,
+        }}
+      />
+      <h2>{m.collectionsPage.guides}</h2>
+      <RelatedLinks
+        label={m.nav.related}
+        links={guides.map(([slug, title]) => ({
+          href: localePath(locale, `/guides/${slug}`),
+          name: title,
+        }))}
+      />
+      <SiteLinks locale={locale} m={m} current="/collections" />
     </>
   );
 }

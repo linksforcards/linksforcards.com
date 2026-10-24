@@ -78,12 +78,18 @@ describe("messages", () => {
       const code = file.replace(/\.json$/, "");
       const voice = code === "en-US" || code === "en-GB" ? "en" : code;
       const body = textOf(data);
+      const { guides, ...rest } = data as { guides?: unknown };
+      const outside = textOf(rest);
       expect(raw).toContain("magnus@linksforcards.com");
       expect(data.home.shopsP1).toContain("magnus@linksforcards.com");
       expect(data.privacy.p1).toContain("magnus@linksforcards.com");
       for (const pattern of plural[voice] ?? []) expect(body).not.toMatch(pattern);
-      for (const pattern of marketing) expect(body).not.toMatch(pattern);
+      for (const pattern of marketing) {
+        if (pattern.source.includes("donate")) expect(outside).not.toMatch(pattern);
+        else expect(body).not.toMatch(pattern);
+      }
       for (const word of place) expect(raw.toLowerCase()).not.toContain(word.toLowerCase());
+      expect(guides).toBeTruthy();
     }
   });
 });

@@ -5,7 +5,8 @@ import { localePath } from "@/lib/routing";
 export function SiteLinks({ locale, m, current }: { locale: Locale; m: Messages; current: string }) {
   const items = [
     ["/", m.nav.home],
-    ["/binders", m.nav.binders],
+    ["/collections", m.nav.collections],
+    ["/guides", m.nav.guides],
     ["/partners", m.nav.partners],
     ["/updates", m.nav.updates],
     ["/donations", m.nav.donations],

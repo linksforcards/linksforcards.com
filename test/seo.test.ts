@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import type { Graph } from "schema-dts";
 import { getMessages } from "../src/lib/i18n";
-import { HREFLANG_TARGETS, LOCALES } from "../src/lib/locales";
+import { HREFLANG_TARGETS, LOCALES, SPECIES_INDEX_LOCALES } from "../src/lib/locales";
 import {
   blogPostNodes,
   breadcrumbNode,
@@ -11,7 +11,7 @@ import {
   pageNode,
   type PageKind,
 } from "../src/lib/jsonld";
-import { hreflangMap } from "../src/lib/seo";
+import { hreflangMap, pageMetadata } from "../src/lib/seo";
 import { renderSitemapIndex, renderUrlset, sitemapEntries } from "../src/lib/sitemap-data";
 import { absoluteUrl } from "../src/lib/site";
 
@@ -49,21 +49,37 @@ function parse(graph: Graph): Graph {
 describe("hreflang", () => {
   it("uses absolute reciprocal alternates, including region codes that share a URL", () => {
     const home = hreflangMap("/");
-    const binders = hreflangMap("/binders");
+    const collections = hreflangMap("/collections");
     expect(home["x-default"]).toBe(absoluteUrl("/"));
-    expect(binders["x-default"]).toBe(absoluteUrl("/uk/binders"));
+    expect(collections["x-default"]).toBe(absoluteUrl("/uk/collections"));
     expect(home["en-US"]).toBe(absoluteUrl("/us"));
     expect(home["en-GB"]).toBe(absoluteUrl("/uk"));
     expect(home["en-IE"]).toBe(home["en-GB"]);
-    expect(binders["de-AT"]).toBe(binders.de);
-    expect(binders["de-CH"]).toBe(binders.de);
-    expect(binders["fr-BE"]).toBe(binders.fr);
-    expect(binders["nl-BE"]).toBe(binders.nl);
-    expect(binders.nb).toBe(binders.no);
+    expect(collections["de-AT"]).toBe(collections.de);
+    expect(collections["de-CH"]).toBe(collections.de);
+    expect(collections["fr-BE"]).toBe(collections.fr);
+    expect(collections["nl-BE"]).toBe(collections.nl);
+    expect(collections.nb).toBe(collections.no);
     for (const code of [...HREFLANG_TARGETS.map((item) => item.code), "x-default"]) {
       expect(home[code]).toMatch(/^https:\/\/linksforcards\.com\//);
-      expect(binders[code]).toBe(hreflangMap("/binders")[code]);
+      expect(collections[code]).toBe(hreflangMap("/collections")[code]);
     }
+    const species = hreflangMap("/pokedex/25", SPECIES_INDEX_LOCALES);
+    expect(species["x-default"]).toBe(absoluteUrl("/uk/pokedex/25"));
+    expect(species["en-US"]).toBe(absoluteUrl("/us/pokedex/25"));
+    expect(species.de).toBe(absoluteUrl("/de/pokedex/25"));
+    expect(species.nl).toBeUndefined();
+    expect(species.sv).toBeUndefined();
+    expect(species.no).toBeUndefined();
+    expect(species.fi).toBeUndefined();
+    expect(species.pl).toBeUndefined();
+    const hidden = pageMetadata("nl", "/pokedex/25", "Pikachu cards list", "A list.", {
+      locales: SPECIES_INDEX_LOCALES,
+      index: false,
+    });
+    expect(hidden.robots).toEqual({ index: false, follow: true });
+    expect(hidden.alternates?.canonical).toBe(absoluteUrl("/nl/pokedex/25"));
+    expect(hidden.alternates?.languages).not.toHaveProperty("nl");
     for (const locale of LOCALES) {
       const path = hreflangMap("/partners");
       expect(Object.values(path)).toContain(absoluteUrl(`/${locale}/partners`));
@@ -72,12 +88,12 @@ describe("hreflang", () => {
 });
 
 describe("json-ld", () => {
-  const kinds: PageKind[] = ["AboutPage", "WebPage", "CollectionPage", "ContactPage", "Blog"];
+  const kinds: PageKind[] = ["AboutPage", "WebPage", "CollectionPage", "ContactPage", "Blog", "Article"];
 
   it("parses a graph for each page type and stays free of offers and ratings", () => {
     const crumbs = [
       { name: "Home", href: "/uk" },
-      { name: "Binders", href: "/uk/binders" },
+      { name: "Collections", href: "/uk/collections" },
     ];
     const graphs = kinds.map((kind) =>
       parse(
@@ -85,9 +101,10 @@ describe("json-ld", () => {
           pageNode({
             kind,
             locale: "uk",
-            path: kind === "AboutPage" ? "/" : "/binders",
+            path: kind === "AboutPage" ? "/" : "/collections",
             name: "Sample",
             description: "A sample page.",
+            ...(kind === "Article" ? { datePublished: "2026-10-24", dateModified: "2026-10-24" } : {}),
           }),
           breadcrumbNode(crumbs),
         ]),
@@ -142,15 +159,26 @@ describe("sitemap xml", () => {
     const index = renderSitemapIndex();
     expect(index).toContain("<sitemapindex");
     expect(index).toContain(absoluteUrl("/sitemap/root.xml"));
-    expect(index).toContain(absoluteUrl("/sitemap/us.xml"));
-    expect(index).toContain(absoluteUrl("/sitemap/de.xml"));
-    const uk = sitemapEntries("uk");
+    expect(index).toContain(absoluteUrl("/sitemap/us-pages.xml"));
+    expect(index).toContain(absoluteUrl("/sitemap/uk-sets.xml"));
+    expect(index).toContain(absoluteUrl("/sitemap/de-guides.xml"));
+    expect(index).toContain(absoluteUrl("/sitemap/uk-species.xml"));
+    expect(index).not.toContain(absoluteUrl("/sitemap/nl-species.xml"));
+    const uk = sitemapEntries("uk-pages");
     expect(uk?.[0]?.url).toBe(absoluteUrl("/uk"));
+    expect(uk?.some((entry) => entry.url === absoluteUrl("/uk/collections"))).toBe(true);
+    expect(uk?.every((entry) => entry.lastModified === "2026-10-24")).toBe(true);
     const xml = renderUrlset(uk ?? []);
     expect(xml).toContain('hreflang="en-GB"');
     expect(xml).toContain('hreflang="en-IE"');
     expect(xml).toContain('hreflang="x-default"');
-    expect(xml).toContain(`href="${absoluteUrl("/uk")}"`);
+    expect(xml).toContain("<lastmod>2026-10-24</lastmod>");
+    const species = sitemapEntries("de-species");
+    expect(species).toHaveLength(1025);
+    expect(species?.[24]?.url).toBe(absoluteUrl("/de/pokedex/25"));
+    expect(species?.[24]?.languages.nl).toBeUndefined();
+    expect(species?.[24]?.languages["x-default"]).toBe(absoluteUrl("/uk/pokedex/25"));
+    expect(sitemapEntries("nl-species")).toBeNull();
     expect(sitemapEntries("nope")).toBeNull();
   });
 });

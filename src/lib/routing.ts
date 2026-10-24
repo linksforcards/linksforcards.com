@@ -14,17 +14,34 @@ export function localePath(locale: string, pathname: string): string {
 
 const PASS_THROUGH = new Set(["/robots.txt", "/sitemap.xml", "/icon.svg", "/favicon.ico"]);
 
-const LEGACY_EXACT = new Set(["/binders", "/partners", "/updates", "/donations", "/privacy", "/imprint"]);
+const LEGACY_EXACT = new Set(["/partners", "/updates", "/donations", "/privacy", "/imprint"]);
 
 export type LocaleDecision =
   | { action: "next"; noindex: boolean }
   | { action: "redirect"; pathname: string }
   | { action: "rewrite"; pathname: string };
 
+function collectionFromBinders(pathname: string): string | null {
+  if (pathname === "/binders") return "/collections";
+  const generation = pathname.match(/^\/binders\/generation\/([1-9])$/);
+  if (generation) return `/collections/generation/${generation[1]}`;
+  const set = pathname.match(/^\/binders\/set\/([a-z0-9]+)$/);
+  if (set) return `/collections/set/${set[1]}`;
+  return null;
+}
+
+function isContentPath(pathname: string): boolean {
+  if (pathname === "/collections" || pathname === "/guides") return true;
+  if (/^\/collections\/(?:generation\/[1-9]|set\/[a-z0-9]+|series\/[a-z0-9-]+)$/.test(pathname)) return true;
+  if (/^\/pokedex\/[1-9]\d*$/.test(pathname)) return true;
+  if (/^\/guides\/[a-z0-9-]+$/.test(pathname)) return true;
+  return false;
+}
+
 function legacyEnglish(pathname: string): string | null {
-  if (LEGACY_EXACT.has(pathname)) return `/uk${pathname}`;
-  if (/^\/binders\/generation\/[1-9]$/.test(pathname)) return `/uk${pathname}`;
-  if (/^\/binders\/set\/[a-z0-9]+$/.test(pathname)) return `/uk${pathname}`;
+  const moved = collectionFromBinders(pathname);
+  if (moved) return `/uk${moved}`;
+  if (LEGACY_EXACT.has(pathname) || isContentPath(pathname)) return `/uk${pathname}`;
   return null;
 }
 
@@ -45,8 +62,14 @@ function resolveCore(pathname: string): LocaleDecision {
     const rest = pathname.replace(/^\/en/, "") || "/";
     return { action: "redirect", pathname: legacyEnglish(rest) ?? `/uk${rest}` };
   }
-  const first = pathname.split("/").filter(Boolean)[0] ?? "";
-  if (isLocale(first)) return { action: "next", noindex: false };
+  const parts = pathname.split("/").filter(Boolean);
+  const first = parts[0] ?? "";
+  if (isLocale(first)) {
+    const rest = `/${parts.slice(1).join("/")}` || "/";
+    const moved = collectionFromBinders(rest);
+    if (moved) return { action: "redirect", pathname: `/${first}${moved}` };
+    return { action: "next", noindex: false };
+  }
   const legacy = legacyEnglish(pathname);
   if (legacy) return { action: "redirect", pathname: legacy };
   return { action: "next", noindex: false };

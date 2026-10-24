@@ -128,7 +128,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             });
             return (
               <li key={generation.id}>
-                <a href={localePath(locale, `/binders/generation/${generation.id}`)}>{label}</a>
+                <a href={localePath(locale, `/collections/generation/${generation.id}`)}>{label}</a>
                 <ProgressBar value={collected} max={total} label={`${label}: ${progressLabel}`} />
                 <span className="count">{progressLabel}</span>
               </li>

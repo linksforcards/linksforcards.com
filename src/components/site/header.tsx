@@ -12,7 +12,8 @@ export function SiteHeader({ locale }: { locale: Locale }) {
   const m = getMessages(locale);
   const bare = stripLocale(usePathname() || "/");
   const items = [
-    { href: "/binders", label: m.nav.binders },
+    { href: "/collections", label: m.nav.collections },
+    { href: "/guides", label: m.nav.guides },
     { href: "/partners", label: m.nav.partners },
     { href: "/updates", label: m.nav.updates },
     { href: "/donations", label: m.nav.donations },
@@ -32,7 +33,8 @@ export function SiteHeader({ locale }: { locale: Locale }) {
         </a>
         <nav className="nav" aria-label={m.nav.primary}>
           {items.map((item) => {
-            const on = bare === item.href || bare.startsWith(`${item.href}/`);
+            const onPokedex = item.href === "/collections" && (bare === "/pokedex" || bare.startsWith("/pokedex/"));
+            const on = onPokedex || bare === item.href || bare.startsWith(`${item.href}/`);
             return (
               <a key={item.href} href={localePath(locale, item.href)} aria-current={on ? "page" : undefined}>
                 {item.label}

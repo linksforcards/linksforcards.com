@@ -16,10 +16,10 @@
     "homeDescription": "Sono Magnus Schmidt. Raccolgo carte Pokémon dai negozi in Europa e negli Stati Uniti, completo raccoglitori di set e di generazione e li consegno ai bambini. Questa pagina è il registro pubblico.",
     "bindersTitle": "Raccoglitori e Pokédex",
     "bindersDescription": "Le liste dei miei raccoglitori di set e di generazione, con quello che ho già e quello che manca.",
-    "generationTitle": "Generazione {gen} · {region}",
-    "generationDescription": "Generazione {gen} ({region}): ho {collected} specie su {total}.",
-    "setTitle": "{name}",
-    "setDescription": "{name}: ho {collected} carte su {total} di questo set.",
+    "generationTitle": "Checklist generazione {gen} · tutte le {total}",
+    "generationDescription": "Tutte le {total} specie della generazione {gen} ({region}), con i set in cui compaiono. Ne ho {collected} su {total}.",
+    "setTitle": "{name} lista carte e checklist",
+    "setDescription": "{name}, lista carte e checklist della serie {series}, uscita il {date}. {total} carte. Ne ho {collected}.",
     "partnersTitle": "Grazie",
     "partnersDescription": "Negozi che hanno mandato carte per i raccoglitori. Ogni nome porta al negozio.",
     "updatesTitle": "Note",
@@ -32,7 +32,15 @@
     "imprintDescription": "Contatto di Magnus Schmidt, la persona responsabile di LinksForCards.",
     "notFoundTitle": "Pagina non trovata",
     "ogTitle": "Raccolgo carte e consegno i raccoglitori.",
-    "ogAlt": "LinksForCards, un progetto personale di Magnus Schmidt"
+    "ogAlt": "LinksForCards, un progetto personale di Magnus Schmidt",
+    "collectionsTitle": "Checklist dei raccoglitori Pokémon",
+    "collectionsDescription": "Liste carte dei set, checklist delle generazioni e una pagina per ogni Pokémon. Una barra piena è ciò che ho già.",
+    "seriesTitle": "Liste carte {series}",
+    "seriesDescription": "Liste carte e checklist della serie {series}. {count} set.",
+    "speciesTitle": "Lista carte {name}",
+    "speciesDescription": "Lista carte {name}. Pokédex {dex}, generazione {gen} ({region}). {total} carte in {sets} set.",
+    "guidesTitle": "Guide del raccoglitore",
+    "guidesDescription": "Come organizzo un raccoglitore Pokémon, cosa faccio con le carte bulk e come un raccoglitore finito parte per un bambino."
   },
   "nav": {
     "primary": "Pagine",
@@ -45,7 +53,10 @@
     "donations": "Consegnati",
     "privacy": "Privacy",
     "imprint": "Note legali",
-    "breadcrumbs": "Percorso"
+    "breadcrumbs": "Percorso",
+    "collections": "Collezioni",
+    "guides": "Guide",
+    "related": "Pagine collegate"
   },
   "footer": {
     "disclaimer": "LinksForCards è un progetto fan non ufficiale di Magnus Schmidt. Non è affiliato né approvato da Nintendo, Creatures, Game Freak o The Pokémon Company.",
@@ -127,12 +138,13 @@
     "supertypeE": "Energia",
     "supertypeO": "Altro",
     "progress": "{collected} di {total}",
-    "back": "Tutti i raccoglitori",
+    "back": "Tutte le collezioni",
     "prev": "Indietro",
     "next": "Avanti",
     "page": "{page} / {pages}",
     "pages": "Pagine",
-    "cardAlt": "{name} – {set} #{number}"
+    "cardAlt": "{name} – {set} #{number}",
+    "print": "Stampa questa checklist"
   },
   "partners": {
     "kicker": "Negozi",
@@ -183,5 +195,95 @@
     "h1": "Questa pagina non è nel raccoglitore.",
     "body": "L'indirizzo non corrisponde a nulla sul sito.",
     "home": "Torna all'inizio"
+  },
+  "collectionsPage": {
+    "kicker": "Checklist",
+    "intro": "Liste carte dei set, checklist delle generazioni e una pagina per ogni Pokémon. Una barra piena è ciò che ho già.",
+    "generations": "Raccoglitori di generazione",
+    "sets": "Set per serie",
+    "pokedex": "Pokédex",
+    "pokedexIntro": "Ogni Pokémon del dex nazionale, con una lista carte tutta sua.",
+    "searchPokedex": "Cerca nel Pokédex",
+    "searchPlaceholder": "Nome o numero",
+    "noPokemon": "Nessun Pokémon corrisponde.",
+    "letters": "Prima lettera",
+    "guides": "Guide"
+  },
+  "seriesPage": {
+    "intro": "{series} ha {count} set in questa lista. Ogni pagina di set è la lista carte e la checklist.",
+    "other": "Altre serie"
+  },
+  "setPage": {
+    "intro": "{name} è uscito il {date} nella serie {series}. Questa lista carte ha {total} carte. Ne ho {collected}.",
+    "notableLead": "I Pokémon di questo set includono",
+    "noPokemon": "Questa lista di set non ha carte Pokémon.",
+    "kinds": "Carte in questa lista: {list}.",
+    "related": "Altri set di {series}",
+    "gens": "Raccoglitori di generazione che queste carte possono riempire"
+  },
+  "speciesPage": {
+    "intro": "{name} è il Pokédex {dex} della generazione {gen} ({region}). Questa lista ha {total} carte in {sets} set. La più vecchia è {firstSet} ({firstDate}). La più recente è {latestSet} ({latestDate}).",
+    "have": "Ho segnato {collected} di queste carte.",
+    "none": "Non ho ancora segnato una carta di {name}.",
+    "kinds": "In questa lista: {list}.",
+    "binder": "Apri il raccoglitore generazione {gen} a {dex}",
+    "setsHeading": "Set con {name}"
+  },
+  "generationPage": {
+    "prints": "{count} carte",
+    "other": "Altri raccoglitori di generazione"
+  },
+  "guides": {
+    "kicker": "Dal raccoglitore",
+    "indexIntro": "Tre note: come ordino un raccoglitore, cosa faccio con il bulk e come un raccoglitore finito parte.",
+    "updated": "Aggiornato il {date}",
+    "organize": {
+      "title": "Come organizzo un raccoglitore Pokémon",
+      "description": "Raccoglitori di set e raccoglitori di generazione, e come segno una riga quando la carta è nel raccoglitore.",
+      "h1": "Come organizzo un raccoglitore Pokémon",
+      "lede": "Tengo due tipi di raccoglitore. Un raccoglitore di set tiene un set nell'ordine del numero di collezione. Un raccoglitore di generazione tiene una carta di ogni specie di quella generazione, da qualsiasi set e in qualsiasi lingua.",
+      "s1h": "Un raccoglitore di set",
+      "s1": "Un raccoglitore di set segue il numero di collezione della lista pubblica. Paldean Fates è l'esempio che ho in mente: il set intero, in ordine, senza lasciare fuori niente di proposito. La lista carte di ogni pagina di set è quell'ordine. Segno una riga quando la carta è nel raccoglitore, poi guardo il raccoglitore prima di dire il set completo.",
+      "s2h": "Un raccoglitore di generazione",
+      "s2": "Un raccoglitore di generazione chiede una carta di ogni specie. La generazione 1 sono i 151 originali. Le generazioni da 1 a 9 sono 1.025 specie. Qualsiasi stampa conta, e qualsiasi lingua conta. Un Magikarp dal bulk riempie una riga come un holo. La pagina della generazione elenca ogni specie, il numero di Pokédex e alcuni set in cui compare.",
+      "s3h": "Da dove comincio",
+      "s3": "Comincio dalla generazione 1 e da un set. La pagina Collezioni è la lista di entrambi. Se una riga e il raccoglitore non coincidono, conta il raccoglitore: segno un raccoglitore come completo solo dopo aver girato le pagine.",
+      "faq1q": "Un raccoglitore di generazione deve avere ogni stampa?",
+      "faq1a": "No. Basta una carta di ogni specie. Il raccoglitore di set è la lista che chiede ogni carta di quel set.",
+      "faq2q": "Dov'è la checklist?",
+      "faq2a": "Ogni set ha una lista carte, e ogni generazione ha una checklist. La pagina Collezioni collega le due."
+    },
+    "bulk": {
+      "title": "Cosa fare con le carte Pokémon bulk",
+      "description": "Il bulk riempie i raccoglitori. Ordino per set, poi guardo quale specie manca ancora.",
+      "h1": "Cosa fare con le carte Pokémon bulk",
+      "lede": "Il bulk è la pila di sempre: comuni, doppioni e il Magikarp che torna fuori. Quella pila riempie un raccoglitore.",
+      "s1h": "Prima per set",
+      "s1": "Ordino un pacco per set prima di guardare altro. Una carta che corrisponde a una riga aperta in un raccoglitore di set va lì. La pagina del set mostra il numero di collezione e se la riga è piena.",
+      "s2h": "Poi i raccoglitori di generazione",
+      "s2": "Una carta in più può riempire una specie mancante in un raccoglitore di generazione. Qualsiasi set e qualsiasi lingua contano. Me ne serve una per specie. Se la riga è già piena, il doppione resta nella scatola del bulk.",
+      "s3h": "Cosa mostra la pagina pubblica",
+      "s3": "Le pagine pubbliche mostrano il nome, il set e se la riga è piena. Non mostrano un prezzo di vendita. Una barra piena vuol dire che la carta è segnata, nient'altro.",
+      "faq1q": "Vale la pena segnare un Magikarp dal bulk?",
+      "faq1a": "Sì, quando la riga di quella specie è vuota. Vale la pena significa qui la checklist, non un prezzo.",
+      "faq2q": "Che fine fanno i doppioni?",
+      "faq2a": "I doppioni restano finché un raccoglitore ne ha bisogno, o finché un raccoglitore finito parte per un bambino."
+    },
+    "donating": {
+      "title": "Donare carte Pokémon ai bambini",
+      "description": "Come dono le carte Pokémon. Un raccoglitore finito va a un bambino, e la lista pubblica annota chi lo riceve e la data.",
+      "h1": "Donare carte Pokémon ai bambini",
+      "lede": "Dono le carte Pokémon consegnando un raccoglitore finito. I raccoglitori vanno a bambini: un reparto d'ospedale, un rifugio, un doposcuola. Annoto ognuno che esce.",
+      "s1h": "Solo un raccoglitore completo",
+      "s1": "Consegno solo un raccoglitore che ho segnato come completo. Un raccoglitore a metà resta qui finché le righe mancanti sono piene. Non consegno carte sfuse. Restano qui e riempiono il raccoglitore successivo.",
+      "s2h": "Cosa mostra la lista pubblica",
+      "s2": "La lista pubblica mostra chi lo riceve e la data. Non mostra un prezzo di vendita, e non dice a quanto si venderebbe una carta.",
+      "s3h": "Carte in più",
+      "s3": "Se hai carte in più o bulk per i raccoglitori, scrivimi a magnus@linksforcards.com. I negozi che mandano carte sono ringraziati per nome.",
+      "faq1q": "Accetti il bulk sfuso?",
+      "faq1a": "Sì. Il bulk sfuso è benvenuto. Lo ordino nei raccoglitori.",
+      "faq2q": "Le pagine pubbliche mostrano quanto vale una carta?",
+      "faq2a": "No. Le pagine pubbliche non mostrano mai quanto vale una carta."
+    }
   }
 }

@@ -16,10 +16,10 @@
     "homeDescription": "Olen Magnus Schmidt. Kerään Pokémon-kortteja kaupoista Euroopassa ja Yhdysvalloissa, täytän setti- ja sukupolvikansioita ja annan kansiot lapsille. Tämä sivu on julkinen kirjanpito.",
     "bindersTitle": "Kansiot ja Pokédex",
     "bindersDescription": "Setti- ja sukupolvikansioiden listat: mitä minulla jo on ja mitä vielä puuttuu.",
-    "generationTitle": "Sukupolvi {gen} · {region}",
-    "generationDescription": "Sukupolvi {gen} ({region}): minulla on {collected} / {total} lajia.",
-    "setTitle": "{name}",
-    "setDescription": "{name}: minulla on {collected} / {total} korttia tästä setistä.",
+    "generationTitle": "Sukupolvi {gen} tarkistuslista · kaikki {total}",
+    "generationDescription": "Kaikki {total} lajia sukupolvessa {gen} ({region}), ja setit joissa ne esiintyvät. Minulla on {collected} / {total}.",
+    "setTitle": "{name} korttilista ja tarkistuslista",
+    "setDescription": "{name} korttilista ja tarkistuslista sarjasta {series}, julkaistu {date}. {total} korttia. Minulla on {collected}.",
     "partnersTitle": "Kiitos",
     "partnersDescription": "Kaupat, jotka ovat lähettäneet kortteja kansioihin. Jokainen nimi vie kauppaan.",
     "updatesTitle": "Muistiinpanot",
@@ -32,7 +32,15 @@
     "imprintDescription": "Yhteys Magnus Schmidtiin, LinksForCards-sivusta vastaavaan henkilöön.",
     "notFoundTitle": "Sivua ei löydy",
     "ogTitle": "Kerään kortteja ja annan kansiot eteenpäin.",
-    "ogAlt": "LinksForCards, Magnus Schmidtin henkilökohtainen hanke"
+    "ogAlt": "LinksForCards, Magnus Schmidtin henkilökohtainen hanke",
+    "collectionsTitle": "Tarkistuslistat Pokémon-kansioihin",
+    "collectionsDescription": "Settien korttilistat, sukupolvien tarkistuslistat ja sivu jokaiselle Pokémonille. Täysi palkki on se, mitä minulla jo on.",
+    "seriesTitle": "{series}-korttilistat",
+    "seriesDescription": "Sarjan {series} korttilistat ja tarkistuslistat. {count} settiä.",
+    "speciesTitle": "{name} korttilista",
+    "speciesDescription": "{name} korttilista. Pokédex {dex}, sukupolvi {gen} ({region}). {total} korttia {sets} setissä.",
+    "guidesTitle": "Muistiinpanot kansiosta",
+    "guidesDescription": "Miten järjestän Pokémon-kansion, mitä teen bulkkorteilla ja miten valmis kansio lähtee lapselle."
   },
   "nav": {
     "primary": "Sivut",
@@ -45,7 +53,10 @@
     "donations": "Annetut",
     "privacy": "Tietosuoja",
     "imprint": "Yhteystiedot",
-    "breadcrumbs": "Murupolku"
+    "breadcrumbs": "Murupolku",
+    "collections": "Kokoelmat",
+    "guides": "Oppaat",
+    "related": "Liittyvät sivut"
   },
   "footer": {
     "disclaimer": "LinksForCards on Magnus Schmidtin epävirallinen faniprojekti. Sillä ei ole yhteyttä Nintendoon, Creaturesiin, Game Freakiin tai The Pokémon Companyyn, eivätkä ne ole sitä tukeneet.",
@@ -127,12 +138,13 @@
     "supertypeE": "Energia",
     "supertypeO": "Muu",
     "progress": "{collected} / {total}",
-    "back": "Kaikki kansiot",
+    "back": "Kaikki kokoelmat",
     "prev": "Edellinen",
     "next": "Seuraava",
     "page": "{page} / {pages}",
     "pages": "Sivut",
-    "cardAlt": "{name} – {set} #{number}"
+    "cardAlt": "{name} – {set} #{number}",
+    "print": "Tulosta tämä tarkistuslista"
   },
   "partners": {
     "kicker": "Kaupat",
@@ -183,5 +195,95 @@
     "h1": "Tätä sivua ei ole kansiossa.",
     "body": "Osoite ei vastaa mitään sivustolla.",
     "home": "Takaisin alkuun"
+  },
+  "collectionsPage": {
+    "kicker": "Tarkistuslistat",
+    "intro": "Settien korttilistat, sukupolvien tarkistuslistat ja sivu jokaiselle Pokémonille. Täysi palkki on se, mitä minulla jo on.",
+    "generations": "Sukupolvikansiot",
+    "sets": "Setit sarjoittain",
+    "pokedex": "Pokédex",
+    "pokedexIntro": "Jokainen kansallisen dexin Pokémon, omalla korttilistallaan.",
+    "searchPokedex": "Hae Pokédexistä",
+    "searchPlaceholder": "Nimi tai numero",
+    "noPokemon": "Yksikään Pokémon ei täsmää.",
+    "letters": "Alkukirjain",
+    "guides": "Oppaat"
+  },
+  "seriesPage": {
+    "intro": "Sarjassa {series} on {count} settiä tässä listassa. Jokainen settisivu on korttilista ja tarkistuslista.",
+    "other": "Muut sarjat"
+  },
+  "setPage": {
+    "intro": "{name} ilmestyi {date} sarjassa {series}. Tässä korttilistassa on {total} korttia. Minulla on niistä {collected}.",
+    "notableLead": "Tämän setin Pokémoneja ovat muun muassa",
+    "noPokemon": "Tässä settilistassa ei ole Pokémon-kortteja.",
+    "kinds": "Kortit tässä listassa: {list}.",
+    "related": "Lisää settiä sarjassa {series}",
+    "gens": "Sukupolvikansiot, joita nämä kortit voivat täyttää"
+  },
+  "speciesPage": {
+    "intro": "{name} on Pokédex {dex} sukupolvessa {gen} ({region}). Tässä listassa on {total} korttia {sets} setissä. Aikaisin on {firstSet} ({firstDate}). Uusin on {latestSet} ({latestDate}).",
+    "have": "Olen kirjannut {collected} näistä korteista.",
+    "none": "En ole vielä kirjannut yhtään {name}-korttia.",
+    "kinds": "Tässä listassa: {list}.",
+    "binder": "Avaa sukupolven {gen} kansio kohdasta {dex}",
+    "setsHeading": "Setit, joissa on {name}"
+  },
+  "generationPage": {
+    "prints": "{count} painosta",
+    "other": "Muut sukupolvikansiot"
+  },
+  "guides": {
+    "kicker": "Kansiosta",
+    "indexIntro": "Kolme muistiinpanoa: miten järjestän kansion, mitä teen bulkilla ja miten valmis kansio lähtee.",
+    "updated": "Päivitetty {date}",
+    "organize": {
+      "title": "Miten järjestän Pokémon-kansion",
+      "description": "Settikansiot ja sukupolvikansiot, ja miten merkitsen rivin kun kortti on kansiossa.",
+      "h1": "Miten järjestän Pokémon-kansion",
+      "lede": "Pidän kahta kansiota. Settikansio pitää yhden setin keräilynumerojärjestyksessä. Sukupolvikansio pitää yhden kortin jokaisesta sen sukupolven lajista, mistä tahansa setistä ja millä tahansa kielellä.",
+      "s1h": "Settikansio",
+      "s1": "Settikansio seuraa julkisen korttilistan keräilynumeroa. Paldean Fates on esimerkki, jonka pidän mielessä: koko setti, järjestyksessä, ilman että jätän jotain pois tahallaan. Jokaisen settisivun korttilista on tuo järjestys. Merkitsen rivin, kun kortti on kansiossa, ja katson kansiota ennen kuin kutsun setin valmiiksi.",
+      "s2h": "Sukupolvikansio",
+      "s2": "Sukupolvikansio tarvitsee yhden kortin jokaisesta lajista. Sukupolvi 1 on alkuperäiset 151. Sukupolvet 1–9 ovat 1 025 lajia. Mikä tahansa painos kelpaa, ja mikä tahansa kieli kelpaa. Bulkkilaatikon Magikarp täyttää rivin yhtä hyvin kuin holo. Sukupolvisivu luettelee jokaisen lajin, Pokédex-numeron ja muutaman setin, jossa se esiintyy.",
+      "s3h": "Mistä aloitan",
+      "s3": "Aloitan sukupolvesta 1 ja yhdestä setistä. Kokoelmat-sivu on lista molemmille. Jos rivi ja kansio eivät täsmää, kansio ratkaisee: merkitsen kansion valmiiksi vasta kun olen selannut sivut.",
+      "faq1q": "Tarvitseeko sukupolvikansio jokaisen painoksen?",
+      "faq1a": "Ei. Yksi kortti jokaisesta lajista riittää. Settikansio on lista, joka tarvitsee jokaisen sen setin kortin.",
+      "faq2q": "Missä tarkistuslista on?",
+      "faq2a": "Jokaisella setillä on korttilista, ja jokaisella sukupolvella on tarkistuslista. Kokoelmat-sivu linkittää molempiin."
+    },
+    "bulk": {
+      "title": "Mitä teen bulkkorteilla",
+      "description": "Bulk täyttää kansiot. Lajittelen setin mukaan ja katson sitten, mikä laji vielä puuttuu.",
+      "h1": "Mitä teen bulkkorteilla",
+      "lede": "Bulk on tavallinen pino: comuneja, kaksoiskappaleita ja Magikarp, joka tulee taas vastaan. Se pino täyttää kansion.",
+      "s1h": "Lajittele ensin setin mukaan",
+      "s1": "Lajittelen paketin setin mukaan ennen kuin katson muuta. Kortti, joka sopii avoimeen riviin settikansiossa, menee sinne. Settisivu näyttää keräilynumeron ja sen, onko rivi täynnä.",
+      "s2h": "Sitten sukupolvikansiot",
+      "s2": "Ylimääräinen kortti voi täyttää puuttuvan lajin sukupolvikansiossa. Mikä tahansa setti ja mikä tahansa kieli kelpaa. Tarvitsen yhden kustakin lajista. Jos rivi on jo täynnä, ylimääräinen jää bulkkilaatikkoon.",
+      "s3h": "Mitä julkinen sivu näyttää",
+      "s3": "Julkiset sivut näyttävät nimen, setin ja sen, onko rivi täynnä. Ne eivät näytä myyntihintaa. Täysi palkki tarkoittaa, että kortti on kirjattu, ei muuta.",
+      "faq1q": "Kannattaako bulkin Magikarp kirjata?",
+      "faq1a": "Kyllä, kun sen lajin rivi on tyhjä. Kannattaa tarkoittaa tässä tarkistuslistaa, ei hintaa.",
+      "faq2q": "Mitä ylimääräisille korteille tapahtuu?",
+      "faq2a": "Ylimääräiset jäävät, kunnes kansio tarvitsee niitä, tai kunnes valmis kansio lähtee lapselle."
+    },
+    "donating": {
+      "title": "Pokémon-korttien lahjoittaminen lapsille",
+      "description": "Miten lahjoitan Pokémon-kortteja. Valmis kansio menee lapselle, ja julkinen lista kirjaa vastaanottajan ja päivän.",
+      "h1": "Pokémon-korttien lahjoittaminen lapsille",
+      "lede": "Lahjoitan Pokémon-kortteja antamalla valmiin kansion. Kansiot menevät lapsille: sairaalaosastolle, turvakotiin, iltapäiväkerhoon. Kirjaan jokaisen, joka lähtee.",
+      "s1h": "Vain valmis kansio",
+      "s1": "Annan eteenpäin vain kansion, jonka olen merkinnyt valmiiksi. Puolitäysi kansio jää tänne, kunnes puuttuvat rivit ovat täynnä. Irrallisia kortteja en anna eteenpäin. Ne jäävät tänne ja täyttävät seuraavan kansion.",
+      "s2h": "Mitä julkinen lista näyttää",
+      "s2": "Julkinen lista näyttää vastaanottajan ja päivän. Se ei näytä myyntihintaa eikä sitä, millä hinnalla kortti menisi kaupaksi.",
+      "s3h": "Ylimääräiset kortit",
+      "s3": "Jos sinulla on ylimääräisiä kortteja tai bulkia kansioihin, kirjoita osoitteeseen magnus@linksforcards.com. Kaupat, jotka lähettävät kortteja, kiitetään nimellä.",
+      "faq1q": "Otatko vastaan irtobulkia?",
+      "faq1a": "Kyllä. Irtobulk on tervetullutta. Lajittelen sen kansioihin.",
+      "faq2q": "Näyttävätkö julkiset sivut, mitä kortti on arvoltaan?",
+      "faq2a": "Eivät. Julkiset sivut eivät koskaan näytä, mitä kortti on arvoltaan."
+    }
   }
 }

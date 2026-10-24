@@ -6,25 +6,34 @@ import { Checklist } from "@/components/site/checklist";
 import { DoodleCluster } from "@/components/site/doodles";
 import { JsonLd } from "@/components/site/json-ld";
 import { ProgressBar } from "@/components/site/progress-bar";
+import { RelatedLinks } from "@/components/site/related-links";
 import { SiteLinks } from "@/components/site/site-links";
 import { numbersMatch } from "@/lib/cards";
-import { cardImageSrc, getSet, getSetCards, speciesName, type CardKind } from "@/lib/catalog";
+import { cardImageSrc, getSet, getSetCards, getSets, speciesName, type CardKind } from "@/lib/catalog";
 import { fill, formatDay, formatInt } from "@/lib/format";
 import { formatDexNumber } from "@/lib/generations";
 import { readLocale, type Messages } from "@/lib/i18n";
 import { breadcrumbNode, itemListNode, ldGraph, pageNode } from "@/lib/jsonld";
 import { localePath } from "@/lib/routing";
 import { pageMetadata } from "@/lib/seo";
+import { seriesSlug } from "@/lib/series";
+import { kindSummary, setFacts } from "@/lib/set-facts";
 import { loadPublic, markFor } from "@/lib/stats";
 
-export const revalidate = 60;
-export const dynamicParams = true;
+export const revalidate = 3600;
+export const dynamicParams = false;
+
+const SAMPLE = 8;
 
 function kindLabel(kind: CardKind, m: Messages): string {
   if (kind === "p") return m.checklist.supertypeP;
   if (kind === "t") return m.checklist.supertypeT;
   if (kind === "e") return m.checklist.supertypeE;
   return m.checklist.supertypeO;
+}
+
+export function generateStaticParams() {
+  return getSets().map((set) => ({ setId: set.id }));
 }
 
 export async function generateMetadata({
@@ -40,12 +49,14 @@ export async function generateMetadata({
   const snapshot = await loadPublic();
   return pageMetadata(
     locale,
-    `/binders/set/${set.id}`,
+    `/collections/set/${set.id}`,
     fill(m.meta.setTitle, { name: set.name }),
     fill(m.meta.setDescription, {
       name: set.name,
-      collected: snapshot.setCounts[set.id] ?? 0,
-      total: cards.length,
+      series: set.series,
+      date: formatDay(set.releaseDate, locale),
+      collected: formatInt(snapshot.setCounts[set.id] ?? 0, locale),
+      total: formatInt(cards.length, locale),
     }),
   );
 }
@@ -55,7 +66,8 @@ export default async function SetPage({ params }: { params: Promise<{ locale: st
   const { setId } = await params;
   const set = getSet(setId);
   const cards = set ? getSetCards(set.id) : null;
-  if (!set || !cards) notFound();
+  const facts = set ? setFacts(set.id) : null;
+  if (!set || !cards || !facts) notFound();
   const snapshot = await loadPublic();
   const held = snapshot.held[set.id] ?? [];
   const collected = snapshot.setCounts[set.id] ?? 0;
@@ -64,41 +76,59 @@ export default async function SetPage({ params }: { params: Promise<{ locale: st
     collected: formatInt(collected, locale),
     total: formatInt(cards.length, locale),
   });
-  const path = `/binders/set/${set.id}`;
+  const path = `/collections/set/${set.id}`;
+  const title = fill(m.meta.setTitle, { name: set.name });
   const rows = cards.map((card) => {
     const pokemon = (card.dex ?? []).map((dex) => speciesName(dex, locale)).filter(Boolean);
     const name = card.k === "p" && pokemon.length ? pokemon.join(", ") : card.name;
+    const dex = card.dex?.find((number) => number >= 1 && number <= 1025);
     return {
       key: card.n,
       title: `${card.n} ${card.name}`,
       detail: [
         kindLabel(card.k, m),
-        ...(card.dex ?? []).map((dex) => `${formatDexNumber(dex)} ${speciesName(dex, locale)}`),
+        ...(card.dex ?? []).map((number) => `${formatDexNumber(number)} ${speciesName(number, locale)}`),
       ].join(" · "),
       have: held.some((number) => numbersMatch(card.n, number)),
       image: cardImageSrc(set.id, card.n),
       alt: fill(m.checklist.cardAlt, { name, set: set.name, number: card.n }),
+      href: dex ? localePath(locale, `/pokedex/${dex}`) : undefined,
     };
   });
   const crumbs = [
     { name: m.nav.home, href: localePath(locale, "/") },
-    { name: m.nav.binders, href: localePath(locale, "/binders") },
+    { name: m.nav.collections, href: localePath(locale, "/collections") },
+    { name: set.series, href: localePath(locale, `/collections/series/${seriesSlug(set.series)}`) },
     { name: set.name, href: localePath(locale, path) },
   ];
   const list = itemListNode(
     localePath(locale, path),
-    set.name,
-    rows.map((row) => ({ name: row.alt })),
+    title,
+    rows.map((row) => ({ name: row.title })),
   );
   const page = pageNode({
     kind: "CollectionPage",
     locale,
     path,
-    name: set.name,
-    description: fill(m.meta.setDescription, { name: set.name, collected, total: cards.length }),
+    name: title,
+    description: fill(m.meta.setDescription, {
+      name: set.name,
+      series: set.series,
+      date: formatDay(set.releaseDate, locale),
+      collected,
+      total: cards.length,
+    }),
   }) as CollectionPage;
   Object.assign(page, { mainEntity: { "@id": String(list["@id"]) } });
   const graph = ldGraph([page, list, breadcrumbNode(crumbs)]);
+  const sample = facts.dexes.slice(0, SAMPLE);
+  const rest = facts.dexes.length - sample.length;
+  const relatedSets = getSets().filter((item) => item.series === set.series && item.id !== set.id);
+  const kindLine = kindSummary(
+    facts.kinds,
+    { p: m.checklist.supertypeP, t: m.checklist.supertypeT, e: m.checklist.supertypeE, o: m.checklist.supertypeO },
+    locale,
+  );
 
   return (
     <>
@@ -107,14 +137,34 @@ export default async function SetPage({ params }: { params: Promise<{ locale: st
         <DoodleCluster />
         <Breadcrumbs label={m.nav.breadcrumbs} items={crumbs} />
         <p className="kicker">
-          <a href={localePath(locale, "/binders")}>{m.checklist.back}</a>
+          <a href={localePath(locale, `/collections/series/${seriesSlug(set.series)}`)}>{set.series}</a>
         </p>
-        <h1>{set.name}</h1>
+        <h1>{title}</h1>
       </section>
       <p>
-        {set.series} · {formatDay(set.releaseDate, locale)}
+        {fill(m.setPage.intro, {
+          name: set.name,
+          date: formatDay(set.releaseDate, locale),
+          series: set.series,
+          total: formatInt(cards.length, locale),
+          collected: formatInt(collected, locale),
+        })}
       </p>
-      <p>{fill(m.meta.setDescription, { name: set.name, collected: formatInt(collected, locale), total: formatInt(cards.length, locale) })}</p>
+      {sample.length > 0 ? (
+        <p>
+          {m.setPage.notableLead}{" "}
+          {sample.map((dex, index) => (
+            <span key={dex}>
+              {index > 0 ? ", " : null}
+              <a href={localePath(locale, `/pokedex/${dex}`)}>{speciesName(dex, locale)}</a>
+            </span>
+          ))}
+          {rest > 0 ? ` ${fill(m.home.andMore, { count: formatInt(rest, locale) })}` : null}.
+        </p>
+      ) : (
+        <p>{m.setPage.noPokemon}</p>
+      )}
+      {kindLine ? <p>{fill(m.setPage.kinds, { list: kindLine })}</p> : null}
       <p>{m.bindersPage.anyLanguage}</p>
       <ProgressBar value={collected} max={cards.length} label={`${set.name}: ${progressLabel}`} />
       <p className="count">{progressLabel}</p>
@@ -122,6 +172,30 @@ export default async function SetPage({ params }: { params: Promise<{ locale: st
       {mark?.status === "given_away" ? <p className="banner">{m.checklist.markedGiven}</p> : null}
       {mark?.status === "completed" ? <p className="banner">{m.checklist.markedComplete}</p> : null}
       <Checklist rows={rows} labels={m.checklist} />
+      {relatedSets.length > 0 ? (
+        <>
+          <h2>{fill(m.setPage.related, { series: set.series })}</h2>
+          <RelatedLinks
+            label={m.nav.related}
+            links={relatedSets.map((item) => ({
+              href: localePath(locale, `/collections/set/${item.id}`),
+              name: item.name,
+            }))}
+          />
+        </>
+      ) : null}
+      {facts.generations.length > 0 ? (
+        <>
+          <h2>{m.setPage.gens}</h2>
+          <RelatedLinks
+            label={m.nav.related}
+            links={facts.generations.map((generation) => ({
+              href: localePath(locale, `/collections/generation/${generation}`),
+              name: `${fill(m.home.genLink, { gen: generation })} · ${m.regions[generation - 1]}`,
+            }))}
+          />
+        </>
+      ) : null}
       <SiteLinks locale={locale} m={m} current={path} />
     </>
   );

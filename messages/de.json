@@ -16,10 +16,10 @@
     "homeDescription": "Ich bin Magnus Schmidt. Ich sammle Pokémon-Karten in Läden in Europa und den USA, fülle Set- und Generationsbinder und gebe die Binder an Kinder weiter. Diese Seite ist das öffentliche Protokoll.",
     "bindersTitle": "Binder und Pokédex",
     "bindersDescription": "Die Checklisten für meine Set- und Generationsbinder, mit dem, was ich habe, und dem, was noch fehlt.",
-    "generationTitle": "Generation {gen} · {region}",
-    "generationDescription": "Generation {gen} ({region}): Ich habe bisher {collected} von {total} Arten.",
-    "setTitle": "{name}",
-    "setDescription": "{name}: Ich habe {collected} von {total} Karten aus diesem Set.",
+    "generationTitle": "Generation {gen} Checkliste · alle {total}",
+    "generationDescription": "Alle {total} Arten der Generation {gen} ({region}), mit den Sets, in denen sie vorkommen. Ich habe {collected} von {total}.",
+    "setTitle": "{name} Kartenliste und Checkliste",
+    "setDescription": "{name} Kartenliste und Checkliste aus der Serie {series}, erschienen am {date}. {total} Karten. Ich habe {collected}.",
     "partnersTitle": "Danke",
     "partnersDescription": "Läden, die Karten für die Binder geschickt haben. Jeder Name verlinkt zum Laden.",
     "updatesTitle": "Notizen",
@@ -32,7 +32,15 @@
     "imprintDescription": "Kontakt zu Magnus Schmidt, der für LinksForCards verantwortlich ist.",
     "notFoundTitle": "Seite nicht gefunden",
     "ogTitle": "Ich sammle Karten und gebe die Binder weiter.",
-    "ogAlt": "LinksForCards, ein persönliches Projekt von Magnus Schmidt"
+    "ogAlt": "LinksForCards, ein persönliches Projekt von Magnus Schmidt",
+    "collectionsTitle": "Checklisten für Pokémon-Sammelordner",
+    "collectionsDescription": "Kartenlisten der Sets, Checklisten der Generationen und eine Seite für jedes Pokémon. Ein gefüllter Balken ist das, was ich schon habe.",
+    "seriesTitle": "{series}-Kartenlisten",
+    "seriesDescription": "Kartenlisten und Checklisten der Serie {series}. {count} Sets.",
+    "speciesTitle": "{name} Kartenliste",
+    "speciesDescription": "{name} Kartenliste. Pokédex {dex}, Generation {gen} ({region}). {total} Karten aus {sets} Sets.",
+    "guidesTitle": "Notizen zum Sammelordner",
+    "guidesDescription": "Wie ich einen Pokémon-Sammelordner ordne, was ich mit Bulk-Karten mache, und wie ein fertiger Ordner an ein Kind geht."
   },
   "nav": {
     "primary": "Seiten",
@@ -45,7 +53,10 @@
     "donations": "Weitergegeben",
     "privacy": "Datenschutz",
     "imprint": "Impressum",
-    "breadcrumbs": "Brotkrumen"
+    "breadcrumbs": "Brotkrumen",
+    "collections": "Sammlungen",
+    "guides": "Notizen",
+    "related": "Verwandte Seiten"
   },
   "footer": {
     "disclaimer": "LinksForCards ist ein inoffizielles Fanprojekt von Magnus Schmidt. Es ist nicht mit Nintendo, Creatures, Game Freak oder The Pokémon Company verbunden und wird von ihnen nicht unterstützt.",
@@ -127,12 +138,13 @@
     "supertypeE": "Energie",
     "supertypeO": "Sonstiges",
     "progress": "{collected} von {total}",
-    "back": "Alle Binder",
+    "back": "Alle Sammlungen",
     "prev": "Zurück",
     "next": "Weiter",
     "page": "{page} / {pages}",
     "pages": "Seiten",
-    "cardAlt": "{name} – {set} #{number}"
+    "cardAlt": "{name} – {set} #{number}",
+    "print": "Diese Checkliste drucken"
   },
   "partners": {
     "kicker": "Läden",
@@ -183,5 +195,95 @@
     "h1": "Diese Seite liegt nicht im Binder.",
     "body": "Die Adresse passt zu nichts auf der Seite.",
     "home": "Zurück zum Anfang"
+  },
+  "collectionsPage": {
+    "kicker": "Checklisten",
+    "intro": "Kartenlisten der Sets, Checklisten der Generationen und eine Seite für jedes Pokémon. Ein gefüllter Balken ist das, was ich schon habe.",
+    "generations": "Generations-Ordner",
+    "sets": "Sets nach Serie",
+    "pokedex": "Pokédex",
+    "pokedexIntro": "Jedes Pokémon im nationalen Dex, mit einer eigenen Kartenliste.",
+    "searchPokedex": "Pokédex durchsuchen",
+    "searchPlaceholder": "Name oder Nummer",
+    "noPokemon": "Kein Pokémon passt.",
+    "letters": "Anfangsbuchstabe",
+    "guides": "Notizen"
+  },
+  "seriesPage": {
+    "intro": "{series} hat {count} Sets in dieser Liste. Jede Set-Seite ist die Kartenliste und die Checkliste.",
+    "other": "Andere Serien"
+  },
+  "setPage": {
+    "intro": "{name} erschien am {date} in der Serie {series}. Diese Kartenliste hat {total} Karten. Ich habe {collected} davon.",
+    "notableLead": "Pokémon in diesem Set sind unter anderem",
+    "noPokemon": "Diese Set-Liste hat keine Pokémon-Karten.",
+    "kinds": "Karten in dieser Liste: {list}.",
+    "related": "Weitere Sets in {series}",
+    "gens": "Generations-Ordner, die diese Karten füllen können"
+  },
+  "speciesPage": {
+    "intro": "{name} ist Pokédex {dex} in Generation {gen} ({region}). Diese Liste hat {total} Karten aus {sets} Sets. Der früheste Eintrag ist {firstSet} ({firstDate}). Der neueste ist {latestSet} ({latestDate}).",
+    "have": "Ich habe {collected} dieser Karten eingetragen.",
+    "none": "Ich habe noch keine Karte von {name} eingetragen.",
+    "kinds": "In dieser Liste: {list}.",
+    "binder": "Sammelordner Generation {gen} bei {dex} öffnen",
+    "setsHeading": "Sets mit {name}"
+  },
+  "generationPage": {
+    "prints": "{count} Karten",
+    "other": "Andere Generations-Ordner"
+  },
+  "guides": {
+    "kicker": "Aus dem Ordner",
+    "indexIntro": "Drei Notizen: wie ich einen Sammelordner sortiere, was ich mit Bulk-Karten mache, und wie ein fertiger Ordner weggeht.",
+    "updated": "Aktualisiert am {date}",
+    "organize": {
+      "title": "Wie ich einen Pokémon-Sammelordner ordne",
+      "description": "Set-Ordner und Generations-Ordner, und wann ich eine Zeile als gefüllt zähle.",
+      "h1": "Wie ich einen Pokémon-Sammelordner ordne",
+      "lede": "Ich führe zwei Arten von Sammelordnern. Ein Set-Ordner hält ein Set in der Reihenfolge der Sammlernummern. Ein Generations-Ordner hält eine Karte jeder Art aus dieser Generation, aus jedem Set und in jeder Sprache.",
+      "s1h": "Ein Set-Ordner",
+      "s1": "Ein Set-Ordner folgt der Sammlernummer aus der öffentlichen Kartenliste. Paldean Fates ist das Beispiel, das ich im Kopf habe: das ganze Set, in Reihenfolge, ohne etwas absichtlich auszulassen. Die Kartenliste auf jeder Set-Seite ist diese Reihenfolge. Ich markiere eine Zeile, wenn die Karte im Ordner liegt, und ich schaue in den Ordner, bevor ich das Set fertig nenne.",
+      "s2h": "Ein Generations-Ordner",
+      "s2": "Ein Generations-Ordner braucht eine Karte jeder Art. Generation 1 sind die ursprünglichen 151. Die Generationen 1 bis 9 sind 1.025 Arten. Jede Druckversion zählt, und jede Sprache zählt. Ein Karpador aus der Bulk-Kiste füllt eine Zeile genauso wie ein Holo. Die Generationsseite nennt jede Art, die Pokédex-Nummer und ein paar der Sets, in denen sie vorkommt.",
+      "s3h": "Womit ich anfange",
+      "s3": "Ich fange mit Generation 1 und einem Set an. Die Seite Sammlungen ist die Liste für beides. Wenn eine Zeile und der Ordner nicht übereinstimmen, gilt der Ordner: ich nenne einen Ordner erst fertig, nachdem ich die Seiten durchgeblättert habe.",
+      "faq1q": "Braucht ein Generations-Ordner jede Druckversion?",
+      "faq1a": "Nein. Eine Karte jeder Art reicht. Der Set-Ordner ist die Liste, die jede Karte des Sets braucht.",
+      "faq2q": "Wo ist die Checkliste?",
+      "faq2a": "Jedes Set hat eine Kartenliste, und jede Generation hat eine Checkliste. Die Seite Sammlungen verlinkt beides."
+    },
+    "bulk": {
+      "title": "Was ich mit Bulk-Karten mache",
+      "description": "Bulk-Karten füllen die Ordner. Ich sortiere zuerst nach Set und schaue dann, welche Art noch fehlt.",
+      "h1": "Was ich mit Bulk-Karten mache",
+      "lede": "Bulk ist der gewöhnliche Stapel: Commons, Doppelte und das Karpador, das wieder auftaucht. Dieser Stapel füllt einen Sammelordner.",
+      "s1h": "Zuerst nach Set sortieren",
+      "s1": "Ich sortiere ein Paket nach Set, bevor ich etwas anderes anschaue. Eine Karte, die zu einer offenen Zeile im Set-Ordner passt, kommt dorthin. Die Set-Seite zeigt die Sammlernummer und ob die Zeile gefüllt ist.",
+      "s2h": "Danach die Generations-Ordner",
+      "s2": "Eine übrige Karte kann eine fehlende Art in einem Generations-Ordner füllen. Jedes Set und jede Sprache zählt. Ich brauche nur eine Karte jeder Art. Ist die Zeile schon gefüllt, bleibt der Rest in der Bulk-Kiste.",
+      "s3h": "Was die öffentliche Seite zeigt",
+      "s3": "Öffentliche Seiten zeigen den Namen, das Set und ob die Zeile gefüllt ist. Sie zeigen keinen Verkaufspreis. Ein gefüllter Balken heißt, dass die Karte eingetragen ist, sonst nichts.",
+      "faq1q": "Lohnt es sich, ein Karpador aus dem Bulk einzutragen?",
+      "faq1a": "Ja, wenn die Zeile für diese Art noch leer ist. Lohnen meint hier die Checkliste, nicht einen Preis.",
+      "faq2q": "Was passiert mit den übrigen Karten?",
+      "faq2a": "Übrige Karten bleiben, bis ein Ordner sie braucht oder ein fertiger Ordner an ein Kind geht."
+    },
+    "donating": {
+      "title": "Pokémon-Karten an Kinder spenden",
+      "description": "Wie ich Pokémon-Karten spende. Ein fertiger Sammelordner geht an ein Kind, und die öffentliche Liste nennt den Empfänger und das Datum.",
+      "h1": "Pokémon-Karten an Kinder spenden",
+      "lede": "Ich spende Pokémon-Karten, indem ich einen fertigen Sammelordner abgebe. Die Ordner gehen an Kinder: eine Krankenstation, eine Unterkunft, ein Hort. Ich schreibe jeden auf, der das Haus verlässt.",
+      "s1h": "Nur ein vollständiger Ordner",
+      "s1": "Ich gebe nur einen Ordner ab, den ich als fertig markiert habe. Ein halbvoller Ordner bleibt bei mir, bis die fehlenden Zeilen gefüllt sind. Lose Karten gebe ich nicht ab. Sie bleiben hier und füllen den nächsten Ordner.",
+      "s2h": "Was die öffentliche Liste zeigt",
+      "s2": "Die öffentliche Liste zeigt den Empfänger und das Datum. Sie zeigt keinen Verkaufspreis und nicht, wofür eine Karte verkauft werden würde.",
+      "s3h": "Übrige Karten",
+      "s3": "Wenn du übrige Karten oder Bulk für die Ordner hast, schreib mir an magnus@linksforcards.com. Läden, die Karten schicken, werden mit Namen bedankt.",
+      "faq1q": "Nimmst du loses Bulk an?",
+      "faq1a": "Ja. Loses Bulk ist willkommen. Ich sortiere es in die Ordner.",
+      "faq2q": "Zeigen die öffentlichen Seiten, was eine Karte wert ist?",
+      "faq2a": "Nein. Öffentliche Seiten zeigen nie, was eine Karte wert ist."
+    }
   }
 }

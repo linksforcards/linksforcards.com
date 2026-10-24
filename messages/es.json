@@ -16,10 +16,10 @@
     "homeDescription": "Soy Magnus Schmidt. Reúno cartas Pokémon de tiendas de Europa y de Estados Unidos, completo carpetas de expansión y de generación, y las entrego a niños. Esta página es el registro público.",
     "bindersTitle": "Carpetas y Pokédex",
     "bindersDescription": "Las listas de mis carpetas de expansión y de generación, con lo que ya tengo y lo que todavía falta.",
-    "generationTitle": "Generación {gen} · {region}",
-    "generationDescription": "Generación {gen} ({region}): tengo {collected} de {total} especies.",
-    "setTitle": "{name}",
-    "setDescription": "{name}: tengo {collected} de {total} cartas de esta expansión.",
+    "generationTitle": "Checklist de la generación {gen} · las {total}",
+    "generationDescription": "Las {total} especies de la generación {gen} ({region}), con los sets en los que aparecen. Tengo {collected} de {total}.",
+    "setTitle": "{name} lista de cartas y checklist",
+    "setDescription": "{name}, lista de cartas y checklist de la serie {series}, publicada el {date}. {total} cartas. Tengo {collected}.",
     "partnersTitle": "Gracias",
     "partnersDescription": "Tiendas que han enviado cartas para las carpetas. Cada nombre enlaza con la tienda.",
     "updatesTitle": "Notas",
@@ -32,7 +32,15 @@
     "imprintDescription": "Contacto de Magnus Schmidt, la persona responsable de LinksForCards.",
     "notFoundTitle": "Página no encontrada",
     "ogTitle": "Reúno cartas y entrego las carpetas.",
-    "ogAlt": "LinksForCards, un proyecto personal de Magnus Schmidt"
+    "ogAlt": "LinksForCards, un proyecto personal de Magnus Schmidt",
+    "collectionsTitle": "Checklists de carpetas Pokémon",
+    "collectionsDescription": "Listas de cartas de los sets, checklists de las generaciones y una página para cada Pokémon. Una barra llena es lo que ya tengo.",
+    "seriesTitle": "Listas de cartas de {series}",
+    "seriesDescription": "Listas de cartas y checklists de la serie {series}. {count} sets.",
+    "speciesTitle": "Lista de cartas de {name}",
+    "speciesDescription": "Lista de cartas de {name}. Pokédex {dex}, generación {gen} ({region}). {total} cartas en {sets} expansiones.",
+    "guidesTitle": "Guías de la carpeta",
+    "guidesDescription": "Cómo organizo una carpeta de Pokémon, qué hago con las cartas sueltas y cómo una carpeta terminada sale hacia un niño."
   },
   "nav": {
     "primary": "Páginas",
@@ -45,7 +53,10 @@
     "donations": "Entregadas",
     "privacy": "Privacidad",
     "imprint": "Aviso legal",
-    "breadcrumbs": "Migas de pan"
+    "breadcrumbs": "Migas de pan",
+    "collections": "Colecciones",
+    "guides": "Guías",
+    "related": "Páginas relacionadas"
   },
   "footer": {
     "disclaimer": "LinksForCards es un proyecto de fan no oficial de Magnus Schmidt. No está afiliado ni respaldado por Nintendo, Creatures, Game Freak o The Pokémon Company.",
@@ -127,12 +138,13 @@
     "supertypeE": "Energía",
     "supertypeO": "Otro",
     "progress": "{collected} de {total}",
-    "back": "Todas las carpetas",
+    "back": "Todas las colecciones",
     "prev": "Anterior",
     "next": "Siguiente",
     "page": "{page} / {pages}",
     "pages": "Páginas",
-    "cardAlt": "{name} – {set} #{number}"
+    "cardAlt": "{name} – {set} #{number}",
+    "print": "Imprimir esta checklist"
   },
   "partners": {
     "kicker": "Tiendas",
@@ -183,5 +195,95 @@
     "h1": "Esta página no está en la carpeta.",
     "body": "La dirección no coincide con nada del sitio.",
     "home": "Volver al inicio"
+  },
+  "collectionsPage": {
+    "kicker": "Checklists",
+    "intro": "Listas de cartas de los sets, checklists de las generaciones y una página para cada Pokémon. Una barra llena es lo que ya tengo.",
+    "generations": "Carpetas de generación",
+    "sets": "Sets por serie",
+    "pokedex": "Pokédex",
+    "pokedexIntro": "Cada Pokémon del dex nacional, con su propia lista de cartas.",
+    "searchPokedex": "Buscar en el Pokédex",
+    "searchPlaceholder": "Nombre o número",
+    "noPokemon": "Ningún Pokémon coincide.",
+    "letters": "Primera letra",
+    "guides": "Guías"
+  },
+  "seriesPage": {
+    "intro": "{series} tiene {count} sets en esta lista. Cada página de set es la lista de cartas y la checklist.",
+    "other": "Otras series"
+  },
+  "setPage": {
+    "intro": "{name} salió el {date} en la serie {series}. Esta lista de cartas tiene {total} cartas. Tengo {collected}.",
+    "notableLead": "Los Pokémon de esta expansión incluyen",
+    "noPokemon": "Esta lista de set no tiene cartas de Pokémon.",
+    "kinds": "Cartas en esta lista: {list}.",
+    "related": "Más sets de {series}",
+    "gens": "Carpetas de generación que estas cartas pueden llenar"
+  },
+  "speciesPage": {
+    "intro": "{name} es el Pokédex {dex} de la generación {gen} ({region}). Esta lista tiene {total} cartas en {sets} expansiones. La más antigua es {firstSet} ({firstDate}). La más reciente es {latestSet} ({latestDate}).",
+    "have": "Tengo {collected} de estas cartas anotadas.",
+    "none": "Todavía no he anotado una carta de {name}.",
+    "kinds": "En esta lista: {list}.",
+    "binder": "Abrir la carpeta de la generación {gen} en {dex}",
+    "setsHeading": "Sets con {name}"
+  },
+  "generationPage": {
+    "prints": "{count} cartas",
+    "other": "Otras carpetas de generación"
+  },
+  "guides": {
+    "kicker": "Desde la carpeta",
+    "indexIntro": "Tres notas: cómo ordeno una carpeta, qué hago con el bulk y cómo sale una carpeta terminada.",
+    "updated": "Actualizado el {date}",
+    "organize": {
+      "title": "Cómo organizo una carpeta de Pokémon",
+      "description": "Carpetas de set y carpetas de generación, y cómo marco una línea cuando la carta está en la carpeta.",
+      "h1": "Cómo organizo una carpeta de Pokémon",
+      "lede": "Llevo dos tipos de carpeta. Una carpeta de set guarda un set en el orden del número de colección. Una carpeta de generación guarda una carta de cada especie de esa generación, de cualquier set y en cualquier idioma.",
+      "s1h": "Una carpeta de set",
+      "s1": "Una carpeta de set sigue el número de colección de la lista pública. Paldean Fates es el ejemplo que tengo en mente: el set entero, en orden, sin dejar nada fuera a propósito. La lista de cartas de cada página de set es ese orden. Marco una línea cuando la carta está en la carpeta, y miro la carpeta antes de dar el set por completo.",
+      "s2h": "Una carpeta de generación",
+      "s2": "Una carpeta de generación pide una carta de cada especie. La generación 1 son los 151 originales. Las generaciones 1 a 9 son 1.025 especies. Cualquier impresión cuenta, y cualquier idioma cuenta. Un Magikarp de bulk llena una línea igual que un holo. La página de la generación lista cada especie, el número de Pokédex y algunos sets en los que aparece.",
+      "s3h": "Por dónde empiezo",
+      "s3": "Empiezo por la generación 1 y un set. La página Colecciones es la lista de las dos. Si una línea y la carpeta no coinciden, manda la carpeta: solo marco una carpeta como completa después de pasar las páginas.",
+      "faq1q": "¿Una carpeta de generación necesita cada impresión?",
+      "faq1a": "No. Basta una carta de cada especie. La carpeta de set es la lista que necesita cada carta de ese set.",
+      "faq2q": "¿Dónde está la checklist?",
+      "faq2a": "Cada set tiene una lista de cartas, y cada generación tiene una checklist. La página Colecciones enlaza las dos."
+    },
+    "bulk": {
+      "title": "Qué hacer con las cartas Pokémon sueltas",
+      "description": "El bulk llena las carpetas. Ordeno por set y luego miro qué especie sigue vacía.",
+      "h1": "Qué hacer con las cartas Pokémon sueltas",
+      "lede": "El bulk es el montón de siempre: comunes, repetidas y el Magikarp que vuelve a salir. Ese montón llena una carpeta.",
+      "s1h": "Ordenar por set primero",
+      "s1": "Ordeno un paquete por set antes de mirar nada más. Una carta que encaja en una línea abierta de una carpeta de set va ahí. La página del set muestra el número de colección y si la línea está llena.",
+      "s2h": "Después las carpetas de generación",
+      "s2": "Una carta de más puede llenar una especie que falta en una carpeta de generación. Cualquier set y cualquier idioma cuentan. Solo necesito una de cada especie. Si la línea ya está llena, el repetido se queda en la caja de bulk.",
+      "s3h": "Lo que muestra la página pública",
+      "s3": "Las páginas públicas muestran el nombre, el set y si la línea está llena. No muestran un precio de venta. Una barra llena quiere decir que la carta está anotada, nada más.",
+      "faq1q": "¿Vale la pena anotar un Magikarp de bulk?",
+      "faq1a": "Sí, cuando la línea de esa especie está vacía. Valer la pena significa aquí la checklist, no un precio.",
+      "faq2q": "¿Qué pasa con las repetidas?",
+      "faq2a": "Las repetidas se quedan hasta que una carpeta las necesita, o hasta que una carpeta terminada sale para un niño."
+    },
+    "donating": {
+      "title": "Donar cartas Pokémon a niños",
+      "description": "Cómo dono cartas Pokémon. Una carpeta terminada va a un niño, y la lista pública anota quién la recibe y la fecha.",
+      "h1": "Donar cartas Pokémon a niños",
+      "lede": "Dono cartas Pokémon al entregar una carpeta terminada. Las carpetas van a niños: una planta de hospital, un refugio, un club después del colegio. Anoto cada una que sale.",
+      "s1h": "Solo una carpeta completa",
+      "s1": "Solo entrego una carpeta que he marcado como completa. Una carpeta a medias se queda conmigo hasta que las líneas que faltan estén llenas. No entrego cartas sueltas. Se quedan aquí y llenan la carpeta siguiente.",
+      "s2h": "Lo que muestra la lista pública",
+      "s2": "La lista pública muestra quién la recibe y la fecha. No muestra un precio de venta, ni lo que una carta costaría.",
+      "s3h": "Cartas de más",
+      "s3": "Si tienes cartas de más o bulk para las carpetas, escríbeme a magnus@linksforcards.com. Las tiendas que envían cartas aparecen con su nombre.",
+      "faq1q": "¿Aceptas bulk suelto?",
+      "faq1a": "Sí. El bulk suelto es bienvenido. Lo ordeno en las carpetas.",
+      "faq2q": "¿Las páginas públicas muestran lo que vale una carta?",
+      "faq2a": "No. Las páginas públicas no muestran nunca lo que vale una carta."
+    }
   }
 }
