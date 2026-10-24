@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Checklist } from "@/components/site/checklist";
+import { DoodleCluster } from "@/components/site/doodles";
 import { ProgressBar } from "@/components/site/progress-bar";
 import { numbersMatch } from "@/lib/cards";
 import { cardImageSrc, getSet, getSetCards, speciesName, type CardKind } from "@/lib/catalog";
@@ -71,10 +72,13 @@ export default async function SetPage({ params }: { params: Promise<{ locale: st
 
   return (
     <>
-      <p className="kicker">
-        <a href={localePath(locale, "/binders")}>{m.checklist.back}</a>
-      </p>
-      <h1>{set.name}</h1>
+      <section className="page-head">
+        <DoodleCluster />
+        <p className="kicker">
+          <a href={localePath(locale, "/binders")}>{m.checklist.back}</a>
+        </p>
+        <h1>{set.name}</h1>
+      </section>
       <p>
         {set.series} · {formatDay(set.releaseDate, locale)}
       </p>

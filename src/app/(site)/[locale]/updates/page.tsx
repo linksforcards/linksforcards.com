@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { DoodleCluster } from "@/components/site/doodles";
 import { PlainText } from "@/components/site/plain-text";
 import { formatWhen } from "@/lib/format";
 import { readLocale } from "@/lib/i18n";
@@ -20,9 +21,12 @@ export default async function UpdatesPage({ params }: { params: Promise<{ locale
 
   return (
     <>
-      <p className="kicker">{m.updates.kicker}</p>
-      <h1>{m.updates.h1}</h1>
-      <p className="lede">{m.updates.intro}</p>
+      <section className="page-head">
+        <DoodleCluster />
+        <p className="kicker">{m.updates.kicker}</p>
+        <h1>{m.updates.h1}</h1>
+        <p className="lede">{m.updates.intro}</p>
+      </section>
       <p>{m.updates.asWritten}</p>
       {substack ? (
         <p>

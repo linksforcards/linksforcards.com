@@ -1,13 +1,15 @@
-import { Fraunces, Source_Sans_3 } from "next/font/google";
+import { Nunito, Quicksand } from "next/font/google";
 
-export const display = Fraunces({
+export const display = Quicksand({
   subsets: ["latin", "latin-ext"],
+  weight: ["600", "700"],
   display: "swap",
   variable: "--font-display",
 });
 
-export const sans = Source_Sans_3({
+export const sans = Nunito({
   subsets: ["latin", "latin-ext"],
+  weight: ["400", "600", "700"],
   display: "swap",
   variable: "--font-sans",
 });

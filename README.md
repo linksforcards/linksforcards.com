@@ -91,4 +91,4 @@ English is at `/`. The other languages are `/de`, `/fr`, `/it`, `/es`, `/nl`, `/
 
 ## Type
 
-Headings use [Fraunces](https://github.com/undercasetype/Fraunces) and the text uses [Source Sans 3](https://github.com/adobe-fonts/source-sans). Both are under the SIL Open Font License. The license texts are in `src/assets/`.
+Headings use [Quicksand](https://github.com/andrew-paglinawan/QuicksandFamily) and the text uses [Nunito](https://github.com/googlefonts/nunito). Both are under the SIL Open Font License. The license texts are in `src/assets/`. The open graph image embeds the same faces.

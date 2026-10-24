@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { DoodleCluster } from "@/components/site/doodles";
 import { ShopLink } from "@/components/site/shop-link";
 import { getSet } from "@/lib/catalog";
 import { fill, formatDay } from "@/lib/format";
@@ -20,9 +21,12 @@ export default async function PartnersPage({ params }: { params: Promise<{ local
 
   return (
     <>
-      <p className="kicker">{m.partners.kicker}</p>
-      <h1>{m.partners.h1}</h1>
-      <p className="lede">{m.partners.intro}</p>
+      <section className="page-head">
+        <DoodleCluster />
+        <p className="kicker">{m.partners.kicker}</p>
+        <h1>{m.partners.h1}</h1>
+        <p className="lede">{m.partners.intro}</p>
+      </section>
       {snapshot.shops.length === 0 ? (
         <p>{m.partners.empty}</p>
       ) : (

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { DoodleCluster } from "@/components/site/doodles";
 import { EmailText } from "@/components/site/email-text";
 import { readLocale } from "@/lib/i18n";
 import { pageMetadata } from "@/lib/seo";
@@ -15,7 +16,10 @@ export default async function PrivacyPage({ params }: { params: Promise<{ locale
   const paragraphs = [m.privacy.p1, m.privacy.p2, m.privacy.p3, m.privacy.p4, m.privacy.p5, m.privacy.p6];
   return (
     <>
-      <h1>{m.privacy.h1}</h1>
+      <section className="page-head">
+        <DoodleCluster />
+        <h1>{m.privacy.h1}</h1>
+      </section>
       {paragraphs.map((paragraph) => (
         <p key={paragraph.slice(0, 24)}>
           <EmailText text={paragraph} />

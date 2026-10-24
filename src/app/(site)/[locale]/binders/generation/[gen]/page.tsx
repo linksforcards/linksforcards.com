@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Checklist } from "@/components/site/checklist";
+import { DoodleCluster } from "@/components/site/doodles";
 import { ProgressBar } from "@/components/site/progress-bar";
 import { speciesName, speciesNamesAreTranslated } from "@/lib/catalog";
 import { fill, formatInt } from "@/lib/format";
@@ -66,10 +67,13 @@ export default async function GenerationPage({ params }: { params: Promise<{ loc
 
   return (
     <>
-      <p className="kicker">
-        <a href={localePath(locale, "/binders")}>{m.checklist.back}</a>
-      </p>
-      <h1>{title}</h1>
+      <section className="page-head">
+        <DoodleCluster />
+        <p className="kicker">
+          <a href={localePath(locale, "/binders")}>{m.checklist.back}</a>
+        </p>
+        <h1>{title}</h1>
+      </section>
       <p>
         {fill(m.meta.generationDescription, {
           gen: generation.id,

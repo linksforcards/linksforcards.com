@@ -4,9 +4,9 @@ export default function RootNotFound() {
       <body
         style={{
           margin: 0,
-          background: "#efe6d6",
-          color: "#231c16",
-          fontFamily: "Georgia, 'Source Sans 3', sans-serif",
+          background: "#d7f0ff",
+          color: "#1b2430",
+          fontFamily: "Nunito, Quicksand, sans-serif",
         }}
       >
         <main style={{ width: "min(40rem, calc(100% - 2rem))", margin: "4rem auto" }}>

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { DoodleCluster } from "@/components/site/doodles";
 import { ProgressBar } from "@/components/site/progress-bar";
 import { SetBrowser } from "@/components/site/set-browser";
 import { getMeta, getSetCards, setsBySeries, speciesNamesAreTranslated } from "@/lib/catalog";
@@ -32,9 +33,12 @@ export default async function BindersPage({ params }: { params: Promise<{ locale
 
   return (
     <>
-      <p className="kicker">{m.bindersPage.kicker}</p>
-      <h1>{m.bindersPage.h1}</h1>
-      <p className="lede">{m.bindersPage.intro}</p>
+      <section className="page-head">
+        <DoodleCluster />
+        <p className="kicker">{m.bindersPage.kicker}</p>
+        <h1>{m.bindersPage.h1}</h1>
+        <p className="lede">{m.bindersPage.intro}</p>
+      </section>
       <p>{m.bindersPage.anyLanguage}</p>
       <p>
         {speciesNamesAreTranslated(locale)

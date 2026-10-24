@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { DoodleCluster } from "@/components/site/doodles";
 import { EmailText } from "@/components/site/email-text";
 import { readLocale } from "@/lib/i18n";
 import { pageMetadata } from "@/lib/seo";
@@ -15,7 +16,10 @@ export default async function ImprintPage({ params }: { params: Promise<{ locale
   const { m } = await readLocale(params);
   return (
     <>
-      <h1>{m.imprint.h1}</h1>
+      <section className="page-head">
+        <DoodleCluster />
+        <h1>{m.imprint.h1}</h1>
+      </section>
       <p>
         <EmailText text={m.imprint.p1} />
       </p>

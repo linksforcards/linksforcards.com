@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { DoodleCluster } from "@/components/site/doodles";
 import { EmailText } from "@/components/site/email-text";
 import { ProgressBar } from "@/components/site/progress-bar";
 import { ShopLink } from "@/components/site/shop-link";
@@ -72,10 +73,13 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: json }} />
-      <p className="kicker">{m.home.kicker}</p>
-      <h1>{m.home.h1}</h1>
-      <p className="lede">{m.home.p1}</p>
-      <p>{m.home.p2}</p>
+      <section className="hero">
+        <DoodleCluster />
+        <p className="kicker">{m.home.kicker}</p>
+        <h1>{m.home.h1}</h1>
+        <p className="lede">{m.home.p1}</p>
+        <p>{m.home.p2}</p>
+      </section>
       <div className="split">
         <section>
           <h2>{m.home.setTitle}</h2>

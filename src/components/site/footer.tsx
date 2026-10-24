@@ -8,6 +8,15 @@ export function SiteFooter({ locale }: { locale: Locale }) {
   return (
     <footer className="footer">
       <div className="wrap">
+        <svg className="doodle doodle-star" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+          <path
+            d="M32 5l6.4 16.8 17.6.8-13.6 11.6 4.6 17.2L32 42.4 17 51.4l4.6-17.2L8 22.6l17.6-.8z"
+            fill="#ffe08a"
+            stroke="#1b2430"
+            strokeWidth="3.5"
+            strokeLinejoin="round"
+          />
+        </svg>
         <p className="disclaimer">{m.footer.disclaimer}</p>
         <p>{m.footer.data}</p>
         <p className="sources">

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { DoodleCluster } from "@/components/site/doodles";
 import { getSet } from "@/lib/catalog";
 import { fill, formatDay } from "@/lib/format";
 import { generationById } from "@/lib/generations";
@@ -20,9 +21,12 @@ export default async function DonationsPage({ params }: { params: Promise<{ loca
 
   return (
     <>
-      <p className="kicker">{m.donations.kicker}</p>
-      <h1>{m.donations.h1}</h1>
-      <p className="lede">{m.donations.intro}</p>
+      <section className="page-head">
+        <DoodleCluster />
+        <p className="kicker">{m.donations.kicker}</p>
+        <h1>{m.donations.h1}</h1>
+        <p className="lede">{m.donations.intro}</p>
+      </section>
       {given.length === 0 ? (
         <p>{m.donations.empty}</p>
       ) : (

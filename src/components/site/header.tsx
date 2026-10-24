@@ -1,6 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
+import { BinderMark } from "@/components/site/doodles";
 import { getMessages } from "@/lib/i18n";
 import { LOCALES, type Locale } from "@/lib/locales";
 import { localePath, stripLocale } from "@/lib/routing";
@@ -20,10 +21,9 @@ export function SiteHeader({ locale }: { locale: Locale }) {
       <a className="skip" href="#content">
         {m.nav.skip}
       </a>
-      <div className="spine" aria-hidden="true" />
       <div className="wrap top-bar">
         <a className="brand" href={localePath(locale, "/")}>
-          <span className="brand-mark" aria-hidden="true" />
+          <BinderMark className="brand-mark" />
           <span>
             <span className="brand-name">LinksForCards</span>
             <span className="brand-by">{site.sender}</span>
