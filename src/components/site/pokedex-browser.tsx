@@ -12,31 +12,37 @@ function letterOf(name: string, locale: Locale): string {
   return char.toLocaleUpperCase(intlLocale(locale));
 }
 
+function letterId(letter: string): string {
+  return `dex-letter-${encodeURIComponent(letter)}`;
+}
+
 export function PokedexBrowser({
   entries,
   locale,
-  initialLetter,
   labels,
 }: {
   entries: Entry[];
   locale: Locale;
-  initialLetter: string;
   labels: { search: string; placeholder: string; empty: string; letters: string };
 }) {
-  const [letter, setLetter] = useState(initialLetter);
   const [query, setQuery] = useState("");
   const needle = query.trim().toLowerCase();
-  const letters = useMemo(() => {
-    const seen = new Set<string>();
-    for (const entry of entries) seen.add(letterOf(entry.name, locale));
-    return [...seen];
+  const groups = useMemo(() => {
+    const grouped = new Map<string, Entry[]>();
+    for (const entry of entries) {
+      const letter = letterOf(entry.name, locale);
+      const list = grouped.get(letter);
+      if (list) list.push(entry);
+      else grouped.set(letter, [entry]);
+    }
+    return [...grouped.entries()].map(([letter, items]) => ({ letter, items }));
   }, [entries, locale]);
-  const visible = useMemo(() => {
-    if (!needle) return entries.filter((entry) => letterOf(entry.name, locale) === letter);
+  const matches = useMemo(() => {
+    if (!needle) return [];
     const digits = needle.replace(/^#/, "").replace(/^0+/, "");
     const asDex = /^\d+$/.test(digits) ? Number(digits) : null;
     return entries.filter((entry) => entry.name.toLowerCase().includes(needle) || (asDex !== null && entry.dex === asDex));
-  }, [entries, letter, locale, needle]);
+  }, [entries, needle]);
 
   return (
     <div>
@@ -44,23 +50,45 @@ export function PokedexBrowser({
         <span>{labels.search}</span>
         <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder={labels.placeholder} />
       </label>
-      <div className="letters" role="group" aria-label={labels.letters}>
-        {letters.map((item) => (
-          <button key={item} type="button" aria-pressed={!needle && item === letter} onClick={() => setLetter(item)}>
-            {item}
-          </button>
-        ))}
-      </div>
-      {visible.length === 0 ? <p>{labels.empty}</p> : null}
-      <ul className="dex-list">
-        {visible.map((entry) => (
-          <li key={entry.dex}>
-            <a href={localePath(locale, `/pokedex/${entry.dex}`)}>
-              <span className="count">{formatDexNumber(entry.dex)}</span> {entry.name}
-            </a>
-          </li>
-        ))}
-      </ul>
+      {needle ? (
+        matches.length === 0 ? (
+          <p>{labels.empty}</p>
+        ) : (
+          <ul className="dex-list">
+            {matches.map((entry) => (
+              <li key={entry.dex}>
+                <a href={localePath(locale, `/pokedex/${entry.dex}`)}>
+                  <span className="count">{formatDexNumber(entry.dex)}</span> {entry.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+        )
+      ) : (
+        <>
+          <nav className="letters" aria-label={labels.letters}>
+            {groups.map((group) => (
+              <a key={group.letter} href={`#${letterId(group.letter)}`}>
+                {group.letter}
+              </a>
+            ))}
+          </nav>
+          {groups.map((group) => (
+            <section key={group.letter} id={letterId(group.letter)}>
+              <h3>{group.letter}</h3>
+              <ul className="dex-list">
+                {group.items.map((entry) => (
+                  <li key={entry.dex}>
+                    <a href={localePath(locale, `/pokedex/${entry.dex}`)}>
+                      <span className="count">{formatDexNumber(entry.dex)}</span> {entry.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ))}
+        </>
+      )}
     </div>
   );
 }

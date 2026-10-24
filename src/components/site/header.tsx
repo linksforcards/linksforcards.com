@@ -42,7 +42,7 @@ export function SiteHeader({ locale }: { locale: Locale }) {
             );
           })}
         </nav>
-        <LanguageSwitcher locale={locale} label={m.nav.language} />
+        <LanguageSwitcher locale={locale} label={m.nav.language} bare={bare} />
       </div>
     </header>
   );

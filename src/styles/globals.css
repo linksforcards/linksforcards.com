@@ -114,7 +114,7 @@ a:hover { color: var(--ink); }
   box-shadow: 3px 3px 0 var(--ink);
 }
 .lang-switch { position: relative; grid-area: lang; justify-self: end; }
-.lang-switch > button {
+.lang-switch > summary {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
@@ -122,11 +122,16 @@ a:hover { color: var(--ink); }
   color: var(--ink);
   box-shadow: 3px 3px 0 var(--ink);
   padding: 0.28rem 0.75rem;
+  list-style: none;
+  cursor: pointer;
 }
-.lang-switch > button:hover { background: var(--butter); color: var(--ink); }
+.lang-switch > summary::-webkit-details-marker { display: none; }
+.lang-switch > summary::marker { content: ""; }
+.lang-switch > summary:hover { background: var(--butter); color: var(--ink); }
 .lang-switch .caret { width: 0.9rem; height: 0.9rem; display: block; }
-.lang-switch > button[aria-expanded="true"] .caret { transform: rotate(180deg); }
-.lang-switch [role="menu"] {
+.lang-switch[open] > summary .caret { transform: rotate(180deg); }
+.lang-switch > ul {
+  display: none;
   position: absolute;
   right: 0;
   top: calc(100% + 0.45rem);
@@ -142,8 +147,8 @@ a:hover { color: var(--ink); }
   border-radius: 18px;
   box-shadow: 5px 5px 0 var(--ink);
 }
-.lang-switch [role="menu"][hidden] { display: none; }
-.lang-switch [role="menu"] a {
+.lang-switch[open] > ul { display: block; }
+.lang-switch > ul a {
   display: block;
   color: var(--ink);
   text-decoration: none;
@@ -151,9 +156,8 @@ a:hover { color: var(--ink); }
   border-radius: 12px;
   padding: 0.4rem 0.65rem;
 }
-.lang-switch [role="menu"] a[aria-current="true"] { background: var(--butter); }
-.lang-switch [role="menu"] a:hover { background: var(--sky); color: var(--ink); }
-.lang-fallback { display: flex; flex-wrap: wrap; gap: 0.35rem 0.7rem; margin: 0.4rem 0 0; padding: 0; list-style: none; }
+.lang-switch > ul a[aria-current="true"] { background: var(--butter); }
+.lang-switch > ul a:hover { background: var(--sky); color: var(--ink); }
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -558,7 +562,7 @@ caption { text-align: left; padding: 0.75rem 0.65rem 0.25rem; font-weight: 700; 
   .button:hover, button:not(:disabled):hover {
     transform: translate(-2px, -3px) rotate(-1.5deg);
   }
-  .lang-switch > button:hover {
+  .lang-switch > summary:hover {
     transform: none;
   }
   .nav a:hover { transform: rotate(-2deg) translateY(-1px); }
@@ -571,16 +575,19 @@ caption { text-align: left; padding: 0.75rem 0.65rem 0.25rem; font-weight: 700; 
   gap: 0.35rem;
   margin: 0.6rem 0 1rem;
 }
-.letters button {
+.letters a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   min-width: 2.6rem;
   padding: 0.35rem 0.55rem;
   background: var(--sheet);
   color: var(--ink);
+  border: 3px solid var(--ink);
+  border-radius: 999px;
   box-shadow: 3px 3px 0 var(--ink);
-}
-.letters button[aria-pressed="true"] {
-  background: var(--butter);
-  color: var(--ink);
+  text-decoration: none;
+  font-weight: 700;
 }
 .dex-list {
   display: grid;

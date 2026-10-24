@@ -1,0 +1,56 @@
+import { createElement } from "react";
+import { renderToStaticMarkup } from "react-dom/server";
+import { describe, expect, it } from "vitest";
+import { Checklist } from "../src/components/site/checklist";
+import { LanguageSwitcher } from "../src/components/site/language-switcher";
+import { PokedexBrowser } from "../src/components/site/pokedex-browser";
+import { getMessages } from "../src/lib/i18n";
+import { LOCALES } from "../src/lib/locales";
+
+describe("public HTML without JavaScript", () => {
+  it("puts every language on a real link inside the menu", () => {
+    const html = renderToStaticMarkup(
+      createElement(LanguageSwitcher, { locale: "uk", label: "Language", bare: "/collections/set/base1" }),
+    );
+    expect(html).toContain("<details");
+    expect(html).toContain("<summary>");
+    expect(html).not.toMatch(/<ul[^>]*\shidden/);
+    for (const locale of LOCALES) {
+      expect(html).toContain(`href="/${locale}/collections/set/base1"`);
+    }
+  });
+
+  it("renders every checklist row in the first markup, including rows past the old page size", () => {
+    const rows = Array.from({ length: 60 }, (_, index) => ({
+      key: String(index + 1),
+      title: `Card ${index + 1}`,
+      detail: "Base",
+      have: false,
+    }));
+    const html = renderToStaticMarkup(createElement(Checklist, { rows, labels: getMessages("uk").checklist }));
+    expect(html).toContain("Card 1");
+    expect(html).toContain("Card 48");
+    expect(html).toContain("Card 60");
+    expect(html).toContain('id="line-60"');
+    expect(html.match(/<li /g)?.length).toBe(60);
+  });
+
+  it("lists every species link on the Pokédex index", () => {
+    const html = renderToStaticMarkup(
+      createElement(PokedexBrowser, {
+        locale: "de",
+        entries: [
+          { dex: 1, name: "Bisasam" },
+          { dex: 25, name: "Pikachu" },
+          { dex: 151, name: "Mew" },
+        ],
+        labels: { search: "Suche", placeholder: "Name", empty: "Nichts", letters: "Buchstaben" },
+      }),
+    );
+    expect(html).toContain('href="/de/pokedex/1"');
+    expect(html).toContain('href="/de/pokedex/25"');
+    expect(html).toContain('href="/de/pokedex/151"');
+    expect(html).toContain('href="#dex-letter-B"');
+    expect(html).toContain('id="dex-letter-P"');
+  });
+});

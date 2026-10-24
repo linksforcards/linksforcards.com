@@ -22,11 +22,6 @@ import { loadPublic, speciesInRange } from "@/lib/stats";
 
 export const revalidate = 3600;
 
-function letterOf(name: string, locale: Parameters<typeof intlLocale>[0]): string {
-  const char = Array.from(name)[0] ?? "#";
-  return char.toLocaleUpperCase(intlLocale(locale));
-}
-
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale, m } = await readLocale(params);
   return pageMetadata(locale, "/collections", m.meta.collectionsTitle, m.meta.collectionsDescription);
@@ -137,7 +132,6 @@ export default async function CollectionsPage({ params }: { params: Promise<{ lo
       <PokedexBrowser
         entries={dexEntries}
         locale={locale}
-        initialLetter={letterOf(dexEntries[0]?.name ?? "A", locale)}
         labels={{
           search: m.collectionsPage.searchPokedex,
           placeholder: m.collectionsPage.searchPlaceholder,
