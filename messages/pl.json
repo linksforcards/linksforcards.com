@@ -64,7 +64,7 @@
     "genProgress": "Gatunki według generacji",
     "genLink": "Generacja {gen}",
     "thanksTitle": "Ostatnie podziękowania",
-    "thanksEmpty": "Żaden sklep nie przysłał jeszcze kart. Nazwy pojawią się tutaj po pierwszej paczce.",
+    "thanksEmpty": "Żaden sklep z tych krajów nie przysłał jeszcze kart. Nazwy pojawią się tutaj po pierwszej paczce.",
     "thanksAll": "Wszystkie sklepy",
     "helped": "W stronę",
     "andMore": "i jeszcze {count}",
@@ -113,7 +113,7 @@
     "kicker": "Sklepy",
     "h1": "Podziękowania",
     "intro": "Te sklepy przysłały karty. Link prowadzi do sklepu i na tym koniec.",
-    "empty": "Ściana jest pusta. Zapełni się, kiedy sklep przyśle pierwsze karty.",
+    "empty": "Nie zapisałem jeszcze sklepu z tych krajów. Nazwa pojawi się tutaj, gdy przyjdzie paczka.",
     "toward": "Ich karty poszły w stronę",
     "latest": "Ostatnia paczka {date}"
   },

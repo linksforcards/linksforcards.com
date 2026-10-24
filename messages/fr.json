@@ -64,7 +64,7 @@
     "genProgress": "Espèces par génération",
     "genLink": "Génération {gen}",
     "thanksTitle": "Remerciements récents",
-    "thanksEmpty": "Aucune boutique n'a encore envoyé de cartes. Les noms apparaîtront ici après le premier colis.",
+    "thanksEmpty": "Aucune boutique de ces pays n'a encore envoyé de cartes. Les noms apparaîtront ici après le premier colis.",
     "thanksAll": "Toutes les boutiques",
     "helped": "Vers",
     "andMore": "et {count} de plus",
@@ -113,7 +113,7 @@
     "kicker": "Boutiques",
     "h1": "Merci",
     "intro": "Ces boutiques ont envoyé des cartes. Le lien mène à la boutique, et ce n'est que cela.",
-    "empty": "Le mur est vide. Il se remplira quand une boutique enverra les premières cartes.",
+    "empty": "Je n'ai pas encore noté de boutique pour ces pays. Le nom apparaîtra ici quand un colis arrivera.",
     "toward": "Leurs cartes sont allées vers",
     "latest": "Dernier colis {date}"
   },

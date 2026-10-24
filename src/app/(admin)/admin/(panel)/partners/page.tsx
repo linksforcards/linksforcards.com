@@ -1,5 +1,5 @@
 import { listShops, shopWebsite } from "@/lib/admin-data";
-import { adminFlash } from "@/lib/admin-flash";
+import { adminFlash, queryValue } from "@/lib/admin-flash";
 import { getDatabase } from "@/lib/db";
 import { num, str } from "@/lib/sql";
 import { updateShop } from "@/server/actions";
@@ -11,17 +11,38 @@ export default async function PartnersAdminPage({
 }: {
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
-  const flash = adminFlash(await searchParams);
+  const query = await searchParams;
+  const flash = adminFlash(query);
+  const selected = queryValue(query, "country");
   const db = await getDatabase();
   if (!db) return <p className="banner warn">The database is not configured.</p>;
   const shops = await listShops(db);
+  const countries = [...new Set(shops.map((shop) => str(shop.country)))].sort((a, b) => a.localeCompare(b));
+  const visible = selected ? shops.filter((shop) => str(shop.country) === selected) : shops;
   return (
     <>
       <h1>Partners</h1>
-      <p>The public thank-you wall shows the name, the country, a normal link, and which binders the cards helped. It does not show a contact or an estimate.</p>
+      <p>The public thank-you wall shows the name, the country, a normal link, and which binders the cards helped. It does not show a contact or an estimate. Each language lists only the countries configured for it. This page still lists every shop.</p>
       {flash ? <p className="banner">{flash}</p> : null}
       {shops.length === 0 ? <p>No shops yet. A shop is created when you log a parcel.</p> : null}
-      {shops.map((shop) => {
+      {shops.length > 0 ? (
+        <form className="country-filter" method="get">
+          <label>
+            Country
+            <select name="country" defaultValue={selected}>
+              <option value="">All countries</option>
+              {countries.map((country) => (
+                <option key={country} value={country}>
+                  {country}
+                </option>
+              ))}
+            </select>
+          </label>
+          <button type="submit">Show</button>
+        </form>
+      ) : null}
+      {selected && visible.length === 0 ? <p>No shops stored with that country.</p> : null}
+      {visible.map((shop) => {
         const demo = num(shop.is_demo) === 1;
         const website = shopWebsite(shop.website);
         return (

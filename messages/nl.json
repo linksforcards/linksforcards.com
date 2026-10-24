@@ -64,7 +64,7 @@
     "genProgress": "Soorten per generatie",
     "genLink": "Generatie {gen}",
     "thanksTitle": "Recente dank",
-    "thanksEmpty": "Nog geen winkel heeft kaarten gestuurd. Namen komen hier te staan na het eerste pakket.",
+    "thanksEmpty": "Nog geen winkel uit deze landen heeft kaarten gestuurd. Namen komen hier te staan na het eerste pakket.",
     "thanksAll": "Alle winkels",
     "helped": "Richting",
     "andMore": "en nog {count}",
@@ -113,7 +113,7 @@
     "kicker": "Winkels",
     "h1": "Dank",
     "intro": "Deze winkels stuurden kaarten. De link gaat naar de winkel, en meer is het niet.",
-    "empty": "De muur is leeg. Hij vult zich als een winkel de eerste kaarten stuurt.",
+    "empty": "Ik heb nog geen winkel uit deze landen genoteerd. De naam verschijnt hier zodra er een pakket binnenkomt.",
     "toward": "Hun kaarten gingen richting",
     "latest": "Laatste pakket {date}"
   },

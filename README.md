@@ -87,7 +87,7 @@ The committed dataset no longer includes Cardmarket or TCGplayer prices. The adm
 
 ## Languages
 
-English is at `/`. The other languages are `/de`, `/fr`, `/it`, `/es`, `/nl`, `/sv`, `/no`, `/fi`, and `/pl`. `/en/...` redirects to the unprefixed English URL.
+English is at `/`. The other languages are `/de`, `/fr`, `/it`, `/es`, `/nl`, `/sv`, `/no`, `/fi`, and `/pl`. `/en/...` redirects to the unprefixed English URL. The language control links to the same page in the other language. Each language's shop list uses the countries in `src/lib/shop-locales.ts`. Card totals stay site-wide.
 
 ## Type
 

@@ -64,7 +64,7 @@
     "genProgress": "Lajit sukupolven mukaan",
     "genLink": "Sukupolvi {gen}",
     "thanksTitle": "Viimeisimmät kiitokset",
-    "thanksEmpty": "Yksikään kauppa ei ole vielä lähettänyt kortteja. Nimet tulevat tähän ensimmäisen paketin jälkeen.",
+    "thanksEmpty": "Yksikään kauppa näistä maista ei ole vielä lähettänyt kortteja. Nimet tulevat tähän ensimmäisen paketin jälkeen.",
     "thanksAll": "Kaikki kaupat",
     "helped": "Kohti",
     "andMore": "ja {count} muuta",
@@ -113,7 +113,7 @@
     "kicker": "Kaupat",
     "h1": "Kiitos",
     "intro": "Nämä kaupat lähettivät kortteja. Linkki vie kauppaan, eikä se ole muuta.",
-    "empty": "Seinä on tyhjä. Se täyttyy, kun kauppa lähettää ensimmäiset kortit.",
+    "empty": "En ole vielä merkinnyt yhtään kauppaa näistä maista. Nimi tulee tähän, kun paketti saapuu.",
     "toward": "Heidän korttinsa menivät kohti",
     "latest": "Viimeisin paketti {date}"
   },

@@ -2,8 +2,9 @@
 
 import { usePathname } from "next/navigation";
 import { BinderMark } from "@/components/site/doodles";
+import { LanguageSwitcher } from "@/components/site/language-switcher";
 import { getMessages } from "@/lib/i18n";
-import { LOCALES, type Locale } from "@/lib/locales";
+import { type Locale } from "@/lib/locales";
 import { localePath, stripLocale } from "@/lib/routing";
 import { site } from "@/lib/site";
 
@@ -39,19 +40,7 @@ export function SiteHeader({ locale }: { locale: Locale }) {
             );
           })}
         </nav>
-        <nav className="langs" aria-label={m.nav.language}>
-          {LOCALES.map((item) => (
-            <a
-              key={item}
-              href={localePath(item, bare)}
-              hrefLang={item}
-              lang={item === "no" ? "nb" : item}
-              aria-current={item === locale ? "true" : undefined}
-            >
-              {getMessages(item).langName}
-            </a>
-          ))}
-        </nav>
+        <LanguageSwitcher locale={locale} label={m.nav.language} />
       </div>
     </header>
   );

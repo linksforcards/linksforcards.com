@@ -64,7 +64,7 @@
     "genProgress": "Species by generation",
     "genLink": "Generation {gen}",
     "thanksTitle": "Recent thanks",
-    "thanksEmpty": "No shop has sent cards yet. Names will show up here after the first parcel.",
+    "thanksEmpty": "No shop from these countries has sent cards yet. Names will show up here after the first parcel.",
     "thanksAll": "All the shops",
     "helped": "Toward",
     "andMore": "and {count} more",
@@ -113,7 +113,7 @@
     "kicker": "Shops",
     "h1": "Thank you",
     "intro": "These shops sent cards. The link goes to the shop, and that is all it is.",
-    "empty": "The wall is empty. It will fill when a shop sends the first cards.",
+    "empty": "I have not logged a shop for these countries yet. The name will show up here when a parcel arrives.",
     "toward": "Their cards went toward",
     "latest": "Latest parcel {date}"
   },

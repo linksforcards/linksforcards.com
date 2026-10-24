@@ -64,7 +64,7 @@
     "genProgress": "Specie per generazione",
     "genLink": "Generazione {gen}",
     "thanksTitle": "Grazie recenti",
-    "thanksEmpty": "Nessun negozio ha ancora mandato carte. I nomi compariranno qui dopo il primo pacco.",
+    "thanksEmpty": "Nessun negozio di questi paesi ha ancora mandato carte. I nomi compariranno qui dopo il primo pacco.",
     "thanksAll": "Tutti i negozi",
     "helped": "Verso",
     "andMore": "e altri {count}",
@@ -113,7 +113,7 @@
     "kicker": "Negozi",
     "h1": "Grazie",
     "intro": "Questi negozi hanno mandato carte. Il link porta al negozio, e non è altro.",
-    "empty": "Il muro è vuoto. Si riempirà quando un negozio manderà le prime carte.",
+    "empty": "Non ho ancora annotato un negozio di questi paesi. Il nome comparirà qui quando arriva un pacco.",
     "toward": "Le loro carte sono andate verso",
     "latest": "Ultimo pacco {date}"
   },

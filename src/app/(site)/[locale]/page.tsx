@@ -11,6 +11,7 @@ import { LOCALES } from "@/lib/locales";
 import { localePath } from "@/lib/routing";
 import { pageMetadata } from "@/lib/seo";
 import { absoluteUrl, site } from "@/lib/site";
+import { shopsForLocale } from "@/lib/shop-locales";
 import { loadPublic, speciesInRange, type PublicShop } from "@/lib/stats";
 
 export const revalidate = 60;
@@ -43,7 +44,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
     snapshot.state === "error" ? m.home.progressError : zero ? m.home.progressZero : m.home.progressLive;
   const completed = snapshot.marks.filter((mark) => mark.status === "completed" || mark.status === "given_away").length;
   const given = snapshot.marks.filter((mark) => mark.status === "given_away").length;
-  const recent = snapshot.shops.slice(0, 4);
+  const recent = shopsForLocale(snapshot.shops, locale).slice(0, 4);
   const json = JSON.stringify({
     "@context": "https://schema.org",
     "@graph": [

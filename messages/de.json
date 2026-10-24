@@ -64,7 +64,7 @@
     "genProgress": "Arten nach Generation",
     "genLink": "Generation {gen}",
     "thanksTitle": "Zuletzt gedankt",
-    "thanksEmpty": "Noch hat kein Laden Karten geschickt. Namen stehen hier, wenn das erste Paket da ist.",
+    "thanksEmpty": "Noch hat kein Laden aus diesen Ländern Karten geschickt. Namen stehen hier, wenn das erste Paket da ist.",
     "thanksAll": "Alle Läden",
     "helped": "Für",
     "andMore": "und {count} weitere",
@@ -113,7 +113,7 @@
     "kicker": "Läden",
     "h1": "Danke",
     "intro": "Diese Läden haben Karten geschickt. Der Link führt zum Laden, und mehr ist es nicht.",
-    "empty": "Die Wand ist leer. Sie füllt sich, wenn ein Laden die ersten Karten schickt.",
+    "empty": "Ich habe noch keinen Laden aus diesen Ländern notiert. Der Name steht hier, sobald ein Paket ankommt.",
     "toward": "Ihre Karten gingen in Richtung",
     "latest": "Letztes Paket {date}"
   },

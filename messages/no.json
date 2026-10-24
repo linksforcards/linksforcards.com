@@ -64,7 +64,7 @@
     "genProgress": "Arter etter generasjon",
     "genLink": "Generasjon {gen}",
     "thanksTitle": "Siste takk",
-    "thanksEmpty": "Ingen butikk har sendt kort ennå. Navn vises her etter den første pakken.",
+    "thanksEmpty": "Ingen butikk fra disse landene har sendt kort ennå. Navn vises her etter den første pakken.",
     "thanksAll": "Alle butikkene",
     "helped": "Mot",
     "andMore": "og {count} til",
@@ -113,7 +113,7 @@
     "kicker": "Butikker",
     "h1": "Takk",
     "intro": "Disse butikkene sendte kort. Lenken går til butikken, og det er alt.",
-    "empty": "Veggen er tom. Den fylles når en butikk sender de første kortene.",
+    "empty": "Jeg har ikke notert noen butikk fra disse landene ennå. Navnet vises her når en pakke kommer.",
     "toward": "Kortene deres gikk mot",
     "latest": "Siste pakke {date}"
   },
