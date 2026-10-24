@@ -37,7 +37,7 @@ export default async function UpdatesAdminPage({
         <article key={update.id} className="note">
           <h2>{str(update.title)}</h2>
           <p className="muted">
-            {formatWhen(str(update.published_at), "en")}
+            {formatWhen(str(update.published_at), "us")}
             {num(update.is_demo) === 1 ? " · DEMO" : ""}
           </p>
           <PlainText text={str(update.body)} />

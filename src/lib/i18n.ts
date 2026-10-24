@@ -1,5 +1,6 @@
 import de from "../../messages/de.json";
-import en from "../../messages/en.json";
+import enGB from "../../messages/en-GB.json";
+import enUS from "../../messages/en-US.json";
 import es from "../../messages/es.json";
 import fi from "../../messages/fi.json";
 import fr from "../../messages/fr.json";
@@ -11,14 +12,15 @@ import sv from "../../messages/sv.json";
 import { isLocale, type Locale } from "./locales";
 import { notFound } from "next/navigation";
 
-export type Messages = typeof en;
+export type Messages = typeof enUS;
 
 function asMessages(value: Messages): Messages {
   return value;
 }
 
 const dictionaries: Record<Locale, Messages> = {
-  en,
+  us: enUS,
+  uk: asMessages(enGB),
   de: asMessages(de),
   fr: asMessages(fr),
   it: asMessages(it),

@@ -65,7 +65,7 @@ export default async function OverviewPage({
       </p>
       <p className="muted">
         {overview.newestFetch
-          ? `Prices fetched ${formatWhen(overview.oldestFetch ?? overview.newestFetch, "en")} – ${formatWhen(overview.newestFetch, "en")} UTC.`
+          ? `Prices fetched ${formatWhen(overview.oldestFetch ?? overview.newestFetch, "us")} – ${formatWhen(overview.newestFetch, "us")} UTC.`
           : "No prices have been fetched yet."}
       </p>
       <form action={refreshPrices}>
@@ -185,7 +185,7 @@ export default async function OverviewPage({
                   <td className="num">{formatCents(card.cmCents == null ? null : card.cmCents * card.qty, "EUR")}</td>
                   <td className="num">{formatCents(card.tcgCents, "USD")}</td>
                   <td className="num">{formatCents(card.tcgCents == null ? null : card.tcgCents * card.qty, "USD")}</td>
-                  <td>{card.fetchedAt ? formatWhen(card.fetchedAt, "en") : "—"}</td>
+                  <td>{card.fetchedAt ? formatWhen(card.fetchedAt, "us") : "—"}</td>
                 </tr>
               ))
             )}

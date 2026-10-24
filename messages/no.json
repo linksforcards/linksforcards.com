@@ -1,6 +1,16 @@
 {
   "langName": "norsk",
-  "regions": ["Kanto", "Johto", "Hoenn", "Sinnoh", "Unova", "Kalos", "Alola", "Galar", "Paldea"],
+  "regions": [
+    "Kanto",
+    "Johto",
+    "Hoenn",
+    "Sinnoh",
+    "Unova",
+    "Kalos",
+    "Alola",
+    "Galar",
+    "Paldea"
+  ],
   "meta": {
     "homeTitle": "LinksForCards",
     "homeDescription": "Jeg er Magnus Schmidt. Jeg samler Pokémon-kort fra butikker i Europa og USA, fyller sett- og generasjonspermer og gir permene til barn. Denne siden er den offentlige oversikten.",
@@ -34,7 +44,8 @@
     "updates": "Notater",
     "donations": "Gitt bort",
     "privacy": "Personvern",
-    "imprint": "Kontakt"
+    "imprint": "Kontakt",
+    "breadcrumbs": "Brødsmuler"
   },
   "footer": {
     "disclaimer": "LinksForCards er et uoffisielt fanprosjekt av Magnus Schmidt. Det er ikke tilknyttet eller godkjent av Nintendo, Creatures, Game Freak eller The Pokémon Company.",
@@ -72,7 +83,16 @@
     "shopsP1": "Kort til overs og bulk du ikke trenger, er det jeg ser etter. Skriv til meg på magnus@linksforcards.com og si hva du kan sende.",
     "shopsP2": "Til gjengjeld bytter jeg litt SEO-hjelp mot Pokémon-kort — en liten byttehandel, stille, forsendelse for forsendelse.",
     "shopsP3": "Butikker som sender kort, takkes med navn og en vanlig lenke til butikken.",
-    "email": "Send e-post til Magnus Schmidt"
+    "email": "Send e-post til Magnus Schmidt",
+    "faqTitle": "Spørsmål",
+    "faq1q": "Hva er denne siden?",
+    "faq1a": "Jeg er Magnus Schmidt. Jeg samler Pokémon-kort, fyller permer og gir bort en perm når den er full. Denne siden er min offentlige oversikt.",
+    "faq2q": "Viser du hva et kort er verdt?",
+    "faq2a": "Nei. De offentlige sidene viser antall og navn. De viser ingen pris.",
+    "faq3q": "Er dette en offisiell Pokémon-side?",
+    "faq3a": "Nei. LinksForCards er mitt uoffisielle fanprosjekt. Det er ikke tilknyttet eller godkjent av Nintendo, Creatures, Game Freak eller The Pokémon Company.",
+    "faq4q": "Hvilke butikker står her?",
+    "faq4a": "Denne norske siden viser butikker i Norge."
   },
   "bindersPage": {
     "kicker": "Lister",
@@ -107,7 +127,12 @@
     "supertypeE": "Energi",
     "supertypeO": "Annet",
     "progress": "{collected} av {total}",
-    "back": "Alle permer"
+    "back": "Alle permer",
+    "prev": "Forrige",
+    "next": "Neste",
+    "page": "{page} / {pages}",
+    "pages": "Sider",
+    "cardAlt": "{name} – {set} #{number}"
   },
   "partners": {
     "kicker": "Butikker",

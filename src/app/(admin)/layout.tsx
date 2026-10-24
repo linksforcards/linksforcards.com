@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function AdminLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className={`${display.variable} ${sans.variable}`}>
+    <html lang="en-US" className={`${display.variable} ${sans.variable}`}>
       <body className="admin">{children}</body>
     </html>
   );

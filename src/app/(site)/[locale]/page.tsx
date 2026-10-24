@@ -1,13 +1,18 @@
 import type { Metadata } from "next";
+import type { AboutPage } from "schema-dts";
+import { Breadcrumbs } from "@/components/site/breadcrumbs";
 import { DoodleCluster } from "@/components/site/doodles";
 import { EmailText } from "@/components/site/email-text";
+import { JsonLd } from "@/components/site/json-ld";
 import { ProgressBar } from "@/components/site/progress-bar";
 import { ShopLink } from "@/components/site/shop-link";
+import { SiteLinks } from "@/components/site/site-links";
 import { getSet } from "@/lib/catalog";
 import { fill, formatInt } from "@/lib/format";
 import { GENERATIONS, SPECIES_TOTAL } from "@/lib/generations";
 import { readLocale } from "@/lib/i18n";
 import { LOCALES } from "@/lib/locales";
+import { breadcrumbNode, faqNode, ldGraph, pageNode, type FaqPair } from "@/lib/jsonld";
 import { localePath } from "@/lib/routing";
 import { pageMetadata } from "@/lib/seo";
 import { absoluteUrl, site } from "@/lib/site";
@@ -45,19 +50,23 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   const completed = snapshot.marks.filter((mark) => mark.status === "completed" || mark.status === "given_away").length;
   const given = snapshot.marks.filter((mark) => mark.status === "given_away").length;
   const recent = shopsForLocale(snapshot.shops, locale).slice(0, 4);
-  const json = JSON.stringify({
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "WebSite",
-        name: site.name,
-        url: absoluteUrl("/"),
-        description: m.meta.homeDescription,
-        inLanguage: [...LOCALES],
-      },
-      { "@type": "Person", name: site.sender, email: site.email, url: absoluteUrl("/") },
-    ],
-  }).replace(/</g, "\\u003c");
+  const faqs: FaqPair[] = [
+    { q: m.home.faq1q, a: m.home.faq1a },
+    { q: m.home.faq2q, a: m.home.faq2a },
+    { q: m.home.faq3q, a: m.home.faq3a },
+    { q: m.home.faq4q, a: m.home.faq4a },
+  ];
+  const crumbs = [{ name: m.nav.home, href: localePath(locale, "/") }];
+  const about = pageNode({
+    kind: "AboutPage",
+    locale,
+    path: "/",
+    name: m.meta.homeTitle,
+    description: m.meta.homeDescription,
+  }) as AboutPage;
+  const faq = faqNode(localePath(locale, "/"), faqs);
+  about.mainEntity = { "@id": `${absoluteUrl(localePath(locale, "/"))}#faq` };
+  const graph = ldGraph([about, faq, breadcrumbNode(crumbs)]);
 
   const stats = [
     { key: "cards", label: m.home.statCards, value: formatInt(snapshot.differentCards, locale) },
@@ -73,9 +82,10 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: json }} />
+      <JsonLd graph={graph} />
       <section className="hero">
         <DoodleCluster />
+        <Breadcrumbs label={m.nav.breadcrumbs} items={crumbs} />
         <p className="kicker">{m.home.kicker}</p>
         <h1>{m.home.h1}</h1>
         <p className="lede">{m.home.p1}</p>
@@ -169,6 +179,16 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           </a>
         </p>
       </section>
+      <section className="faq">
+        <h2>{m.home.faqTitle}</h2>
+        {faqs.map((item) => (
+          <div key={item.q}>
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </section>
+      <SiteLinks locale={locale} m={m} current="/" />
     </>
   );
 }

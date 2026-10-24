@@ -1,6 +1,16 @@
 {
   "langName": "Français",
-  "regions": ["Kanto", "Johto", "Hoenn", "Sinnoh", "Unys", "Kalos", "Alola", "Galar", "Paldea"],
+  "regions": [
+    "Kanto",
+    "Johto",
+    "Hoenn",
+    "Sinnoh",
+    "Unys",
+    "Kalos",
+    "Alola",
+    "Galar",
+    "Paldea"
+  ],
   "meta": {
     "homeTitle": "LinksForCards",
     "homeDescription": "Je suis Magnus Schmidt. Je collectionne des cartes Pokémon auprès de boutiques en Europe et aux États-Unis, je complète des classeurs de série et de génération, et je les donne à des enfants. Cette page est le registre public.",
@@ -34,7 +44,8 @@
     "updates": "Notes",
     "donations": "Donnés",
     "privacy": "Confidentialité",
-    "imprint": "Mentions"
+    "imprint": "Mentions",
+    "breadcrumbs": "Fil d'Ariane"
   },
   "footer": {
     "disclaimer": "LinksForCards est un projet de fan non officiel de Magnus Schmidt. Il n'est ni affilié ni approuvé par Nintendo, Creatures, Game Freak ou The Pokémon Company.",
@@ -72,7 +83,16 @@
     "shopsP1": "Les cartes en trop et le vrac dont vous n'avez pas l'usage, c'est ce que je cherche. Écrivez-moi à magnus@linksforcards.com et dites-moi ce que vous pouvez envoyer.",
     "shopsP2": "En échange, je troque un peu d'aide en SEO contre des cartes Pokémon — un petit échange, sans bruit, envoi après envoi.",
     "shopsP3": "Les boutiques qui envoient des cartes sont remerciées par leur nom, avec un lien ordinaire vers la boutique.",
-    "email": "Écrire à Magnus Schmidt"
+    "email": "Écrire à Magnus Schmidt",
+    "faqTitle": "Questions",
+    "faq1q": "Qu'est-ce que ce site ?",
+    "faq1a": "Je suis Magnus Schmidt. Je collectionne des cartes Pokémon, je complète des classeurs et j'en donne un quand il est plein. Cette page est mon registre public.",
+    "faq2q": "Est-ce que tu montres ce que vaut une carte ?",
+    "faq2a": "Non. Les pages publiques montrent des comptes et des noms. Elles ne montrent pas de prix.",
+    "faq3q": "Est-ce un site officiel Pokémon ?",
+    "faq3a": "Non. LinksForCards est mon projet de fan, non officiel. Il n'est ni affilié ni approuvé par Nintendo, Creatures, Game Freak ou The Pokémon Company.",
+    "faq4q": "Quelles boutiques sont listées ici ?",
+    "faq4a": "Cette page en français liste les boutiques de France et de Belgique."
   },
   "bindersPage": {
     "kicker": "Listes",
@@ -107,7 +127,12 @@
     "supertypeE": "Énergie",
     "supertypeO": "Autre",
     "progress": "{collected} sur {total}",
-    "back": "Tous les classeurs"
+    "back": "Tous les classeurs",
+    "prev": "Précédent",
+    "next": "Suivant",
+    "page": "{page} / {pages}",
+    "pages": "Pages",
+    "cardAlt": "{name} – {set} #{number}"
   },
   "partners": {
     "kicker": "Boutiques",

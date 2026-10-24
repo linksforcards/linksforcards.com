@@ -24,7 +24,9 @@ describe("public surface", () => {
       path.join(process.cwd(), "src/app/(site)"),
       path.join(process.cwd(), "src/components/site"),
       path.join(process.cwd(), "src/app/og"),
-      path.join(process.cwd(), "src/app/sitemap.ts"),
+      path.join(process.cwd(), "src/app/sitemap-index"),
+      path.join(process.cwd(), "src/app/sitemap"),
+      path.join(process.cwd(), "src/lib/sitemap-data.ts"),
       path.join(process.cwd(), "src/app/robots.ts"),
     ];
     const banned = [/cardmarket/i, /tcgplayer/i, /price_cache/, /@\/lib\/money/, /@\/lib\/prices/, /nofollow/i, /\bsponsored\b/];

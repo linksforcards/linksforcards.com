@@ -3,7 +3,7 @@
 import { useEffect, useId, useRef, useState, type KeyboardEvent as ReactKeyboardEvent } from "react";
 import { usePathname } from "next/navigation";
 import { getMessages } from "@/lib/i18n";
-import { htmlLang, LOCALES, type Locale } from "@/lib/locales";
+import { htmlLang, LOCALES, primaryHreflang, type Locale } from "@/lib/locales";
 import { localePath, stripLocale } from "@/lib/routing";
 
 export function LanguageSwitcher({ locale, label }: { locale: Locale; label: string }) {
@@ -98,7 +98,7 @@ export function LanguageSwitcher({ locale, label }: { locale: Locale; label: str
             <a
               role="menuitem"
               href={localePath(item, bare)}
-              hrefLang={item}
+              hrefLang={primaryHreflang(item)}
               lang={htmlLang(item)}
               aria-current={item === locale ? "true" : undefined}
             >
@@ -111,7 +111,7 @@ export function LanguageSwitcher({ locale, label }: { locale: Locale; label: str
         <ul className="lang-fallback">
           {LOCALES.map((item) => (
             <li key={item}>
-              <a href={localePath(item, bare)} hrefLang={item} lang={htmlLang(item)}>
+              <a href={localePath(item, bare)} hrefLang={primaryHreflang(item)} lang={htmlLang(item)}>
                 {getMessages(item).langName}
               </a>
             </li>

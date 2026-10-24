@@ -1,6 +1,16 @@
 {
   "langName": "Italiano",
-  "regions": ["Kanto", "Johto", "Hoenn", "Sinnoh", "Unima", "Kalos", "Alola", "Galar", "Paldea"],
+  "regions": [
+    "Kanto",
+    "Johto",
+    "Hoenn",
+    "Sinnoh",
+    "Unima",
+    "Kalos",
+    "Alola",
+    "Galar",
+    "Paldea"
+  ],
   "meta": {
     "homeTitle": "LinksForCards",
     "homeDescription": "Sono Magnus Schmidt. Raccolgo carte Pokémon dai negozi in Europa e negli Stati Uniti, completo raccoglitori di set e di generazione e li consegno ai bambini. Questa pagina è il registro pubblico.",
@@ -34,7 +44,8 @@
     "updates": "Note",
     "donations": "Consegnati",
     "privacy": "Privacy",
-    "imprint": "Note legali"
+    "imprint": "Note legali",
+    "breadcrumbs": "Percorso"
   },
   "footer": {
     "disclaimer": "LinksForCards è un progetto fan non ufficiale di Magnus Schmidt. Non è affiliato né approvato da Nintendo, Creatures, Game Freak o The Pokémon Company.",
@@ -72,7 +83,16 @@
     "shopsP1": "Le carte che avanzano e il bulk che non le serve sono quello che cerco. Mi scriva a magnus@linksforcards.com e mi dica che cosa può spedire.",
     "shopsP2": "In cambio scambio un po' di aiuto SEO con carte Pokémon — un piccolo baratto, senza rumore, spedizione dopo spedizione.",
     "shopsP3": "I negozi che mandano carte sono ringraziati per nome, con un link ordinario al negozio.",
-    "email": "Scrivere a Magnus Schmidt"
+    "email": "Scrivere a Magnus Schmidt",
+    "faqTitle": "Domande",
+    "faq1q": "Che cos'è questo sito?",
+    "faq1a": "Sono Magnus Schmidt. Colleziono carte Pokémon, completo i raccoglitori e ne consegno uno quando è pieno. Questa pagina è il mio registro pubblico.",
+    "faq2q": "Mostri quanto vale una carta?",
+    "faq2a": "No. Le pagine pubbliche mostrano conteggi e nomi. Non mostrano un prezzo.",
+    "faq3q": "È un sito ufficiale Pokémon?",
+    "faq3a": "No. LinksForCards è il mio progetto da fan, non ufficiale. Non è affiliato né approvato da Nintendo, Creatures, Game Freak o The Pokémon Company.",
+    "faq4q": "Quali negozi compaiono qui?",
+    "faq4a": "Questa pagina in italiano elenca i negozi d'Italia."
   },
   "bindersPage": {
     "kicker": "Liste",
@@ -107,7 +127,12 @@
     "supertypeE": "Energia",
     "supertypeO": "Altro",
     "progress": "{collected} di {total}",
-    "back": "Tutti i raccoglitori"
+    "back": "Tutti i raccoglitori",
+    "prev": "Indietro",
+    "next": "Avanti",
+    "page": "{page} / {pages}",
+    "pages": "Pagine",
+    "cardAlt": "{name} – {set} #{number}"
   },
   "partners": {
     "kicker": "Negozi",

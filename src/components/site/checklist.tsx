@@ -1,8 +1,12 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import Image from "next/image";
+import { fill } from "@/lib/format";
 
-type Row = { key: string; title: string; detail: string; have: boolean; image?: string | null };
+const PAGE_SIZE = 48;
+
+type Row = { key: string; title: string; detail: string; have: boolean; image?: string | null; alt?: string };
 
 export function Checklist({
   rows,
@@ -18,10 +22,15 @@ export function Checklist({
     empty: string;
     inBinder: string;
     stillMissing: string;
+    prev: string;
+    next: string;
+    page: string;
+    pages: string;
   };
 }) {
   const [mode, setMode] = useState<"all" | "missing" | "have">("all");
   const [query, setQuery] = useState("");
+  const [page, setPage] = useState(0);
   const needle = query.trim().toLowerCase();
   const visible = useMemo(
     () =>
@@ -33,6 +42,13 @@ export function Checklist({
       }),
     [rows, mode, needle],
   );
+  const pageCount = Math.max(1, Math.ceil(visible.length / PAGE_SIZE));
+  const safePage = Math.min(page, pageCount - 1);
+  const slice = visible.slice(safePage * PAGE_SIZE, safePage * PAGE_SIZE + PAGE_SIZE);
+
+  useEffect(() => {
+    setPage(0);
+  }, [mode, needle]);
 
   return (
     <div>
@@ -58,12 +74,11 @@ export function Checklist({
         </fieldset>
       </div>
       {visible.length === 0 ? <p>{labels.empty}</p> : null}
-      <ol className="checklist">
-        {visible.map((row) => (
+      <ol className="checklist" start={safePage * PAGE_SIZE + 1}>
+        {slice.map((row) => (
           <li key={row.key} className={row.have ? "have" : "miss"}>
             {row.image ? (
-              // Reserved for a rights-cleared image. The catalog hook returns null for now.
-              <img src={row.image} alt="" width={36} height={50} />
+              <Image src={row.image} alt={row.alt ?? ""} width={36} height={50} sizes="36px" />
             ) : (
               <span className="slot" aria-hidden="true" />
             )}
@@ -75,6 +90,17 @@ export function Checklist({
           </li>
         ))}
       </ol>
+      {pageCount > 1 ? (
+        <nav className="pager" aria-label={labels.pages}>
+          <button type="button" onClick={() => setPage(safePage - 1)} disabled={safePage === 0}>
+            {labels.prev}
+          </button>
+          <span>{fill(labels.page, { page: safePage + 1, pages: pageCount })}</span>
+          <button type="button" onClick={() => setPage(safePage + 1)} disabled={safePage >= pageCount - 1}>
+            {labels.next}
+          </button>
+        </nav>
+      ) : null}
     </div>
   );
 }

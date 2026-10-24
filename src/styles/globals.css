@@ -360,6 +360,10 @@ input, textarea, select {
 }
 textarea { min-height: 8rem; resize: vertical; }
 
+.checklist li, .set-list li {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 4.5rem;
+}
 .checklist li {
   display: grid;
   grid-template-columns: auto 1fr auto;
@@ -367,6 +371,64 @@ textarea { min-height: 8rem; resize: vertical; }
   align-items: center;
   padding: 0.5rem 0;
   border-bottom: 2px solid var(--line);
+}
+.crumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem 0.45rem;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 0.6rem;
+  font-weight: 700;
+}
+.crumbs li:not(:last-child)::after {
+  content: "›";
+  margin-left: 0.45rem;
+}
+.faq {
+  background: var(--sheet);
+  border: 3px solid var(--ink);
+  border-radius: 24px;
+  padding: 0.4rem 1.2rem 1rem;
+  box-shadow: 5px 5px 0 var(--ink);
+  margin-top: 1.5rem;
+}
+.pager {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  align-items: center;
+  margin: 1rem 0;
+}
+.pager button:disabled { cursor: not-allowed; }
+.related ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  list-style: none;
+  padding: 0;
+  margin: 1.6rem 0 0.4rem;
+  font-weight: 700;
+}
+.picker-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 0.8rem;
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 2rem;
+}
+.picker-list a {
+  display: block;
+  background: var(--butter);
+  color: var(--ink);
+  border: 3px solid var(--ink);
+  border-radius: 18px;
+  box-shadow: 4px 4px 0 var(--ink);
+  padding: 0.85rem 1rem;
+  font-family: var(--font-display), Quicksand, sans-serif;
+  font-weight: 700;
+  text-decoration: none;
 }
 .checklist strong { display: block; }
 .checklist small { color: var(--muted); }

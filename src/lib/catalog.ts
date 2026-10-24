@@ -33,7 +33,8 @@ export type CatalogMeta = {
 
 type DexFile = { en: string[]; de: string[]; fr: string[]; es: string[]; it: string[] };
 
-const TRANSLATED = new Set(["en", "de", "fr", "es", "it"]);
+const TRANSLATED = new Set(["de", "fr", "es", "it"]);
+const ENGLISH = new Set(["us", "uk", "en"]);
 
 let setsCache: CatalogSet[] | null = null;
 let dexCache: DexFile | null = null;
@@ -101,7 +102,7 @@ function dexFile(): DexFile {
 }
 
 export function speciesNamesAreTranslated(locale: string): boolean {
-  return TRANSLATED.has(locale);
+  return TRANSLATED.has(locale) || ENGLISH.has(locale);
 }
 
 export function speciesName(dexNumber: number, locale: string): string {

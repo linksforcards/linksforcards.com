@@ -1,6 +1,16 @@
 {
   "langName": "Polski",
-  "regions": ["Kanto", "Johto", "Hoenn", "Sinnoh", "Unova", "Kalos", "Alola", "Galar", "Paldea"],
+  "regions": [
+    "Kanto",
+    "Johto",
+    "Hoenn",
+    "Sinnoh",
+    "Unova",
+    "Kalos",
+    "Alola",
+    "Galar",
+    "Paldea"
+  ],
   "meta": {
     "homeTitle": "LinksForCards",
     "homeDescription": "Jestem Magnus Schmidt. Zbieram karty Pokémon ze sklepów w Europie i w Stanach Zjednoczonych, kompletuję segregatory setów i generacji i oddaję je dzieciom. Ta strona jest publicznym spisem.",
@@ -34,7 +44,8 @@
     "updates": "Notatki",
     "donations": "Oddane",
     "privacy": "Prywatność",
-    "imprint": "Kontakt"
+    "imprint": "Kontakt",
+    "breadcrumbs": "Okruszki"
   },
   "footer": {
     "disclaimer": "LinksForCards to nieoficjalny projekt fanowski Magnusa Schmidta. Nie jest powiązany z Nintendo, Creatures, Game Freak ani The Pokémon Company i nie jest przez nie popierany.",
@@ -72,7 +83,16 @@
     "shopsP1": "Zbędne karty i bulk, którego nie potrzebujesz, to właśnie to, czego szukam. Napisz do mnie na magnus@linksforcards.com i powiedz, co możesz wysłać.",
     "shopsP2": "W zamian wymieniam trochę pomocy SEO na karty Pokémon — małą wymianę, po cichu, przesyłka po przesyłce.",
     "shopsP3": "Sklepy, które przysyłają karty, są wymienione z nazwy, ze zwykłym linkiem do sklepu.",
-    "email": "Napisz do Magnusa Schmidta"
+    "email": "Napisz do Magnusa Schmidta",
+    "faqTitle": "Pytania",
+    "faq1q": "Czym jest ta strona?",
+    "faq1a": "Jestem Magnus Schmidt. Zbieram karty Pokémon, kompletuję segregatory i oddaję segregator, kiedy jest pełny. Ta strona jest moim publicznym spisem.",
+    "faq2q": "Czy pokazujesz, ile warta jest karta?",
+    "faq2a": "Nie. Publiczne strony pokazują liczby i nazwy. Nie pokazują ceny.",
+    "faq3q": "Czy to oficjalna strona Pokémon?",
+    "faq3a": "Nie. LinksForCards to mój nieoficjalny projekt fanowski. Nie jest powiązany z Nintendo, Creatures, Game Freak ani The Pokémon Company i nie ma ich poparcia.",
+    "faq4q": "Które sklepy są na tej liście?",
+    "faq4a": "Ta polska strona pokazuje sklepy z Polski."
   },
   "bindersPage": {
     "kicker": "Listy",
@@ -107,7 +127,12 @@
     "supertypeE": "Energia",
     "supertypeO": "Inne",
     "progress": "{collected} z {total}",
-    "back": "Wszystkie segregatory"
+    "back": "Wszystkie segregatory",
+    "prev": "Poprzednia",
+    "next": "Następna",
+    "page": "{page} / {pages}",
+    "pages": "Strony",
+    "cardAlt": "{name} – {set} #{number}"
   },
   "partners": {
     "kicker": "Sklepy",

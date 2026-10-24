@@ -6,7 +6,8 @@ import type { Locale } from "./locales";
  * Codes are ISO 3166-1 alpha-2. Change this map to move a country.
  */
 export const SHOP_COUNTRIES: Record<Locale, readonly string[]> = {
-  en: ["GB", "IE", "US"],
+  us: ["US"],
+  uk: ["GB", "IE"],
   de: ["DE", "AT", "CH"],
   fr: ["FR", "BE"],
   nl: ["NL", "BE"],

@@ -1,6 +1,16 @@
 {
   "langName": "Español",
-  "regions": ["Kanto", "Johto", "Hoenn", "Sinnoh", "Teselia", "Kalos", "Alola", "Galar", "Paldea"],
+  "regions": [
+    "Kanto",
+    "Johto",
+    "Hoenn",
+    "Sinnoh",
+    "Teselia",
+    "Kalos",
+    "Alola",
+    "Galar",
+    "Paldea"
+  ],
   "meta": {
     "homeTitle": "LinksForCards",
     "homeDescription": "Soy Magnus Schmidt. Reúno cartas Pokémon de tiendas de Europa y de Estados Unidos, completo carpetas de expansión y de generación, y las entrego a niños. Esta página es el registro público.",
@@ -34,7 +44,8 @@
     "updates": "Notas",
     "donations": "Entregadas",
     "privacy": "Privacidad",
-    "imprint": "Aviso legal"
+    "imprint": "Aviso legal",
+    "breadcrumbs": "Migas de pan"
   },
   "footer": {
     "disclaimer": "LinksForCards es un proyecto de fan no oficial de Magnus Schmidt. No está afiliado ni respaldado por Nintendo, Creatures, Game Freak o The Pokémon Company.",
@@ -72,7 +83,16 @@
     "shopsP1": "Las cartas que le sobran y el bulk que no necesita son lo que busco. Escríbame a magnus@linksforcards.com y dígame qué puede enviar.",
     "shopsP2": "A cambio, cambio un poco de ayuda de SEO por cartas Pokémon: un trueque pequeño, en voz baja, envío a envío.",
     "shopsP3": "Las tiendas que envían cartas aparecen con su nombre, y con un enlace normal a la tienda.",
-    "email": "Escribir a Magnus Schmidt"
+    "email": "Escribir a Magnus Schmidt",
+    "faqTitle": "Preguntas",
+    "faq1q": "¿Qué es este sitio?",
+    "faq1a": "Soy Magnus Schmidt. Colecciono cartas Pokémon, completo carpetas y entrego una carpeta cuando está llena. Esta página es mi registro público.",
+    "faq2q": "¿Muestras lo que vale una carta?",
+    "faq2a": "No. Las páginas públicas muestran cuentas y nombres. No muestran un precio.",
+    "faq3q": "¿Es un sitio oficial de Pokémon?",
+    "faq3a": "No. LinksForCards es mi proyecto de fan, no oficial. No está afiliado ni respaldado por Nintendo, Creatures, Game Freak o The Pokémon Company.",
+    "faq4q": "¿Qué tiendas aparecen aquí?",
+    "faq4a": "Esta página en español lista tiendas de España."
   },
   "bindersPage": {
     "kicker": "Listas",
@@ -107,7 +127,12 @@
     "supertypeE": "Energía",
     "supertypeO": "Otro",
     "progress": "{collected} de {total}",
-    "back": "Todas las carpetas"
+    "back": "Todas las carpetas",
+    "prev": "Anterior",
+    "next": "Siguiente",
+    "page": "{page} / {pages}",
+    "pages": "Páginas",
+    "cardAlt": "{name} – {set} #{number}"
   },
   "partners": {
     "kicker": "Tiendas",

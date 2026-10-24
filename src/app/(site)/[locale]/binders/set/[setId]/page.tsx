@@ -1,13 +1,18 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import type { CollectionPage } from "schema-dts";
+import { Breadcrumbs } from "@/components/site/breadcrumbs";
 import { Checklist } from "@/components/site/checklist";
 import { DoodleCluster } from "@/components/site/doodles";
+import { JsonLd } from "@/components/site/json-ld";
 import { ProgressBar } from "@/components/site/progress-bar";
+import { SiteLinks } from "@/components/site/site-links";
 import { numbersMatch } from "@/lib/cards";
 import { cardImageSrc, getSet, getSetCards, speciesName, type CardKind } from "@/lib/catalog";
 import { fill, formatDay, formatInt } from "@/lib/format";
 import { formatDexNumber } from "@/lib/generations";
 import { readLocale, type Messages } from "@/lib/i18n";
+import { breadcrumbNode, itemListNode, ldGraph, pageNode } from "@/lib/jsonld";
 import { localePath } from "@/lib/routing";
 import { pageMetadata } from "@/lib/seo";
 import { loadPublic, markFor } from "@/lib/stats";
@@ -59,21 +64,48 @@ export default async function SetPage({ params }: { params: Promise<{ locale: st
     collected: formatInt(collected, locale),
     total: formatInt(cards.length, locale),
   });
-  const rows = cards.map((card) => ({
-    key: card.n,
-    title: `${card.n} ${card.name}`,
-    detail: [
-      kindLabel(card.k, m),
-      ...(card.dex ?? []).map((dex) => `${formatDexNumber(dex)} ${speciesName(dex, locale)}`),
-    ].join(" · "),
-    have: held.some((number) => numbersMatch(card.n, number)),
-    image: cardImageSrc(set.id, card.n),
-  }));
+  const path = `/binders/set/${set.id}`;
+  const rows = cards.map((card) => {
+    const pokemon = (card.dex ?? []).map((dex) => speciesName(dex, locale)).filter(Boolean);
+    const name = card.k === "p" && pokemon.length ? pokemon.join(", ") : card.name;
+    return {
+      key: card.n,
+      title: `${card.n} ${card.name}`,
+      detail: [
+        kindLabel(card.k, m),
+        ...(card.dex ?? []).map((dex) => `${formatDexNumber(dex)} ${speciesName(dex, locale)}`),
+      ].join(" · "),
+      have: held.some((number) => numbersMatch(card.n, number)),
+      image: cardImageSrc(set.id, card.n),
+      alt: fill(m.checklist.cardAlt, { name, set: set.name, number: card.n }),
+    };
+  });
+  const crumbs = [
+    { name: m.nav.home, href: localePath(locale, "/") },
+    { name: m.nav.binders, href: localePath(locale, "/binders") },
+    { name: set.name, href: localePath(locale, path) },
+  ];
+  const list = itemListNode(
+    localePath(locale, path),
+    set.name,
+    rows.map((row) => ({ name: row.alt })),
+  );
+  const page = pageNode({
+    kind: "CollectionPage",
+    locale,
+    path,
+    name: set.name,
+    description: fill(m.meta.setDescription, { name: set.name, collected, total: cards.length }),
+  }) as CollectionPage;
+  Object.assign(page, { mainEntity: { "@id": String(list["@id"]) } });
+  const graph = ldGraph([page, list, breadcrumbNode(crumbs)]);
 
   return (
     <>
+      <JsonLd graph={graph} />
       <section className="page-head">
         <DoodleCluster />
+        <Breadcrumbs label={m.nav.breadcrumbs} items={crumbs} />
         <p className="kicker">
           <a href={localePath(locale, "/binders")}>{m.checklist.back}</a>
         </p>
@@ -90,6 +122,7 @@ export default async function SetPage({ params }: { params: Promise<{ locale: st
       {mark?.status === "given_away" ? <p className="banner">{m.checklist.markedGiven}</p> : null}
       {mark?.status === "completed" ? <p className="banner">{m.checklist.markedComplete}</p> : null}
       <Checklist rows={rows} labels={m.checklist} />
+      <SiteLinks locale={locale} m={m} current={path} />
     </>
   );
 }

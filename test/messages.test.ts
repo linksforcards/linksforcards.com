@@ -48,9 +48,21 @@ const marketing = [
 ];
 
 describe("messages", () => {
-  it("covers the ten public languages and the same keys", () => {
-    expect(files).toEqual(["de.json", "en.json", "es.json", "fi.json", "fr.json", "it.json", "nl.json", "no.json", "pl.json", "sv.json"]);
-    const english = leaves(JSON.parse(readFileSync(path.join(dir, "en.json"), "utf8")));
+  it("covers both Englishes and the other public languages with the same keys", () => {
+    expect(files).toEqual([
+      "de.json",
+      "en-GB.json",
+      "en-US.json",
+      "es.json",
+      "fi.json",
+      "fr.json",
+      "it.json",
+      "nl.json",
+      "no.json",
+      "pl.json",
+      "sv.json",
+    ]);
+    const english = leaves(JSON.parse(readFileSync(path.join(dir, "en-US.json"), "utf8")));
     for (const file of files) {
       const data = JSON.parse(readFileSync(path.join(dir, file), "utf8")) as { regions: string[] };
       expect(leaves(data)).toEqual(english);
@@ -63,12 +75,13 @@ describe("messages", () => {
     for (const file of files) {
       const raw = readFileSync(path.join(dir, file), "utf8");
       const data = JSON.parse(raw) as { home: { shopsP1: string }; privacy: { p1: string } };
-      const code = file.slice(0, file.indexOf("."));
+      const code = file.replace(/\.json$/, "");
+      const voice = code === "en-US" || code === "en-GB" ? "en" : code;
       const body = textOf(data);
       expect(raw).toContain("magnus@linksforcards.com");
       expect(data.home.shopsP1).toContain("magnus@linksforcards.com");
       expect(data.privacy.p1).toContain("magnus@linksforcards.com");
-      for (const pattern of plural[code] ?? []) expect(body).not.toMatch(pattern);
+      for (const pattern of plural[voice] ?? []) expect(body).not.toMatch(pattern);
       for (const pattern of marketing) expect(body).not.toMatch(pattern);
       for (const word of place) expect(raw.toLowerCase()).not.toContain(word.toLowerCase());
     }

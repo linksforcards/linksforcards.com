@@ -1,6 +1,16 @@
 {
-  "langName": "English",
-  "regions": ["Kanto", "Johto", "Hoenn", "Sinnoh", "Unova", "Kalos", "Alola", "Galar", "Paldea"],
+  "langName": "English (UK)",
+  "regions": [
+    "Kanto",
+    "Johto",
+    "Hoenn",
+    "Sinnoh",
+    "Unova",
+    "Kalos",
+    "Alola",
+    "Galar",
+    "Paldea"
+  ],
   "meta": {
     "homeTitle": "LinksForCards",
     "homeDescription": "I'm Magnus Schmidt. I collect Pokémon cards from shops in Europe and the United States, complete set and generation binders, and give the binders to children. This page is the public record.",
@@ -34,7 +44,8 @@
     "updates": "Notes",
     "donations": "Given away",
     "privacy": "Privacy",
-    "imprint": "Imprint"
+    "imprint": "Imprint",
+    "breadcrumbs": "Breadcrumbs"
   },
   "footer": {
     "disclaimer": "LinksForCards is an unofficial fan project by Magnus Schmidt. It is not affiliated with or endorsed by Nintendo, Creatures, Game Freak, or The Pokémon Company.",
@@ -44,7 +55,7 @@
   "home": {
     "kicker": "A personal project by Magnus Schmidt",
     "h1": "I collect cards, complete binders, and give them away.",
-    "p1": "I pick up Pokémon cards from card shops around Europe and the United States, sort them into binders, and give a binder away when it is complete. The binders go to children: a hospital ward, a shelter, an after-school club. I write down each one that leaves.",
+    "p1": "I pick up Pokémon cards from card shops around Europe and the United States, organise them into binders, and give a binder away when it is complete. The binders go to children: a hospital ward, a shelter, an after-school club. I write down each one that leaves.",
     "p2": "This site is the record. The counts start at zero and move only when a shipment is real.",
     "setTitle": "Set binders",
     "setBody": "A set binder holds every card from one set. Paldean Fates is the idea in miniature: the whole set, with nothing left out on purpose.",
@@ -66,13 +77,22 @@
     "thanksTitle": "Recent thanks",
     "thanksEmpty": "No shop from these countries has sent cards yet. Names will show up here after the first parcel.",
     "thanksAll": "All the shops",
-    "helped": "Toward",
+    "helped": "Towards",
     "andMore": "and {count} more",
     "shopsTitle": "If you run a shop",
     "shopsP1": "Spare cards and bulk you do not need are what I am looking for. Write to me at magnus@linksforcards.com and tell me what you can send.",
     "shopsP2": "In return I trade a bit of SEO help for Pokémon cards — trading up, quietly, one shipment at a time.",
     "shopsP3": "Shops that send cards are thanked by name, with an ordinary link to the shop.",
-    "email": "Email Magnus Schmidt"
+    "email": "Email Magnus Schmidt",
+    "faqTitle": "Questions",
+    "faq1q": "What is this site?",
+    "faq1a": "I'm Magnus Schmidt. I collect Pokémon cards, complete binders, and give a binder away when it is full. This page is my public record.",
+    "faq2q": "Do you show what a card is worth?",
+    "faq2a": "No. The public pages show counts and names. They never show a pound or euro value.",
+    "faq3q": "Is this an official Pokémon site?",
+    "faq3a": "No. LinksForCards is my unofficial fan project. It is not affiliated with or endorsed by Nintendo, Creatures, Game Freak, or The Pokémon Company.",
+    "faq4q": "Which shops are listed here?",
+    "faq4a": "This page lists shops in the United Kingdom and Ireland. The US English page lists shops in the United States."
   },
   "bindersPage": {
     "kicker": "Checklists",
@@ -107,14 +127,19 @@
     "supertypeE": "Energy",
     "supertypeO": "Other",
     "progress": "{collected} of {total}",
-    "back": "All binders"
+    "back": "All binders",
+    "prev": "Previous",
+    "next": "Next",
+    "page": "{page} / {pages}",
+    "pages": "Pages",
+    "cardAlt": "{name} – {set} #{number}"
   },
   "partners": {
     "kicker": "Shops",
     "h1": "Thank you",
     "intro": "These shops sent cards. The link goes to the shop, and that is all it is.",
     "empty": "I have not logged a shop for these countries yet. The name will show up here when a parcel arrives.",
-    "toward": "Their cards went toward",
+    "toward": "Their cards went towards",
     "latest": "Latest parcel {date}"
   },
   "updates": {

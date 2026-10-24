@@ -1,6 +1,16 @@
 {
   "langName": "Nederlands",
-  "regions": ["Kanto", "Johto", "Hoenn", "Sinnoh", "Unova", "Kalos", "Alola", "Galar", "Paldea"],
+  "regions": [
+    "Kanto",
+    "Johto",
+    "Hoenn",
+    "Sinnoh",
+    "Unova",
+    "Kalos",
+    "Alola",
+    "Galar",
+    "Paldea"
+  ],
   "meta": {
     "homeTitle": "LinksForCards",
     "homeDescription": "Ik ben Magnus Schmidt. Ik verzamel Pokémon-kaarten bij winkels in Europa en de Verenigde Staten, maak set- en generatiebinders vol en geef die binders aan kinderen. Deze pagina is het openbare verslag.",
@@ -34,7 +44,8 @@
     "updates": "Notities",
     "donations": "Weggegeven",
     "privacy": "Privacy",
-    "imprint": "Colofon"
+    "imprint": "Colofon",
+    "breadcrumbs": "Kruimelpad"
   },
   "footer": {
     "disclaimer": "LinksForCards is een onofficieel fanproject van Magnus Schmidt. Het is niet gelieerd aan en niet onderschreven door Nintendo, Creatures, Game Freak of The Pokémon Company.",
@@ -72,7 +83,16 @@
     "shopsP1": "Losse kaarten en bulk die u niet nodig hebt, daar zoek ik naar. Schrijf me op magnus@linksforcards.com en vertel wat u kunt sturen.",
     "shopsP2": "In ruil ruil ik een beetje SEO-hulp voor Pokémon-kaarten — een kleine ruil, stil, zending voor zending.",
     "shopsP3": "Winkels die kaarten sturen, worden bij naam bedankt, met een gewone link naar de winkel.",
-    "email": "Mail Magnus Schmidt"
+    "email": "Mail Magnus Schmidt",
+    "faqTitle": "Vragen",
+    "faq1q": "Wat is deze site?",
+    "faq1a": "Ik ben Magnus Schmidt. Ik verzamel Pokémon-kaarten, maak binders vol en geef een binder weg als hij vol is. Deze pagina is mijn openbare overzicht.",
+    "faq2q": "Laat je zien wat een kaart waard is?",
+    "faq2a": "Nee. De openbare pagina's tonen aantallen en namen. Ze tonen geen prijs.",
+    "faq3q": "Is dit een officiële Pokémon-site?",
+    "faq3a": "Nee. LinksForCards is mijn onofficiële fanproject. Het is niet gelieerd aan of ondersteund door Nintendo, Creatures, Game Freak of The Pokémon Company.",
+    "faq4q": "Welke winkels staan hier?",
+    "faq4a": "Deze Nederlandse pagina toont winkels uit Nederland en België."
   },
   "bindersPage": {
     "kicker": "Lijsten",
@@ -107,7 +127,12 @@
     "supertypeE": "Energie",
     "supertypeO": "Overig",
     "progress": "{collected} van {total}",
-    "back": "Alle binders"
+    "back": "Alle binders",
+    "prev": "Vorige",
+    "next": "Volgende",
+    "page": "{page} / {pages}",
+    "pages": "Pagina's",
+    "cardAlt": "{name} – {set} #{number}"
   },
   "partners": {
     "kicker": "Winkels",

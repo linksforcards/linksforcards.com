@@ -3,7 +3,8 @@ import { countryCode, SHOP_COUNTRIES, shopMatchesLocale, shopsForLocale } from "
 
 describe("shop locales", () => {
   it("keeps the country map in one place", () => {
-    expect(SHOP_COUNTRIES.en).toEqual(["GB", "IE", "US"]);
+    expect(SHOP_COUNTRIES.us).toEqual(["US"]);
+    expect(SHOP_COUNTRIES.uk).toEqual(["GB", "IE"]);
     expect(SHOP_COUNTRIES.de).toEqual(["DE", "AT", "CH"]);
     expect(SHOP_COUNTRIES.fr).toEqual(["FR", "BE"]);
     expect(SHOP_COUNTRIES.nl).toEqual(["NL", "BE"]);
@@ -41,7 +42,8 @@ describe("shop locales", () => {
       { name: "River", country: "Netherlands" },
       { name: "Mystery", country: "Elsewhere" },
     ];
-    expect(shopsForLocale(shops, "en").map((shop) => shop.name)).toEqual(["Harbour", "Lake"]);
+    expect(shopsForLocale(shops, "us").map((shop) => shop.name)).toEqual(["Lake"]);
+    expect(shopsForLocale(shops, "uk").map((shop) => shop.name)).toEqual(["Harbour"]);
     expect(shopsForLocale(shops, "de").map((shop) => shop.name)).toEqual(["Bahnhof", "Alpine"]);
     expect(shopsForLocale(shops, "fr").map((shop) => shop.name)).toEqual(["Quai", "Canal"]);
     expect(shopsForLocale(shops, "nl").map((shop) => shop.name)).toEqual(["Canal", "River"]);
@@ -50,6 +52,9 @@ describe("shop locales", () => {
     expect(shopMatchesLocale("CH", "fr")).toBe(false);
     expect(shopMatchesLocale("BE", "fr")).toBe(true);
     expect(shopMatchesLocale("BE", "nl")).toBe(true);
-    expect(shopMatchesLocale("BE", "en")).toBe(false);
+    expect(shopMatchesLocale("IE", "uk")).toBe(true);
+    expect(shopMatchesLocale("IE", "us")).toBe(false);
+    expect(shopMatchesLocale("BE", "us")).toBe(false);
+    expect(shopMatchesLocale("BE", "uk")).toBe(false);
   });
 });

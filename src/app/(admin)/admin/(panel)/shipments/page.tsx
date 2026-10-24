@@ -45,7 +45,7 @@ export default async function ShipmentsPage({
             ) : (
               rows.map((row) => (
                 <tr key={row.id}>
-                  <td>{formatDay(row.received_on, "en")}</td>
+                  <td>{formatDay(row.received_on, "us")}</td>
                   <td>
                     {row.shop_name}
                     <span className="muted"> · {row.country}</span>

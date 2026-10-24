@@ -1,12 +1,17 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import type { CollectionPage } from "schema-dts";
+import { Breadcrumbs } from "@/components/site/breadcrumbs";
 import { Checklist } from "@/components/site/checklist";
 import { DoodleCluster } from "@/components/site/doodles";
+import { JsonLd } from "@/components/site/json-ld";
 import { ProgressBar } from "@/components/site/progress-bar";
+import { SiteLinks } from "@/components/site/site-links";
 import { speciesName, speciesNamesAreTranslated } from "@/lib/catalog";
 import { fill, formatInt } from "@/lib/format";
 import { formatDexNumber, GENERATIONS, generationById } from "@/lib/generations";
 import { readLocale } from "@/lib/i18n";
+import { breadcrumbNode, itemListNode, ldGraph, pageNode } from "@/lib/jsonld";
 import { localePath } from "@/lib/routing";
 import { pageMetadata } from "@/lib/seo";
 import { loadPublic, markFor, speciesInRange } from "@/lib/stats";
@@ -55,6 +60,7 @@ export default async function GenerationPage({ params }: { params: Promise<{ loc
     total: formatInt(total, locale),
   });
   const title = fill(m.meta.generationTitle, { gen: generation.id, region });
+  const path = `/binders/generation/${generation.id}`;
   const rows = [];
   for (let dex = generation.start; dex <= generation.end; dex += 1) {
     rows.push({
@@ -64,11 +70,32 @@ export default async function GenerationPage({ params }: { params: Promise<{ loc
       have: have.has(dex),
     });
   }
+  const crumbs = [
+    { name: m.nav.home, href: localePath(locale, "/") },
+    { name: m.nav.binders, href: localePath(locale, "/binders") },
+    { name: title, href: localePath(locale, path) },
+  ];
+  const list = itemListNode(
+    localePath(locale, path),
+    title,
+    rows.map((row) => ({ name: row.title })),
+  );
+  const page = pageNode({
+    kind: "CollectionPage",
+    locale,
+    path,
+    name: title,
+    description: fill(m.meta.generationDescription, { gen: generation.id, region, collected, total }),
+  }) as CollectionPage;
+  Object.assign(page, { mainEntity: { "@id": String(list["@id"]) } });
+  const graph = ldGraph([page, list, breadcrumbNode(crumbs)]);
 
   return (
     <>
+      <JsonLd graph={graph} />
       <section className="page-head">
         <DoodleCluster />
+        <Breadcrumbs label={m.nav.breadcrumbs} items={crumbs} />
         <p className="kicker">
           <a href={localePath(locale, "/binders")}>{m.checklist.back}</a>
         </p>
@@ -95,6 +122,7 @@ export default async function GenerationPage({ params }: { params: Promise<{ loc
       {mark?.status === "given_away" ? <p className="banner">{m.checklist.markedGiven}</p> : null}
       {mark?.status === "completed" ? <p className="banner">{m.checklist.markedComplete}</p> : null}
       <Checklist rows={rows} labels={m.checklist} />
+      <SiteLinks locale={locale} m={m} current={path} />
     </>
   );
 }

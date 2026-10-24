@@ -1,6 +1,16 @@
 {
   "langName": "Deutsch",
-  "regions": ["Kanto", "Johto", "Hoenn", "Sinnoh", "Einall", "Kalos", "Alola", "Galar", "Paldea"],
+  "regions": [
+    "Kanto",
+    "Johto",
+    "Hoenn",
+    "Sinnoh",
+    "Einall",
+    "Kalos",
+    "Alola",
+    "Galar",
+    "Paldea"
+  ],
   "meta": {
     "homeTitle": "LinksForCards",
     "homeDescription": "Ich bin Magnus Schmidt. Ich sammle Pokémon-Karten in Läden in Europa und den USA, fülle Set- und Generationsbinder und gebe die Binder an Kinder weiter. Diese Seite ist das öffentliche Protokoll.",
@@ -34,7 +44,8 @@
     "updates": "Notizen",
     "donations": "Weitergegeben",
     "privacy": "Datenschutz",
-    "imprint": "Impressum"
+    "imprint": "Impressum",
+    "breadcrumbs": "Brotkrumen"
   },
   "footer": {
     "disclaimer": "LinksForCards ist ein inoffizielles Fanprojekt von Magnus Schmidt. Es ist nicht mit Nintendo, Creatures, Game Freak oder The Pokémon Company verbunden und wird von ihnen nicht unterstützt.",
@@ -72,7 +83,16 @@
     "shopsP1": "Übrige Karten und Bulk, den du nicht brauchst, sind genau das, was ich suche. Schreib mir an magnus@linksforcards.com und sag, was du schicken kannst.",
     "shopsP2": "Im Gegenzug tausche ich ein wenig SEO-Hilfe gegen Pokémon-Karten — ein kleines Tauschgeschäft, still, Sendung für Sendung.",
     "shopsP3": "Läden, die Karten schicken, stehen mit Namen auf der Danke-Seite, mit einem normalen Link zum Laden.",
-    "email": "Magnus Schmidt schreiben"
+    "email": "Magnus Schmidt schreiben",
+    "faqTitle": "Fragen",
+    "faq1q": "Was ist diese Seite?",
+    "faq1a": "Ich bin Magnus Schmidt. Ich sammle Pokémon-Karten, fülle Binder und gebe einen Binder weiter, wenn er voll ist. Diese Seite ist mein öffentliches Verzeichnis.",
+    "faq2q": "Zeigst du, was eine Karte wert ist?",
+    "faq2a": "Nein. Die öffentlichen Seiten zeigen Zahlen und Namen. Sie zeigen keinen Preis.",
+    "faq3q": "Ist das eine offizielle Pokémon-Seite?",
+    "faq3a": "Nein. LinksForCards ist mein inoffizielles Fanprojekt. Es ist nicht mit Nintendo, Creatures, Game Freak oder The Pokémon Company verbunden und wird von ihnen nicht unterstützt.",
+    "faq4q": "Welche Läden stehen hier?",
+    "faq4a": "Auf dieser deutschen Seite stehen Läden aus Deutschland, Österreich und der Schweiz."
   },
   "bindersPage": {
     "kicker": "Checklisten",
@@ -107,7 +127,12 @@
     "supertypeE": "Energie",
     "supertypeO": "Sonstiges",
     "progress": "{collected} von {total}",
-    "back": "Alle Binder"
+    "back": "Alle Binder",
+    "prev": "Zurück",
+    "next": "Weiter",
+    "page": "{page} / {pages}",
+    "pages": "Seiten",
+    "cardAlt": "{name} – {set} #{number}"
   },
   "partners": {
     "kicker": "Läden",

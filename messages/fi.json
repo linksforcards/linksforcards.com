@@ -1,6 +1,16 @@
 {
   "langName": "Suomi",
-  "regions": ["Kanto", "Johto", "Hoenn", "Sinnoh", "Unova", "Kalos", "Alola", "Galar", "Paldea"],
+  "regions": [
+    "Kanto",
+    "Johto",
+    "Hoenn",
+    "Sinnoh",
+    "Unova",
+    "Kalos",
+    "Alola",
+    "Galar",
+    "Paldea"
+  ],
   "meta": {
     "homeTitle": "LinksForCards",
     "homeDescription": "Olen Magnus Schmidt. Kerään Pokémon-kortteja kaupoista Euroopassa ja Yhdysvalloissa, täytän setti- ja sukupolvikansioita ja annan kansiot lapsille. Tämä sivu on julkinen kirjanpito.",
@@ -34,7 +44,8 @@
     "updates": "Muistiinpanot",
     "donations": "Annetut",
     "privacy": "Tietosuoja",
-    "imprint": "Yhteystiedot"
+    "imprint": "Yhteystiedot",
+    "breadcrumbs": "Murupolku"
   },
   "footer": {
     "disclaimer": "LinksForCards on Magnus Schmidtin epävirallinen faniprojekti. Sillä ei ole yhteyttä Nintendoon, Creaturesiin, Game Freakiin tai The Pokémon Companyyn, eivätkä ne ole sitä tukeneet.",
@@ -72,7 +83,16 @@
     "shopsP1": "Ylimääräiset kortit ja bulkki, jota et tarvitse, ovat sitä mitä etsin. Kirjoita minulle osoitteeseen magnus@linksforcards.com ja kerro, mitä voit lähettää.",
     "shopsP2": "Vastineeksi vaihdan vähän SEO-apua Pokémon-kortteihin — pienen vaihdon, hiljaa, lähetys kerrallaan.",
     "shopsP3": "Kortteja lähettävät kaupat kiitetään nimellä, ja tavallisella linkillä kauppaan.",
-    "email": "Kirjoita Magnus Schmidtille"
+    "email": "Kirjoita Magnus Schmidtille",
+    "faqTitle": "Kysymyksiä",
+    "faq1q": "Mikä tämä sivu on?",
+    "faq1a": "Olen Magnus Schmidt. Kerään Pokémon-kortteja, täytän kansioita ja annan kansion pois, kun se on täysi. Tämä sivu on julkinen luetteloni.",
+    "faq2q": "Näytätkö, mitä kortti on arvoltaan?",
+    "faq2a": "En. Julkiset sivut näyttävät lukumääriä ja nimiä. Ne eivät näytä hintaa.",
+    "faq3q": "Onko tämä virallinen Pokémon-sivu?",
+    "faq3a": "Ei. LinksForCards on epävirallinen faniprojektini. Sillä ei ole yhteyttä Nintendoon, Creaturesiin, Game Freakiin tai The Pokémon Companyyn, eivätkä ne tue sitä.",
+    "faq4q": "Mitkä kaupat näkyvät täällä?",
+    "faq4a": "Tämä suomenkielinen sivu listaa kaupat Suomesta."
   },
   "bindersPage": {
     "kicker": "Listat",
@@ -107,7 +127,12 @@
     "supertypeE": "Energia",
     "supertypeO": "Muu",
     "progress": "{collected} / {total}",
-    "back": "Kaikki kansiot"
+    "back": "Kaikki kansiot",
+    "prev": "Edellinen",
+    "next": "Seuraava",
+    "page": "{page} / {pages}",
+    "pages": "Sivut",
+    "cardAlt": "{name} – {set} #{number}"
   },
   "partners": {
     "kicker": "Kaupat",

@@ -1,6 +1,16 @@
 {
   "langName": "svenska",
-  "regions": ["Kanto", "Johto", "Hoenn", "Sinnoh", "Unova", "Kalos", "Alola", "Galar", "Paldea"],
+  "regions": [
+    "Kanto",
+    "Johto",
+    "Hoenn",
+    "Sinnoh",
+    "Unova",
+    "Kalos",
+    "Alola",
+    "Galar",
+    "Paldea"
+  ],
   "meta": {
     "homeTitle": "LinksForCards",
     "homeDescription": "Jag är Magnus Schmidt. Jag samlar Pokémon-kort från butiker i Europa och USA, fyller set- och generationspärmar och ger pärmarna till barn. Den här sidan är den offentliga förteckningen.",
@@ -34,7 +44,8 @@
     "updates": "Anteckningar",
     "donations": "Bortskänkta",
     "privacy": "Integritet",
-    "imprint": "Kontakt"
+    "imprint": "Kontakt",
+    "breadcrumbs": "Brödsmulor"
   },
   "footer": {
     "disclaimer": "LinksForCards är ett inofficiellt fanprojekt av Magnus Schmidt. Det är inte kopplat till eller godkänt av Nintendo, Creatures, Game Freak eller The Pokémon Company.",
@@ -72,7 +83,16 @@
     "shopsP1": "Kort som blir över och bulk du inte behöver är det jag letar efter. Skriv till mig på magnus@linksforcards.com och berätta vad du kan skicka.",
     "shopsP2": "I utbyte byter jag lite SEO-hjälp mot Pokémon-kort — ett litet byte, tyst, försändelse för försändelse.",
     "shopsP3": "Butiker som skickar kort tackas med namn, och med en vanlig länk till butiken.",
-    "email": "Mejla Magnus Schmidt"
+    "email": "Mejla Magnus Schmidt",
+    "faqTitle": "Frågor",
+    "faq1q": "Vad är den här sidan?",
+    "faq1a": "Jag är Magnus Schmidt. Jag samlar Pokémon-kort, fyller pärmar och ger bort en pärm när den är full. Den här sidan är min offentliga förteckning.",
+    "faq2q": "Visar du vad ett kort är värt?",
+    "faq2a": "Nej. De offentliga sidorna visar antal och namn. De visar inget pris.",
+    "faq3q": "Är det här en officiell Pokémon-sida?",
+    "faq3a": "Nej. LinksForCards är mitt inofficiella fanprojekt. Det är inte kopplat till eller godkänt av Nintendo, Creatures, Game Freak eller The Pokémon Company.",
+    "faq4q": "Vilka butiker listas här?",
+    "faq4a": "Den här svenska sidan listar butiker i Sverige."
   },
   "bindersPage": {
     "kicker": "Listor",
@@ -107,7 +127,12 @@
     "supertypeE": "Energi",
     "supertypeO": "Annat",
     "progress": "{collected} av {total}",
-    "back": "Alla pärmar"
+    "back": "Alla pärmar",
+    "prev": "Föregående",
+    "next": "Nästa",
+    "page": "{page} / {pages}",
+    "pages": "Sidor",
+    "cardAlt": "{name} – {set} #{number}"
   },
   "partners": {
     "kicker": "Butiker",

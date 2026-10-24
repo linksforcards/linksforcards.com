@@ -1,9 +1,15 @@
 import type { Metadata } from "next";
+import type { CollectionPage } from "schema-dts";
+import { Breadcrumbs } from "@/components/site/breadcrumbs";
 import { DoodleCluster } from "@/components/site/doodles";
+import { JsonLd } from "@/components/site/json-ld";
+import { SiteLinks } from "@/components/site/site-links";
 import { getSet } from "@/lib/catalog";
 import { fill, formatDay } from "@/lib/format";
 import { generationById } from "@/lib/generations";
 import { readLocale } from "@/lib/i18n";
+import { breadcrumbNode, itemListNode, ldGraph, pageNode } from "@/lib/jsonld";
+import { localePath } from "@/lib/routing";
 import { pageMetadata } from "@/lib/seo";
 import { loadPublic } from "@/lib/stats";
 
@@ -18,11 +24,39 @@ export default async function DonationsPage({ params }: { params: Promise<{ loca
   const { locale, m } = await readLocale(params);
   const snapshot = await loadPublic();
   const given = snapshot.marks.filter((mark) => mark.status === "given_away");
+  const titles = given.map((mark) =>
+    mark.kind === "set"
+      ? fill(m.donations.setBinder, { name: getSet(mark.key)?.name ?? mark.key })
+      : fill(m.donations.genBinder, {
+          gen: mark.key,
+          region: m.regions[(generationById(Number(mark.key))?.id ?? 1) - 1] ?? "",
+        }),
+  );
+  const crumbs = [
+    { name: m.nav.home, href: localePath(locale, "/") },
+    { name: m.nav.donations, href: localePath(locale, "/donations") },
+  ];
+  const list = itemListNode(
+    localePath(locale, "/donations"),
+    m.donations.h1,
+    titles.map((name) => ({ name })),
+  );
+  const page = pageNode({
+    kind: "CollectionPage",
+    locale,
+    path: "/donations",
+    name: m.meta.donationsTitle,
+    description: m.meta.donationsDescription,
+  }) as CollectionPage;
+  Object.assign(page, { mainEntity: { "@id": String(list["@id"]) } });
+  const graph = ldGraph([page, list, breadcrumbNode(crumbs)]);
 
   return (
     <>
+      <JsonLd graph={graph} />
       <section className="page-head">
         <DoodleCluster />
+        <Breadcrumbs label={m.nav.breadcrumbs} items={crumbs} />
         <p className="kicker">{m.donations.kicker}</p>
         <h1>{m.donations.h1}</h1>
         <p className="lede">{m.donations.intro}</p>
@@ -31,14 +65,8 @@ export default async function DonationsPage({ params }: { params: Promise<{ loca
         <p>{m.donations.empty}</p>
       ) : (
         <ul className="thanks">
-          {given.map((mark) => {
-            const title =
-              mark.kind === "set"
-                ? fill(m.donations.setBinder, { name: getSet(mark.key)?.name ?? mark.key })
-                : fill(m.donations.genBinder, {
-                    gen: mark.key,
-                    region: m.regions[(generationById(Number(mark.key))?.id ?? 1) - 1] ?? "",
-                  });
+          {given.map((mark, index) => {
+            const title = titles[index];
             return (
               <li key={`${mark.kind}:${mark.key}`}>
                 <h2>{title}</h2>
@@ -51,6 +79,7 @@ export default async function DonationsPage({ params }: { params: Promise<{ loca
           })}
         </ul>
       )}
+      <SiteLinks locale={locale} m={m} current="/donations" />
     </>
   );
 }
