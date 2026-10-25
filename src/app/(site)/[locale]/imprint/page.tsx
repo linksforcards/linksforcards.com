@@ -57,7 +57,7 @@ export default async function ImprintPage({ params }: { params: Promise<{ locale
         </div>
         <div>
           <dt>{m.imprint.addressLabel}</dt>
-          <dd>{m.imprint.address}</dd>
+          <dd>{site.postalAddress}</dd>
         </div>
       </dl>
       <p>{m.imprint.p2}</p>

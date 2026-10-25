@@ -79,7 +79,7 @@ In Vercel, set `linksforcards.com` as the primary domain so `www` redirects to i
 
 Passwords, password hashes, `SESSION_SECRET`, database URLs, API keys, partner agreements, and card values. The public JSON has collector numbers and names only. Demo shops exist only when you press the local demo button, and the public queries exclude them.
 
-The imprint page has a placeholder where a postal address will go. That page is contact information, not legal advice. Some countries expect a full postal address on a site like this; add the real address in the message files when you have one.
+The imprint page lists the postal address: Magnus Schmidt, Kongensgade 13B, 1., 5000 Odense C, Denmark. That page is contact information, not legal advice.
 
 ## Price estimates
 

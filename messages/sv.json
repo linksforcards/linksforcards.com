@@ -66,7 +66,7 @@
     "contactLabel": "E-post"
   },
   "home": {
-    "kicker": "Ett personligt projekt av Magnus Schmidt",
+    "kicker": "Ett personligt projekt",
     "h1": "Jag samlar kort, fyller pärmar och ger bort dem.",
     "p1": "Jag hämtar Pokémon-kort i butiker runt om i Europa och USA, sorterar dem i pärmar och ger bort en pärm när den är full. Pärmarna går till barn: en sjukhusavdelning, ett boende, en fritidsklubb. Jag skriver upp varje pärm som lämnar.",
     "p2": "Den här sidan är förteckningen. Räkningarna börjar på noll och rör sig bara när en försändelse är verklig.",
@@ -184,16 +184,16 @@
     "p3": "Om du mejlar mig sparar jag den korrespondensen så att jag kan svara och minnas vad som sades om en försändelse. Du kan be mig rätta eller radera det du skickade.",
     "p4": "Det privata adminområdet sätter en sessionscookie efter att jag har loggat in. Cookien håller sessionen. Den sätts inte för den som läser de offentliga sidorna.",
     "p5": "Den som visar sidan kan spara tekniska loggar, inklusive IP-adresser, en kort tid eftersom driften kräver det. Försändelser jag skriver in, och de privata prisuppskattningarna, ligger i en databas jag ställer in. Offentliga sidor visar antal, tack, anteckningar och överlämningar. De visar inte priser.",
-    "p6": "Jag säljer inte personuppgifter. Om den här texten ändras uppdaterar jag den här. Postadressen på kontaktsidan är fortfarande en platshållare."
+    "p6": "Jag säljer inte personuppgifter. Om den här texten ändras uppdaterar jag den här. Postadressen står på kontaktsidan."
   },
   "imprint": {
     "h1": "Kontakt",
     "responsible": "Ansvarig person",
     "emailLabel": "E-post",
     "addressLabel": "Postadress",
-    "address": "[postadress läggs till]",
+    "address": "Magnus Schmidt, Kongensgade 13B, 1., 5000 Odense C, Denmark",
     "p1": "LinksForCards är mitt personliga projekt. Det är mig man skriver till om den här sidan.",
-    "p2": "Postadressen läggs till här. Tills dess är e-post vägen att nå mig."
+    "p2": "Det är postadressen. E-post når mig också."
   },
   "notFound": {
     "h1": "Den här sidan finns inte i pärmen.",

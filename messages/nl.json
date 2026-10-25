@@ -66,7 +66,7 @@
     "contactLabel": "E-mail"
   },
   "home": {
-    "kicker": "Een persoonlijk project van Magnus Schmidt",
+    "kicker": "Een persoonlijk project",
     "h1": "Ik verzamel kaarten, maak binders vol en geef ze weg.",
     "p1": "Ik haal Pokémon-kaarten op bij winkels in Europa en de Verenigde Staten, sorteer ze in binders en geef een binder weg als die vol is. De binders gaan naar kinderen: een ziekenhuisafdeling, een opvang, een naschoolse club. Ik schrijf elke binder op die het huis verlaat.",
     "p2": "Deze site is het verslag. De tellingen beginnen bij nul en schuiven pas op als een zending echt is.",
@@ -184,16 +184,16 @@
     "p3": "Als u me mailt, bewaar ik die correspondentie zodat ik kan antwoorden en me kan herinneren wat er over een zending is gezegd. U kunt me vragen te verbeteren of te wissen wat u stuurde.",
     "p4": "Het privégedeelte voor beheer zet één sessiecookie nadat ik ben ingelogd. Die cookie houdt de sessie vast. Hij wordt niet gezet voor mensen die de openbare pagina's lezen.",
     "p5": "De dienst die de site toont, kan technische logs, waaronder IP-adressen, kort bewaren omdat dat bij het draaien hoort. Zendingen die ik noteer, en de private prijsschattingen, staan in een database die ik instel. Openbare pagina's tonen tellingen, dank, notities en afgiften. Ze tonen geen prijzen.",
-    "p6": "Ik verkoop geen persoonsgegevens. Als deze tekst verandert, werk ik hem hier bij. Het postadres in het colofon is nog een tijdelijke aanduiding."
+    "p6": "Ik verkoop geen persoonsgegevens. Als deze tekst verandert, werk ik hem hier bij. Het postadres staat in het colofon."
   },
   "imprint": {
     "h1": "Colofon en contact",
     "responsible": "Verantwoordelijke",
     "emailLabel": "E-mail",
     "addressLabel": "Postadres",
-    "address": "[postadres volgt]",
+    "address": "Magnus Schmidt, Kongensgade 13B, 1., 5000 Odense C, Denmark",
     "p1": "LinksForCards is mijn persoonlijke project. Ik ben degene aan wie u over deze site kunt schrijven.",
-    "p2": "Het postadres komt hier nog te staan. Tot die tijd is e-mail de weg om me te bereiken."
+    "p2": "Dat is het postadres. E-mail bereikt me ook."
   },
   "notFound": {
     "h1": "Deze pagina zit niet in de binder.",

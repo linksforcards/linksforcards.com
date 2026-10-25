@@ -66,7 +66,7 @@
     "contactLabel": "E-Mail"
   },
   "home": {
-    "kicker": "Ein persönliches Projekt von Magnus Schmidt",
+    "kicker": "Ein persönliches Projekt",
     "h1": "Ich sammle Karten, fülle Binder und gebe sie weiter.",
     "p1": "Ich hole Pokémon-Karten in Läden in Europa und den USA, sortiere sie in Binder und gebe einen Binder weiter, sobald er vollständig ist. Die Binder gehen an Kinder: eine Krankenhausstation, eine Notunterkunft, ein Hort. Jeden, der weggeht, schreibe ich auf.",
     "p2": "Diese Seite ist das Protokoll. Die Zahlen starten bei null und ändern sich erst, wenn eine Sendung wirklich da ist.",
@@ -184,16 +184,16 @@
     "p3": "Wenn du mir schreibst, behalte ich die Korrespondenz, damit ich antworten und mich an eine Sendung erinnern kann. Du kannst mich bitten, das Gesendete zu korrigieren oder zu löschen.",
     "p4": "Der private Admin-Bereich setzt ein Sitzungs-Cookie, nachdem ich mich angemeldet habe. Das Cookie hält die Sitzung. Für Leser der öffentlichen Seiten wird es nicht gesetzt.",
     "p5": "Der Dienst, der die Seite ausliefert, kann technische Protokolle einschließlich IP-Adressen kurz behalten, weil der Betrieb das braucht. Sendungen, die ich eintrage, und die privaten Preisschätzungen liegen in einer Datenbank, die ich einrichte. Öffentliche Seiten zeigen Zählungen, Dank, Notizen und Übergaben. Preise zeigen sie nicht.",
-    "p6": "Ich verkaufe keine personenbezogenen Daten. Wenn sich dieser Text ändert, aktualisiere ich ihn hier. Die Postanschrift im Impressum ist noch ein Platzhalter."
+    "p6": "Ich verkaufe keine personenbezogenen Daten. Wenn sich dieser Text ändert, aktualisiere ich ihn hier. Die Postanschrift steht im Impressum."
   },
   "imprint": {
     "h1": "Impressum und Kontakt",
     "responsible": "Verantwortlich",
     "emailLabel": "E-Mail",
     "addressLabel": "Postanschrift",
-    "address": "[Postanschrift folgt]",
+    "address": "Magnus Schmidt, Kongensgade 13B, 1., 5000 Odense C, Denmark",
     "p1": "LinksForCards ist mein persönliches Projekt. An mich kann man sich zu dieser Seite wenden.",
-    "p2": "Die Postanschrift kommt hier noch hin. Bis dahin erreicht man mich per E-Mail."
+    "p2": "Das ist die Postanschrift. Per E-Mail erreicht man mich ebenfalls."
   },
   "notFound": {
     "h1": "Diese Seite liegt nicht im Binder.",

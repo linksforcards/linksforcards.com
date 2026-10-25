@@ -66,7 +66,7 @@
     "contactLabel": "Email"
   },
   "home": {
-    "kicker": "Un progetto personale di Magnus Schmidt",
+    "kicker": "Un progetto personale",
     "h1": "Raccolgo carte, completo raccoglitori e li consegno.",
     "p1": "Prendo carte Pokémon nei negozi in Europa e negli Stati Uniti, le metto nei raccoglitori e ne consegno uno quando è completo. I raccoglitori vanno a dei bambini: un reparto d'ospedale, un alloggio, un doposcuola. Segno ognuno di quelli che escono.",
     "p2": "Questo sito è il registro. I conti partono da zero e si muovono solo quando una spedizione è vera.",
@@ -184,16 +184,16 @@
     "p3": "Se mi scrive, tengo quella corrispondenza per poter rispondere e ricordare che cosa è stato detto di una spedizione. Può chiedermi di correggere o cancellare ciò che ha inviato.",
     "p4": "L'area privata di amministrazione imposta un cookie di sessione dopo il mio accesso. Quel cookie tiene la sessione. Non viene impostato per chi legge le pagine pubbliche.",
     "p5": "Chi ospita il sito può tenere per un po' registri tecnici, compresi gli indirizzi IP, perché serve a farlo funzionare. Le spedizioni che segno, e le stime di prezzo private, stanno in un database che configuro io. Le pagine pubbliche mostrano conteggi, ringraziamenti, note e consegne. Non mostrano prezzi.",
-    "p6": "Non vendo informazioni personali. Se questo testo cambia, lo aggiorno qui. L'indirizzo postale nelle note legali è ancora un segnaposto."
+    "p6": "Non vendo informazioni personali. Se questo testo cambia, lo aggiorno qui. L'indirizzo postale è nelle note legali."
   },
   "imprint": {
     "h1": "Note legali e contatto",
     "responsible": "Persona responsabile",
     "emailLabel": "Email",
     "addressLabel": "Indirizzo postale",
-    "address": "[indirizzo postale da aggiungere]",
+    "address": "Magnus Schmidt, Kongensgade 13B, 1., 5000 Odense C, Denmark",
     "p1": "LinksForCards è il mio progetto personale. Sono la persona a cui scrivere per questo sito.",
-    "p2": "L'indirizzo postale sarà aggiunto qui. Fino ad allora, l'email è il modo per raggiungermi."
+    "p2": "Quello è l'indirizzo postale. L'email mi raggiunge anche."
   },
   "notFound": {
     "h1": "Questa pagina non è nel raccoglitore.",

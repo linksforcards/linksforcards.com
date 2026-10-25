@@ -1,6 +1,7 @@
 import { readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
+import { site } from "../src/lib/site";
 
 const dir = path.join(process.cwd(), "messages");
 const files = readdirSync(dir).filter((name) => name.endsWith(".json")).sort();
@@ -74,7 +75,7 @@ describe("messages", () => {
     const place = ["Den" + "mark", "Dan" + "mark", "Dan" + "sk", "Dan" + "ish"];
     for (const file of files) {
       const raw = readFileSync(path.join(dir, file), "utf8");
-      const data = JSON.parse(raw) as { home: { shopsP1: string }; privacy: { p1: string } };
+      const data = JSON.parse(raw) as { home: { shopsP1: string }; privacy: { p1: string }; imprint: { address: string } };
       const code = file.replace(/\.json$/, "");
       const voice = code === "en-US" || code === "en-GB" ? "en" : code;
       const body = textOf(data);
@@ -88,7 +89,9 @@ describe("messages", () => {
         if (pattern.source.includes("donate")) expect(outside).not.toMatch(pattern);
         else expect(body).not.toMatch(pattern);
       }
-      for (const word of place) expect(raw.toLowerCase()).not.toContain(word.toLowerCase());
+      expect(data.imprint.address).toBe(site.postalAddress);
+      const outsideAddress = raw.split(site.postalAddress).join("");
+      for (const word of place) expect(outsideAddress.toLowerCase()).not.toContain(word.toLowerCase());
       expect(guides).toBeTruthy();
     }
   });

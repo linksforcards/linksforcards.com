@@ -66,7 +66,7 @@
     "contactLabel": "Sähköposti"
   },
   "home": {
-    "kicker": "Magnus Schmidtin henkilökohtainen hanke",
+    "kicker": "Henkilökohtainen hanke",
     "h1": "Kerään kortteja, täytän kansioita ja annan ne eteenpäin.",
     "p1": "Noudan Pokémon-kortteja kaupoista Euroopassa ja Yhdysvalloissa, lajittelen ne kansioihin ja annan kansion eteenpäin, kun se on täynnä. Kansiot menevät lapsille: sairaalan osastolle, tilapäismajoitukseen, iltapäiväkerhoon. Kirjaan jokaisen kansion, joka lähtee.",
     "p2": "Tämä sivu on kirjanpito. Luvut alkavat nollasta ja liikkuvat vain, kun lähetys on todellinen.",
@@ -184,16 +184,16 @@
     "p3": "Jos kirjoitat minulle, säilytän kirjeenvaihdon voidakseni vastata ja muistaakseni, mitä lähetyksestä sanottiin. Voit pyytää minua korjaamaan tai poistamaan lähettämäsi.",
     "p4": "Yksityinen hallinta-alue asettaa yhden istuntoevästeen sen jälkeen, kun kirjaudun sisään. Eväste pitää istunnon. Sitä ei aseteta julkisia sivuja lukeville.",
     "p5": "Sivua näyttävä palvelu voi säilyttää teknisiä lokeja, myös IP-osoitteita, hetken aikaa, koska toiminta sitä vaatii. Kirjaamani lähetykset ja yksityiset hinta-arviot ovat tietokannassa, jonka määrittelen. Julkiset sivut näyttävät lukumääriä, kiitoksia, muistiinpanoja ja luovutuksia. Ne eivät näytä hintoja.",
-    "p6": "En myy henkilötietoja. Jos tämä teksti muuttuu, päivitän sen tähän. Yhteystietojen postiosoite on yhä paikanvaraaja."
+    "p6": "En myy henkilötietoja. Jos tämä teksti muuttuu, päivitän sen tähän. Postiosoite on yhteystietosivulla."
   },
   "imprint": {
     "h1": "Yhteystiedot",
     "responsible": "Vastuuhenkilö",
     "emailLabel": "Sähköposti",
     "addressLabel": "Postiosoite",
-    "address": "[postiosoite lisätään]",
+    "address": "Magnus Schmidt, Kongensgade 13B, 1., 5000 Odense C, Denmark",
     "p1": "LinksForCards on henkilökohtainen hankkeeni. Minulle voi kirjoittaa tästä sivusta.",
-    "p2": "Postiosoite lisätään tähän. Siihen asti sähköposti on tapa tavoittaa minut."
+    "p2": "Tuo on postiosoite. Sähköposti tavoittaa minut myös."
   },
   "notFound": {
     "h1": "Tätä sivua ei ole kansiossa.",

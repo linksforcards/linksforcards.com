@@ -5,10 +5,19 @@ function publicEnv(name: string, fallback: string): string {
   return value || fallback;
 }
 
+export const postalAddress = {
+  line: "Magnus Schmidt, Kongensgade 13B, 1., 5000 Odense C, Denmark",
+  streetAddress: "Kongensgade 13B, 1.",
+  postalCode: "5000",
+  addressLocality: "Odense C",
+  addressCountry: "Denmark",
+};
+
 export const site = {
   name: "LinksForCards",
   sender: "Magnus Schmidt",
   email: "magnus@linksforcards.com",
+  postalAddress: postalAddress.line,
   url: publicEnv("NEXT_PUBLIC_SITE_URL", "https://linksforcards.com"),
   substackUrl: publicEnv("NEXT_PUBLIC_SUBSTACK_URL", "https://linksforcards.substack.com"),
 };

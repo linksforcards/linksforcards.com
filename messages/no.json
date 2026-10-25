@@ -66,7 +66,7 @@
     "contactLabel": "E-post"
   },
   "home": {
-    "kicker": "Et personlig prosjekt av Magnus Schmidt",
+    "kicker": "Et personlig prosjekt",
     "h1": "Jeg samler kort, fyller permer og gir dem bort.",
     "p1": "Jeg henter Pokémon-kort i butikker i Europa og USA, sorterer dem i permer og gir bort en perm når den er full. Permene går til barn: en sykehusavdeling, et botilbud, en fritidsklubb. Jeg skriver opp hver perm som forlater huset.",
     "p2": "Dette nettstedet er oversikten. Tallene starter på null og flytter seg bare når en forsendelse er ekte.",
@@ -184,16 +184,16 @@
     "p3": "Hvis du sender meg e-post, tar jeg vare på den korrespondansen slik at jeg kan svare og huske hva som ble sagt om en forsendelse. Du kan be meg rette eller slette det du sendte.",
     "p4": "Det private adminområdet setter én øktinformasjonskapsel etter at jeg har logget inn. Den holder økten. Den settes ikke for folk som leser de offentlige sidene.",
     "p5": "Tjenesten som viser nettstedet, kan ta vare på tekniske logger, inkludert IP-adresser, en kort stund fordi driften krever det. Forsendelser jeg logger, og de private prisanslagene, ligger i en database jeg setter opp. Offentlige sider viser tall, takk, notater og overleveringer. De viser ikke priser.",
-    "p6": "Jeg selger ikke personopplysninger. Hvis denne teksten endres, oppdaterer jeg den her. Postadressen på kontaktsiden er fortsatt en plassholder."
+    "p6": "Jeg selger ikke personopplysninger. Hvis denne teksten endres, oppdaterer jeg den her. Postadressen står på kontaktsiden."
   },
   "imprint": {
     "h1": "Kontakt",
     "responsible": "Ansvarlig",
     "emailLabel": "E-post",
     "addressLabel": "Postadresse",
-    "address": "[postadresse kommer]",
+    "address": "Magnus Schmidt, Kongensgade 13B, 1., 5000 Odense C, Denmark",
     "p1": "LinksForCards er mitt personlige prosjekt. Det er meg man skriver til om dette nettstedet.",
-    "p2": "Postadressen kommer her. Inntil da er e-post måten å nå meg på."
+    "p2": "Det er postadressen. E-post når meg også."
   },
   "notFound": {
     "h1": "Denne siden er ikke i permen.",

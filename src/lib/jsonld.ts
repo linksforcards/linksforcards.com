@@ -19,7 +19,7 @@ import type {
 import type { Locale } from "./locales";
 import { htmlLang } from "./locales";
 import { localePath } from "./routing";
-import { absoluteUrl, site } from "./site";
+import { absoluteUrl, postalAddress, site } from "./site";
 
 export type Crumb = { name: string; href: string };
 export type ListEntry = { name: string; url?: string };
@@ -31,6 +31,16 @@ export type PageKind = "AboutPage" | "WebPage" | "CollectionPage" | "ContactPage
 const ORG = absoluteUrl("/#organization");
 const PERSON = absoluteUrl("/#magnus");
 const WEBSITE = absoluteUrl("/#website");
+
+function postalAddressNode() {
+  return {
+    "@type": "PostalAddress" as const,
+    streetAddress: postalAddress.streetAddress,
+    postalCode: postalAddress.postalCode,
+    addressLocality: postalAddress.addressLocality,
+    addressCountry: postalAddress.addressCountry,
+  };
+}
 
 function logo(): ImageObject {
   return {
@@ -52,6 +62,7 @@ export function organizationNode(): Organization {
     url: absoluteUrl("/"),
     logo: logo(),
     founder: { "@id": PERSON },
+    address: postalAddressNode(),
     sameAs: [site.substackUrl],
   };
 }
@@ -63,6 +74,7 @@ export function personNode(): Person {
     name: site.sender,
     email: `mailto:${site.email}`,
     url: absoluteUrl("/"),
+    address: postalAddressNode(),
   };
 }
 

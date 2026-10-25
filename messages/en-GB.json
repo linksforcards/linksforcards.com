@@ -66,7 +66,7 @@
     "contactLabel": "Email"
   },
   "home": {
-    "kicker": "A personal project by Magnus Schmidt",
+    "kicker": "A personal project",
     "h1": "I collect cards, complete binders, and give them away.",
     "p1": "I pick up Pokémon cards from card shops around Europe and the United States, organise them into binders, and give a binder away when it is complete. The binders go to children: a hospital ward, a shelter, an after-school club. I write down each one that leaves.",
     "p2": "This site is the record. The counts start at zero and move only when a shipment is real.",
@@ -184,16 +184,16 @@
     "p3": "If you email me, I keep that correspondence so I can reply, and so I can remember what was said about a shipment. You can ask me to correct or delete what you sent.",
     "p4": "The private admin area sets one session cookie after I sign in. That cookie keeps the session. It is not set for people reading the public pages.",
     "p5": "The host that serves the site may keep technical logs, including IP addresses, for a short time as part of running it. Shipments I log, and the private price estimates, sit in a database I configure. Public pages show counts, thanks, notes, and handovers. They do not show prices.",
-    "p6": "I do not sell personal information. If this text changes, I will update it here. The postal address on the imprint is still a placeholder."
+    "p6": "I do not sell personal information. If this text changes, I will update it here. The postal address is on the imprint."
   },
   "imprint": {
     "h1": "Imprint and contact",
     "responsible": "Person responsible",
     "emailLabel": "Email",
     "addressLabel": "Postal address",
-    "address": "[postal address to be added]",
+    "address": "Magnus Schmidt, Kongensgade 13B, 1., 5000 Odense C, Denmark",
     "p1": "LinksForCards is my personal project. I am the person to write to about this site.",
-    "p2": "The postal address will be added here. Until then, email is the way to reach me."
+    "p2": "That is the postal address. Email reaches me as well."
   },
   "notFound": {
     "h1": "This page is not in the binder.",

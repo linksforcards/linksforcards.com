@@ -6,7 +6,6 @@ import { LanguageSwitcher } from "@/components/site/language-switcher";
 import { getMessages } from "@/lib/i18n";
 import { type Locale } from "@/lib/locales";
 import { localePath, stripLocale } from "@/lib/routing";
-import { site } from "@/lib/site";
 
 export function SiteHeader({ locale }: { locale: Locale }) {
   const m = getMessages(locale);
@@ -26,10 +25,7 @@ export function SiteHeader({ locale }: { locale: Locale }) {
       <div className="wrap top-bar">
         <a className="brand" href={localePath(locale, "/")}>
           <BinderMark className="brand-mark" />
-          <span>
-            <span className="brand-name">LinksForCards</span>
-            <span className="brand-by">{site.sender}</span>
-          </span>
+          <span className="brand-name">LinksForCards</span>
         </a>
         <nav className="nav" aria-label={m.nav.primary}>
           {items.map((item) => {

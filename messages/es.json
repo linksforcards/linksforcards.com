@@ -66,7 +66,7 @@
     "contactLabel": "Correo"
   },
   "home": {
-    "kicker": "Un proyecto personal de Magnus Schmidt",
+    "kicker": "Un proyecto personal",
     "h1": "Reúno cartas, completo carpetas y las entrego.",
     "p1": "Recojo cartas Pokémon en tiendas de Europa y de Estados Unidos, las ordeno en carpetas y entrego una carpeta cuando está completa. Las carpetas van a niños: una planta de hospital, un alojamiento, un club después del colegio. Apunto cada una que sale.",
     "p2": "Este sitio es el registro. Las cifras empiezan en cero y solo se mueven cuando un envío es real.",
@@ -184,16 +184,16 @@
     "p3": "Si me escribe, guardo esa correspondencia para poder responder y recordar lo que se dijo de un envío. Puede pedirme que corrija o borre lo que envió.",
     "p4": "El área privada de administración guarda una cookie de sesión después de que yo entre. Esa cookie mantiene la sesión. No se guarda para quien lee las páginas públicas.",
     "p5": "Quien sirve el sitio puede conservar un tiempo registros técnicos, incluidas direcciones IP, porque hace falta para que funcione. Los envíos que apunto, y las estimaciones de precio privadas, están en una base de datos que yo configuro. Las páginas públicas muestran recuentos, agradecimientos, notas y entregas. No muestran precios.",
-    "p6": "No vendo información personal. Si este texto cambia, lo actualizo aquí. La dirección postal del aviso sigue siendo un espacio reservado."
+    "p6": "No vendo información personal. Si este texto cambia, lo actualizo aquí. La dirección postal está en el aviso legal."
   },
   "imprint": {
     "h1": "Aviso y contacto",
     "responsible": "Persona responsable",
     "emailLabel": "Correo",
     "addressLabel": "Dirección postal",
-    "address": "[dirección postal por añadir]",
+    "address": "Magnus Schmidt, Kongensgade 13B, 1., 5000 Odense C, Denmark",
     "p1": "LinksForCards es mi proyecto personal. Soy la persona a la que escribir sobre este sitio.",
-    "p2": "La dirección postal se añadirá aquí. Hasta entonces, el correo es la forma de localizarme."
+    "p2": "Esa es la dirección postal. El correo también me localiza."
   },
   "notFound": {
     "h1": "Esta página no está en la carpeta.",

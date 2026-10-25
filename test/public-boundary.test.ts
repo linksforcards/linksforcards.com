@@ -14,7 +14,10 @@ describe("public surface", () => {
     for (const file of roots.flatMap(files)) {
       if (!/\.(tsx?|json|md|mjs|svg|txt|yml)$/.test(file)) continue;
       if (file.includes(`${path.sep}assets${path.sep}`)) continue;
-      const text = readFileSync(file, "utf8").toLowerCase();
+      const text = readFileSync(file, "utf8")
+        .toLowerCase()
+        .replaceAll("magnus schmidt, kongensgade 13b, 1., 5000 odense c, denmark", "")
+        .replaceAll('addresscountry: "denmark"', "");
       for (const word of banned) expect(text, file).not.toContain(word);
     }
   });

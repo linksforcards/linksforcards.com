@@ -66,7 +66,7 @@
     "contactLabel": "E-mail"
   },
   "home": {
-    "kicker": "Un projet personnel de Magnus Schmidt",
+    "kicker": "Un projet personnel",
     "h1": "Je collectionne des cartes, je complète des classeurs, et je les donne.",
     "p1": "Je récupère des cartes Pokémon dans des boutiques en Europe et aux États-Unis, je les range dans des classeurs, et j'en donne un lorsqu'il est complet. Les classeurs vont à des enfants : un service d'hôpital, un hébergement, un accueil périscolaire. J'inscris chacun de ceux qui partent.",
     "p2": "Ce site est le registre. Les comptes partent de zéro et ne bougent que lorsqu'un envoi est réel.",
@@ -184,16 +184,16 @@
     "p3": "Si vous m'écrivez, je garde cet échange pour pouvoir répondre et me souvenir de ce qui a été dit sur un envoi. Vous pouvez me demander de corriger ou d'effacer ce que vous avez envoyé.",
     "p4": "L'espace privé d'administration pose un cookie de session après ma connexion. Ce cookie maintient la session. Il n'est pas posé pour les gens qui lisent les pages publiques.",
     "p5": "L'hébergeur du site peut garder brièvement des journaux techniques, y compris des adresses IP, parce que le fonctionnement l'exige. Les envois que je note, et les estimations de prix privées, sont dans une base que je configure. Les pages publiques montrent des comptes, des remerciements, des notes et des remises. Elles ne montrent pas de prix.",
-    "p6": "Je ne vends pas d'informations personnelles. Si ce texte change, je le mets à jour ici. L'adresse postale des mentions est encore un emplacement réservé."
+    "p6": "Je ne vends pas d'informations personnelles. Si ce texte change, je le mets à jour ici. L'adresse postale est dans les mentions."
   },
   "imprint": {
     "h1": "Mentions et contact",
     "responsible": "Personne responsable",
     "emailLabel": "E-mail",
     "addressLabel": "Adresse postale",
-    "address": "[adresse postale à ajouter]",
+    "address": "Magnus Schmidt, Kongensgade 13B, 1., 5000 Odense C, Denmark",
     "p1": "LinksForCards est mon projet personnel. C'est à moi qu'on écrit au sujet de ce site.",
-    "p2": "L'adresse postale sera ajoutée ici. D'ici là, l'e-mail est le moyen de me joindre."
+    "p2": "C'est l'adresse postale. L'e-mail me joint aussi."
   },
   "notFound": {
     "h1": "Cette page n'est pas dans le classeur.",
