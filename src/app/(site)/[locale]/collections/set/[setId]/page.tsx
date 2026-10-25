@@ -8,6 +8,7 @@ import { JsonLd } from "@/components/site/json-ld";
 import { ProgressBar } from "@/components/site/progress-bar";
 import { RelatedLinks } from "@/components/site/related-links";
 import { SiteLinks } from "@/components/site/site-links";
+import { getArticle } from "@/lib/articles";
 import { numbersMatch } from "@/lib/cards";
 import { cardImageSrc, getSet, getSetCards, getSets, speciesName, type CardKind } from "@/lib/catalog";
 import { fill, formatDay, formatInt } from "@/lib/format";
@@ -172,6 +173,15 @@ export default async function SetPage({ params }: { params: Promise<{ locale: st
       {mark?.status === "given_away" ? <p className="banner">{m.checklist.markedGiven}</p> : null}
       {mark?.status === "completed" ? <p className="banner">{m.checklist.markedComplete}</p> : null}
       <Checklist rows={rows} labels={m.checklist} />
+      <RelatedLinks
+        label={m.nav.related}
+        links={[
+          {
+            href: localePath(locale, set.id === "base1" ? "/guides/gen-1-checklist" : "/guides/sets-in-order"),
+            name: getArticle(locale, set.id === "base1" ? "gen-1-checklist" : "sets-in-order")?.h1 ?? m.nav.guides,
+          },
+        ]}
+      />
       {relatedSets.length > 0 ? (
         <>
           <h2>{fill(m.setPage.related, { series: set.series })}</h2>

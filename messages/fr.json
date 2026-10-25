@@ -39,8 +39,8 @@
     "seriesDescription": "Listes de cartes et checklists de la série {series}. {count} sets.",
     "speciesTitle": "Liste de cartes {name}",
     "speciesDescription": "Liste de cartes {name}. Pokédex {dex}, génération {gen} ({region}). {total} cartes dans {sets} extensions.",
-    "guidesTitle": "Guides du classeur",
-    "guidesDescription": "Comment je range un classeur Pokémon, ce que je fais des cartes en vrac, et comment un classeur fini part pour un enfant."
+    "guidesTitle": "Guides pour collectionner les cartes Pokémon",
+    "guidesDescription": "Comment je collectionne les cartes Pokémon dans un classeur de série et un classeur Pokédex, avec des notes sur le vrac, les 151, les protège-cartes et un classeur qui part."
   },
   "nav": {
     "primary": "Pages",
@@ -235,55 +235,12 @@
   },
   "guides": {
     "kicker": "Depuis le classeur",
-    "indexIntro": "Trois notes : comment je range un classeur, ce que je fais du vrac, et comment un classeur fini part.",
+    "indexIntro": "Une longue note sur ma façon de collectionner, et neuf notes plus courtes qui répondent chacune à une question.",
     "updated": "Mis à jour le {date}",
-    "organize": {
-      "title": "Comment je range un classeur Pokémon",
-      "description": "Classeurs de set et classeurs de génération, et comment je coche une ligne quand la carte est dans le classeur.",
-      "h1": "Comment je range un classeur Pokémon",
-      "lede": "Je tiens deux sortes de classeurs. Un classeur de set garde un set dans l'ordre des numéros de collection. Un classeur de génération garde une carte de chaque espèce de cette génération, de n'importe quel set et dans n'importe quelle langue.",
-      "s1h": "Un classeur de set",
-      "s1": "Un classeur de set suit le numéro de collection de la liste publique. Paldean Fates est l'exemple que je garde en tête : le set entier, dans l'ordre, sans rien laisser de côté exprès. La liste de cartes de chaque page de set est cet ordre. Je coche une ligne quand la carte est dans le classeur, puis je regarde le classeur avant de dire le set terminé.",
-      "s2h": "Un classeur de génération",
-      "s2": "Un classeur de génération demande une carte de chaque espèce. La génération 1, ce sont les 151 d'origine. Les générations 1 à 9 font 1 025 espèces. N'importe quel tirage compte, et n'importe quelle langue compte. Un Magikarp de vrac remplit une ligne aussi bien qu'un holo. La page de génération indique chaque espèce, le numéro du Pokédex et quelques sets où elle apparaît.",
-      "s3h": "Par où je commence",
-      "s3": "Je commence par la génération 1 et un set. La page Collections est la liste des deux. Si une ligne et le classeur ne disent pas la même chose, le classeur gagne : je ne marque un classeur terminé qu'après avoir tourné les pages.",
-      "faq1q": "Un classeur de génération doit-il contenir chaque tirage ?",
-      "faq1a": "Non. Une carte de chaque espèce suffit. Le classeur de set est la liste qui demande chaque carte du set.",
-      "faq2q": "Où est la checklist ?",
-      "faq2a": "Chaque set a une liste de cartes, et chaque génération a une checklist. La page Collections relie les deux."
-    },
-    "bulk": {
-      "title": "Que faire des cartes Pokémon en vrac",
-      "description": "Le vrac remplit les classeurs. Je trie par set, puis je regarde quelle espèce manque encore.",
-      "h1": "Que faire des cartes Pokémon en vrac",
-      "lede": "Le vrac est la pile ordinaire : les communes, les doubles, et le Magikarp qui revient. Cette pile remplit un classeur.",
-      "s1h": "Trier par set d'abord",
-      "s1": "Je trie un colis par set avant de regarder autre chose. Une carte qui correspond à une ligne ouverte dans un classeur de set va là. La page du set montre le numéro de collection et si la ligne est remplie.",
-      "s2h": "Ensuite les classeurs de génération",
-      "s2": "Une carte en trop peut remplir une espèce manquante dans un classeur de génération. N'importe quel set et n'importe quelle langue comptent. Il m'en faut une de chaque espèce. Si la ligne est déjà remplie, le double reste dans la boîte de vrac.",
-      "s3h": "Ce que la page publique montre",
-      "s3": "Les pages publiques montrent le nom, le set et si la ligne est remplie. Elles ne montrent pas de prix de vente. Une barre remplie veut dire que la carte est notée, rien de plus.",
-      "faq1q": "Un Magikarp de vrac mérite-t-il d'être noté ?",
-      "faq1a": "Oui, quand la ligne de cette espèce est vide. Mériter veut dire ici la checklist, pas un prix.",
-      "faq2q": "Que deviennent les doubles ?",
-      "faq2a": "Les doubles restent jusqu'à ce qu'un classeur en ait besoin, ou jusqu'à ce qu'un classeur fini parte pour un enfant."
-    },
-    "donating": {
-      "title": "Donner des cartes Pokémon à des enfants",
-      "description": "Comment je donne des cartes Pokémon. Un classeur fini part pour un enfant, et la liste publique note le destinataire et la date.",
-      "h1": "Donner des cartes Pokémon à des enfants",
-      "lede": "Je donne des cartes Pokémon en remettant un classeur fini. Les classeurs vont à des enfants : un service d'hôpital, un foyer, un club périscolaire. Je note chacun qui part.",
-      "s1h": "Seulement un classeur complet",
-      "s1": "Je ne remets qu'un classeur que j'ai marqué terminé. Un classeur à moitié plein reste ici jusqu'à ce que les lignes manquantes soient remplies. Je ne remets pas de cartes en vrac. Elles restent ici et remplissent le classeur suivant.",
-      "s2h": "Ce que la liste publique montre",
-      "s2": "La liste publique montre le destinataire et la date. Elle ne montre pas de prix de vente, et elle ne dit pas à quel prix une carte se vendrait.",
-      "s3h": "Cartes en trop",
-      "s3": "Si tu as des cartes en trop ou du vrac pour les classeurs, écris-moi à magnus@linksforcards.com. Les boutiques qui envoient des cartes sont remerciées par leur nom.",
-      "faq1q": "Prends-tu des cartes en vrac ?",
-      "faq1a": "Oui. Le vrac est le bienvenu. Je le trie dans les classeurs.",
-      "faq2q": "Les pages publiques montrent-elles ce qu'une carte vaut ?",
-      "faq2a": "Non. Les pages publiques ne montrent jamais ce qu'une carte vaut."
-    }
+    "toc": "Sur cette page",
+    "pillarLabel": "Commencer ici",
+    "supportingLabel": "Une question chacune",
+    "readNext": "À lire ensuite",
+    "timelineLabel": "Chaque série de la liste"
   }
 }

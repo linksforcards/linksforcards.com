@@ -21,7 +21,7 @@ export function pageMetadata(
   path: string,
   title: string,
   description: string,
-  options?: { locales?: readonly Locale[]; index?: boolean },
+  options?: { locales?: readonly Locale[]; index?: boolean; image?: string; imageAlt?: string },
 ): Metadata {
   const canonical = absoluteUrl(localePath(locale, path));
   const m = getMessages(locale);
@@ -40,13 +40,13 @@ export function pageMetadata(
       locale: currentOg,
       alternateLocale: OG_LOCALES.filter((item) => item !== currentOg && (!allowed || allowed.has(OG_PAGE_LOCALE[item]))),
       type: "website",
-      images: [{ url: `/og/${locale}`, width: 1200, height: 630, alt: m.meta.ogAlt }],
+      images: [{ url: options?.image ?? `/og/${locale}`, width: 1200, height: 630, alt: options?.imageAlt ?? m.meta.ogAlt }],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: [`/og/${locale}`],
+      images: [options?.image ?? `/og/${locale}`],
     },
   };
 }

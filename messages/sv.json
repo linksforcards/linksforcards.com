@@ -39,8 +39,8 @@
     "seriesDescription": "Kortlistor och checklistor för serien {series}. {count} set.",
     "speciesTitle": "{name} kortlista",
     "speciesDescription": "{name} kortlista. Pokédex {dex}, generation {gen} ({region}). {total} kort i {sets} set.",
-    "guidesTitle": "Anteckningar om pärmen",
-    "guidesDescription": "Hur jag ordnar en Pokémon-pärm, vad jag gör med bulk-kort och hur en färdig pärm går till ett barn."
+    "guidesTitle": "Guider om att samla Pokémon-kort",
+    "guidesDescription": "Hur jag samlar Pokémon-kort i en setpärm och en Pokédex-pärm, med anteckningar om bulk, de 151, fickor och en pärm som lämnar hyllan."
   },
   "nav": {
     "primary": "Sidor",
@@ -234,56 +234,13 @@
     "other": "Andra generationspärmar"
   },
   "guides": {
-    "kicker": "Från pärmen",
-    "indexIntro": "Tre anteckningar: hur jag ordnar en pärm, vad jag gör med bulk och hur en färdig pärm lämnar.",
+    "kicker": "Ur pärmen",
+    "indexIntro": "En lång anteckning om hur jag samlar, och nio kortare anteckningar som var och en svarar på en fråga.",
     "updated": "Uppdaterad {date}",
-    "organize": {
-      "title": "Hur jag ordnar en Pokémon-pärm",
-      "description": "Setpärmar och generationspärmar, och hur jag bockar av en rad när kortet ligger i pärmen.",
-      "h1": "Hur jag ordnar en Pokémon-pärm",
-      "lede": "Jag håller två sorters pärmar. En setpärm håller ett set i samlarnummerordning. En generationspärm håller ett kort av varje art från den generationen, från vilket set som helst och på vilket språk som helst.",
-      "s1h": "En setpärm",
-      "s1": "En setpärm följer samlarnumret från den öppna kortlistan. Paldean Fates är exemplet jag har i huvudet: hela setet, i ordning, utan att med flit lämna något ute. Kortlistan på varje setsida är den ordningen. Jag bockar av en rad när kortet ligger i pärmen, och jag tittar i pärmen innan jag kallar setet klart.",
-      "s2h": "En generationspärm",
-      "s2": "En generationspärm behöver ett kort av varje art. Generation 1 är de ursprungliga 151. Generation 1 till 9 är 1 025 arter. Vilket tryck som helst räknas, och vilket språk som helst räknas. En Magikarp från bulken fyller en rad lika bra som en holo. Generationssidan listar varje art, Pokédexnumret och några set där den finns.",
-      "s3h": "Var jag börjar",
-      "s3": "Jag börjar med generation 1 och ett set. Sidan Samlingar är listan för båda. Om en rad och pärmen inte stämmer överens gäller pärmen: jag kallar en pärm klar först efter att jag har bläddrat igenom sidorna.",
-      "faq1q": "Behöver en generationspärm varje tryck?",
-      "faq1a": "Nej. Ett kort av varje art räcker. Setpärmen är listan som behöver varje kort i det setet.",
-      "faq2q": "Var finns checklistan?",
-      "faq2a": "Varje set har en kortlista, och varje generation har en checklista. Sidan Samlingar länkar till båda."
-    },
-    "bulk": {
-      "title": "Vad jag gör med bulk-kort",
-      "description": "Bulk fyller pärmarna. Jag sorterar per set och ser sedan vilken art som fortfarande saknas.",
-      "h1": "Vad jag gör med bulk-kort",
-      "lede": "Bulk är den vanliga högen: commons, dubbletter och Magikarpen som dyker upp igen. Den högen fyller en pärm.",
-      "s1h": "Sortera per set först",
-      "s1": "Jag sorterar ett paket per set innan jag tittar på något annat. Ett kort som passar en öppen rad i en setpärm hamnar där. Setsidan visar samlarnumret och om raden är fylld.",
-      "s2h": "Sedan generationspärmarna",
-      "s2": "Ett extra kort kan fylla en saknad art i en generationspärm. Vilket set som helst och vilket språk som helst räknas. Jag behöver ett av varje art. Om raden redan är fylld stannar extrat i bulk-lådan.",
-      "s3h": "Vad den öppna sidan visar",
-      "s3": "Öppna sidor visar namnet, setet och om raden är fylld. De visar inget försäljningspris. En fylld stapel betyder att kortet är noterat, inget mer.",
-      "faq1q": "Är en Magikarp från bulken värd att notera?",
-      "faq1a": "Ja, när raden för den arten är tom. Värd betyder här checklistan, inte ett pris.",
-      "faq2q": "Vad händer med extrakorten?",
-      "faq2a": "Extran stannar tills en pärm behöver dem, eller tills en färdig pärm går till ett barn."
-    },
-    "donating": {
-      "title": "Ge bort Pokémon-kort till barn",
-      "description": "Hur jag ger bort Pokémon-kort. En färdig pärm går till ett barn, och den öppna listan anger mottagare och datum.",
-      "h1": "Ge bort Pokémon-kort till barn",
-      "lede": "Jag ger bort Pokémon-kort genom att lämna över en färdig pärm. Pärmarna går till barn: en sjukhusavdelning, ett boende, en fritidsklubb. Jag skriver upp varje pärm som lämnar.",
-      "s1h": "Bara en komplett pärm",
-      "s1": "Jag lämnar bara över en pärm som jag har markerat som klar. En halvfull pärm stannar här tills de saknade raderna är fyllda. Jag lämnar inte lösa kort. De stannar här och fyller nästa pärm.",
-      "s2h": "Vad den öppna listan visar",
-      "s2": "Den öppna listan visar mottagare och datum. Den visar inget försäljningspris och inte vad ett kort skulle säljas för.",
-      "s3h": "Extra kort",
-      "s3": "Om du har extra kort eller bulk till pärmarna, skriv till mig på magnus@linksforcards.com. Butiker som skickar kort tackas med namn.",
-      "faq1q": "Tar du emot lös bulk?",
-      "faq1a": "Ja. Lös bulk är välkommen. Jag sorterar den i pärmarna.",
-      "faq2q": "Visar de öppna sidorna vad ett kort är värt?",
-      "faq2a": "Nej. Öppna sidor visar aldrig vad ett kort är värt."
-    }
+    "toc": "På den här sidan",
+    "pillarLabel": "Börja här",
+    "supportingLabel": "En fråga var",
+    "readNext": "Läs vidare",
+    "timelineLabel": "Varje serie i listan"
   }
 }

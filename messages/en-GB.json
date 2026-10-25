@@ -39,8 +39,8 @@
     "seriesDescription": "Card lists and checklists for the {series} series. {count} sets.",
     "speciesTitle": "{name} cards list",
     "speciesDescription": "{name} cards list. Pokédex {dex}, generation {gen} ({region}). {total} printings across {sets} sets.",
-    "guidesTitle": "Pokémon binder guides",
-    "guidesDescription": "How I organise a Pokémon binder, what I do with bulk cards, and how a finished binder goes to a child."
+    "guidesTitle": "Guides to collecting Pokémon cards",
+    "guidesDescription": "How I collect Pokémon cards in a set binder and a Pokédex binder, with notes on bulk, the 151, sleeves, and a binder that leaves."
   },
   "nav": {
     "primary": "Pages",
@@ -235,55 +235,12 @@
   },
   "guides": {
     "kicker": "From the binder",
-    "indexIntro": "Three notes: how I sort a binder, what I do with bulk, and how a finished binder leaves.",
+    "indexIntro": "One long note on how I collect, and nine shorter notes that each answer one question.",
     "updated": "Updated {date}",
-    "organize": {
-      "title": "How I organise a Pokémon binder",
-      "description": "Set binders and generation binders, and how I mark a line when the card is in the binder.",
-      "h1": "How I organise a Pokémon binder",
-      "lede": "I keep two kinds of binder. A set binder holds one set in collector-number order. A generation binder holds one card of each species from that generation, from any set and any language.",
-      "s1h": "A set binder",
-      "s1": "A set binder follows the collector number from the public card list. Paldean Fates is the example I keep in mind: the whole set, in order, with nothing left out on purpose. The card list on each set page is that order. I mark a line when that card is in the binder, then I look at the binder before I call the set complete.",
-      "s2h": "A generation binder",
-      "s2": "A generation binder needs one card of each species. Generation 1 is the original 151. Generations 1 through 9 are 1,025 species. Any printing counts, and any language counts. A bulk Magikarp fills a line as well as a holo. The generation page lists each species, the Pokédex number, and a few of the sets it appears in.",
-      "s3h": "Where to start",
-      "s3": "I start with Generation 1 and one set. The collections page is the list of both. If a line and the binder disagree, the binder wins: I only mark a binder complete after I have turned the pages.",
-      "faq1q": "Does a generation binder need every printing?",
-      "faq1a": "No. One card of each species is enough. A set binder is the list that needs every card in that set.",
-      "faq2q": "Where is the checklist?",
-      "faq2a": "Each set has a card list, and each generation has a checklist. The collections page links to both."
-    },
-    "bulk": {
-      "title": "What to do with bulk Pokémon cards",
-      "description": "Bulk fills the binders. I sort by set, then see which species line is still empty.",
-      "h1": "What to do with bulk Pokémon cards",
-      "lede": "Bulk is the ordinary pile: commons, duplicates, and the Magikarp that shows up again. That pile is what fills a binder.",
-      "s1h": "Sort by set first",
-      "s1": "I sort a parcel by set before I look at anything else. A card that matches an open line in a set binder goes there. The set page shows the collector number and whether the line is filled.",
-      "s2h": "Then the generation binders",
-      "s2": "A spare card can fill a missing species in a generation binder. Any set and any language counts. I only need one of each species. If the species line is already filled, the extra stays in the bulk box.",
-      "s3h": "What the public page shows",
-      "s3": "Public pages show the name, the set, and whether the line is filled. They never show a selling price. A filled bar means the card is logged, nothing more.",
-      "faq1q": "Is a bulk Magikarp worth logging?",
-      "faq1a": "Yes, when that species line is empty. Worth here means the checklist, not a price.",
-      "faq2q": "What happens to the extras?",
-      "faq2a": "Extras stay until a binder needs them, or until a finished binder leaves for a child."
-    },
-    "donating": {
-      "title": "Donating Pokémon cards to kids",
-      "description": "How I donate Pokémon cards. A finished binder goes to a child, and the public list records the recipient and the date.",
-      "h1": "Donating Pokémon cards to kids",
-      "lede": "I donate Pokémon cards by handing over a finished binder. The binders go to children: a hospital ward, a shelter, an after-school club. I write down each one that leaves.",
-      "s1h": "Only a complete binder",
-      "s1": "I only hand over a binder I have marked complete. A half-filled binder stays with me until the missing lines are filled. Loose cards are not what I hand over. They stay here and fill the next binder.",
-      "s2h": "What the public list shows",
-      "s2": "The public list shows the recipient and the date. It does not show a selling price, and it does not show what a card would sell for.",
-      "s3h": "Spare cards",
-      "s3": "If you have spare cards or bulk for the binders, write to me at magnus@linksforcards.com. Shops that send cards are thanked by name.",
-      "faq1q": "Do you take loose bulk?",
-      "faq1a": "Yes. Loose bulk is welcome. I sort it into the binders.",
-      "faq2q": "Do the public pages show what a card is worth?",
-      "faq2a": "No. Public pages never show what a card is worth in pounds or euros."
-    }
+    "toc": "On this page",
+    "pillarLabel": "Start here",
+    "supportingLabel": "One question each",
+    "readNext": "Read next",
+    "timelineLabel": "Every series in the list"
   }
 }

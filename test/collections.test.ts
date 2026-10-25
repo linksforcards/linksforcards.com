@@ -64,10 +64,9 @@ describe("collection landing data", () => {
     expect(fill(getMessages("us").meta.setTitle, { name: "Base" })).toBe("Base card list and checklist");
     expect(fill(getMessages("de").meta.setTitle, { name: "Base" })).toContain("Kartenliste");
     expect(fill(getMessages("de").meta.speciesTitle, { name: "Pikachu" })).toContain("Kartenliste");
-    expect(getMessages("de").guides.organize.h1).toContain("Sammelordner");
-    expect(getMessages("de").guides.bulk.h1).toContain("Bulk-Karten");
-    expect(getMessages("de").guides.donating.h1).toMatch(/spenden/i);
-    expect(getMessages("us").guides.donating.lede).toMatch(/\bdonate\b/);
+    expect(getMessages("de").meta.guidesTitle).toContain("Sammelordner");
+    expect(getMessages("de").guides.pillarLabel).toContain("anfangen");
+    expect(getMessages("us").guides.toc).toBe("On this page");
     expect(getMessages("fr").meta.setTitle).toContain("liste de cartes");
     expect(getMessages("es").meta.setTitle).toContain("lista de cartas");
     expect(getMessages("it").meta.setTitle).toContain("lista carte");

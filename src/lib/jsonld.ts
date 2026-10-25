@@ -26,7 +26,7 @@ export type ListEntry = { name: string; url?: string };
 export type FaqPair = { q: string; a: string };
 export type NoteEntry = { id: string; title: string; body: string; publishedAt: string };
 
-export type PageKind = "AboutPage" | "WebPage" | "CollectionPage" | "ContactPage" | "Blog" | "Article";
+export type PageKind = "AboutPage" | "WebPage" | "CollectionPage" | "ContactPage" | "Blog" | "Article" | "BlogPosting";
 
 const ORG = absoluteUrl("/#organization");
 const PERSON = absoluteUrl("/#magnus");
@@ -99,7 +99,8 @@ export function pageNode(options: {
   description: string;
   datePublished?: string;
   dateModified?: string;
-}): AboutPage | WebPage | CollectionPage | ContactPage | Blog | Article {
+  imagePath?: string;
+}): AboutPage | WebPage | CollectionPage | ContactPage | Blog | Article | BlogPosting {
   const url = options.locale === "en" ? absoluteUrl(options.path) : absoluteUrl(localePath(options.locale, options.path));
   const page = {
     "@type": options.kind,
@@ -113,12 +114,12 @@ export function pageNode(options: {
     breadcrumb: { "@id": `${url}#breadcrumb` },
     image: {
       "@type": "ImageObject" as const,
-      url: absoluteUrl(options.locale === "en" ? "/og/uk" : `/og/${options.locale}`),
+      url: absoluteUrl(options.imagePath ?? (options.locale === "en" ? "/og/uk" : `/og/${options.locale}`)),
       width: "1200",
       height: "630",
     },
   };
-  if (options.kind !== "Article") return page;
+  if (options.kind !== "Article" && options.kind !== "BlogPosting") return page;
   return Object.assign(page, {
     "@id": `${url}#article`,
     headline: options.name,

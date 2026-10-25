@@ -8,6 +8,7 @@ import { ProgressBar } from "@/components/site/progress-bar";
 import { RelatedLinks } from "@/components/site/related-links";
 import { SetBrowser } from "@/components/site/set-browser";
 import { SiteLinks } from "@/components/site/site-links";
+import { getArticles } from "@/lib/articles";
 import { getMeta, getSetCards, setsBySeries, speciesName, speciesNamesAreTranslated } from "@/lib/catalog";
 import { fill, formatDay, formatInt } from "@/lib/format";
 import { GENERATIONS, SPECIES_TOTAL } from "@/lib/generations";
@@ -44,11 +45,7 @@ export default async function CollectionsPage({ params }: { params: Promise<{ lo
   const dexEntries = [];
   for (let dex = 1; dex <= SPECIES_TOTAL; dex += 1) dexEntries.push({ dex, name: speciesName(dex, locale) });
   dexEntries.sort((a, b) => a.name.localeCompare(b.name, intlLocale(locale), { sensitivity: "base" }) || a.dex - b.dex);
-  const guides = [
-    ["organize-binder", m.guides.organize.title],
-    ["bulk-cards", m.guides.bulk.title],
-    ["donating-cards", m.guides.donating.title],
-  ] as const;
+  const guides = getArticles(locale).map((article) => [article.slug, article.h1] as const);
   const crumbs = [
     { name: m.nav.home, href: localePath(locale, "/") },
     { name: m.nav.collections, href: localePath(locale, "/collections") },

@@ -39,8 +39,8 @@
     "seriesDescription": "Kortlister og sjekklister for serien {series}. {count} sett.",
     "speciesTitle": "{name} kortliste",
     "speciesDescription": "{name} kortliste. Pokédex {dex}, generasjon {gen} ({region}). {total} kort i {sets} sett.",
-    "guidesTitle": "Notater om permen",
-    "guidesDescription": "Hvordan jeg ordner en Pokémon-perm, hva jeg gjør med bulkkort, og hvordan en ferdig perm går til et barn."
+    "guidesTitle": "Guider om å samle Pokémon-kort",
+    "guidesDescription": "Hvordan jeg samler Pokémon-kort i en settperm og en Pokédex-perm, med notater om bulk, de 151, lommer og en perm som forlater hylla."
   },
   "nav": {
     "primary": "Sider",
@@ -235,55 +235,12 @@
   },
   "guides": {
     "kicker": "Fra permen",
-    "indexIntro": "Tre notater: hvordan jeg ordner en perm, hva jeg gjør med bulk, og hvordan en ferdig perm drar.",
+    "indexIntro": "Ett langt notat om hvordan jeg samler, og ni kortere notater som hver svarer på ett spørsmål.",
     "updated": "Oppdatert {date}",
-    "organize": {
-      "title": "Hvordan jeg ordner en Pokémon-perm",
-      "description": "Sett-permer og generasjonspermer, og hvordan jeg krysser av en linje når kortet ligger i permen.",
-      "h1": "Hvordan jeg ordner en Pokémon-perm",
-      "lede": "Jeg holder to slags permer. En sett-perm holder ett sett i samlernummerrekkefølge. En generasjonsperm holder ett kort av hver art fra den generasjonen, fra hvilket som helst sett og på hvilket som helst språk.",
-      "s1h": "En sett-perm",
-      "s1": "En sett-perm følger samlernummeret fra den åpne kortlisten. Paldean Fates er eksempelet jeg har i hodet: hele settet, i rekkefølge, uten å la noe være igjen med vilje. Kortlisten på hver settside er den rekkefølgen. Jeg krysser av en linje når kortet ligger i permen, og jeg ser i permen før jeg kaller settet ferdig.",
-      "s2h": "En generasjonsperm",
-      "s2": "En generasjonsperm trenger ett kort av hver art. Generasjon 1 er de opprinnelige 151. Generasjon 1 til 9 er 1 025 arter. Ethvert trykk teller, og ethvert språk teller. En Magikarp fra bulken fyller en linje like godt som en holo. Generasjonssiden lister hver art, Pokédex-nummeret og noen sett den finnes i.",
-      "s3h": "Hvor jeg begynner",
-      "s3": "Jeg begynner med generasjon 1 og ett sett. Siden Samlinger er listen for begge. Hvis en linje og permen ikke stemmer, gjelder permen: jeg kaller en perm ferdig først etter at jeg har bladd gjennom sidene.",
-      "faq1q": "Trenger en generasjonsperm hvert trykk?",
-      "faq1a": "Nei. Ett kort av hver art er nok. Sett-permen er listen som trenger hvert kort i det settet.",
-      "faq2q": "Hvor er sjekklisten?",
-      "faq2a": "Hvert sett har en kortliste, og hver generasjon har en sjekkliste. Siden Samlinger lenker til begge."
-    },
-    "bulk": {
-      "title": "Hva jeg gjør med bulkkort",
-      "description": "Bulk fyller permene. Jeg sorterer etter sett og ser deretter hvilken art som fortsatt mangler.",
-      "h1": "Hva jeg gjør med bulkkort",
-      "lede": "Bulk er den vanlige haugen: commons, dubletter og Magikarp som dukker opp igjen. Den haugen fyller en perm.",
-      "s1h": "Sorter etter sett først",
-      "s1": "Jeg sorterer en pakke etter sett før jeg ser på noe annet. Et kort som passer en åpen linje i en sett-perm, havner der. Settsiden viser samlernummeret og om linjen er fylt.",
-      "s2h": "Så generasjonspermene",
-      "s2": "Et ekstra kort kan fylle en manglende art i en generasjonsperm. Hvilket som helst sett og hvilket som helst språk teller. Jeg trenger ett av hver art. Hvis linjen allerede er fylt, blir ekstraen i bulkboksen.",
-      "s3h": "Hva den åpne siden viser",
-      "s3": "Åpne sider viser navnet, settet og om linjen er fylt. De viser ingen salgspris. En fylt stolpe betyr at kortet er notert, ikke noe mer.",
-      "faq1q": "Er en Magikarp fra bulken verdt å notere?",
-      "faq1a": "Ja, når linjen for den arten er tom. Verdt betyr her sjekklisten, ikke en pris.",
-      "faq2q": "Hva skjer med ekstrakortene?",
-      "faq2a": "Ekstra blir til en perm trenger dem, eller til en ferdig perm går til et barn."
-    },
-    "donating": {
-      "title": "Gi bort Pokémon-kort til barn",
-      "description": "Hvordan jeg gir bort Pokémon-kort. En ferdig perm går til et barn, og den åpne listen noterer mottaker og dato.",
-      "h1": "Gi bort Pokémon-kort til barn",
-      "lede": "Jeg gir bort Pokémon-kort ved å overlevere en ferdig perm. Permene går til barn: en sykehusavdeling, et botilbud, en fritidsklubb. Jeg skriver opp hver perm som drar.",
-      "s1h": "Bare en komplett perm",
-      "s1": "Jeg leverer bare en perm jeg har markert som ferdig. En halvfull perm blir her til de manglende linjene er fylt. Jeg leverer ikke løse kort. De blir her og fyller neste perm.",
-      "s2h": "Hva den åpne listen viser",
-      "s2": "Den åpne listen viser mottaker og dato. Den viser ingen salgspris, og ikke hva et kort ville blitt solgt for.",
-      "s3h": "Ekstra kort",
-      "s3": "Hvis du har ekstra kort eller bulk til permene, skriv til meg på magnus@linksforcards.com. Butikker som sender kort, takkes med navn.",
-      "faq1q": "Tar du imot løs bulk?",
-      "faq1a": "Ja. Løs bulk er velkommen. Jeg sorterer den i permene.",
-      "faq2q": "Viser de åpne sidene hva et kort er verdt?",
-      "faq2a": "Nei. Åpne sider viser aldri hva et kort er verdt."
-    }
+    "toc": "På denne siden",
+    "pillarLabel": "Start her",
+    "supportingLabel": "Ett spørsmål hver",
+    "readNext": "Les videre",
+    "timelineLabel": "Hver serie i listen"
   }
 }

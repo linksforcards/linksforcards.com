@@ -598,6 +598,33 @@ caption { text-align: left; padding: 0.75rem 0.65rem 0.25rem; font-weight: 700; 
   margin: 0;
 }
 .dex-list a { font-weight: 700; }
+.article { max-width: 44rem; }
+.article h2, .set-timeline h2, .set-timeline h3 { scroll-margin-top: 1rem; }
+.toc {
+  background: var(--sheet);
+  border: 3px solid var(--ink);
+  border-radius: 18px;
+  padding: 0.8rem 1.1rem;
+  margin: 1rem 0 1.4rem;
+}
+.toc p { margin: 0; font-family: var(--font-display), Quicksand, sans-serif; font-weight: 700; }
+.toc ol { margin: 0.4rem 0 0; }
+.diagram { margin: 1rem 0 1.4rem; }
+.diagram svg { width: min(100%, 40rem); height: auto; }
+.diagram figcaption { color: var(--muted); margin-top: 0.4rem; }
+.set-timeline ol { list-style: none; padding: 0; margin: 0 0 1.2rem; }
+.set-timeline li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  border-bottom: 1px solid var(--line);
+  padding: 0.35rem 0;
+}
+.set-timeline li span { color: var(--muted); text-align: right; }
+@media (max-width: 640px) {
+  .set-timeline li { flex-direction: column; gap: 0.15rem; }
+  .set-timeline li span { text-align: left; }
+}
 .guide-list { list-style: none; padding: 0; margin: 1rem 0; }
 .guide-list li {
   background: var(--sheet);

@@ -7,6 +7,7 @@ import { DoodleCluster } from "@/components/site/doodles";
 import { JsonLd } from "@/components/site/json-ld";
 import { RelatedLinks } from "@/components/site/related-links";
 import { SiteLinks } from "@/components/site/site-links";
+import { getArticle } from "@/lib/articles";
 import { numbersMatch } from "@/lib/cards";
 import { cardImageSrc, getSet, speciesName, type CardKind } from "@/lib/catalog";
 import { fill, formatDay, formatInt } from "@/lib/format";
@@ -167,7 +168,10 @@ export default async function SpeciesPage({ params }: { params: Promise<{ locale
             href: localePath(locale, `/collections/series/${seriesSlug(series)}`),
             name: series,
           })),
-          { href: localePath(locale, "/guides/organize-binder"), name: m.guides.organize.title },
+          {
+            href: localePath(locale, record.generation === 1 ? "/guides/gen-1-checklist" : "/guides/pokedex-binder"),
+            name: getArticle(locale, record.generation === 1 ? "gen-1-checklist" : "pokedex-binder")?.h1 ?? m.nav.guides,
+          },
         ]}
       />
       <SiteLinks locale={locale} m={m} current={path} />

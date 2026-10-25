@@ -39,8 +39,8 @@
     "seriesDescription": "Listy kart i listy kontrolne serii {series}. {count} setów.",
     "speciesTitle": "Lista kart {name}",
     "speciesDescription": "Lista kart {name}. Pokédex {dex}, generacja {gen} ({region}). {total} kart w {sets} setach.",
-    "guidesTitle": "Notatki o segregatorze",
-    "guidesDescription": "Jak układam segregator Pokémon, co robię z kartami bulk i jak gotowy segregator trafia do dziecka."
+    "guidesTitle": "Poradniki o zbieraniu kart Pokémon",
+    "guidesDescription": "Jak zbieram karty Pokémon w segregatorze setu i segregatorze Pokédexa, z notatkami o bulk, 151, koszulkach i segregatorze, który odchodzi."
   },
   "nav": {
     "primary": "Strony",
@@ -235,55 +235,12 @@
   },
   "guides": {
     "kicker": "Z segregatora",
-    "indexIntro": "Trzy notatki: jak układam segregator, co robię z bulkiem i jak gotowy segregator wychodzi.",
-    "updated": "Aktualizacja {date}",
-    "organize": {
-      "title": "Jak układam segregator Pokémon",
-      "description": "Segregatory setów i segregatory generacji oraz to, kiedy odhaczam wiersz, gdy karta jest w segregatorze.",
-      "h1": "Jak układam segregator Pokémon",
-      "lede": "Prowadzę dwa rodzaje segregatorów. Segregator setu trzyma jeden set w kolejności numeru kolekcjonerskiego. Segregator generacji trzyma jedną kartę każdego gatunku z tej generacji, z dowolnego setu i w dowolnym języku.",
-      "s1h": "Segregator setu",
-      "s1": "Segregator setu idzie za numerem kolekcjonerskim z publicznej listy kart. Paldean Fates to przykład, który mam w głowie: cały set, po kolei, bez zostawiania czegoś celowo. Lista kart na każdej stronie setu jest tą kolejnością. Odhaczam wiersz, gdy karta jest w segregatorze, i zaglądam do segregatora, zanim nazwę set pełnym.",
-      "s2h": "Segregator generacji",
-      "s2": "Segregator generacji potrzebuje jednej karty każdego gatunku. Generacja 1 to pierwotne 151. Generacje od 1 do 9 to 1 025 gatunków. Każdy druk się liczy i każdy język się liczy. Magikarp z bulku wypełnia wiersz tak samo jak holo. Strona generacji podaje każdy gatunek, numer Pokédexu i kilka setów, w których się pojawia.",
-      "s3h": "Od czego zaczynam",
-      "s3": "Zaczynam od generacji 1 i jednego setu. Strona Kolekcje jest listą obu. Jeśli wiersz i segregator się nie zgadzają, liczy się segregator: nazywam segregator pełnym dopiero po przejrzeniu stron.",
-      "faq1q": "Czy segregator generacji potrzebuje każdego druku?",
-      "faq1a": "Nie. Wystarczy jedna karta każdego gatunku. Segregator setu to lista, która potrzebuje każdej karty tego setu.",
-      "faq2q": "Gdzie jest lista kontrolna?",
-      "faq2a": "Każdy set ma listę kart, a każda generacja ma listę kontrolną. Strona Kolekcje łączy obie."
-    },
-    "bulk": {
-      "title": "Co robię z kartami bulk",
-      "description": "Bulk zapełnia segregatory. Sortuję według setu, a potem patrzę, którego gatunku jeszcze brakuje.",
-      "h1": "Co robię z kartami bulk",
-      "lede": "Bulk to zwykły stos: zwykłe karty, duplikaty i Magikarp, który znów wypada. Ten stos zapełnia segregator.",
-      "s1h": "Najpierw sortuję według setu",
-      "s1": "Sortuję paczkę według setu, zanim spojrzę na cokolwiek innego. Karta, która pasuje do pustego wiersza w segregatorze setu, trafia tam. Strona setu pokazuje numer kolekcjonerski i to, czy wiersz jest pełny.",
-      "s2h": "Potem segregatory generacji",
-      "s2": "Zapasowa karta może wypełnić brakujący gatunek w segregatorze generacji. Liczy się dowolny set i dowolny język. Potrzebuję jednej karty każdego gatunku. Jeśli wiersz jest już pełny, zapas zostaje w pudełku z bulkiem.",
-      "s3h": "Co pokazuje strona publiczna",
-      "s3": "Strony publiczne pokazują nazwę, set i to, czy wiersz jest pełny. Nie pokazują ceny sprzedaży. Pełny pasek znaczy, że karta jest zapisana, nic więcej.",
-      "faq1q": "Czy Magikarp z bulku jest wart zapisania?",
-      "faq1a": "Tak, gdy wiersz tego gatunku jest pusty. Wart znaczy tu listę kontrolną, nie cenę.",
-      "faq2q": "Co się dzieje z zapasem?",
-      "faq2a": "Zapas zostaje, aż segregator go potrzebuje, albo aż gotowy segregator trafi do dziecka."
-    },
-    "donating": {
-      "title": "Przekazywanie kart Pokémon dzieciom",
-      "description": "Jak przekazuję karty Pokémon. Gotowy segregator trafia do dziecka, a publiczna lista zapisuje odbiorcę i datę.",
-      "h1": "Przekazywanie kart Pokémon dzieciom",
-      "lede": "Przekazuję karty Pokémon, oddając gotowy segregator. Segregatory trafiają do dzieci: na oddział szpitalny, do schroniska, do świetlicy. Zapisuję każdy, który wychodzi.",
-      "s1h": "Tylko kompletny segregator",
-      "s1": "Oddaję tylko segregator, który oznaczyłem jako pełny. Segregator w połowie zostaje u mnie, aż brakujące wiersze będą pełne. Luźnych kart nie oddaję. Zostają tutaj i wypełniają następny segregator.",
-      "s2h": "Co pokazuje publiczna lista",
-      "s2": "Publiczna lista pokazuje odbiorcę i datę. Nie pokazuje ceny sprzedaży ani tego, za ile karta by się sprzedała.",
-      "s3h": "Karty na zapas",
-      "s3": "Jeśli masz karty na zapas albo bulk do segregatorów, napisz na magnus@linksforcards.com. Sklepy, które przysyłają karty, są dziękowane z imienia.",
-      "faq1q": "Przyjmujesz luźny bulk?",
-      "faq1a": "Tak. Luźny bulk jest mile widziany. Sortuję go do segregatorów.",
-      "faq2q": "Czy strony publiczne pokazują, ile warta jest karta?",
-      "faq2a": "Nie. Strony publiczne nigdy nie pokazują, ile warta jest karta."
-    }
+    "indexIntro": "Jedna długa notatka o tym, jak zbieram, i dziewięć krótszych notatek, z których każda odpowiada na jedno pytanie.",
+    "updated": "Aktualizacja: {date}",
+    "toc": "Na tej stronie",
+    "pillarLabel": "Zacznij tutaj",
+    "supportingLabel": "Jedno pytanie każda",
+    "readNext": "Czytaj dalej",
+    "timelineLabel": "Każda seria na liście"
   }
 }

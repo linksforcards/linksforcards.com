@@ -39,8 +39,8 @@
     "seriesDescription": "Sarjan {series} korttilistat ja tarkistuslistat. {count} settiä.",
     "speciesTitle": "{name} korttilista",
     "speciesDescription": "{name} korttilista. Pokédex {dex}, sukupolvi {gen} ({region}). {total} korttia {sets} setissä.",
-    "guidesTitle": "Muistiinpanot kansiosta",
-    "guidesDescription": "Miten järjestän Pokémon-kansion, mitä teen bulkkorteilla ja miten valmis kansio lähtee lapselle."
+    "guidesTitle": "Oppaat Pokémon-korttien keräämiseen",
+    "guidesDescription": "Miten kerään Pokémon-kortteja settikansioon ja Pokédex-kansioon, sekä muistiinpanot bulkista, 151 lajista, suojista ja kansiosta joka lähtee."
   },
   "nav": {
     "primary": "Sivut",
@@ -235,55 +235,12 @@
   },
   "guides": {
     "kicker": "Kansiosta",
-    "indexIntro": "Kolme muistiinpanoa: miten järjestän kansion, mitä teen bulkilla ja miten valmis kansio lähtee.",
+    "indexIntro": "Yksi pitkä muistiinpano siitä, miten kerään, ja yhdeksän lyhyempää muistiinpanoa, jotka vastaavat kukin yhteen kysymykseen.",
     "updated": "Päivitetty {date}",
-    "organize": {
-      "title": "Miten järjestän Pokémon-kansion",
-      "description": "Settikansiot ja sukupolvikansiot, ja miten merkitsen rivin kun kortti on kansiossa.",
-      "h1": "Miten järjestän Pokémon-kansion",
-      "lede": "Pidän kahta kansiota. Settikansio pitää yhden setin keräilynumerojärjestyksessä. Sukupolvikansio pitää yhden kortin jokaisesta sen sukupolven lajista, mistä tahansa setistä ja millä tahansa kielellä.",
-      "s1h": "Settikansio",
-      "s1": "Settikansio seuraa julkisen korttilistan keräilynumeroa. Paldean Fates on esimerkki, jonka pidän mielessä: koko setti, järjestyksessä, ilman että jätän jotain pois tahallaan. Jokaisen settisivun korttilista on tuo järjestys. Merkitsen rivin, kun kortti on kansiossa, ja katson kansiota ennen kuin kutsun setin valmiiksi.",
-      "s2h": "Sukupolvikansio",
-      "s2": "Sukupolvikansio tarvitsee yhden kortin jokaisesta lajista. Sukupolvi 1 on alkuperäiset 151. Sukupolvet 1–9 ovat 1 025 lajia. Mikä tahansa painos kelpaa, ja mikä tahansa kieli kelpaa. Bulkkilaatikon Magikarp täyttää rivin yhtä hyvin kuin holo. Sukupolvisivu luettelee jokaisen lajin, Pokédex-numeron ja muutaman setin, jossa se esiintyy.",
-      "s3h": "Mistä aloitan",
-      "s3": "Aloitan sukupolvesta 1 ja yhdestä setistä. Kokoelmat-sivu on lista molemmille. Jos rivi ja kansio eivät täsmää, kansio ratkaisee: merkitsen kansion valmiiksi vasta kun olen selannut sivut.",
-      "faq1q": "Tarvitseeko sukupolvikansio jokaisen painoksen?",
-      "faq1a": "Ei. Yksi kortti jokaisesta lajista riittää. Settikansio on lista, joka tarvitsee jokaisen sen setin kortin.",
-      "faq2q": "Missä tarkistuslista on?",
-      "faq2a": "Jokaisella setillä on korttilista, ja jokaisella sukupolvella on tarkistuslista. Kokoelmat-sivu linkittää molempiin."
-    },
-    "bulk": {
-      "title": "Mitä teen bulkkorteilla",
-      "description": "Bulk täyttää kansiot. Lajittelen setin mukaan ja katson sitten, mikä laji vielä puuttuu.",
-      "h1": "Mitä teen bulkkorteilla",
-      "lede": "Bulk on tavallinen pino: comuneja, kaksoiskappaleita ja Magikarp, joka tulee taas vastaan. Se pino täyttää kansion.",
-      "s1h": "Lajittele ensin setin mukaan",
-      "s1": "Lajittelen paketin setin mukaan ennen kuin katson muuta. Kortti, joka sopii avoimeen riviin settikansiossa, menee sinne. Settisivu näyttää keräilynumeron ja sen, onko rivi täynnä.",
-      "s2h": "Sitten sukupolvikansiot",
-      "s2": "Ylimääräinen kortti voi täyttää puuttuvan lajin sukupolvikansiossa. Mikä tahansa setti ja mikä tahansa kieli kelpaa. Tarvitsen yhden kustakin lajista. Jos rivi on jo täynnä, ylimääräinen jää bulkkilaatikkoon.",
-      "s3h": "Mitä julkinen sivu näyttää",
-      "s3": "Julkiset sivut näyttävät nimen, setin ja sen, onko rivi täynnä. Ne eivät näytä myyntihintaa. Täysi palkki tarkoittaa, että kortti on kirjattu, ei muuta.",
-      "faq1q": "Kannattaako bulkin Magikarp kirjata?",
-      "faq1a": "Kyllä, kun sen lajin rivi on tyhjä. Kannattaa tarkoittaa tässä tarkistuslistaa, ei hintaa.",
-      "faq2q": "Mitä ylimääräisille korteille tapahtuu?",
-      "faq2a": "Ylimääräiset jäävät, kunnes kansio tarvitsee niitä, tai kunnes valmis kansio lähtee lapselle."
-    },
-    "donating": {
-      "title": "Pokémon-korttien lahjoittaminen lapsille",
-      "description": "Miten lahjoitan Pokémon-kortteja. Valmis kansio menee lapselle, ja julkinen lista kirjaa vastaanottajan ja päivän.",
-      "h1": "Pokémon-korttien lahjoittaminen lapsille",
-      "lede": "Lahjoitan Pokémon-kortteja antamalla valmiin kansion. Kansiot menevät lapsille: sairaalaosastolle, turvakotiin, iltapäiväkerhoon. Kirjaan jokaisen, joka lähtee.",
-      "s1h": "Vain valmis kansio",
-      "s1": "Annan eteenpäin vain kansion, jonka olen merkinnyt valmiiksi. Puolitäysi kansio jää tänne, kunnes puuttuvat rivit ovat täynnä. Irrallisia kortteja en anna eteenpäin. Ne jäävät tänne ja täyttävät seuraavan kansion.",
-      "s2h": "Mitä julkinen lista näyttää",
-      "s2": "Julkinen lista näyttää vastaanottajan ja päivän. Se ei näytä myyntihintaa eikä sitä, millä hinnalla kortti menisi kaupaksi.",
-      "s3h": "Ylimääräiset kortit",
-      "s3": "Jos sinulla on ylimääräisiä kortteja tai bulkia kansioihin, kirjoita osoitteeseen magnus@linksforcards.com. Kaupat, jotka lähettävät kortteja, kiitetään nimellä.",
-      "faq1q": "Otatko vastaan irtobulkia?",
-      "faq1a": "Kyllä. Irtobulk on tervetullutta. Lajittelen sen kansioihin.",
-      "faq2q": "Näyttävätkö julkiset sivut, mitä kortti on arvoltaan?",
-      "faq2a": "Eivät. Julkiset sivut eivät koskaan näytä, mitä kortti on arvoltaan."
-    }
+    "toc": "Tällä sivulla",
+    "pillarLabel": "Aloita tästä",
+    "supportingLabel": "Yksi kysymys kerrallaan",
+    "readNext": "Lue seuraavaksi",
+    "timelineLabel": "Jokainen sarja listassa"
   }
 }
