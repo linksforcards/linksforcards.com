@@ -11,8 +11,7 @@ export function hreflangMap(path: string, locales?: readonly Locale[]): Record<s
     if (allowed && !allowed.has(item.locale)) continue;
     map[item.code] = absoluteUrl(localePath(item.locale, path));
   }
-  const fallback = !locales || locales.includes("uk") ? "uk" : locales[0];
-  map["x-default"] = path === "/" ? absoluteUrl("/") : absoluteUrl(localePath(fallback, path));
+  map["x-default"] = absoluteUrl(localePath("us", path));
   return map;
 }
 
@@ -47,32 +46,6 @@ export function pageMetadata(
       title,
       description,
       images: [options?.image ?? `/og/${locale}`],
-    },
-  };
-}
-
-export function pickerMetadata(): Metadata {
-  const title = "LinksForCards";
-  const description = "Choose a language. I'm Magnus Schmidt, and this is the public record of the binders I collect and give away.";
-  return {
-    title: { absolute: title },
-    description,
-    alternates: { canonical: absoluteUrl("/"), languages: hreflangMap("/") },
-    openGraph: {
-      title,
-      description,
-      url: absoluteUrl("/"),
-      siteName: site.name,
-      locale: "en_GB",
-      alternateLocale: OG_LOCALES.filter((item) => item !== "en_GB"),
-      type: "website",
-      images: [{ url: "/og/uk", width: 1200, height: 630, alt: "LinksForCards, a personal project by Magnus Schmidt" }],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      images: ["/og/uk"],
     },
   };
 }

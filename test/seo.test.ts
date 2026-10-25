@@ -11,6 +11,7 @@ import {
   pageNode,
   type PageKind,
 } from "../src/lib/jsonld";
+import { localePath } from "../src/lib/routing";
 import { hreflangMap, pageMetadata } from "../src/lib/seo";
 import { renderSitemapIndex, renderUrlset, sitemapEntries } from "../src/lib/sitemap-data";
 import { absoluteUrl } from "../src/lib/site";
@@ -51,8 +52,11 @@ describe("hreflang", () => {
     const home = hreflangMap("/");
     const collections = hreflangMap("/collections");
     expect(home["x-default"]).toBe(absoluteUrl("/"));
-    expect(collections["x-default"]).toBe(absoluteUrl("/uk/collections"));
-    expect(home["en-US"]).toBe(absoluteUrl("/us"));
+    expect(home.en).toBe(absoluteUrl("/"));
+    expect(home["en-US"]).toBe(absoluteUrl("/"));
+    expect(collections["x-default"]).toBe(absoluteUrl("/collections"));
+    expect(collections.en).toBe(absoluteUrl("/collections"));
+    expect(collections["en-US"]).toBe(absoluteUrl("/collections"));
     expect(home["en-GB"]).toBe(absoluteUrl("/uk"));
     expect(home["en-IE"]).toBe(home["en-GB"]);
     expect(collections["de-AT"]).toBe(collections.de);
@@ -61,12 +65,13 @@ describe("hreflang", () => {
     expect(collections["nl-BE"]).toBe(collections.nl);
     expect(collections.nb).toBe(collections.no);
     for (const code of [...HREFLANG_TARGETS.map((item) => item.code), "x-default"]) {
-      expect(home[code]).toMatch(/^https:\/\/linksforcards\.com\//);
+      expect(home[code]).toMatch(/^https:\/\/linksforcards\.com(\/|$)/);
       expect(collections[code]).toBe(hreflangMap("/collections")[code]);
     }
     const species = hreflangMap("/pokedex/25", SPECIES_INDEX_LOCALES);
-    expect(species["x-default"]).toBe(absoluteUrl("/uk/pokedex/25"));
-    expect(species["en-US"]).toBe(absoluteUrl("/us/pokedex/25"));
+    expect(species["x-default"]).toBe(absoluteUrl("/pokedex/25"));
+    expect(species.en).toBe(absoluteUrl("/pokedex/25"));
+    expect(species["en-US"]).toBe(absoluteUrl("/pokedex/25"));
     expect(species.de).toBe(absoluteUrl("/de/pokedex/25"));
     expect(species.nl).toBeUndefined();
     expect(species.sv).toBeUndefined();
@@ -80,9 +85,14 @@ describe("hreflang", () => {
     expect(hidden.robots).toEqual({ index: false, follow: true });
     expect(hidden.alternates?.canonical).toBe(absoluteUrl("/nl/pokedex/25"));
     expect(hidden.alternates?.languages).not.toHaveProperty("nl");
+    const partners = pageMetadata("us", "/guides/bulk-cards", "Bulk", "What to do with bulk.");
+    expect(partners.alternates?.canonical).toBe(absoluteUrl("/guides/bulk-cards"));
+    expect(partners.openGraph?.url).toBe(absoluteUrl("/guides/bulk-cards"));
+    expect(partners.alternates?.languages?.en).toBe(absoluteUrl("/guides/bulk-cards"));
+    expect(partners.alternates?.languages?.["en-GB"]).toBe(absoluteUrl("/uk/guides/bulk-cards"));
     for (const locale of LOCALES) {
       const path = hreflangMap("/partners");
-      expect(Object.values(path)).toContain(absoluteUrl(`/${locale}/partners`));
+      expect(Object.values(path)).toContain(absoluteUrl(localePath(locale, "/partners")));
     }
   });
 });
@@ -158,17 +168,25 @@ describe("sitemap xml", () => {
   it("indexes every locale and prints absolute xhtml alternates", () => {
     const index = renderSitemapIndex();
     expect(index).toContain("<sitemapindex");
-    expect(index).toContain(absoluteUrl("/sitemap/root.xml"));
+    expect(index).not.toContain("/sitemap/root.xml");
     expect(index).toContain(absoluteUrl("/sitemap/us-pages.xml"));
     expect(index).toContain(absoluteUrl("/sitemap/uk-sets.xml"));
     expect(index).toContain(absoluteUrl("/sitemap/de-guides.xml"));
     expect(index).toContain(absoluteUrl("/sitemap/uk-species.xml"));
     expect(index).not.toContain(absoluteUrl("/sitemap/nl-species.xml"));
+    const us = sitemapEntries("us-pages");
+    expect(us?.[0]?.url).toBe(absoluteUrl("/"));
+    expect(us?.some((entry) => entry.url === absoluteUrl("/collections"))).toBe(true);
+    expect(us?.some((entry) => entry.url.includes("/us/"))).toBe(false);
+    expect(us?.[0]?.languages.en).toBe(absoluteUrl("/"));
+    expect(us?.[0]?.languages["x-default"]).toBe(absoluteUrl("/"));
     const uk = sitemapEntries("uk-pages");
     expect(uk?.[0]?.url).toBe(absoluteUrl("/uk"));
     expect(uk?.some((entry) => entry.url === absoluteUrl("/uk/collections"))).toBe(true);
     expect(uk?.every((entry) => entry.lastModified === "2026-10-24")).toBe(true);
     const xml = renderUrlset(uk ?? []);
+    expect(xml).toContain('hreflang="en"');
+    expect(xml).toContain('hreflang="en-US"');
     expect(xml).toContain('hreflang="en-GB"');
     expect(xml).toContain('hreflang="en-IE"');
     expect(xml).toContain('hreflang="x-default"');
@@ -177,7 +195,9 @@ describe("sitemap xml", () => {
     expect(species).toHaveLength(1025);
     expect(species?.[24]?.url).toBe(absoluteUrl("/de/pokedex/25"));
     expect(species?.[24]?.languages.nl).toBeUndefined();
-    expect(species?.[24]?.languages["x-default"]).toBe(absoluteUrl("/uk/pokedex/25"));
+    expect(species?.[24]?.languages.en).toBe(absoluteUrl("/pokedex/25"));
+    expect(species?.[24]?.languages["en-US"]).toBe(absoluteUrl("/pokedex/25"));
+    expect(species?.[24]?.languages["x-default"]).toBe(absoluteUrl("/pokedex/25"));
     expect(sitemapEntries("nl-species")).toBeNull();
     expect(sitemapEntries("nope")).toBeNull();
   });

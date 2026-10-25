@@ -6,6 +6,7 @@ import { LanguageSwitcher } from "../src/components/site/language-switcher";
 import { PokedexBrowser } from "../src/components/site/pokedex-browser";
 import { getMessages } from "../src/lib/i18n";
 import { LOCALES } from "../src/lib/locales";
+import { localePath } from "../src/lib/routing";
 
 describe("public HTML without JavaScript", () => {
   it("puts every language on a real link inside the menu", () => {
@@ -15,9 +16,12 @@ describe("public HTML without JavaScript", () => {
     expect(html).toContain("<details");
     expect(html).toContain("<summary>");
     expect(html).not.toMatch(/<ul[^>]*\shidden/);
+    expect(html).toContain(">English (US)</a>");
     for (const locale of LOCALES) {
-      expect(html).toContain(`href="/${locale}/collections/set/base1"`);
+      expect(html).toContain(`href="${localePath(locale, "/collections/set/base1")}"`);
     }
+    expect(html).toContain('href="/collections/set/base1"');
+    expect(html).not.toContain('href="/us/');
   });
 
   it("renders every checklist row in the first markup, including rows past the old page size", () => {

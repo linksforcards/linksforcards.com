@@ -72,7 +72,7 @@ export function websiteNode(): WebSite {
     "@id": WEBSITE,
     name: site.name,
     url: absoluteUrl("/"),
-    inLanguage: ["en-US", "en-GB", "de", "fr", "it", "es", "nl", "sv", "nb", "fi", "pl"],
+    inLanguage: ["en", "en-US", "en-GB", "de", "fr", "it", "es", "nl", "sv", "nb", "fi", "pl"],
     publisher: { "@id": ORG },
   };
 }

@@ -14,7 +14,7 @@ function catalogLastMod(): string {
 }
 
 export function sitemapIds(): string[] {
-  const ids = ["root"];
+  const ids: string[] = [];
   for (const locale of LOCALES) {
     ids.push(`${locale}-pages`, `${locale}-sets`, `${locale}-guides`);
     if (speciesPageIndexed(locale)) ids.push(`${locale}-species`);
@@ -47,9 +47,6 @@ function pathsFor(kind: string): string[] {
 }
 
 export function sitemapEntries(id: string): SitemapEntry[] | null {
-  if (id === "root") {
-    return [{ url: absoluteUrl("/"), lastModified: catalogLastMod(), languages: hreflangMap("/") }];
-  }
   const split = id.match(/^([a-z]{2})-(pages|sets|guides|species)$/);
   if (!split) return null;
   const locale = split[1] ?? "";

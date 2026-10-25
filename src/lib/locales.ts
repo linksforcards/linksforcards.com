@@ -6,7 +6,10 @@ export function isLocale(value: string): value is Locale {
   return (LOCALES as readonly string[]).includes(value);
 }
 
-/** Every public language lives under its own prefix, including both Englishes. */
+/**
+ * True when `value` is a locale code. US English is served at the root, but
+ * the `us` segment still appears on the internal route the root rewrites to.
+ */
 export function isPrefixLocale(value: string): boolean {
   return isLocale(value);
 }
@@ -46,6 +49,7 @@ export function ogLocale(locale: Locale): string {
 /** hreflang codes that share one URL when the page already covers that region. */
 export const HREFLANG_TARGETS: { code: string; locale: Locale }[] = [
   { code: "en-US", locale: "us" },
+  { code: "en", locale: "us" },
   { code: "en-GB", locale: "uk" },
   { code: "en-IE", locale: "uk" },
   { code: "de", locale: "de" },

@@ -7,14 +7,16 @@ export function stripLocale(pathname: string): string {
   return bare === "/" ? "/" : bare.replace(/\/$/, "");
 }
 
+/** Public path for a locale. US English has no prefix. */
 export function localePath(locale: string, pathname: string): string {
   const bare = stripLocale(pathname.startsWith("/") ? pathname : `/${pathname}`);
+  if (locale === "us") return bare;
   return bare === "/" ? `/${locale}` : `/${locale}${bare}`;
 }
 
 const PASS_THROUGH = new Set(["/robots.txt", "/sitemap.xml", "/icon.svg", "/favicon.ico"]);
 
-const LEGACY_EXACT = new Set(["/partners", "/updates", "/donations", "/privacy", "/imprint"]);
+const EXACT_PAGES = new Set(["/partners", "/updates", "/donations", "/privacy", "/imprint"]);
 
 export type LocaleDecision =
   | { action: "next"; noindex: boolean }
@@ -38,14 +40,31 @@ function isContentPath(pathname: string): boolean {
   return false;
 }
 
-function legacyEnglish(pathname: string): string | null {
-  const moved = collectionFromBinders(pathname);
-  if (moved) return `/uk${moved}`;
-  if (LEGACY_EXACT.has(pathname) || isContentPath(pathname)) return `/uk${pathname}`;
+function isUsPage(pathname: string): boolean {
+  return pathname === "/" || EXACT_PAGES.has(pathname) || isContentPath(pathname);
+}
+
+function stripOne(pathname: string, prefix: "us" | "en"): string | null {
+  if (pathname === `/${prefix}`) return "/";
+  if (pathname.startsWith(`/${prefix}/`)) return pathname.slice(prefix.length + 1) || "/";
   return null;
 }
 
+/** Collapse /us and /en (in either order) and old /binders paths onto the public US path. */
+function publicTarget(pathname: string): string {
+  let path = pathname;
+  for (let i = 0; i < 4; i += 1) {
+    const next = stripOne(path, "us") ?? stripOne(path, "en");
+    if (!next) break;
+    path = next;
+  }
+  return collectionFromBinders(path) ?? path;
+}
+
 function resolveCore(pathname: string): LocaleDecision {
+  if (pathname === "/sitemap/root.xml" || pathname === "/sitemap/root") {
+    return { action: "redirect", pathname: "/sitemap/us-pages.xml" };
+  }
   if (pathname.startsWith("/admin")) return { action: "next", noindex: true };
   if (
     pathname.startsWith("/og/") ||
@@ -57,21 +76,20 @@ function resolveCore(pathname: string): LocaleDecision {
   ) {
     return { action: "next", noindex: false };
   }
-  if (pathname === "/en") return { action: "redirect", pathname: "/" };
-  if (pathname.startsWith("/en/")) {
-    const rest = pathname.replace(/^\/en/, "") || "/";
-    return { action: "redirect", pathname: legacyEnglish(rest) ?? `/uk${rest}` };
-  }
   const parts = pathname.split("/").filter(Boolean);
   const first = parts[0] ?? "";
+  if (first === "us" || first === "en") return { action: "redirect", pathname: publicTarget(pathname) };
   if (isLocale(first)) {
     const rest = `/${parts.slice(1).join("/")}` || "/";
     const moved = collectionFromBinders(rest);
     if (moved) return { action: "redirect", pathname: `/${first}${moved}` };
     return { action: "next", noindex: false };
   }
-  const legacy = legacyEnglish(pathname);
-  if (legacy) return { action: "redirect", pathname: legacy };
+  const moved = collectionFromBinders(pathname);
+  if (moved) return { action: "redirect", pathname: moved };
+  if (isUsPage(pathname)) {
+    return { action: "rewrite", pathname: pathname === "/" ? "/us" : `/us${pathname}` };
+  }
   return { action: "next", noindex: false };
 }
 

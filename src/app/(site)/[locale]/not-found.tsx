@@ -8,7 +8,7 @@ import { localePath } from "@/lib/routing";
 function localeFromPath(pathname: string): Locale {
   const first = pathname.split("/").filter(Boolean)[0] ?? "";
   if (isPrefixLocale(first) && isLocale(first)) return first;
-  return "uk";
+  return "us";
 }
 
 export default function LocaleNotFound() {

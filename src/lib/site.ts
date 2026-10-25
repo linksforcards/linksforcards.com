@@ -14,7 +14,7 @@ export const site = {
 };
 
 export function absoluteUrl(pathname: string): string {
-  if (pathname === "/") return `${site.url}/`;
+  if (pathname === "/" || pathname === "") return site.url;
   return `${site.url}${pathname}`;
 }
 
