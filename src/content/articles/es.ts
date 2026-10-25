@@ -29,6 +29,7 @@ export function spanishArticles(): ArticleCopy[] {
           paragraphs: [
             "El [[set Base|/collections/set/base1]] sigue siendo el ejemplo que abro para explicarlo. Salió el 9 de enero de 1999 y la lista pública tiene 102 cartas. La página de la carpeta sigue esa lista: el número 1, luego el 2, luego el 3, con entrenadores y energías. Si la lista tiene una carta, la carpeta tiene un bolsillo. No dejo un hueco porque la carta sea común, y no adelanto un holo para fabricar una página bonita.",
             "El orden completo de series y sets está en [[sets de cartas Pokémon en orden|/guides/sets-in-order]]. Lo uso cuando una caja de bulk mezcla épocas. Una carta de Jungle no pertenece a la carpeta de Base, aunque el dibujo parezca del mismo año. La página del set es la lista. Marco una línea solo cuando esa carta está en la carpeta, no cuando la he visto pasar encima de la mesa.",
+            "Una tercera carpeta sigue un tema, no una expansión y no un hueco para una sola especie. [[Las carpetas temáticas|/collections/themes]] reúnen cada impresión inglesa de una especie, de un artista o de un tipo de carta. [[Todas las cartas de Pikachu|/collections/themes/pikachu]] es la lista que abro cuando el montón está lleno de esa cara.",
           ],
         },
         {
@@ -147,6 +148,7 @@ export function spanishArticles(): ArticleCopy[] {
           paragraphs: [
             "Un holo es una página agradable. No es un sistema. El sistema es la línea vacía, y las líneas vacías son sobre todo comunes. [[La guía de las carpetas|/guides/collecting-binders]] lo dice en largo. Esta es la forma corta que uso en la mesa: si la carta cierra un hueco, es la carta que quería, aunque el dibujo sea el Magikarp que ya me sé de memoria.",
             "Dejé de disculparme por el bulk el día en que una carpeta de generación avanzó más deprisa con una caja mezclada que con todo lo que había apartado como especial. Las cartas especiales pueden esperar en una funda. La lista no las espera. [[Coleccionar con un niño|/guides/collecting-with-a-child]] usa el mismo montón, porque un niño puede sostener una común, elegir un bolsillo y ver cómo se cierra la línea. Ese gesto no pide una carta rara.",
+            "Algunas listas temáticas son casi por completo este montón. [[Las cartas de arcilla de Yuka Morii|/collections/themes/yuka-morii]] son comunes, y ahí el bulk es oro. [[Las carpetas temáticas|/collections/themes]] es el lugar donde viven esas listas.",
           ],
         },
         {
@@ -199,6 +201,7 @@ export function spanishArticles(): ArticleCopy[] {
           paragraphs: [
             "La regla es pequeña y me ahorra líos. Una carta. Cualquier set. Cualquier idioma. Cualquier rareza. [[La guía larga de las carpetas|/guides/collecting-binders]] separa este trabajo de la carpeta de set, donde cada carta de la lista tiene un bolsillo. Aquí la criatura es el bolsillo. Un segundo Pikachu es una repetida, aunque el dibujo sea nuevo. El dibujo nuevo puede ser precioso. No abre una segunda línea.",
             "El hábito empezó con [[Bulbasaur|/pokedex/1]]. La página de la especie lista las impresiones. La carpeta necesita una. Metí en el 001 el primer Bulbasaur que ya tenía enfundado y dejé de buscar un 001 mejor. Lo mejor es otra afición. Esta afición es el tramo, de punta a punta, sin negociar cada bolsillo.",
+            "Una página de especie lista cada impresión, y la carpeta Pokédex sigue necesitando solo una. [[Todas las cartas de Pikachu|/collections/themes/pikachu]] guarda cada impresión de Pikachu como su propia lista. [[Las carpetas temáticas|/collections/themes]] queda junto a las páginas de generación cuando quiero ver la serie completa de una cara.",
           ],
         },
         {

@@ -29,6 +29,7 @@ export function finnishArticles(): ArticleCopy[] {
           paragraphs: [
             "[[Base|/collections/set/base1]] on esimerkki, jonka minä yhä avaan, kun joku kysyy miten settikansio toimii. Setti ilmestyi 9. tammikuuta 1999, ja julkisessa korttilistassa on 102 korttia. Kansion sivu seuraa sitä listaa: numero 1, sitten 2, sitten 3, valmentajat ja energiat siinä missä listakin. Jos kortti on listalla, sille on tasku. Minä en jätä reikää siksi, että kortti on tavallinen, enkä vedä holoa etusivulle siksi, että se kiiltää.",
             "Koko sarjojen ja settien järjestys on [[Pokémon-setit järjestyksessä|/guides/sets-in-order]]. Sen aikajanan minä otan esiin, kun bulkkilaatikko sekoittaa vuosia. Jungle-kortti ei kuulu Base-kansioon, vaikka kuva tuntuisi samalta vuodelta. Setin sivu on korttilista ja tarkistuslista yhtä aikaa. Minä merkitsen rivin vasta, kun juuri se kortti on kansiossa, en silloin kun olen nähnyt sen pinossa pöydällä. 102 taskua tarkoittaa, että lopun energia on yhtä pakollinen kuin ensimmäinen Pokémon. Ohitan sen vain, jos korttilista ohittaa sen. Base ei ohita, ja tyhjä tasku lopussa on yhtä todellinen kuin tyhjä tasku alussa.",
+            "Kolmas kansio seuraa teemaa, ei yhtä settiä eikä yhtä lajipaikkaa. [[Teemakansiot|/collections/themes]] kokoavat jokaisen englanninkielisen painoksen yhdestä lajista, yhdestä taiteilijasta tai yhdestä korttityypistä. [[Kaikki Pikachu-kortit|/collections/themes/pikachu]] on lista, jonka avaan kun pino on täynnä sitä naamaa.",
           ],
         },
         {
@@ -147,6 +148,7 @@ export function finnishArticles(): ArticleCopy[] {
           paragraphs: [
             "Holo on mukava sivu. Se ei ole järjestelmä. Järjestelmä on tyhjä rivi, ja tyhjät rivit ovat enimmäkseen tavallisia kortteja. [[Kansio-opas|/guides/collecting-binders]] sanoo sen pitkässä muodossa. Tässä on lyhyt muoto, jota minä käytän pöydän ääressä: jos kortti täyttää reiän, se on kortti jonka minä halusin, silloinkin kun kuva on se sama Magikarp, jonka minä jo osaan ulkoa.",
             "Minä lopetin bulkin puolustelun sinä päivänä, kun sukupolvikansio eteni nopeammin sekalaatikosta kuin mistään, minkä olin pannut syrjään erityisenä. Erityiset kortit saavat odottaa suojassa. Tarkistuslista ei odota niitä. [[Kerääminen lapsen kanssa|/guides/collecting-with-a-child]] käyttää samaa kasaa, koska lapsi voi pidellä tavallista korttia, valita taskun ja nähdä rivin sulkeutuvan. Se on oikea edistys, ei lohdutuspalkinto. Lapsen käsi ja minun tarkistuslistani käyttävät samaa tavallista korttia. Se riittää molemmille. Harvinainen kortti saa odottaa, kunnes rivi on jo sulkeutunut ilman sitä.",
+            "Jotkin teemalistat ovat melkein tätä kasaa. [[Yuka Moriin savikortit|/collections/themes/yuka-morii]] ovat tavallisia kortteja, ja siellä bulk on kultaa. [[Teemakansiot|/collections/themes]] on paikka, jossa ne tarkistuslistat ovat.",
           ],
         },
         {
@@ -199,6 +201,7 @@ export function finnishArticles(): ArticleCopy[] {
           paragraphs: [
             "Sääntö on pieni, ja se pelastaa minut. Yksi kortti. Mikä tahansa setti. Mikä tahansa kieli. Mikä tahansa harvinaisuus. [[Pitkä kansio-opas|/guides/collecting-binders]] erottaa tämän työn settikansiosta, jossa jokaisella listan kortilla on tasku. Tässä olento on tasku. Toinen Pikachu on kaksoiskappale, vaikka kuva olisi uusi.",
             "Minä aloitin tavan [[Bulbasaurista|/pokedex/1]]. Lajin sivu luettelee painokset. Kansio tarvitsee niistä yhden. Panin ensimmäisen suojassa olleen Bulbasaurin, jonka jo omistin, numeroon #001 ja lopetin paremman #001:n etsimisen. Parempi on toinen harrastus. Tämä harrastus on väli, ensimmäisestä numerosta viimeiseen, yksi olento kullakin rivillä. Toinen Bulbasaur, olkoon miten vanha, on bulkia heti kun #001 on täynnä. En pidä sille vara-taskua. Vara-tasku olisi jo toinen harrastus saman kannen sisällä.",
+            "Lajisivu listaa jokaisen painoksen, ja Pokédex-kansio tarvitsee yhä vain yhden niistä. [[Kaikki Pikachu-kortit|/collections/themes/pikachu]] pitää jokaisen Pikachu-painoksen omana tarkistuslistanaan. [[Teemakansiot|/collections/themes]] on sukupolvisivujen vieressä, kun haluan nähdä yhden naaman koko rivin.",
           ],
         },
         {

@@ -29,6 +29,7 @@ export function polishArticles(): ArticleCopy[] {
           paragraphs: [
             "[[Base|/collections/set/base1]] to przykład, który wciąż otwieram, kiedy ktoś pyta, jak działa segregator setu. Set wyszedł 9 stycznia 1999, a publiczna lista kart ma 102 karty. Strona w segregatorze idzie za tą listą: numer 1, potem 2, potem 3, trenerzy i energie włącznie. Jest karta na liście, jest kieszonka. Nie zostawiam dziury dlatego, że karta jest zwykła, i nie wyciągam holo na początek dlatego, że błyszczy.",
             "Cała kolejność serii i setów jest w tekście [[sety Pokémon po kolei|/guides/sets-in-order]]. Tę oś czasu wyjmuję, kiedy pudełko bulk miesza lata. Karta z Jungle nie należy do segregatora Base, nawet jeśli rysunek wydaje się z tego samego roku. Strona setu jest naraz listą kart i listą kontrolną. Zaznaczam rząd dopiero wtedy, gdy właśnie ta karta siedzi w segregatorze, a nie kiedy widziałem ją w stosie na stole. 102 kieszonki znaczą, że energia pod koniec jest tak samo obowiązkowa jak pierwszy Pokémon. Pomijam ją tylko wtedy, gdy lista kart ją pomija. Base jej nie pomija, a pusta kieszonka na końcu jest tak samo prawdziwa jak pusta na początku.",
+            "Trzeci segregator idzie za motywem, nie za jednym setem i nie za jednym miejscem gatunku. [[Segregatory tematyczne|/collections/themes]] zbierają każdy angielski druk jednego gatunku, jednego artysty albo jednego rodzaju karty. [[Wszystkie karty Pikachu|/collections/themes/pikachu]] to lista, którą otwieram, gdy stos jest pełen tej twarzy.",
           ],
         },
         {
@@ -148,6 +149,7 @@ export function polishArticles(): ArticleCopy[] {
           paragraphs: [
             "Holo to miła strona. To nie system. Systemem jest pusty rząd, a puste rzędy to głównie zwykłe karty. [[Przewodnik po segregatorach|/guides/collecting-binders]] mówi to w długiej formie. Tu jest krótka forma, której używam przy stole: jeśli karta zamyka dziurę, to jest karta, której chciałem, nawet gdy rysunek to ten sam Magikarp, którego znam na pamięć.",
             "Przestałem tłumaczyć się z bulk w dniu, w którym segregator generacji ruszył szybciej z mieszanego pudełka niż z czegokolwiek, co odłożyłem jako szczególne. Szczególne karty mogą czekać w koszulce. Lista kontrolna na nie nie czeka. [[Zbieranie z dzieckiem|/guides/collecting-with-a-child]] używa tego samego stosu, bo dziecko może trzymać zwykłą kartę, wybrać kieszonkę i zobaczyć, jak rząd się zamyka. To prawdziwy postęp, nie nagroda pocieszenia. Ręka dziecka i moja lista kontrolna używają tej samej zwykłej karty. Wystarcza obu. Rzadka karta może czekać, aż rząd zamknie się bez niej.",
+            "Niektóre listy tematyczne to prawie sam ten stos. [[Gliniane karty Yuki Morii|/collections/themes/yuka-morii]] to zwykłe karty, a tam bulk jest złotem. [[Segregatory tematyczne|/collections/themes]] to miejsce, w którym leżą te listy.",
           ],
         },
         {
@@ -201,6 +203,7 @@ export function polishArticles(): ArticleCopy[] {
           paragraphs: [
             "Zasada jest mała i mnie ratuje. Jedna karta. Dowolny set. Dowolny język. Dowolna rzadkość. [[Długi przewodnik po segregatorach|/guides/collecting-binders]] oddziela tę robotę od segregatora setu, gdzie każda karta z listy ma kieszonkę. Tu stwór jest kieszonką. Drugi Pikachu jest dubletem, nawet gdy rysunek jest nowy.",
             "Nawyk zacząłem od [[Bulbasaura|/pokedex/1]]. Strona gatunku wymienia wydania. Segregator potrzebuje jednego. Włożyłem pierwszego Bulbasaura w koszulce, którego już miałem, na #001 i przestałem szukać lepszego #001. Lepsze to inne hobby. To hobby to zakres, od pierwszego numeru do ostatniego, jeden stwór w każdym rzędzie. Drugi Bulbasaur, choćby najstarszy, jest bulk, kiedy #001 jest już pełne. Nie trzymam dla niego zapasowej kieszonki. Zapasowa kieszonka byłaby drugim hobby pod tą samą okładką.",
+            "Strona gatunku wymienia każdy druk, a segregator Pokédexa wciąż potrzebuje tylko jednej karty. [[Wszystkie karty Pikachu|/collections/themes/pikachu]] trzyma każdy druk Pikachu jako osobną listę. [[Segregatory tematyczne|/collections/themes]] leży obok stron generacji, kiedy chcę zobaczyć cały rząd jednej twarzy.",
           ],
         },
         {

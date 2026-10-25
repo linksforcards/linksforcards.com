@@ -40,7 +40,9 @@
     "speciesTitle": "Lista de cartas de {name}",
     "speciesDescription": "Lista de cartas de {name}. Pokédex {dex}, generación {gen} ({region}). {total} cartas en {sets} expansiones.",
     "guidesTitle": "Guías para coleccionar cartas Pokémon",
-    "guidesDescription": "Cómo colecciono cartas Pokémon en una carpeta de set y una carpeta Pokédex, con notas sobre el bulk, los 151, las fundas y una carpeta que se va."
+    "guidesDescription": "Cómo colecciono cartas Pokémon en una carpeta de set y una carpeta Pokédex, con notas sobre el bulk, los 151, las fundas y una carpeta que se va.",
+    "themesTitle": "Carpetas temáticas",
+    "themesDescription": "Listas para un Pokémon, un artista o un tipo de carta. Una barra llena es lo que ya tengo."
   },
   "nav": {
     "primary": "Páginas",
@@ -103,7 +105,9 @@
     "faq3q": "¿Es un sitio oficial de Pokémon?",
     "faq3a": "No. LinksForCards es mi proyecto de fan, no oficial. No está afiliado ni respaldado por Nintendo, Creatures, Game Freak o The Pokémon Company.",
     "faq4q": "¿Qué tiendas aparecen aquí?",
-    "faq4a": "Esta página en español lista tiendas de España."
+    "faq4a": "Esta página en español lista tiendas de España.",
+    "themeProgress": "Carpetas temáticas",
+    "themeHub": "Todas las carpetas temáticas"
   },
   "bindersPage": {
     "kicker": "Listas",
@@ -207,7 +211,9 @@
     "searchPlaceholder": "Nombre o número",
     "noPokemon": "Ningún Pokémon coincide.",
     "letters": "Primera letra",
-    "guides": "Guías"
+    "guides": "Guías",
+    "themes": "Carpetas temáticas",
+    "themesIntro": "Una carpeta para un Pokémon, un artista o un tipo de carta. La barra es lo que ya tengo."
   },
   "seriesPage": {
     "intro": "{series} tiene {count} sets en esta lista. Cada página de set es la lista de cartas y la checklist.",
@@ -219,7 +225,8 @@
     "noPokemon": "Esta lista de set no tiene cartas de Pokémon.",
     "kinds": "Cartas en esta lista: {list}.",
     "related": "Más sets de {series}",
-    "gens": "Carpetas de generación que estas cartas pueden llenar"
+    "gens": "Carpetas de generación que estas cartas pueden llenar",
+    "themes": "Carpetas temáticas que estas cartas pueden llenar"
   },
   "speciesPage": {
     "intro": "{name} es el Pokédex {dex} de la generación {gen} ({region}). Esta lista tiene {total} cartas en {sets} expansiones. La más antigua es {firstSet} ({firstDate}). La más reciente es {latestSet} ({latestDate}).",
@@ -227,7 +234,8 @@
     "none": "Todavía no he anotado una carta de {name}.",
     "kinds": "En esta lista: {list}.",
     "binder": "Abrir la carpeta de la generación {gen} en {dex}",
-    "setsHeading": "Sets con {name}"
+    "setsHeading": "Sets con {name}",
+    "themesHeading": "Carpetas temáticas con {name}"
   },
   "generationPage": {
     "prints": "{count} cartas",
@@ -242,5 +250,21 @@
     "supportingLabel": "Una pregunta cada una",
     "readNext": "Seguir leyendo",
     "timelineLabel": "Cada serie de la lista"
+  },
+  "themesPage": {
+    "kicker": "Carpetas temáticas",
+    "crumb": "Carpetas temáticas",
+    "hubLine": "{total} cartas en {sets} expansiones",
+    "intro": "{total} cartas en esta lista, en {sets} expansiones. La impresión más antigua de la lista es del {first}. La más reciente es del {last}.",
+    "have": "Tengo {collected} anotadas.",
+    "disclaimer": "Esta lista cubre las cartas inglesas del conjunto de datos abierto. Los reversos, los sellos y las cartas solo japonesas no están, así que un master set de verdad puede ser más largo.",
+    "bulkMostly": "Sobre todo comunes y poco comunes. Perfecto para cazar en el bulk.",
+    "bulkMixed": "Una mezcla de bulk y cartas más difíciles.",
+    "bulkRare": "Cargada de raras. Una común es la excepción en esta lista.",
+    "seriesJump": "Series en esta carpeta",
+    "relatedThemes": "Otras carpetas temáticas",
+    "relatedSpecies": "Especies en esta carpeta",
+    "relatedSets": "Expansiones con más cartas en esta carpeta",
+    "moreSets": "La lista abarca {count} expansiones."
   }
 }

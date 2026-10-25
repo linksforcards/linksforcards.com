@@ -27,7 +27,7 @@ export const SCHEMA: string[] = [
     dex_numbers TEXT NOT NULL DEFAULT ''
   )`,
   `CREATE TABLE IF NOT EXISTS binders (
-    binder_kind TEXT NOT NULL CHECK (binder_kind IN ('set', 'generation')),
+    binder_kind TEXT NOT NULL CHECK (binder_kind IN ('set', 'generation', 'theme')),
     binder_key TEXT NOT NULL,
     status TEXT NOT NULL CHECK (status IN ('completed', 'given_away')),
     completed_on TEXT,
@@ -73,6 +73,17 @@ export const SCHEMA: string[] = [
     key TEXT PRIMARY KEY,
     value TEXT NOT NULL
   )`,
+  `DO $$
+DECLARE r record;
+BEGIN
+  FOR r IN
+    SELECT conname FROM pg_constraint
+    WHERE conrelid = 'binders'::regclass AND contype = 'c' AND pg_get_constraintdef(oid) ILIKE '%binder_kind%'
+  LOOP
+    EXECUTE format('ALTER TABLE binders DROP CONSTRAINT %I', r.conname);
+  END LOOP;
+END $$`,
+  `ALTER TABLE binders ADD CONSTRAINT binders_binder_kind_check CHECK (binder_kind IN ('set', 'generation', 'theme'))`,
   `CREATE INDEX IF NOT EXISTS shipment_cards_shipment_idx ON shipment_cards (shipment_id)`,
   `CREATE INDEX IF NOT EXISTS shipment_cards_set_idx ON shipment_cards (set_id, card_number)`,
   `CREATE INDEX IF NOT EXISTS shipments_shop_idx ON shipments (shop_id)`,

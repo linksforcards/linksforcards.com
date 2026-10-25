@@ -40,7 +40,9 @@
     "speciesTitle": "{name} korttilista",
     "speciesDescription": "{name} korttilista. Pokédex {dex}, sukupolvi {gen} ({region}). {total} korttia {sets} setissä.",
     "guidesTitle": "Oppaat Pokémon-korttien keräämiseen",
-    "guidesDescription": "Miten kerään Pokémon-kortteja settikansioon ja Pokédex-kansioon, sekä muistiinpanot bulkista, 151 lajista, suojista ja kansiosta joka lähtee."
+    "guidesDescription": "Miten kerään Pokémon-kortteja settikansioon ja Pokédex-kansioon, sekä muistiinpanot bulkista, 151 lajista, suojista ja kansiosta joka lähtee.",
+    "themesTitle": "Teemakansiot",
+    "themesDescription": "Listat yhdelle Pokémonille, yhdelle taiteilijalle tai yhdelle korttityypille. Täysi palkki on se, mitä minulla jo on."
   },
   "nav": {
     "primary": "Sivut",
@@ -103,7 +105,9 @@
     "faq3q": "Onko tämä virallinen Pokémon-sivu?",
     "faq3a": "Ei. LinksForCards on epävirallinen faniprojektini. Sillä ei ole yhteyttä Nintendoon, Creaturesiin, Game Freakiin tai The Pokémon Companyyn, eivätkä ne tue sitä.",
     "faq4q": "Mitkä kaupat näkyvät täällä?",
-    "faq4a": "Tämä suomenkielinen sivu listaa kaupat Suomesta."
+    "faq4a": "Tämä suomenkielinen sivu listaa kaupat Suomesta.",
+    "themeProgress": "Teemakansiot",
+    "themeHub": "Kaikki teemakansiot"
   },
   "bindersPage": {
     "kicker": "Listat",
@@ -207,7 +211,9 @@
     "searchPlaceholder": "Nimi tai numero",
     "noPokemon": "Yksikään Pokémon ei täsmää.",
     "letters": "Alkukirjain",
-    "guides": "Oppaat"
+    "guides": "Oppaat",
+    "themes": "Teemakansiot",
+    "themesIntro": "Kansio yhdelle Pokémonille, yhdelle taiteilijalle tai yhdelle korttityypille. Palkki on se, mitä minulla jo on."
   },
   "seriesPage": {
     "intro": "Sarjassa {series} on {count} settiä tässä listassa. Jokainen settisivu on korttilista ja tarkistuslista.",
@@ -219,7 +225,8 @@
     "noPokemon": "Tässä settilistassa ei ole Pokémon-kortteja.",
     "kinds": "Kortit tässä listassa: {list}.",
     "related": "Lisää settiä sarjassa {series}",
-    "gens": "Sukupolvikansiot, joita nämä kortit voivat täyttää"
+    "gens": "Sukupolvikansiot, joita nämä kortit voivat täyttää",
+    "themes": "Teemakansiot, joita nämä kortit voivat täyttää"
   },
   "speciesPage": {
     "intro": "{name} on Pokédex {dex} sukupolvessa {gen} ({region}). Tässä listassa on {total} korttia {sets} setissä. Aikaisin on {firstSet} ({firstDate}). Uusin on {latestSet} ({latestDate}).",
@@ -227,7 +234,8 @@
     "none": "En ole vielä kirjannut yhtään {name}-korttia.",
     "kinds": "Tässä listassa: {list}.",
     "binder": "Avaa sukupolven {gen} kansio kohdasta {dex}",
-    "setsHeading": "Setit, joissa on {name}"
+    "setsHeading": "Setit, joissa on {name}",
+    "themesHeading": "Teemakansiot, joissa on {name}"
   },
   "generationPage": {
     "prints": "{count} painosta",
@@ -242,5 +250,21 @@
     "supportingLabel": "Yksi kysymys kerrallaan",
     "readNext": "Lue seuraavaksi",
     "timelineLabel": "Jokainen sarja listassa"
+  },
+  "themesPage": {
+    "kicker": "Teemakansiot",
+    "crumb": "Teemakansiot",
+    "hubLine": "{total} korttia {sets} setissä",
+    "intro": "{total} korttia tässä listassa, {sets} setissä. Listan varhaisin painos on {first}. Uusin on {last}.",
+    "have": "Minulla on niistä {collected} merkittynä.",
+    "disclaimer": "Tämä lista kattaa avoimen aineiston englanninkieliset kortit. Reverse holot, leimat ja vain japaniksi olevat kortit puuttuvat, joten oikea master set voi olla tätä listaa pidempi.",
+    "bulkMostly": "Enimmäkseen tavallisia ja epätavallisia kortteja. Juuri sopiva bulk-metsästykseen.",
+    "bulkMixed": "Sekoitus bulkia ja vaikeampia kortteja.",
+    "bulkRare": "Harvinaispainotteinen. Tavallinen kortti on täällä poikkeus.",
+    "seriesJump": "Sarjat tässä kansiossa",
+    "relatedThemes": "Läheiset teemakansiot",
+    "relatedSpecies": "Lajit tässä kansiossa",
+    "relatedSets": "Setit, joissa on eniten kortteja tässä kansiossa",
+    "moreSets": "Lista kattaa {count} settiä."
   }
 }

@@ -40,7 +40,9 @@
     "speciesTitle": "Lista kart {name}",
     "speciesDescription": "Lista kart {name}. Pokédex {dex}, generacja {gen} ({region}). {total} kart w {sets} setach.",
     "guidesTitle": "Poradniki o zbieraniu kart Pokémon",
-    "guidesDescription": "Jak zbieram karty Pokémon w segregatorze setu i segregatorze Pokédexa, z notatkami o bulk, 151, koszulkach i segregatorze, który odchodzi."
+    "guidesDescription": "Jak zbieram karty Pokémon w segregatorze setu i segregatorze Pokédexa, z notatkami o bulk, 151, koszulkach i segregatorze, który odchodzi.",
+    "themesTitle": "Segregatory tematyczne",
+    "themesDescription": "Listy dla jednego Pokémona, jednego artysty albo jednego rodzaju karty. Wypełniony pasek to to, co już mam."
   },
   "nav": {
     "primary": "Strony",
@@ -103,7 +105,9 @@
     "faq3q": "Czy to oficjalna strona Pokémon?",
     "faq3a": "Nie. LinksForCards to mój nieoficjalny projekt fanowski. Nie jest powiązany z Nintendo, Creatures, Game Freak ani The Pokémon Company i nie ma ich poparcia.",
     "faq4q": "Które sklepy są na tej liście?",
-    "faq4a": "Ta polska strona pokazuje sklepy z Polski."
+    "faq4a": "Ta polska strona pokazuje sklepy z Polski.",
+    "themeProgress": "Segregatory tematyczne",
+    "themeHub": "Wszystkie segregatory tematyczne"
   },
   "bindersPage": {
     "kicker": "Listy",
@@ -207,7 +211,9 @@
     "searchPlaceholder": "Nazwa albo numer",
     "noPokemon": "Żaden Pokémon nie pasuje.",
     "letters": "Pierwsza litera",
-    "guides": "Poradniki"
+    "guides": "Poradniki",
+    "themes": "Segregatory tematyczne",
+    "themesIntro": "Segregator dla jednego Pokémona, jednego artysty albo jednego rodzaju karty. Pasek to to, co już mam."
   },
   "seriesPage": {
     "intro": "Seria {series} ma {count} setów na tej liście. Każda strona setu to lista kart i lista kontrolna.",
@@ -219,7 +225,8 @@
     "noPokemon": "Ta lista setu nie ma kart Pokémon.",
     "kinds": "Karty na tej liście: {list}.",
     "related": "Więcej setów w {series}",
-    "gens": "Segregatory generacji, które te karty mogą wypełnić"
+    "gens": "Segregatory generacji, które te karty mogą wypełnić",
+    "themes": "Segregatory tematyczne, które te karty mogą wypełnić"
   },
   "speciesPage": {
     "intro": "{name} to Pokédex {dex} w generacji {gen} ({region}). Ta lista ma {total} kart w {sets} setach. Najwcześniejsza to {firstSet} ({firstDate}). Najnowsza to {latestSet} ({latestDate}).",
@@ -227,7 +234,8 @@
     "none": "Nie zanotowałem jeszcze karty {name}.",
     "kinds": "Na tej liście: {list}.",
     "binder": "Otwórz segregator generacji {gen} przy {dex}",
-    "setsHeading": "Sety z {name}"
+    "setsHeading": "Sety z {name}",
+    "themesHeading": "Segregatory tematyczne z {name}"
   },
   "generationPage": {
     "prints": "{count} wydań",
@@ -242,5 +250,21 @@
     "supportingLabel": "Jedno pytanie każda",
     "readNext": "Czytaj dalej",
     "timelineLabel": "Każda seria na liście"
+  },
+  "themesPage": {
+    "kicker": "Segregatory tematyczne",
+    "crumb": "Segregatory tematyczne",
+    "hubLine": "{total} kart w {sets} setach",
+    "intro": "{total} kart na tej liście, w {sets} setach. Najwcześniejszy druk na liście jest z {first}. Najnowszy jest z {last}.",
+    "have": "Mam zapisane {collected} z nich.",
+    "disclaimer": "Ta lista obejmuje angielskie karty z otwartego zbioru. Reverse hole, stemple i karty tylko po japońsku nie wchodzą do niej, więc prawdziwy master set może być dłuższy niż ta lista.",
+    "bulkMostly": "Głównie zwykłe i niezwykłe karty. W sam raz do szukania w bulku.",
+    "bulkMixed": "Mieszanka bulku i trudniejszych kart.",
+    "bulkRare": "Pełna rzadkich kart. Zwykła karta jest tu wyjątkiem.",
+    "seriesJump": "Serie w tym segregatorze",
+    "relatedThemes": "Powiązane segregatory tematyczne",
+    "relatedSpecies": "Gatunki w tym segregatorze",
+    "relatedSets": "Sety z największą liczbą kart w tym segregatorze",
+    "moreSets": "Lista obejmuje {count} setów."
   }
 }

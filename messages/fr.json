@@ -40,7 +40,9 @@
     "speciesTitle": "Liste de cartes {name}",
     "speciesDescription": "Liste de cartes {name}. Pokédex {dex}, génération {gen} ({region}). {total} cartes dans {sets} extensions.",
     "guidesTitle": "Guides pour collectionner les cartes Pokémon",
-    "guidesDescription": "Comment je collectionne les cartes Pokémon dans un classeur de série et un classeur Pokédex, avec des notes sur le vrac, les 151, les protège-cartes et un classeur qui part."
+    "guidesDescription": "Comment je collectionne les cartes Pokémon dans un classeur de série et un classeur Pokédex, avec des notes sur le vrac, les 151, les protège-cartes et un classeur qui part.",
+    "themesTitle": "Classeurs à thème",
+    "themesDescription": "Listes pour un Pokémon, un artiste ou un type de carte. Une barre remplie, c'est ce que j'ai déjà."
   },
   "nav": {
     "primary": "Pages",
@@ -103,7 +105,9 @@
     "faq3q": "Est-ce un site officiel Pokémon ?",
     "faq3a": "Non. LinksForCards est mon projet de fan, non officiel. Il n'est ni affilié ni approuvé par Nintendo, Creatures, Game Freak ou The Pokémon Company.",
     "faq4q": "Quelles boutiques sont listées ici ?",
-    "faq4a": "Cette page en français liste les boutiques de France et de Belgique."
+    "faq4a": "Cette page en français liste les boutiques de France et de Belgique.",
+    "themeProgress": "Classeurs à thème",
+    "themeHub": "Tous les classeurs à thème"
   },
   "bindersPage": {
     "kicker": "Listes",
@@ -207,7 +211,9 @@
     "searchPlaceholder": "Nom ou numéro",
     "noPokemon": "Aucun Pokémon ne correspond.",
     "letters": "Première lettre",
-    "guides": "Guides"
+    "guides": "Guides",
+    "themes": "Classeurs à thème",
+    "themesIntro": "Un classeur pour un Pokémon, un artiste ou un type de carte. La barre, c'est ce que j'ai déjà."
   },
   "seriesPage": {
     "intro": "{series} compte {count} sets dans cette liste. Chaque page de set est la liste de cartes et la checklist.",
@@ -219,7 +225,8 @@
     "noPokemon": "Cette liste de set ne contient pas de cartes Pokémon.",
     "kinds": "Cartes dans cette liste : {list}.",
     "related": "Autres sets de {series}",
-    "gens": "Classeurs de génération que ces cartes peuvent remplir"
+    "gens": "Classeurs de génération que ces cartes peuvent remplir",
+    "themes": "Classeurs à thème que ces cartes peuvent remplir"
   },
   "speciesPage": {
     "intro": "{name} est le Pokédex {dex} de la génération {gen} ({region}). Cette liste compte {total} cartes dans {sets} extensions. La plus ancienne est {firstSet} ({firstDate}). La plus récente est {latestSet} ({latestDate}).",
@@ -227,7 +234,8 @@
     "none": "Je n'ai pas encore noté de carte de {name}.",
     "kinds": "Dans cette liste : {list}.",
     "binder": "Ouvrir le classeur génération {gen} à {dex}",
-    "setsHeading": "Sets avec {name}"
+    "setsHeading": "Sets avec {name}",
+    "themesHeading": "Classeurs à thème avec {name}"
   },
   "generationPage": {
     "prints": "{count} cartes",
@@ -242,5 +250,21 @@
     "supportingLabel": "Une question chacune",
     "readNext": "À lire ensuite",
     "timelineLabel": "Chaque série de la liste"
+  },
+  "themesPage": {
+    "kicker": "Classeurs à thème",
+    "crumb": "Classeurs à thème",
+    "hubLine": "{total} cartes dans {sets} extensions",
+    "intro": "{total} cartes dans cette liste, sur {sets} extensions. Le plus ancien tirage de la liste date du {first}. Le plus récent date du {last}.",
+    "have": "J'en ai noté {collected}.",
+    "disclaimer": "Cette liste couvre les cartes anglaises du jeu de données ouvert. Les reverses, les tampons et les cartes seulement japonaises n'y sont pas, donc un vrai master set peut être plus long.",
+    "bulkMostly": "Surtout des communes et des peu communes. Parfait pour chasser dans le vrac.",
+    "bulkMixed": "Un mélange de vrac et de cartes plus difficiles.",
+    "bulkRare": "Plutôt rare. Une commune est l'exception dans cette liste.",
+    "seriesJump": "Séries dans ce classeur",
+    "relatedThemes": "Autres classeurs à thème",
+    "relatedSpecies": "Espèces dans ce classeur",
+    "relatedSets": "Extensions avec le plus de cartes dans ce classeur",
+    "moreSets": "La liste couvre {count} extensions."
   }
 }

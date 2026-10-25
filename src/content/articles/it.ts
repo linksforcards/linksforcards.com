@@ -29,6 +29,7 @@ export function italianArticles(): ArticleCopy[] {
           paragraphs: [
             "Il [[set Base|/collections/set/base1]] è l'esempio che apro ancora per spiegare questo. È uscito il 9 gennaio 1999 e la lista pubblica conta 102 carte. La pagina del raccoglitore segue quella lista: il numero 1, poi il 2, poi il 3, allenatori ed energie compresi. Se la lista ha una carta, il raccoglitore ha una tasca. Non lascio un buco perché la carta è comune, e non porto avanti un'olografica per fare una pagina bella.",
             "L'ordine delle serie e dei set sta in [[i set di carte Pokémon in ordine|/guides/sets-in-order]]. Lo uso quando una scatola di bulk mescola le epoche. Una carta di Jungle non entra nel raccoglitore di Base, anche se il disegno sembra dello stesso anno. La pagina del set è la lista. Segno una riga solo quando quella carta è davvero nella tasca, non quando l'ho vista passare su un mucchio in tavola.",
+            "Un terzo raccoglitore segue un tema, non un set e non un posto per una sola specie. [[I raccoglitori a tema|/collections/themes]] raccolgono ogni stampa inglese di una specie, di un artista o di un tipo di carta. [[Tutte le carte Pikachu|/collections/themes/pikachu]] è la lista che apro quando il mucchio è pieno di quella faccia.",
           ],
         },
         {
@@ -147,6 +148,7 @@ export function italianArticles(): ArticleCopy[] {
           paragraphs: [
             "Un'olografica fa una bella pagina. Non fa un sistema. Il sistema è la riga vuota, e le righe vuote sono soprattutto comuni. [[La guida dei raccoglitori|/guides/collecting-binders]] lo dice nella versione lunga. Ecco la versione corta che uso al tavolo: se la carta chiude un buco, è la carta che volevo, anche quando il disegno è il Magikarp che riconoscerei a occhi chiusi.",
             "Ho smesso di scusarmi per il bulk il giorno in cui un raccoglitore di generazione è avanzato più in fretta grazie a una scatola mescolata che grazie a tutto ciò che avevo messo da parte come speciale. Le carte speciali possono aspettare in una bustina. La lista non le aspetta. [[Collezionare con un bambino|/guides/collecting-with-a-child]] usa lo stesso mucchio, perché un bambino può tenere una comune, scegliere una tasca e vedere la riga chiudersi. Quel gesto non chiede una carta rara.",
+            "Alcune liste a tema sono quasi solo questo mucchio. [[Le carte di creta di Yuka Morii|/collections/themes/yuka-morii]] sono comuni, e lì il bulk è oro. [[I raccoglitori a tema|/collections/themes]] è il posto in cui stanno quelle liste.",
           ],
         },
         {
@@ -199,6 +201,7 @@ export function italianArticles(): ArticleCopy[] {
           paragraphs: [
             "La regola è piccola e mi salva. Una carta. Qualsiasi set. Qualsiasi lingua. Qualsiasi rarità. [[La guida lunga dei raccoglitori|/guides/collecting-binders]] separa questo lavoro dal raccoglitore di set, dove ogni carta della lista ha una tasca. Qui la creatura è la tasca. Un secondo Pikachu è un doppione, anche quando il disegno è nuovo. Il disegno nuovo può essere bellissimo. Non apre una seconda riga.",
             "L'abitudine è cominciata con [[Bulbasaur|/pokedex/1]]. La pagina della specie elenca le stampe. Il raccoglitore ne ha bisogno di una. Ho messo nel 001 il primo Bulbasaur già in bustina che possedevo, e ho smesso di cercare un 001 migliore. Il migliore è un altro passatempo. Questo è il tratto, dall'inizio alla fine, senza trattare su ogni tasca.",
+            "Una pagina di specie elenca ogni stampa, e il raccoglitore Pokédex ha ancora bisogno di una sola carta. [[Tutte le carte Pikachu|/collections/themes/pikachu]] tiene ogni stampa di Pikachu come lista propria. [[I raccoglitori a tema|/collections/themes]] sta accanto alle pagine di generazione quando voglio vedere tutta la serie di una faccia.",
           ],
         },
         {

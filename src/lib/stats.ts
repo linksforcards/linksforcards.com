@@ -6,7 +6,7 @@ import { num, str, type Sql } from "./sql";
 import { safeHttpUrl } from "./urls";
 
 export type BinderMark = {
-  kind: "set" | "generation";
+  kind: "set" | "generation" | "theme";
   key: string;
   status: "completed" | "given_away";
   completedOn: string | null;
@@ -152,7 +152,7 @@ export async function readPublic(db: Sql): Promise<PublicSnapshot> {
      WHERE is_demo = 0 AND is_public = 1`,
   );
   const marks: BinderMark[] = markRows
-    .filter((row) => row.binder_kind === "set" || row.binder_kind === "generation")
+    .filter((row) => row.binder_kind === "set" || row.binder_kind === "generation" || row.binder_kind === "theme")
     .filter((row) => row.status === "completed" || row.status === "given_away")
     .map((row) => ({
       kind: row.binder_kind as BinderMark["kind"],

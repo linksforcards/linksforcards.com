@@ -40,7 +40,9 @@
     "speciesTitle": "{name} Kartenliste",
     "speciesDescription": "{name} Kartenliste. Pokédex {dex}, Generation {gen} ({region}). {total} Karten aus {sets} Sets.",
     "guidesTitle": "Sammelordner für Pokémon-Karten",
-    "guidesDescription": "Wie ich Pokémon-Karten im Set-Ordner und im Pokédex-Ordner sammle, mit Notizen zu Bulk, den 151, Hüllen und einem Ordner, der weitergegeben wird."
+    "guidesDescription": "Wie ich Pokémon-Karten im Set-Ordner und im Pokédex-Ordner sammle, mit Notizen zu Bulk, den 151, Hüllen und einem Ordner, der weitergegeben wird.",
+    "themesTitle": "Themen-Binder",
+    "themesDescription": "Checklisten für ein Pokémon, einen Künstler oder eine Kartenart. Ein gefüllter Balken ist das, was ich schon habe."
   },
   "nav": {
     "primary": "Seiten",
@@ -103,7 +105,9 @@
     "faq3q": "Ist das eine offizielle Pokémon-Seite?",
     "faq3a": "Nein. LinksForCards ist mein inoffizielles Fanprojekt. Es ist nicht mit Nintendo, Creatures, Game Freak oder The Pokémon Company verbunden und wird von ihnen nicht unterstützt.",
     "faq4q": "Welche Läden stehen hier?",
-    "faq4a": "Auf dieser deutschen Seite stehen Läden aus Deutschland, Österreich und der Schweiz."
+    "faq4a": "Auf dieser deutschen Seite stehen Läden aus Deutschland, Österreich und der Schweiz.",
+    "themeProgress": "Themen-Binder",
+    "themeHub": "Alle Themen-Binder"
   },
   "bindersPage": {
     "kicker": "Checklisten",
@@ -207,7 +211,9 @@
     "searchPlaceholder": "Name oder Nummer",
     "noPokemon": "Kein Pokémon passt.",
     "letters": "Anfangsbuchstabe",
-    "guides": "Notizen"
+    "guides": "Notizen",
+    "themes": "Themen-Binder",
+    "themesIntro": "Ein Binder für ein Pokémon, einen Künstler oder eine Kartenart. Der Balken ist das, was ich schon habe."
   },
   "seriesPage": {
     "intro": "{series} hat {count} Sets in dieser Liste. Jede Set-Seite ist die Kartenliste und die Checkliste.",
@@ -219,7 +225,8 @@
     "noPokemon": "Diese Set-Liste hat keine Pokémon-Karten.",
     "kinds": "Karten in dieser Liste: {list}.",
     "related": "Weitere Sets in {series}",
-    "gens": "Generations-Ordner, die diese Karten füllen können"
+    "gens": "Generations-Ordner, die diese Karten füllen können",
+    "themes": "Themen-Binder, die diese Karten füllen können"
   },
   "speciesPage": {
     "intro": "{name} ist Pokédex {dex} in Generation {gen} ({region}). Diese Liste hat {total} Karten aus {sets} Sets. Der früheste Eintrag ist {firstSet} ({firstDate}). Der neueste ist {latestSet} ({latestDate}).",
@@ -227,7 +234,8 @@
     "none": "Ich habe noch keine Karte von {name} eingetragen.",
     "kinds": "In dieser Liste: {list}.",
     "binder": "Sammelordner Generation {gen} bei {dex} öffnen",
-    "setsHeading": "Sets mit {name}"
+    "setsHeading": "Sets mit {name}",
+    "themesHeading": "Themen-Binder mit {name}"
   },
   "generationPage": {
     "prints": "{count} Karten",
@@ -242,5 +250,21 @@
     "supportingLabel": "Je eine Frage",
     "readNext": "Weiterlesen",
     "timelineLabel": "Jede Serie in der Liste"
+  },
+  "themesPage": {
+    "kicker": "Themen-Binder",
+    "crumb": "Themen-Binder",
+    "hubLine": "{total} Karten in {sets} Sets",
+    "intro": "{total} Karten in dieser Checkliste, über {sets} Sets. Der früheste Druck in der Liste ist vom {first}. Der neueste ist vom {last}.",
+    "have": "Ich habe {collected} davon notiert.",
+    "disclaimer": "Diese Checkliste sind die englischen Karten im offenen Datensatz. Reverse-Holos, Stempel und Karten, die es nur auf Japanisch gibt, fehlen darin. Ein echtes Master-Set kann länger sein als diese Liste.",
+    "bulkMostly": "Überwiegend häufige und ungewöhnliche Karten. Genau richtig für die Bulk-Suche.",
+    "bulkMixed": "Eine Mischung aus Bulk und schwereren Karten.",
+    "bulkRare": "Eher selten. Eine häufige Karte ist hier die Ausnahme.",
+    "seriesJump": "Serien in diesem Binder",
+    "relatedThemes": "Verwandte Themen-Binder",
+    "relatedSpecies": "Pokémon in diesem Binder",
+    "relatedSets": "Sets mit den meisten Karten in diesem Binder",
+    "moreSets": "Die Liste umfasst {count} Sets."
   }
 }

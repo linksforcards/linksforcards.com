@@ -1,8 +1,10 @@
+import { themeCopy } from "@/content/theme-copy";
 import { getSet, getSetCards } from "./catalog";
 import { numbersMatch, parseDex } from "./cards";
 import { GENERATIONS, generationOf, SPECIES_TOTAL } from "./generations";
 import { lineCents } from "./money";
 import { intOrNull, num, str, type Sql } from "./sql";
+import { getThemes, themeCollected } from "./themes";
 import { safeHttpUrl } from "./urls";
 
 export type AdminCard = {
@@ -35,7 +37,7 @@ export type ShopTotal = {
 };
 
 export type BinderTotal = {
-  kind: "set" | "generation";
+  kind: "set" | "generation" | "theme";
   key: string;
   label: string;
   collected: number;
@@ -230,6 +232,30 @@ export async function readAdmin(db: Sql): Promise<AdminOverview> {
     const mark = marks.get(`set:${setId}`);
     binders.push(
       totalFor(inSet, "set", setId, getSet(setId)?.name ?? setId, collected, catalog?.length ?? inSet.length, mark),
+    );
+  }
+
+  const held: Record<string, string[]> = {};
+  for (const card of cards) {
+    const list = held[card.setId] ?? [];
+    list.push(card.number);
+    held[card.setId] = list;
+  }
+  for (const theme of getThemes()) {
+    const inTheme = cards.filter((card) =>
+      theme.cards.some((ref) => ref.setId === card.setId && numbersMatch(ref.number, card.number)),
+    );
+    const mark = marks.get(`theme:${theme.slug}`);
+    binders.push(
+      totalFor(
+        inTheme,
+        "theme",
+        theme.slug,
+        themeCopy("us", theme.slug)?.h1 ?? theme.slug,
+        themeCollected(theme, held),
+        theme.total,
+        mark,
+      ),
     );
   }
 

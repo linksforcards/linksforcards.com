@@ -29,6 +29,7 @@ export function norwegianArticles(): ArticleCopy[] {
           paragraphs: [
             "[[Base|/collections/set/base1]] er eksemplet jeg fortsatt åpner når noen spør hvordan en settperm virker. Settet kom 9. januar 1999, og den offentlige kortlisten har 102 kort. Siden i permen følger den listen: nummer 1, så 2, så 3, med trenere og energi der listen har dem. Finnes kortet på listen, finnes lommen. Jeg lar ikke et hull stå fordi kortet er en common, og jeg flytter ikke en holo fremst bare fordi den glinser.",
             "Hele rekkefølgen på serier og sett ligger i [[Pokémon-sett i rekkefølge|/guides/sets-in-order]]. Den tidslinjen tar jeg frem når en bulkboks blander årstall. Et Jungle-kort hører ikke hjemme i Base-permen, selv om tegningen kjennes som samme år. Settsiden er kortlisten og sjekklisten på én gang. Jeg krysser av en rad først når akkurat det kortet sitter i permen, ikke når jeg har sett det i en stabel på bordet.",
+            "En tredje perm følger et tema, ikke et sett og ikke en luke for én art. [[Temapermer|/collections/themes]] samler hvert engelske trykk av en art, en kunstner eller en type kort. [[Alle Pikachu-kort|/collections/themes/pikachu]] er listen jeg åpner når haugen er full av det ansiktet.",
           ],
         },
         {
@@ -147,6 +148,7 @@ export function norwegianArticles(): ArticleCopy[] {
           paragraphs: [
             "En holo er en hyggelig side. Den er ikke et system. Systemet er den tomme raden, og tomme rader er stort sett commons. [[Permguiden|/guides/collecting-binders]] sier det i lang form. Her er den korte formen jeg bruker ved bordet: fyller kortet et hull, er det kortet jeg ville ha, også når tegningen er den samme Magikarp jeg allerede kan utenat.",
             "Jeg sluttet å unnskylde bulk den dagen en generasjonsperm beveget seg raskere ut av en blandet boks enn ut av noe jeg hadde lagt til side som spesielt. Spesielle kort kan vente i en sleeve. Sjekklisten venter ikke på dem. [[Å samle med et barn|/guides/collecting-with-a-child]] bruker samme haug, for et barn kan holde en common, velge en lomme og se raden lukke seg. Det er et ekte fremskritt, ikke en trøstepremie.",
+            "Noen temalister er nesten bare denne haugen. [[Yuka Moriis leirekort|/collections/themes/yuka-morii]] er vanlige kort, og der er bulk gull. [[Temapermer|/collections/themes]] er stedet der de sjekklistene ligger.",
           ],
         },
         {
@@ -199,6 +201,7 @@ export function norwegianArticles(): ArticleCopy[] {
           paragraphs: [
             "Regelen er liten, og den redder meg. Ett kort. Et hvilket som helst sett. Et hvilket som helst språk. En hvilken som helst sjeldenhet. [[Den lange permguiden|/guides/collecting-binders]] skiller denne jobben fra settpermen, der hvert kort på listen har en lomme. Her er skapningen lommen. En andre Pikachu er en dublett selv når tegningen er ny.",
             "Jeg begynte vanen med [[Bulbasaur|/pokedex/1]]. Artsiden lister trykkene. Permen trenger ett av dem. Jeg la den første Bulbasaur i sleeve som jeg allerede eide, i #001, og sluttet å lete etter en bedre #001. Bedre er en annen hobby. Denne hobbyen er intervallet, fra første nummer til siste, med én skapning på hver rad.",
+            "En artsside lister hvert trykk, og Pokédex-permen trenger fortsatt bare ett av dem. [[Alle Pikachu-kort|/collections/themes/pikachu]] holder hvert Pikachu-trykk som en egen sjekkliste. [[Temapermer|/collections/themes]] ligger ved siden av generasjonene når jeg vil se hele rekken av ett ansikt.",
           ],
         },
         {

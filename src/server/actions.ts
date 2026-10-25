@@ -6,6 +6,7 @@ import { redirect } from "next/navigation";
 import { attemptLogin, clearSessionCookie, clientIp, requireSession, writeSessionCookie } from "@/lib/auth";
 import { formatDexList, parseBulk } from "@/lib/cards";
 import { getSet, getSetCards, matchCard } from "@/lib/catalog";
+import { getTheme } from "@/lib/themes";
 import { getDatabase } from "@/lib/db";
 import { num } from "@/lib/sql";
 import { demoToolsEnabled, replaceDemoData } from "@/lib/demo";
@@ -201,9 +202,10 @@ export async function markBinder(formData: FormData) {
   const kind = String(formData.get("kind") ?? "");
   const key = String(formData.get("key") ?? "");
   const action = String(formData.get("mark") ?? "");
-  if (kind !== "set" && kind !== "generation") redirect("/admin/binders?e=binder");
+  if (kind !== "set" && kind !== "generation" && kind !== "theme") redirect("/admin/binders?e=binder");
   if (kind === "generation" && !generationById(Number(key))) redirect("/admin/binders?e=binder");
   if (kind === "set" && !getSet(key)) redirect("/admin/binders?e=binder");
+  if (kind === "theme" && !getTheme(key)) redirect("/admin/binders?e=binder");
   if (action === "clear") {
     await db.query(`DELETE FROM binders WHERE binder_kind = $1 AND binder_key = $2`, [kind, key]);
     revalidatePublic();

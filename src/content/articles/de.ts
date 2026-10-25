@@ -29,6 +29,7 @@ export function germanArticles(): ArticleCopy[] {
           paragraphs: [
             "[[Base|/collections/set/base1]] ist das Beispiel, das ich immer noch aufschlage, wenn ich das erklären will. Auf Deutsch kenne ich es als Basis-Set. Erschienen ist es am 9. Januar 1999, und die öffentliche Liste führt 102 Karten, Kennung base1. Die Ordnerseite folgt dieser Liste: Nummer 1, dann 2, dann 3, Trainer und Energie eingeschlossen. Steht eine Karte auf der Liste, hat der Ordner ein Fach. Ich lasse kein Loch, weil die Karte gewöhnlich ist, und ich ziehe ein Holo nicht nach vorn, damit die erste Seite hübscher wirkt. Die hübsche Seite verdeckt genau die Nummer, die noch fehlt.",
             "Die volle Reihenfolge der Serien und Sets steht in [[Pokémon-Sets in Reihenfolge|/guides/sets-in-order]]. Die brauche ich, wenn eine Schachtel Bulk mehrere Jahre mischt. Eine Karte aus Jungle gehört nicht in den Base-Ordner, auch wenn die Zeichnung sich nach demselben Jahr anfühlt. Auf Deutsch heißt Jungle oft Dschungel. Die Liste auf der Seite benutzt den englischen Namen, und nach dem sortiere ich. Die Set-Seite ist Kartenliste und Checkliste zugleich. Eine Zeile markiere ich erst, wenn die Karte im Fach steckt. Ein Stapel auf dem Tisch ist eine Absicht, kein Eintrag.",
+            "Ein dritter Ordner folgt einem Thema, nicht einem Set und nicht einem einzelnen Art-Fach. [[Themen-Binder|/collections/themes]] sammeln jeden englischen Druck einer Art, eines Künstlers oder einer Kartenform. [[Alle Pikachu-Karten|/collections/themes/pikachu]] ist die Liste, die ich aufschlage, wenn der Stapel voll von diesem Gesicht ist.",
           ],
         },
         {
@@ -147,6 +148,7 @@ export function germanArticles(): ArticleCopy[] {
           paragraphs: [
             "Ein Holo ist eine schöne Seite. Ein System ist es nicht. Das System ist die leere Zeile, und leere Zeilen sind meist gewöhnliche Karten. [[Die Ordner-Übersicht|/guides/collecting-binders]] sagt das in der langen Form. Am Tisch gilt die kurze Form: füllt die Karte ein Loch, ist es die Karte, die ich haben wollte, auch wenn die Zeichnung dasselbe Karpador ist, das ich schon auswendig kenne. Die Wiederholung stört mich nicht. Sie ist der Vorrat.",
             "Mit dem Entschuldigen für Bulk habe ich aufgehört, als ein Generationenordner aus einer gemischten Schachtel schneller vorankam als aus allem, was ich als besonders beiseitegelegt hatte. Besondere Karten können in der Hülle warten. Die Checkliste wartet nicht auf sie. [[Sammeln mit einem Kind|/guides/collecting-with-a-child]] benutzt denselben Stapel. Ein Kind kann eine gewöhnliche Karte halten, ein Fach wählen und sehen, wie die Zeile zugeht. Dafür brauche ich keine seltene Karte auf dem Tisch, und ich halte auch keine zurück, als wäre die gewöhnliche zu schlicht zum Anfassen.",
+            "Manche Themenlisten bestehen fast nur aus diesem Stapel. [[Yuka Moriis Tonkarten|/collections/themes/yuka-morii]] sind häufige und ungewöhnliche Karten, und dort ist Bulk Gold. [[Themen-Binder|/collections/themes]] ist der Ort, an dem diese Checklisten liegen.",
           ],
         },
         {
@@ -199,6 +201,7 @@ export function germanArticles(): ArticleCopy[] {
           paragraphs: [
             "Die Regel ist klein, und sie hält mich. Eine Karte. Jedes Set. Jede Sprache. Jede Seltenheit. [[Die lange Ordner-Übersicht|/guides/collecting-binders]] trennt diese Aufgabe vom Set-Ordner, in dem jede Karte der Liste ein Fach hat. Hier ist das Wesen das Fach. Ein zweites Pikachu ist eine Dublette, auch wenn die Zeichnung neu ist. Die neue Zeichnung darf mich freuen. Sie macht aus einem belegten Fach keine zweite Pflicht.",
             "Angefangen habe ich die Gewohnheit mit [[Bisasam|/pokedex/1]]. Die Art-Seite listet die Drucke. Der Ordner braucht einen davon. Das erste eingehüllte Bisasam, das ich schon besaß, habe ich in #001 gesteckt und danach aufgehört, ein besseres #001 zu suchen. Besser ist ein anderes Hobby. Dieses Hobby ist der Abschnitt. Wer #001 offen lässt, weil irgendwo noch ein älteres Bisasam liegen könnte, sammelt Warten. Ich sammle die Reihe.",
+            "Eine Art-Seite listet jeden Druck, und der Pokédex-Ordner braucht weiter nur einen davon. [[Alle Pikachu-Karten|/collections/themes/pikachu]] hält jeden Pikachu-Druck als eigene Checkliste. [[Themen-Binder|/collections/themes]] liegt neben den Generationen, wenn ich den ganzen Lauf eines Gesichts sehen will.",
           ],
         },
         {

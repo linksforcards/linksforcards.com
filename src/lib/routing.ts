@@ -34,7 +34,7 @@ function collectionFromBinders(pathname: string): string | null {
 
 function isContentPath(pathname: string): boolean {
   if (pathname === "/collections" || pathname === "/guides") return true;
-  if (/^\/collections\/(?:generation\/[1-9]|set\/[a-z0-9]+|series\/[a-z0-9-]+)$/.test(pathname)) return true;
+  if (/^\/collections\/(?:generation\/[1-9]|set\/[a-z0-9]+|series\/[a-z0-9-]+|themes(?:\/[a-z0-9-]+)?)$/.test(pathname)) return true;
   if (/^\/pokedex\/[1-9]\d*$/.test(pathname)) return true;
   if (/^\/guides\/[a-z0-9-]+$/.test(pathname)) return true;
   return false;

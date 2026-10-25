@@ -51,6 +51,8 @@ export const ARTICLE_LINKS: Record<ArticleSlug, readonly string[]> = {
     "/collections/generation/1",
     "/collections/set/base1",
     "/pokedex/25",
+    "/collections/themes",
+    "/collections/themes/pikachu",
   ],
   "organize-binder": [
     "/guides/collecting-binders",
@@ -70,6 +72,8 @@ export const ARTICLE_LINKS: Record<ArticleSlug, readonly string[]> = {
     "/guides/collecting-with-a-child",
     "/collections",
     "/pokedex/129",
+    "/collections/themes",
+    "/collections/themes/yuka-morii",
   ],
   "pokedex-binder": [
     "/guides/collecting-binders",
@@ -79,6 +83,8 @@ export const ARTICLE_LINKS: Record<ArticleSlug, readonly string[]> = {
     "/collections",
     "/collections/generation/1",
     "/pokedex/1",
+    "/collections/themes",
+    "/collections/themes/pikachu",
   ],
   "gen-1-checklist": [
     "/guides/collecting-binders",

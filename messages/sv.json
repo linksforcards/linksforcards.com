@@ -40,7 +40,9 @@
     "speciesTitle": "{name} kortlista",
     "speciesDescription": "{name} kortlista. Pokédex {dex}, generation {gen} ({region}). {total} kort i {sets} set.",
     "guidesTitle": "Guider om att samla Pokémon-kort",
-    "guidesDescription": "Hur jag samlar Pokémon-kort i en setpärm och en Pokédex-pärm, med anteckningar om bulk, de 151, fickor och en pärm som lämnar hyllan."
+    "guidesDescription": "Hur jag samlar Pokémon-kort i en setpärm och en Pokédex-pärm, med anteckningar om bulk, de 151, fickor och en pärm som lämnar hyllan.",
+    "themesTitle": "Temapärmar",
+    "themesDescription": "Listor för en Pokémon, en konstnär eller ett slags kort. En fylld stapel är det jag redan har."
   },
   "nav": {
     "primary": "Sidor",
@@ -103,7 +105,9 @@
     "faq3q": "Är det här en officiell Pokémon-sida?",
     "faq3a": "Nej. LinksForCards är mitt inofficiella fanprojekt. Det är inte kopplat till eller godkänt av Nintendo, Creatures, Game Freak eller The Pokémon Company.",
     "faq4q": "Vilka butiker listas här?",
-    "faq4a": "Den här svenska sidan listar butiker i Sverige."
+    "faq4a": "Den här svenska sidan listar butiker i Sverige.",
+    "themeProgress": "Temapärmar",
+    "themeHub": "Alla temapärmar"
   },
   "bindersPage": {
     "kicker": "Listor",
@@ -207,7 +211,9 @@
     "searchPlaceholder": "Namn eller nummer",
     "noPokemon": "Ingen Pokémon matchar.",
     "letters": "Första bokstaven",
-    "guides": "Guider"
+    "guides": "Guider",
+    "themes": "Temapärmar",
+    "themesIntro": "En pärm för en Pokémon, en konstnär eller ett slags kort. Stapeln är det jag redan har."
   },
   "seriesPage": {
     "intro": "{series} har {count} set i den här listan. Varje setsida är kortlistan och checklistan.",
@@ -219,7 +225,8 @@
     "noPokemon": "Den här setlistan har inga Pokémon-kort.",
     "kinds": "Kort i den här listan: {list}.",
     "related": "Fler set i {series}",
-    "gens": "Generationspärmar som de här korten kan fylla"
+    "gens": "Generationspärmar som de här korten kan fylla",
+    "themes": "Temapärmar som de här korten kan fylla"
   },
   "speciesPage": {
     "intro": "{name} är Pokédex {dex} i generation {gen} ({region}). Den här listan har {total} kort i {sets} set. Det tidigaste är {firstSet} ({firstDate}). Det senaste är {latestSet} ({latestDate}).",
@@ -227,7 +234,8 @@
     "none": "Jag har inte noterat ett kort av {name} ännu.",
     "kinds": "I den här listan: {list}.",
     "binder": "Öppna generation {gen}-pärmen vid {dex}",
-    "setsHeading": "Set med {name}"
+    "setsHeading": "Set med {name}",
+    "themesHeading": "Temapärmar med {name}"
   },
   "generationPage": {
     "prints": "{count} tryck",
@@ -242,5 +250,21 @@
     "supportingLabel": "En fråga var",
     "readNext": "Läs vidare",
     "timelineLabel": "Varje serie i listan"
+  },
+  "themesPage": {
+    "kicker": "Temapärmar",
+    "crumb": "Temapärmar",
+    "hubLine": "{total} kort i {sets} set",
+    "intro": "{total} kort i den här listan, över {sets} set. Det tidigaste trycket i listan är från {first}. Det senaste är från {last}.",
+    "have": "Jag har {collected} av dem antecknade.",
+    "disclaimer": "Den här listan täcker de engelska korten i det öppna datat. Reverse holos, stämplar och kort som bara finns på japanska saknas, så ett riktigt master set kan vara längre än listan.",
+    "bulkMostly": "Mest vanliga och ovanliga kort. Perfekt att jaga i bulk.",
+    "bulkMixed": "En blandning av bulk och svårare kort.",
+    "bulkRare": "Tung på sällsynta kort. Ett vanligt kort är undantaget här.",
+    "seriesJump": "Serier i den här pärmen",
+    "relatedThemes": "Besläktade temapärmar",
+    "relatedSpecies": "Arter i den här pärmen",
+    "relatedSets": "Set med flest kort i den här pärmen",
+    "moreSets": "Listan spänner över {count} set."
   }
 }

@@ -29,6 +29,7 @@ export function swedishArticles(): ArticleCopy[] {
           paragraphs: [
             "[[Base|/collections/set/base1]] är exemplet jag fortfarande öppnar när någon frågar hur en setpärm fungerar. Setet kom 9 januari 1999 och den offentliga kortlistan har 102 kort. Sidan i pärmen följer den listan: nummer 1, sedan 2, sedan 3, tränare och energi inräknade. Finns kortet på listan finns det en ficka. Jag lämnar inget hål för att kortet är en common, och jag drar inte fram en holo till första sidan för att den glänser.",
             "Hela ordningen på serier och set finns i [[Pokémon-set i ordning|/guides/sets-in-order]]. Den tidslinjen tar jag fram när en bulklåda blandar årtal. Ett kort från Jungle hör inte hemma i Base-pärmen, även om illustrationen känns som samma år. Setsidan är kortlistan och checklistan på en gång. Jag markerar en rad först när just det kortet sitter i pärmen, inte när jag har sett det i en trave på bordet.",
+            "En tredje pärm följer ett tema, inte ett set och inte en lucka för en enda art. [[Temapärmar|/collections/themes]] samlar varje engelskt tryck av en art, en konstnär eller ett slags kort. [[Alla Pikachu-kort|/collections/themes/pikachu]] är listan jag öppnar när högen är full av det ansiktet.",
           ],
         },
         {
@@ -147,6 +148,7 @@ export function swedishArticles(): ArticleCopy[] {
           paragraphs: [
             "En holo är en trevlig sida. Den är inget system. Systemet är den tomma raden, och tomma rader är mest commons. [[Pärmguiden|/guides/collecting-binders]] säger det i lång form. Här är den korta formen jag använder vid bordet: fyller kortet ett hål är det kortet jag ville ha, även när illustrationen är samma Magikarp jag redan kan utantill.",
             "Jag slutade ursäkta bulk den dagen en generationspärm rörde sig snabbare ur en blandad låda än ur något jag hade lagt undan som speciellt. Speciella kort kan vänta i en sleeve. Checklistan väntar inte på dem. [[Att samla med ett barn|/guides/collecting-with-a-child]] använder samma hög, för ett barn kan hålla en common, välja en ficka och se raden stängas. Det är ett riktigt framsteg, inte en tröstpris.",
+            "Vissa temalistor är nästan bara den här högen. [[Yuka Moriis lerkort|/collections/themes/yuka-morii]] är vanliga kort, och där är bulk guld. [[Temapärmar|/collections/themes]] är platsen där de checklistorna finns.",
           ],
         },
         {
@@ -199,6 +201,7 @@ export function swedishArticles(): ArticleCopy[] {
           paragraphs: [
             "Regeln är liten och den räddar mig. Ett kort. Vilket set som helst. Vilket språk som helst. Vilken sällsynthet som helst. [[Den långa pärmguiden|/guides/collecting-binders]] skiljer det här jobbet från setpärmen, där varje kort på listan har en ficka. Här är varelsen fickan. En andra Pikachu är en dubblett även när illustrationen är ny.",
             "Jag började vanan med [[Bulbasaur|/pokedex/1]]. Artsidan listar trycken. Pärmen behöver ett av dem. Jag lade den första Bulbasaur i sleeve som jag redan ägde i #001 och slutade leta efter en bättre #001. Bättre är en annan hobby. Den här hobbyn är intervallet, från första numret till sista, med en varelse på varje rad.",
+            "En artsida listar varje tryck, och Pokédex-pärmen behöver fortfarande bara ett av dem. [[Alla Pikachu-kort|/collections/themes/pikachu]] håller varje Pikachu-tryck som en egen checklista. [[Temapärmar|/collections/themes]] ligger bredvid generationerna när jag vill se hela raden av ett ansikte.",
           ],
         },
         {

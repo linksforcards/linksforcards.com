@@ -8,6 +8,7 @@ import { ProgressBar } from "@/components/site/progress-bar";
 import { RelatedLinks } from "@/components/site/related-links";
 import { SetBrowser } from "@/components/site/set-browser";
 import { SiteLinks } from "@/components/site/site-links";
+import { themeCopy } from "@/content/theme-copy";
 import { getArticles } from "@/lib/articles";
 import { getMeta, getSetCards, setsBySeries, speciesName, speciesNamesAreTranslated } from "@/lib/catalog";
 import { fill, formatDay, formatInt } from "@/lib/format";
@@ -20,6 +21,7 @@ import { pageMetadata } from "@/lib/seo";
 import { seriesSlug } from "@/lib/series";
 import { absoluteUrl } from "@/lib/site";
 import { loadPublic, speciesInRange } from "@/lib/stats";
+import { getThemes, themeCollected } from "@/lib/themes";
 
 export const revalidate = 3600;
 
@@ -50,7 +52,15 @@ export default async function CollectionsPage({ params }: { params: Promise<{ lo
     { name: m.nav.home, href: localePath(locale, "/") },
     { name: m.nav.collections, href: localePath(locale, "/collections") },
   ];
+  const themes = getThemes().flatMap((theme) => {
+    const copy = themeCopy(locale, theme.slug);
+    return copy ? [{ theme, copy }] : [];
+  });
   const list = itemListNode(localePath(locale, "/collections"), m.meta.collectionsTitle, [
+    ...themes.map(({ theme, copy }) => ({
+      name: copy.h1,
+      url: absoluteUrl(localePath(locale, `/collections/themes/${theme.slug}`)),
+    })),
     ...GENERATIONS.map((generation) => ({
       name: `${fill(m.home.genLink, { gen: generation.id })} · ${m.regions[generation.id - 1]}`,
       url: absoluteUrl(localePath(locale, `/collections/generation/${generation.id}`)),
@@ -108,6 +118,26 @@ export default async function CollectionsPage({ params }: { params: Promise<{ lo
             <li key={generation.id}>
               <a href={localePath(locale, `/collections/generation/${generation.id}`)}>{label}</a>
               <ProgressBar value={collected} max={total} label={`${label}: ${progressLabel}`} />
+              <span className="count">{progressLabel}</span>
+            </li>
+          );
+        })}
+      </ul>
+      <h2>{m.collectionsPage.themes}</h2>
+      <p>
+        {m.collectionsPage.themesIntro} <a href={localePath(locale, "/collections/themes")}>{m.home.themeHub}</a>
+      </p>
+      <ul className="gen-list">
+        {themes.map(({ theme, copy }) => {
+          const collected = themeCollected(theme, snapshot.held);
+          const progressLabel = fill(m.checklist.progress, {
+            collected: formatInt(collected, locale),
+            total: formatInt(theme.total, locale),
+          });
+          return (
+            <li key={theme.slug}>
+              <a href={localePath(locale, `/collections/themes/${theme.slug}`)}>{copy.h1}</a>
+              <ProgressBar value={collected} max={theme.total} label={`${copy.h1}: ${progressLabel}`} />
               <span className="count">{progressLabel}</span>
             </li>
           );

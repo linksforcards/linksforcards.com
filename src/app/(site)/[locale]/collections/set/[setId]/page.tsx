@@ -8,6 +8,7 @@ import { JsonLd } from "@/components/site/json-ld";
 import { ProgressBar } from "@/components/site/progress-bar";
 import { RelatedLinks } from "@/components/site/related-links";
 import { SiteLinks } from "@/components/site/site-links";
+import { themeCopy } from "@/content/theme-copy";
 import { getArticle } from "@/lib/articles";
 import { numbersMatch } from "@/lib/cards";
 import { cardImageSrc, getSet, getSetCards, getSets, speciesName, type CardKind } from "@/lib/catalog";
@@ -20,6 +21,7 @@ import { pageMetadata } from "@/lib/seo";
 import { seriesSlug } from "@/lib/series";
 import { kindSummary, setFacts } from "@/lib/set-facts";
 import { loadPublic, markFor } from "@/lib/stats";
+import { themesForSet } from "@/lib/themes";
 
 export const revalidate = 3600;
 export const dynamicParams = false;
@@ -191,6 +193,18 @@ export default async function SetPage({ params }: { params: Promise<{ locale: st
               href: localePath(locale, `/collections/set/${item.id}`),
               name: item.name,
             }))}
+          />
+        </>
+      ) : null}
+      {themesForSet(set.id).length > 0 ? (
+        <>
+          <h2>{m.setPage.themes}</h2>
+          <RelatedLinks
+            label={m.nav.related}
+            links={themesForSet(set.id).flatMap((theme) => {
+              const copy = themeCopy(locale, theme.slug);
+              return copy ? [{ href: localePath(locale, `/collections/themes/${theme.slug}`), name: copy.h1 }] : [];
+            })}
           />
         </>
       ) : null}

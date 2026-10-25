@@ -6,8 +6,9 @@ import { localePath } from "./routing";
 import { hreflangMap } from "./seo";
 import { seriesSlug } from "./series";
 import { absoluteUrl } from "./site";
+import { getThemes, themeHreflangLocales, themeIndexed } from "./themes";
 
-const PAGE_PATHS = ["/", "/collections", "/guides", "/partners", "/updates", "/donations", "/privacy", "/imprint"];
+const PAGE_PATHS = ["/", "/collections", "/collections/themes", "/guides", "/partners", "/updates", "/donations", "/privacy", "/imprint"];
 
 function catalogLastMod(): string {
   return getMeta().builtAt.slice(0, 10);
@@ -16,7 +17,7 @@ function catalogLastMod(): string {
 export function sitemapIds(): string[] {
   const ids: string[] = [];
   for (const locale of LOCALES) {
-    ids.push(`${locale}-pages`, `${locale}-sets`, `${locale}-guides`);
+    ids.push(`${locale}-pages`, `${locale}-sets`, `${locale}-guides`, `${locale}-themes`);
     if (speciesPageIndexed(locale)) ids.push(`${locale}-species`);
   }
   return ids;
@@ -34,10 +35,15 @@ function pagePaths(): string[] {
   ];
 }
 
-function pathsFor(kind: string): string[] {
+function pathsFor(kind: string, locale: string): string[] {
   if (kind === "pages") return pagePaths();
   if (kind === "sets") return getSets().map((set) => `/collections/set/${set.id}`);
   if (kind === "guides") return GUIDE_SLUGS.map((slug) => `/guides/${slug}`);
+  if (kind === "themes") {
+    return getThemes()
+      .filter((theme) => themeIndexed(theme, locale))
+      .map((theme) => `/collections/themes/${theme.slug}`);
+  }
   if (kind === "species") {
     const paths: string[] = [];
     for (let dex = 1; dex <= SPECIES_TOTAL; dex += 1) paths.push(`/pokedex/${dex}`);
@@ -47,16 +53,23 @@ function pathsFor(kind: string): string[] {
 }
 
 export function sitemapEntries(id: string): SitemapEntry[] | null {
-  const split = id.match(/^([a-z]{2})-(pages|sets|guides|species)$/);
+  const split = id.match(/^([a-z]{2})-(pages|sets|guides|species|themes)$/);
   if (!split) return null;
   const locale = split[1] ?? "";
   const kind = split[2] ?? "";
   if (!isLocale(locale)) return null;
   if (kind === "species" && !speciesPageIndexed(locale)) return null;
   const catalogDate = catalogLastMod();
-  const languagesFor = (path: string) =>
-    kind === "species" ? hreflangMap(path, SPECIES_INDEX_LOCALES) : hreflangMap(path);
-  return pathsFor(kind).map((path) => ({
+  const languagesFor = (path: string) => {
+    if (kind === "species") return hreflangMap(path, SPECIES_INDEX_LOCALES);
+    if (kind === "themes") {
+      const slug = path.split("/").at(-1) ?? "";
+      const theme = getThemes().find((item) => item.slug === slug);
+      return hreflangMap(path, theme ? themeHreflangLocales(theme) : undefined);
+    }
+    return hreflangMap(path);
+  };
+  return pathsFor(kind, locale).map((path) => ({
     url: absoluteUrl(localePath(locale, path)),
     lastModified: kind === "guides" ? GUIDE_UPDATED : catalogDate,
     languages: languagesFor(path),

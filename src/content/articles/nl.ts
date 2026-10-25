@@ -29,6 +29,7 @@ export function dutchArticles(): ArticleCopy[] {
           paragraphs: [
             "[[Base|/collections/set/base1]] is het voorbeeld dat ik nog steeds opensla. De openbare lijst heeft 102 kaarten, verschenen op 9 januari 1999, met de aanduiding base1. De pagina in de binder volgt die lijst: nummer 1, dan 2, dan 3, trainers en energie meegerekend. Staat een kaart op de lijst, dan heeft de binder een vak. Een gat omdat de kaart gewoon is, laat ik niet zitten. Een holo haal ik niet naar voren om de eerste pagina mooier te maken. De mooie pagina is precies de plek waar een ontbrekend nummer zich verstopt.",
             "De volledige volgorde van series en sets staat in [[Pokémonsets op volgorde|/guides/sets-in-order]]. Die tijdlijn gebruik ik als een bulkdoos meer dan één tijdperk mengt. Een kaart uit Jungle hoort niet in de Base-binder, ook al voelt de tekening als hetzelfde jaar. De setpagina is tegelijk kaartenlijst en checklist. Een regel vink ik pas af als de kaart in het vak zit. Een stapel op tafel is een voornemen, geen vermelding.",
+            "Een derde binder volgt een thema, niet een set en niet een vak voor één soort. [[Thematische binders|/collections/themes]] verzamelen elke Engelse druk van een soort, een tekenaar of een soort kaart. [[Alle Pikachu-kaarten|/collections/themes/pikachu]] is de lijst die ik opensla als de stapel vol van dat gezicht zit.",
           ],
         },
         {
@@ -147,6 +148,7 @@ export function dutchArticles(): ArticleCopy[] {
           paragraphs: [
             "Een holo is een mooie pagina. Een systeem is het niet. Het systeem is de lege regel, en lege regels zijn meestal gewone kaarten. [[De bindergids|/guides/collecting-binders]] zegt dat in de lange vorm. Aan tafel geldt de korte vorm: vult de kaart een gat, dan is het de kaart die ik wilde, ook als de tekening dezelfde Magikarp is die ik al uit het hoofd ken. De herhaling stoort me niet. Die herhaling is de voorraad.",
             "Met verontschuldigen voor bulk ben ik gestopt toen een generatiebinder uit een gemengde doos sneller opschoot dan uit alles wat ik als bijzonder apart had gelegd. Bijzondere kaarten mogen in een hoes wachten. De checklist wacht niet op hen. [[Verzamelen met een kind|/guides/collecting-with-a-child]] gebruikt dezelfde stapel. Een kind kan een gewone kaart vasthouden, een vak kiezen en de regel zien sluiten. Daarvoor hoeft er geen zeldzame kaart op tafel te liggen, en ik houd de gewone kaart ook niet achter alsof ze te gewoon is om aan te raken.",
+            "Sommige themalijsten bestaan bijna alleen uit deze stapel. [[Klei-kaarten van Yuka Morii|/collections/themes/yuka-morii]] zijn gewone kaarten, en daar is bulk goud. [[Thematische binders|/collections/themes]] is de plek waar die checklists liggen.",
           ],
         },
         {
@@ -199,6 +201,7 @@ export function dutchArticles(): ArticleCopy[] {
           paragraphs: [
             "De regel is klein, en hij houdt me tegen. Eén kaart. Elke set. Elke taal. Elke zeldzaamheid. [[De lange bindergids|/guides/collecting-binders]] scheidt deze taak van de setbinder, waar elke kaart op de lijst een vak heeft. Hier is het wezen het vak. Een tweede Pikachu is een dubbele, ook als de tekening nieuw is. De nieuwe tekening mag me blij maken. Ze maakt van een gevuld vak geen tweede plicht.",
             "De gewoonte ben ik begonnen met [[Bulbasaur|/pokedex/1]]. De soortpagina noemt de drukken. De binder heeft er één van nodig. De eerste Bulbasaur in een hoes die ik al had, heb ik in #001 gestopt en daarna opgehouden een betere #001 te zoeken. Beter is een andere hobby. Deze hobby is het bereik. Wie #001 open laat omdat er ergens nog een oudere Bulbasaur zou kunnen liggen, verzamelt wachten. Ik verzamel de reeks.",
+            "Een soortpagina noemt elke druk, en de Pokédex-binder heeft nog steeds maar één kaart nodig. [[Alle Pikachu-kaarten|/collections/themes/pikachu]] houdt elke Pikachu-druk als eigen checklist. [[Thematische binders|/collections/themes]] ligt naast de generaties wanneer ik de hele reeks van één gezicht wil zien.",
           ],
         },
         {

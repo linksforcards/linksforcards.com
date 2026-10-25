@@ -23,6 +23,16 @@ describe("locale routing", () => {
   it("serves US pages at the root and redirects /us in one hop", () => {
     expect(resolveLocaleRequest("/")).toEqual({ action: "rewrite", pathname: "/us" });
     expect(resolveLocaleRequest("/collections")).toEqual({ action: "rewrite", pathname: "/us/collections" });
+    expect(resolveLocaleRequest("/collections/themes")).toEqual({ action: "rewrite", pathname: "/us/collections/themes" });
+    expect(resolveLocaleRequest("/collections/themes/pikachu")).toEqual({
+      action: "rewrite",
+      pathname: "/us/collections/themes/pikachu",
+    });
+    expect(resolveLocaleRequest("/us/collections/themes/pikachu")).toEqual({
+      action: "redirect",
+      pathname: "/collections/themes/pikachu",
+    });
+    expect(resolveLocaleRequest("/de/collections/themes")).toEqual({ action: "next", noindex: false });
     expect(resolveLocaleRequest("/guides/bulk-cards")).toEqual({ action: "rewrite", pathname: "/us/guides/bulk-cards" });
     expect(resolveLocaleRequest("/pokedex/25")).toEqual({ action: "rewrite", pathname: "/us/pokedex/25" });
     expect(resolveLocaleRequest("/partners")).toEqual({ action: "rewrite", pathname: "/us/partners" });

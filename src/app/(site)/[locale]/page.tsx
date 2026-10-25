@@ -7,6 +7,7 @@ import { JsonLd } from "@/components/site/json-ld";
 import { ProgressBar } from "@/components/site/progress-bar";
 import { ShopLink } from "@/components/site/shop-link";
 import { SiteLinks } from "@/components/site/site-links";
+import { themeCopy } from "@/content/theme-copy";
 import { getSet } from "@/lib/catalog";
 import { fill, formatInt } from "@/lib/format";
 import { GENERATIONS, SPECIES_TOTAL } from "@/lib/generations";
@@ -18,6 +19,7 @@ import { pageMetadata } from "@/lib/seo";
 import { absoluteUrl, site } from "@/lib/site";
 import { shopsForLocale } from "@/lib/shop-locales";
 import { loadPublic, speciesInRange, type PublicShop } from "@/lib/stats";
+import { getThemes, themeCollected } from "@/lib/themes";
 
 export const revalidate = 60;
 
@@ -135,6 +137,28 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             );
           })}
         </ul>
+        <h3>{m.home.themeProgress}</h3>
+        <ul className="gen-list">
+          {getThemes().flatMap((theme) => {
+            const copy = themeCopy(locale, theme.slug);
+            if (!copy) return [];
+            const collected = themeCollected(theme, snapshot.held);
+            const progressLabel = fill(m.checklist.progress, {
+              collected: formatInt(collected, locale),
+              total: formatInt(theme.total, locale),
+            });
+            return [
+              <li key={theme.slug}>
+                <a href={localePath(locale, `/collections/themes/${theme.slug}`)}>{copy.h1}</a>
+                <ProgressBar value={collected} max={theme.total} label={`${copy.h1}: ${progressLabel}`} />
+                <span className="count">{progressLabel}</span>
+              </li>,
+            ];
+          })}
+        </ul>
+        <p>
+          <a href={localePath(locale, "/collections/themes")}>{m.home.themeHub}</a>
+        </p>
       </section>
       <section>
         <h2>{m.home.thanksTitle}</h2>

@@ -10,7 +10,8 @@
     "build": "next build",
     "start": "next start",
     "test": "vitest run",
-    "catalog": "node scripts/build-catalog.mjs",
+    "catalog": "node scripts/build-catalog.mjs && node scripts/build-themes.mjs",
+    "themes": "node scripts/build-themes.mjs",
     "hash-password": "node scripts/hash-password.mjs"
   },
   "dependencies": {

@@ -29,6 +29,7 @@ export function frenchArticles(): ArticleCopy[] {
           paragraphs: [
             "La [[série de Base|/collections/set/base1]] reste l'exemple que j'ouvre pour expliquer ça. Elle est sortie le 9 janvier 1999, et la liste publique compte 102 cartes. La page du classeur suit cette liste : le numéro 1, puis le 2, puis le 3, Dresseurs et Énergies compris. Si la liste a une carte, le classeur a une poche. Je ne laisse pas un trou parce que la carte est commune, et je ne tire pas une holographique vers l'avant pour faire une jolie page.",
             "L'ordre des blocs et des séries est dans [[les séries de cartes Pokémon dans l'ordre|/guides/sets-in-order]]. Je m'en sers quand une boîte de vrac mélange les époques. Une carte Jungle n'entre pas dans le classeur de Base, même si le dessin a l'air de la même année. La page de la série est la liste. Je coche une ligne seulement quand la carte est vraiment dans la pochette, pas quand je l'ai vue passer dans une pile sur la table.",
+            "Un troisième classeur suit un thème, pas une série et pas une case pour une seule espèce. [[Les classeurs à thème|/collections/themes]] rassemblent chaque tirage anglais d'une espèce, d'un artiste ou d'un type de carte. [[Toutes les cartes Pikachu|/collections/themes/pikachu]] est la liste que j'ouvre quand la pile est pleine de ce visage.",
           ],
         },
         {
@@ -147,6 +148,7 @@ export function frenchArticles(): ArticleCopy[] {
           paragraphs: [
             "Une holographique fait une belle page. Elle ne fait pas un système. Le système, c'est la ligne vide, et les lignes vides sont surtout des communes. [[Le guide des classeurs|/guides/collecting-binders]] le dit dans la version longue. Voici la version courte que j'utilise à table : si la carte ferme un trou, c'est la carte que je voulais, même quand le dessin est le Magicarpe que je reconnais les yeux fermés.",
             "J'ai arrêté de m'excuser pour le vrac le jour où un classeur de génération a avancé plus vite grâce à une boîte mélangée que grâce à tout ce que j'avais mis de côté comme spécial. Les cartes spéciales peuvent attendre dans un protège-cartes. La liste ne les attend pas. [[Collectionner avec un enfant|/guides/collecting-with-a-child]] se sert de la même pile, parce qu'un enfant peut tenir une commune, choisir une pochette, et voir la ligne se fermer. Rien dans ce geste ne demande une carte rare.",
+            "Certaines listes à thème sont presque entièrement ce tas. [[Les cartes en argile de Yuka Morii|/collections/themes/yuka-morii]] sont des communes, et là le vrac est de l'or. [[Les classeurs à thème|/collections/themes]] est l'endroit où ces listes vivent.",
           ],
         },
         {
@@ -199,6 +201,7 @@ export function frenchArticles(): ArticleCopy[] {
           paragraphs: [
             "La règle est petite et elle me sauve. Une carte. N'importe quelle série. N'importe quelle langue. N'importe quelle rareté. [[Le guide long des classeurs|/guides/collecting-binders]] sépare ce travail du classeur de série, où chaque carte de la liste a une poche. Ici, la créature est la poche. Un second Pikachu est un double, même quand le dessin est nouveau. Le nouveau dessin peut être superbe. Il ne crée pas une seconde ligne.",
             "J'ai pris l'habitude avec [[Bulbizarre|/pokedex/1]]. La page de l'espèce liste les tirages. Le classeur en a besoin d'un. J'ai mis le premier Bulbizarre déjà sous protège-cartes que je possédais dans le 001, et j'ai arrêté de chercher un meilleur 001. Le meilleur est un autre passe-temps. Celui-ci est la tranche, du début jusqu'au bout, sans négocier chaque poche.",
+            "Une page d'espèce liste chaque tirage, et le classeur Pokédex n'a toujours besoin que d'une seule carte. [[Toutes les cartes Pikachu|/collections/themes/pikachu]] garde chaque tirage de Pikachu comme sa propre liste. [[Les classeurs à thème|/collections/themes]] reste à côté des pages de génération quand je veux voir toute la série d'un visage.",
           ],
         },
         {

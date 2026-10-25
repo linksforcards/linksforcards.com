@@ -173,6 +173,7 @@ describe("sitemap xml", () => {
     expect(index).toContain(absoluteUrl("/sitemap/uk-sets.xml"));
     expect(index).toContain(absoluteUrl("/sitemap/de-guides.xml"));
     expect(index).toContain(absoluteUrl("/sitemap/uk-species.xml"));
+    expect(index).toContain(absoluteUrl("/sitemap/nl-themes.xml"));
     expect(index).not.toContain(absoluteUrl("/sitemap/nl-species.xml"));
     const us = sitemapEntries("us-pages");
     expect(us?.[0]?.url).toBe(absoluteUrl("/"));
@@ -199,6 +200,18 @@ describe("sitemap xml", () => {
     expect(species?.[24]?.languages["en-US"]).toBe(absoluteUrl("/pokedex/25"));
     expect(species?.[24]?.languages["x-default"]).toBe(absoluteUrl("/pokedex/25"));
     expect(sitemapEntries("nl-species")).toBeNull();
+    const themes = sitemapEntries("us-themes");
+    expect(themes?.some((entry) => entry.url === absoluteUrl("/collections/themes/pikachu"))).toBe(true);
+    expect(themes?.find((entry) => entry.url.endsWith("/collections/themes/pikachu"))?.languages.nl).toBeUndefined();
+    expect(themes?.find((entry) => entry.url.endsWith("/collections/themes/pikachu"))?.languages["x-default"]).toBe(
+      absoluteUrl("/collections/themes/pikachu"),
+    );
+    const dutchThemes = sitemapEntries("nl-themes");
+    expect(dutchThemes?.some((entry) => entry.url.endsWith("/collections/themes/pikachu"))).toBe(false);
+    expect(dutchThemes?.some((entry) => entry.url.endsWith("/nl/collections/themes/yuka-morii"))).toBe(true);
+    expect(dutchThemes?.find((entry) => entry.url.endsWith("/collections/themes/yuka-morii"))?.languages.pl).toBe(
+      absoluteUrl("/pl/collections/themes/yuka-morii"),
+    );
     expect(sitemapEntries("nope")).toBeNull();
   });
 });

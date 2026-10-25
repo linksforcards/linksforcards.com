@@ -7,6 +7,7 @@ import { DoodleCluster } from "@/components/site/doodles";
 import { JsonLd } from "@/components/site/json-ld";
 import { RelatedLinks } from "@/components/site/related-links";
 import { SiteLinks } from "@/components/site/site-links";
+import { themeCopy } from "@/content/theme-copy";
 import { getArticle } from "@/lib/articles";
 import { numbersMatch } from "@/lib/cards";
 import { cardImageSrc, getSet, speciesName, type CardKind } from "@/lib/catalog";
@@ -22,6 +23,7 @@ import { kindSummary } from "@/lib/set-facts";
 import { speciesByDex } from "@/lib/species-index";
 import { absoluteUrl } from "@/lib/site";
 import { loadPublic } from "@/lib/stats";
+import { themesForDex } from "@/lib/themes";
 
 export const revalidate = 3600;
 export const dynamicParams = false;
@@ -157,6 +159,18 @@ export default async function SpeciesPage({ params }: { params: Promise<{ locale
         </a>
       </p>
       <p>{m.bindersPage.anyLanguage}</p>
+      {themesForDex(dex).length > 0 ? (
+        <>
+          <h2>{fill(m.speciesPage.themesHeading, { name })}</h2>
+          <RelatedLinks
+            label={m.nav.related}
+            links={themesForDex(dex).flatMap((theme) => {
+              const copy = themeCopy(locale, theme.slug);
+              return copy ? [{ href: localePath(locale, `/collections/themes/${theme.slug}`), name: copy.h1 }] : [];
+            })}
+          />
+        </>
+      ) : null}
       <h2>{fill(m.speciesPage.setsHeading, { name })}</h2>
       <RelatedLinks label={m.nav.related} links={setLinks} />
       <Checklist rows={rows} labels={m.checklist} />

@@ -40,7 +40,9 @@
     "speciesTitle": "{name} cards list",
     "speciesDescription": "{name} cards list. Pokédex {dex}, generation {gen} ({region}). {total} printings across {sets} sets.",
     "guidesTitle": "Guides to collecting Pokémon cards",
-    "guidesDescription": "How I collect Pokémon cards in a set binder and a Pokédex binder, with notes on bulk, the 151, sleeves, and a binder that leaves."
+    "guidesDescription": "How I collect Pokémon cards in a set binder and a Pokédex binder, with notes on bulk, the 151, sleeves, and a binder that leaves.",
+    "themesTitle": "Themed binders",
+    "themesDescription": "Checklists that follow a Pokémon, an artist, or a kind of card. A filled bar is what I already have."
   },
   "nav": {
     "primary": "Pages",
@@ -103,7 +105,9 @@
     "faq3q": "Is this an official Pokémon site?",
     "faq3a": "No. LinksForCards is my unofficial fan project. It is not affiliated with or endorsed by Nintendo, Creatures, Game Freak, or The Pokémon Company.",
     "faq4q": "Which shops are listed here?",
-    "faq4a": "This page lists shops in the United Kingdom and Ireland. The US English page lists shops in the United States."
+    "faq4a": "This page lists shops in the United Kingdom and Ireland. The US English page lists shops in the United States.",
+    "themeProgress": "Themed binders",
+    "themeHub": "All themed binders"
   },
   "bindersPage": {
     "kicker": "Checklists",
@@ -207,7 +211,9 @@
     "searchPlaceholder": "Name or number",
     "noPokemon": "No Pokémon matches.",
     "letters": "First letter",
-    "guides": "Guides"
+    "guides": "Guides",
+    "themes": "Themed binders",
+    "themesIntro": "A binder for one Pokémon, one artist, or one kind of card, organised as its own checklist. The bar is what I already have."
   },
   "seriesPage": {
     "intro": "{series} has {count} sets in this list. Each set page is the card list and the checklist.",
@@ -219,7 +225,8 @@
     "noPokemon": "This set list has no Pokémon cards.",
     "kinds": "Cards in this list: {list}.",
     "related": "More sets in {series}",
-    "gens": "Generation binders these cards can fill"
+    "gens": "Generation binders these cards can fill",
+    "themes": "Themed binders these cards can fill"
   },
   "speciesPage": {
     "intro": "{name} is Pokédex {dex} in generation {gen} ({region}). This list has {total} printings across {sets} sets. The earliest in the list is {firstSet} ({firstDate}). The latest is {latestSet} ({latestDate}).",
@@ -227,7 +234,8 @@
     "none": "I have not logged a printing of {name} yet.",
     "kinds": "In this list: {list}.",
     "binder": "Open the Generation {gen} binder at {dex}",
-    "setsHeading": "Sets with {name}"
+    "setsHeading": "Sets with {name}",
+    "themesHeading": "Themed binders with {name}"
   },
   "generationPage": {
     "prints": "{count} printings",
@@ -242,5 +250,21 @@
     "supportingLabel": "One question each",
     "readNext": "Read next",
     "timelineLabel": "Every series in the list"
+  },
+  "themesPage": {
+    "kicker": "Themed binders",
+    "crumb": "Themed binders",
+    "hubLine": "{total} cards across {sets} sets",
+    "intro": "{total} cards in this checklist, across {sets} sets. The earliest print in the list is {first}. The latest is {last}.",
+    "have": "I have {collected} of them logged.",
+    "disclaimer": "This checklist is the English cards in the open dataset. Reverse holos, stamps, and Japanese-only cards are not in that dataset, so a real master set can be longer than this list.",
+    "bulkMostly": "Mostly commons and uncommons. Perfect bulk hunting.",
+    "bulkMixed": "A mix of bulk and harder cards.",
+    "bulkRare": "Rare-heavy. A common is the exception in this list.",
+    "seriesJump": "Series in this binder",
+    "relatedThemes": "Related themed binders",
+    "relatedSpecies": "Species in this binder",
+    "relatedSets": "Sets with the most cards in this binder",
+    "moreSets": "The list spans {count} sets."
   }
 }

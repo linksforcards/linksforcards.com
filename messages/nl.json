@@ -40,7 +40,9 @@
     "speciesTitle": "{name} kaartenlijst",
     "speciesDescription": "{name} kaartenlijst. Pokédex {dex}, generatie {gen} ({region}). {total} kaarten in {sets} sets.",
     "guidesTitle": "Gidsen voor Pokémon-kaarten in een binder",
-    "guidesDescription": "Hoe ik Pokémon-kaarten verzamel in een setbinder en een Pokédex-binder, met notities over bulk, de 151, hoezen en een binder die vertrekt."
+    "guidesDescription": "Hoe ik Pokémon-kaarten verzamel in een setbinder en een Pokédex-binder, met notities over bulk, de 151, hoezen en een binder die vertrekt.",
+    "themesTitle": "Thematische binders",
+    "themesDescription": "Lijsten voor een Pokémon, een tekenaar of een soort kaart. Een gevulde balk is wat ik al heb."
   },
   "nav": {
     "primary": "Pagina's",
@@ -103,7 +105,9 @@
     "faq3q": "Is dit een officiële Pokémon-site?",
     "faq3a": "Nee. LinksForCards is mijn onofficiële fanproject. Het is niet gelieerd aan of ondersteund door Nintendo, Creatures, Game Freak of The Pokémon Company.",
     "faq4q": "Welke winkels staan hier?",
-    "faq4a": "Deze Nederlandse pagina toont winkels uit Nederland en België."
+    "faq4a": "Deze Nederlandse pagina toont winkels uit Nederland en België.",
+    "themeProgress": "Thematische binders",
+    "themeHub": "Alle thematische binders"
   },
   "bindersPage": {
     "kicker": "Lijsten",
@@ -207,7 +211,9 @@
     "searchPlaceholder": "Naam of nummer",
     "noPokemon": "Geen Pokémon gevonden.",
     "letters": "Eerste letter",
-    "guides": "Gidsen"
+    "guides": "Gidsen",
+    "themes": "Thematische binders",
+    "themesIntro": "Een binder voor een Pokémon, een tekenaar of een soort kaart. De balk is wat ik al heb."
   },
   "seriesPage": {
     "intro": "{series} heeft {count} sets in deze lijst. Elke setpagina is de kaartenlijst en de checklist.",
@@ -219,7 +225,8 @@
     "noPokemon": "Deze setlijst heeft geen Pokémon-kaarten.",
     "kinds": "Kaarten in deze lijst: {list}.",
     "related": "Meer sets in {series}",
-    "gens": "Generatiebinders die deze kaarten kunnen vullen"
+    "gens": "Generatiebinders die deze kaarten kunnen vullen",
+    "themes": "Thematische binders die deze kaarten kunnen vullen"
   },
   "speciesPage": {
     "intro": "{name} is Pokédex {dex} in generatie {gen} ({region}). Deze lijst heeft {total} kaarten in {sets} sets. De vroegste is {firstSet} ({firstDate}). De nieuwste is {latestSet} ({latestDate}).",
@@ -227,7 +234,8 @@
     "none": "Ik heb nog geen kaart van {name} genoteerd.",
     "kinds": "In deze lijst: {list}.",
     "binder": "Open de generatie {gen}-binder bij {dex}",
-    "setsHeading": "Sets met {name}"
+    "setsHeading": "Sets met {name}",
+    "themesHeading": "Thematische binders met {name}"
   },
   "generationPage": {
     "prints": "{count} drukken",
@@ -242,5 +250,21 @@
     "supportingLabel": "Elk één vraag",
     "readNext": "Lees verder",
     "timelineLabel": "Elke serie in de lijst"
+  },
+  "themesPage": {
+    "kicker": "Thematische binders",
+    "crumb": "Thematische binders",
+    "hubLine": "{total} kaarten in {sets} sets",
+    "intro": "{total} kaarten in deze lijst, over {sets} sets. De vroegste druk in de lijst is van {first}. De nieuwste is van {last}.",
+    "have": "Ik heb er {collected} genoteerd.",
+    "disclaimer": "Deze lijst dekt de Engelse kaarten in de open dataset. Reverse holo's, stempels en kaarten die alleen in het Japans bestaan, staan er niet in. Een echte master set kan langer zijn dan deze lijst.",
+    "bulkMostly": "Vooral gewone en iets zeldzamere kaarten. Precies goed om in de bulk te zoeken.",
+    "bulkMixed": "Een mix van bulk en moeilijkere kaarten.",
+    "bulkRare": "Vol zeldzame kaarten. Een gewone kaart is hier de uitzondering.",
+    "seriesJump": "Series in deze binder",
+    "relatedThemes": "Verwante thematische binders",
+    "relatedSpecies": "Soorten in deze binder",
+    "relatedSets": "Sets met de meeste kaarten in deze binder",
+    "moreSets": "De lijst beslaat {count} sets."
   }
 }

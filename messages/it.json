@@ -40,7 +40,9 @@
     "speciesTitle": "Lista carte {name}",
     "speciesDescription": "Lista carte {name}. Pokédex {dex}, generazione {gen} ({region}). {total} carte in {sets} set.",
     "guidesTitle": "Guide per collezionare le carte Pokémon",
-    "guidesDescription": "Come colleziono le carte Pokémon in un raccoglitore di set e un raccoglitore Pokédex, con note su bulk, i 151, le bustine e un raccoglitore che parte."
+    "guidesDescription": "Come colleziono le carte Pokémon in un raccoglitore di set e un raccoglitore Pokédex, con note su bulk, i 151, le bustine e un raccoglitore che parte.",
+    "themesTitle": "Raccoglitori a tema",
+    "themesDescription": "Liste per un Pokémon, un artista o un tipo di carta. Una barra piena è quello che ho già."
   },
   "nav": {
     "primary": "Pagine",
@@ -103,7 +105,9 @@
     "faq3q": "È un sito ufficiale Pokémon?",
     "faq3a": "No. LinksForCards è il mio progetto da fan, non ufficiale. Non è affiliato né approvato da Nintendo, Creatures, Game Freak o The Pokémon Company.",
     "faq4q": "Quali negozi compaiono qui?",
-    "faq4a": "Questa pagina in italiano elenca i negozi d'Italia."
+    "faq4a": "Questa pagina in italiano elenca i negozi d'Italia.",
+    "themeProgress": "Raccoglitori a tema",
+    "themeHub": "Tutti i raccoglitori a tema"
   },
   "bindersPage": {
     "kicker": "Liste",
@@ -207,7 +211,9 @@
     "searchPlaceholder": "Nome o numero",
     "noPokemon": "Nessun Pokémon corrisponde.",
     "letters": "Prima lettera",
-    "guides": "Guide"
+    "guides": "Guide",
+    "themes": "Raccoglitori a tema",
+    "themesIntro": "Un raccoglitore per un Pokémon, un artista o un tipo di carta. La barra è quello che ho già."
   },
   "seriesPage": {
     "intro": "{series} ha {count} set in questa lista. Ogni pagina di set è la lista carte e la checklist.",
@@ -219,7 +225,8 @@
     "noPokemon": "Questa lista di set non ha carte Pokémon.",
     "kinds": "Carte in questa lista: {list}.",
     "related": "Altri set di {series}",
-    "gens": "Raccoglitori di generazione che queste carte possono riempire"
+    "gens": "Raccoglitori di generazione che queste carte possono riempire",
+    "themes": "Raccoglitori a tema che queste carte possono riempire"
   },
   "speciesPage": {
     "intro": "{name} è il Pokédex {dex} della generazione {gen} ({region}). Questa lista ha {total} carte in {sets} set. La più vecchia è {firstSet} ({firstDate}). La più recente è {latestSet} ({latestDate}).",
@@ -227,7 +234,8 @@
     "none": "Non ho ancora segnato una carta di {name}.",
     "kinds": "In questa lista: {list}.",
     "binder": "Apri il raccoglitore generazione {gen} a {dex}",
-    "setsHeading": "Set con {name}"
+    "setsHeading": "Set con {name}",
+    "themesHeading": "Raccoglitori a tema con {name}"
   },
   "generationPage": {
     "prints": "{count} carte",
@@ -242,5 +250,21 @@
     "supportingLabel": "Una domanda ciascuna",
     "readNext": "Continua a leggere",
     "timelineLabel": "Ogni serie dell'elenco"
+  },
+  "themesPage": {
+    "kicker": "Raccoglitori a tema",
+    "crumb": "Raccoglitori a tema",
+    "hubLine": "{total} carte in {sets} set",
+    "intro": "{total} carte in questa lista, in {sets} set. La stampa più vecchia della lista è del {first}. La più recente è del {last}.",
+    "have": "Ne ho segnate {collected}.",
+    "disclaimer": "Questa lista copre le carte inglesi del dataset aperto. I reverse, i timbri e le carte solo giapponesi non ci sono, quindi un vero master set può essere più lungo.",
+    "bulkMostly": "Soprattutto comuni e non comuni. Perfetto per cercare nel bulk.",
+    "bulkMixed": "Un misto di bulk e carte più difficili.",
+    "bulkRare": "Piena di rare. Una comune è l'eccezione in questa lista.",
+    "seriesJump": "Serie in questo raccoglitore",
+    "relatedThemes": "Altri raccoglitori a tema",
+    "relatedSpecies": "Specie in questo raccoglitore",
+    "relatedSets": "Set con più carte in questo raccoglitore",
+    "moreSets": "La lista copre {count} set."
   }
 }

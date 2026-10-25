@@ -74,6 +74,7 @@ const us: ArticleCopy[] = [
         paragraphs: [
           "The [[Base set|/collections/set/base1]] is the example I still open when I explain this. It came out on 9 January 1999 and the public list has 102 cards. The binder page follows that list: number 1, then 2, then 3, including the trainers and the energy. If the list has a card, the binder has a slot. I do not leave a hole because the card is a common, and I do not pull a holo to the front.",
           "The full order of series and sets is in [[Pokémon card sets in order|/guides/sets-in-order]]. I use that timeline when a bulk box mixes eras. A Jungle card does not belong in the Base binder, even when the art feels like the same year. The set page is the card list and the checklist. I mark a line only when that card is in the binder.",
+          "A third binder follows a theme instead of one set or one species slot. [[Themed binders|/collections/themes]] collect every English printing of a creature, an artist, or a kind of card. [[All Pikachu cards|/collections/themes/pikachu]] is the list I open when the pile is full of that face.",
         ],
       },
       {
@@ -192,6 +193,7 @@ const us: ArticleCopy[] = [
         paragraphs: [
           "A holo is a nice page. It is not a system. The system is the empty line, and empty lines are mostly commons. [[The binder guide|/guides/collecting-binders]] says it in the long form. Here is the short form I use at the table: if the card fills a hole, it is the card I wanted, even when the art is the same Magikarp I already know by heart.",
           "I stopped apologizing for bulk when I watched a generation binder move faster from a mixed box than from anything I had set aside as special. Special cards can wait in a sleeve. The checklist does not wait on them. [[Collecting with a child|/guides/collecting-with-a-child]] uses the same pile, because a child can hold a common, choose a pocket, and see the line close.",
+          "Some themed lists are almost entirely this pile. [[Yuka Morii clay cards|/collections/themes/yuka-morii]] are commons and uncommons I can hunt in bulk, and bulk is gold there. [[Themed binders|/collections/themes]] is where those checklists live.",
         ],
       },
       {
@@ -244,6 +246,7 @@ const us: ArticleCopy[] = [
         paragraphs: [
           "The rule is small and it saves me. One card. Any set. Any language. Any rarity. [[The long binder guide|/guides/collecting-binders]] separates this job from the set binder, where every card in the list has a slot. Here the creature is the slot. A second Pikachu is a duplicate even when the art is new.",
           "I started the habit with [[Bulbasaur|/pokedex/1]]. The species page lists the printings. The binder needs one of them. I put the first sleeved Bulbasaur I already owned into #001 and I stopped looking for a better #001. Better is a different hobby. This hobby is the range.",
+          "A species page lists every printing, and the Pokédex binder still needs only one of them. [[All Pikachu cards|/collections/themes/pikachu]] keeps every Pikachu printing as its own checklist. [[Themed binders|/collections/themes]] sits beside the generation pages when I want the full run of one face.",
         ],
       },
       {

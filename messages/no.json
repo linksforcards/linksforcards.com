@@ -40,7 +40,9 @@
     "speciesTitle": "{name} kortliste",
     "speciesDescription": "{name} kortliste. Pokédex {dex}, generasjon {gen} ({region}). {total} kort i {sets} sett.",
     "guidesTitle": "Guider om å samle Pokémon-kort",
-    "guidesDescription": "Hvordan jeg samler Pokémon-kort i en settperm og en Pokédex-perm, med notater om bulk, de 151, lommer og en perm som forlater hylla."
+    "guidesDescription": "Hvordan jeg samler Pokémon-kort i en settperm og en Pokédex-perm, med notater om bulk, de 151, lommer og en perm som forlater hylla.",
+    "themesTitle": "Temapermer",
+    "themesDescription": "Lister for en Pokémon, en kunstner eller en type kort. En fylt stolpe er det jeg allerede har."
   },
   "nav": {
     "primary": "Sider",
@@ -103,7 +105,9 @@
     "faq3q": "Er dette en offisiell Pokémon-side?",
     "faq3a": "Nei. LinksForCards er mitt uoffisielle fanprosjekt. Det er ikke tilknyttet eller godkjent av Nintendo, Creatures, Game Freak eller The Pokémon Company.",
     "faq4q": "Hvilke butikker står her?",
-    "faq4a": "Denne norske siden viser butikker i Norge."
+    "faq4a": "Denne norske siden viser butikker i Norge.",
+    "themeProgress": "Temapermer",
+    "themeHub": "Alle temapermer"
   },
   "bindersPage": {
     "kicker": "Lister",
@@ -207,7 +211,9 @@
     "searchPlaceholder": "Navn eller nummer",
     "noPokemon": "Ingen Pokémon treffer.",
     "letters": "Første bokstav",
-    "guides": "Guider"
+    "guides": "Guider",
+    "themes": "Temapermer",
+    "themesIntro": "En perm for en Pokémon, en kunstner eller en type kort. Stolpen er det jeg allerede har."
   },
   "seriesPage": {
     "intro": "{series} har {count} sett i denne listen. Hver settside er kortlisten og sjekklisten.",
@@ -219,7 +225,8 @@
     "noPokemon": "Denne settlisten har ingen Pokémon-kort.",
     "kinds": "Kort i denne listen: {list}.",
     "related": "Flere sett i {series}",
-    "gens": "Generasjonspermer disse kortene kan fylle"
+    "gens": "Generasjonspermer disse kortene kan fylle",
+    "themes": "Temapermer disse kortene kan fylle"
   },
   "speciesPage": {
     "intro": "{name} er Pokédex {dex} i generasjon {gen} ({region}). Denne listen har {total} kort i {sets} sett. Det tidligste er {firstSet} ({firstDate}). Det nyeste er {latestSet} ({latestDate}).",
@@ -227,7 +234,8 @@
     "none": "Jeg har ikke notert et kort av {name} ennå.",
     "kinds": "I denne listen: {list}.",
     "binder": "Åpne generasjon {gen}-permen ved {dex}",
-    "setsHeading": "Sett med {name}"
+    "setsHeading": "Sett med {name}",
+    "themesHeading": "Temapermer med {name}"
   },
   "generationPage": {
     "prints": "{count} trykk",
@@ -242,5 +250,21 @@
     "supportingLabel": "Ett spørsmål hver",
     "readNext": "Les videre",
     "timelineLabel": "Hver serie i listen"
+  },
+  "themesPage": {
+    "kicker": "Temapermer",
+    "crumb": "Temapermer",
+    "hubLine": "{total} kort i {sets} sett",
+    "intro": "{total} kort i denne listen, over {sets} sett. Det tidligste trykket i listen er fra {first}. Det nyeste er fra {last}.",
+    "have": "Jeg har notert {collected} av dem.",
+    "disclaimer": "Denne listen dekker de engelske kortene i det åpne datasettet. Reverse holos, stempler og kort som bare finnes på japansk, er ikke med, så et ekte master set kan være lengre enn listen.",
+    "bulkMostly": "Mest vanlige og uvanlige kort. Perfekt å jakte i bulk.",
+    "bulkMixed": "En blanding av bulk og vanskeligere kort.",
+    "bulkRare": "Tung på sjeldne kort. Et vanlig kort er unntaket her.",
+    "seriesJump": "Serier i denne permen",
+    "relatedThemes": "Beslektede temapermer",
+    "relatedSpecies": "Arter i denne permen",
+    "relatedSets": "Sett med flest kort i denne permen",
+    "moreSets": "Listen spenner over {count} sett."
   }
 }
