@@ -107,7 +107,14 @@
     "faq4q": "¿Qué tiendas aparecen aquí?",
     "faq4a": "Esta página en español lista tiendas de España.",
     "themeProgress": "Carpetas temáticas",
-    "themeHub": "Todas las carpetas temáticas"
+    "themeHub": "Todas las carpetas temáticas",
+    "cupTitle": "Copa de países",
+    "cupRules": "Un punto por cada carta que envía una tienda, y el bulk cuenta. Una carpeta en el paquete suma 1.000 puntos. El país es el de la tienda.",
+    "cupEmpty": "¿Qué país será el primero en el tablero?",
+    "cupError": "El tablero no se ha cargado. Prefiero esta nota a un número inventado.",
+    "cupPoints": "puntos",
+    "cupCards": "cartas",
+    "cupBinders": "carpetas"
   },
   "bindersPage": {
     "kicker": "Listas",

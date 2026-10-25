@@ -107,7 +107,14 @@
     "faq4q": "Quali negozi compaiono qui?",
     "faq4a": "Questa pagina in italiano elenca i negozi d'Italia.",
     "themeProgress": "Raccoglitori a tema",
-    "themeHub": "Tutti i raccoglitori a tema"
+    "themeHub": "Tutti i raccoglitori a tema",
+    "cupTitle": "Coppa dei paesi",
+    "cupRules": "Un punto per ogni carta che un negozio manda, e il bulk conta. Un raccoglitore nel pacco vale 1.000 punti in più. Il paese è quello del negozio.",
+    "cupEmpty": "Quale paese sarà il primo in classifica?",
+    "cupError": "La classifica non si è caricata. Meglio questa nota di un punteggio inventato.",
+    "cupPoints": "punti",
+    "cupCards": "carte",
+    "cupBinders": "raccoglitori"
   },
   "bindersPage": {
     "kicker": "Liste",

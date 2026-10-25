@@ -107,7 +107,14 @@
     "faq4q": "Which shops are listed here?",
     "faq4a": "This page lists shops in the United States. The UK English page lists shops in the United Kingdom and Ireland.",
     "themeProgress": "Themed binders",
-    "themeHub": "All themed binders"
+    "themeHub": "All themed binders",
+    "cupTitle": "Country Cup",
+    "cupRules": "One point for each card a shop sends, and bulk counts. A binder in the parcel adds 1,000 points. The country is the shop's country.",
+    "cupEmpty": "Which country will be first on the board?",
+    "cupError": "The board did not load. I would rather show this note than invent a score.",
+    "cupPoints": "points",
+    "cupCards": "cards",
+    "cupBinders": "binders"
   },
   "bindersPage": {
     "kicker": "Checklists",

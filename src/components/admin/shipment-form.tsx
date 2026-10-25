@@ -72,6 +72,13 @@ export function ShipmentForm({ shops, groups }: { shops: Shop[]; groups: Group[]
       </label>
       <p className="muted">One number per line. A quantity looks like 4 x3. A range looks like 12-20. Lines starting with # are skipped.</p>
       <label>
+        Binders included
+        <input name="binders_included" type="number" min={0} max={99} step={1} defaultValue={0} inputMode="numeric" />
+      </label>
+      <p className="muted">
+        How many binders were in the parcel. Leave 0 if it was cards only. The country is the shop&apos;s country, and the card count is these lines, bulk included. You do not enter either again.
+      </p>
+      <label>
         Notes
         <textarea name="notes" />
       </label>

@@ -26,5 +26,6 @@ export function adminFlash(query: Record<string, string | string[] | undefined>)
   if (problem === "empty") return "A note needs a title and some text.";
   if (problem === "binder") return "That binder could not be updated.";
   if (problem === "recipient") return "A handover needs the recipient.";
+  if (problem === "binders") return "Binders included needs a whole number from 0 to 99.";
   return null;
 }

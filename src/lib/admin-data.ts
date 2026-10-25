@@ -318,17 +318,19 @@ export async function listShipments(db: Sql) {
     received_on: string;
     notes: string;
     is_demo: unknown;
+    binders_included: unknown;
     shop_name: string;
     country: string;
     lines: unknown;
     copies: unknown;
   }>(
-    `SELECT s.id, s.received_on, s.notes, s.is_demo, s.created_at, sh.name AS shop_name, sh.country,
+    `SELECT s.id, s.received_on, s.notes, s.is_demo, s.binders_included, s.created_at,
+            sh.name AS shop_name, sh.country,
             COUNT(sc.id) AS lines, COALESCE(SUM(sc.quantity), 0) AS copies
      FROM shipments s
      JOIN shops sh ON sh.id = s.shop_id
      LEFT JOIN shipment_cards sc ON sc.shipment_id = s.id
-     GROUP BY s.id, s.received_on, s.notes, s.is_demo, s.created_at, sh.name, sh.country
+     GROUP BY s.id, sh.name, sh.country
      ORDER BY s.received_on DESC, s.created_at DESC`,
   );
 }

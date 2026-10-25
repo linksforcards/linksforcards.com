@@ -107,7 +107,14 @@
     "faq4q": "Welche Läden stehen hier?",
     "faq4a": "Auf dieser deutschen Seite stehen Läden aus Deutschland, Österreich und der Schweiz.",
     "themeProgress": "Themen-Binder",
-    "themeHub": "Alle Themen-Binder"
+    "themeHub": "Alle Themen-Binder",
+    "cupTitle": "Länderpokal",
+    "cupRules": "Ein Punkt für jede Karte, die ein Laden schickt, und lose Karten zählen mit. Ein Binder im Paket gibt 1.000 Punkte dazu. Es zählt das Land des Ladens.",
+    "cupEmpty": "Welches Land steht zuerst auf der Tafel?",
+    "cupError": "Die Tafel hat sich nicht geladen. Lieber dieser Hinweis als eine erfundene Zahl.",
+    "cupPoints": "Punkte",
+    "cupCards": "Karten",
+    "cupBinders": "Binder"
   },
   "bindersPage": {
     "kicker": "Checklisten",

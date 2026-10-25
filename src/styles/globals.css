@@ -294,6 +294,58 @@ main { padding: 1.1rem 0 2.4rem; }
 }
 .badge.on { fill: var(--butter); }
 
+.cup {
+  background: var(--sheet);
+  border: 3px solid var(--ink);
+  border-radius: 22px;
+  box-shadow: 5px 5px 0 var(--butter);
+  padding: 0.35rem 1.15rem 1.1rem;
+  margin: 1.1rem 0;
+  transform: rotate(-0.35deg);
+}
+.cup-list { list-style: none; margin: 0.4rem 0 0; padding: 0; }
+.cup-list li {
+  display: grid;
+  grid-template-columns: auto auto minmax(0, 1fr) auto;
+  grid-template-areas: "rank flag name points" "rank flag meta points";
+  gap: 0.1rem 0.75rem;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 2px solid var(--line);
+}
+.cup-list li:last-child { border-bottom: 0; }
+.cup-rank {
+  grid-area: rank;
+  display: inline-grid;
+  place-items: center;
+  min-width: 1.9rem;
+  height: 1.9rem;
+  padding: 0 0.35rem;
+  border: 3px solid var(--ink);
+  border-radius: 999px;
+  background: var(--sky);
+  font-family: var(--font-display), Quicksand, sans-serif;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.cup-list li:nth-child(1) .cup-rank { background: var(--butter); }
+.cup-list li:nth-child(2) .cup-rank { background: var(--blush); }
+.cup-list li:nth-child(3) .cup-rank { background: var(--leaf); }
+.cup-flag { grid-area: flag; font-size: 1.6rem; line-height: 1; min-width: 1.6rem; }
+.cup-name { grid-area: name; font-weight: 800; }
+.cup-points { grid-area: points; text-align: right; }
+.cup-points-value {
+  display: block;
+  font-family: var(--font-display), Quicksand, sans-serif;
+  font-weight: 700;
+  font-size: 1.45rem;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+}
+.cup-points-label, .cup-meta { color: var(--muted); font-size: 0.86rem; font-weight: 700; }
+.cup-meta { grid-area: meta; display: flex; flex-wrap: wrap; gap: 0.35rem 0.8rem; }
+.cup-empty { font-weight: 800; }
+
 .thanks li {
   padding: 0.85rem 1rem;
   margin: 0.75rem 0;
@@ -496,6 +548,7 @@ textarea { min-height: 8rem; resize: vertical; }
 .country-filter button { width: auto; }
 .checks { display: flex; gap: 0.45rem; align-items: center; }
 .checks input { width: auto; }
+input.narrow { width: 5.5rem; }
 
 .table-wrap { overflow-x: auto; }
 table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
@@ -533,6 +586,12 @@ caption { text-align: left; padding: 0.75rem 0.65rem 0.25rem; font-weight: 700; 
 @media (max-width: 520px) {
   .stats { grid-template-columns: 1fr; }
   .doodle-spark { display: none; }
+  .cup { transform: none; }
+  .cup-list li {
+    grid-template-columns: auto auto minmax(0, 1fr);
+    grid-template-areas: "rank flag name" "rank flag points" "rank flag meta";
+  }
+  .cup-points { text-align: left; }
 }
 
 @media (prefers-reduced-motion: no-preference) {

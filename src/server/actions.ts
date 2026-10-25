@@ -15,6 +15,7 @@ import { generationById } from "@/lib/generations";
 import { LOCALES } from "@/lib/locales";
 import { refreshInventoryPrices } from "@/lib/price-refresh";
 import { normalizeWebsite } from "@/lib/urls";
+import { parseBindersIncluded } from "@/lib/country-cup";
 
 export type FormState = { error: string } | null;
 
@@ -68,6 +69,8 @@ export async function createShipment(_prev: FormState, formData: FormData): Prom
   const cards = getSetCards(setId);
   if (!cards) return { error: "Choose a set from the list." };
   const notes = clip(formData.get("notes"), 2000);
+  const bindersIncluded = parseBindersIncluded(formData.get("binders_included"));
+  if (bindersIncluded === null) return { error: "Binders included needs a whole number from 0 to 99." };
   const parsed = parseBulk(String(formData.get("bulk") ?? ""));
   if (!parsed.items.length) {
     const detail = parsed.errors[0]?.reason ?? "Add at least one card number.";
@@ -125,9 +128,9 @@ export async function createShipment(_prev: FormState, formData: FormData): Prom
       );
     }
     await tx.query(
-      `INSERT INTO shipments (id, shop_id, received_on, notes, is_demo, created_at)
-       VALUES ($1, $2, $3, $4, 0, $5)`,
-      [shipmentId, shopId, receivedOn, notes, now],
+      `INSERT INTO shipments (id, shop_id, received_on, notes, binders_included, is_demo, created_at)
+       VALUES ($1, $2, $3, $4, $5, 0, $6)`,
+      [shipmentId, shopId, receivedOn, notes, bindersIncluded, now],
     );
     for (const card of resolved) {
       await tx.query(
@@ -139,6 +142,21 @@ export async function createShipment(_prev: FormState, formData: FormData): Prom
   });
   revalidatePublic();
   redirect("/admin/shipments?ok=logged");
+}
+
+export async function updateShipmentBinders(formData: FormData) {
+  await requireSession();
+  const db = await databaseOrRedirect();
+  const id = String(formData.get("id") ?? "");
+  const bindersIncluded = parseBindersIncluded(formData.get("binders_included"));
+  if (!isUuid(id) || bindersIncluded === null) redirect("/admin/shipments?e=binders");
+  const updated = await db.query<{ id: string }>(
+    `UPDATE shipments SET binders_included = $2 WHERE id = $1 AND is_demo = 0 RETURNING id`,
+    [id, bindersIncluded],
+  );
+  if (!updated.length) redirect("/admin/shipments?e=binders");
+  revalidatePublic();
+  redirect("/admin/shipments?ok=saved");
 }
 
 export async function deleteShipment(formData: FormData) {

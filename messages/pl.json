@@ -107,7 +107,14 @@
     "faq4q": "Które sklepy są na tej liście?",
     "faq4a": "Ta polska strona pokazuje sklepy z Polski.",
     "themeProgress": "Segregatory tematyczne",
-    "themeHub": "Wszystkie segregatory tematyczne"
+    "themeHub": "Wszystkie segregatory tematyczne",
+    "cupTitle": "Puchar krajów",
+    "cupRules": "Jeden punkt za każdą kartę, którą sklep przysyła, a bulk się liczy. Segregator w paczce to 1 000 punktów więcej. Liczy się kraj sklepu.",
+    "cupEmpty": "Który kraj będzie pierwszy na tablicy?",
+    "cupError": "Tablica się nie wczytała. Wolę tę notkę niż wymyśloną liczbę.",
+    "cupPoints": "punktów",
+    "cupCards": "karty",
+    "cupBinders": "segregatory"
   },
   "bindersPage": {
     "kicker": "Listy",

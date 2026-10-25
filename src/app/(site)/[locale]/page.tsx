@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import type { AboutPage } from "schema-dts";
 import { Breadcrumbs } from "@/components/site/breadcrumbs";
+import { CountryCup } from "@/components/site/country-cup";
 import { DoodleCluster } from "@/components/site/doodles";
 import { EmailText } from "@/components/site/email-text";
 import { JsonLd } from "@/components/site/json-ld";
@@ -17,6 +18,7 @@ import { breadcrumbNode, faqNode, ldGraph, pageNode, type FaqPair } from "@/lib/
 import { localePath } from "@/lib/routing";
 import { pageMetadata } from "@/lib/seo";
 import { absoluteUrl, site } from "@/lib/site";
+import { loadCountryCup, orderCountryCup } from "@/lib/country-cup";
 import { shopsForLocale } from "@/lib/shop-locales";
 import { loadPublic, speciesInRange, type PublicShop } from "@/lib/stats";
 import { getThemes, themeCollected } from "@/lib/themes";
@@ -45,7 +47,8 @@ function shopLabels(shop: PublicShop, genLink: string): string[] {
 
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale, m } = await readLocale(params);
-  const snapshot = await loadPublic();
+  const [snapshot, cup] = await Promise.all([loadPublic(), loadCountryCup()]);
+  const standings = orderCountryCup(cup.rows, locale);
   const zero = snapshot.differentCards === 0 && snapshot.copies === 0;
   const progress =
     snapshot.state === "error" ? m.home.progressError : zero ? m.home.progressZero : m.home.progressLive;
@@ -107,6 +110,20 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         <h2>{m.home.bulkTitle}</h2>
         <p>{m.home.bulkBody}</p>
       </section>
+      <CountryCup
+        locale={locale}
+        failed={cup.state === "error"}
+        rows={standings}
+        copy={{
+          title: m.home.cupTitle,
+          rules: m.home.cupRules,
+          empty: m.home.cupEmpty,
+          error: m.home.cupError,
+          points: m.home.cupPoints,
+          cards: m.home.cupCards,
+          binders: m.home.cupBinders,
+        }}
+      />
       <section>
         <h2>{m.home.progressTitle}</h2>
         <p>{progress}</p>

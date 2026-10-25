@@ -14,6 +14,7 @@ export const SCHEMA: string[] = [
     shop_id TEXT NOT NULL REFERENCES shops(id) ON DELETE CASCADE,
     received_on TEXT NOT NULL,
     notes TEXT NOT NULL DEFAULT '',
+    binders_included INTEGER NOT NULL DEFAULT 0,
     is_demo INTEGER NOT NULL DEFAULT 0,
     created_at TEXT NOT NULL
   )`,
@@ -84,6 +85,19 @@ BEGIN
   END LOOP;
 END $$`,
   `ALTER TABLE binders ADD CONSTRAINT binders_binder_kind_check CHECK (binder_kind IN ('set', 'generation', 'theme'))`,
+  `ALTER TABLE shipments ADD COLUMN IF NOT EXISTS binders_included INTEGER NOT NULL DEFAULT 0`,
+  `DO $$
+BEGIN
+  IF NOT EXISTS (
+    SELECT 1 FROM pg_constraint
+    WHERE conrelid = 'shipments'::regclass
+      AND contype = 'c'
+      AND pg_get_constraintdef(oid) ILIKE '%binders_included%'
+  ) THEN
+    ALTER TABLE shipments
+      ADD CONSTRAINT shipments_binders_included_check CHECK (binders_included >= 0);
+  END IF;
+END $$`,
   `CREATE INDEX IF NOT EXISTS shipment_cards_shipment_idx ON shipment_cards (shipment_id)`,
   `CREATE INDEX IF NOT EXISTS shipment_cards_set_idx ON shipment_cards (set_id, card_number)`,
   `CREATE INDEX IF NOT EXISTS shipments_shop_idx ON shipments (shop_id)`,

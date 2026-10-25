@@ -107,7 +107,14 @@
     "faq4q": "Vilka butiker listas här?",
     "faq4a": "Den här svenska sidan listar butiker i Sverige.",
     "themeProgress": "Temapärmar",
-    "themeHub": "Alla temapärmar"
+    "themeHub": "Alla temapärmar",
+    "cupTitle": "Landcupen",
+    "cupRules": "En poäng per kort som en butik skickar, och bulk räknas. En pärm i paketet ger 1 000 poäng extra. Landet är butikens land.",
+    "cupEmpty": "Vilket land blir först på tavlan?",
+    "cupError": "Tavlan laddades inte. Jag visar hellre den här raden än en påhittad siffra.",
+    "cupPoints": "poäng",
+    "cupCards": "kort",
+    "cupBinders": "pärmar"
   },
   "bindersPage": {
     "kicker": "Listor",

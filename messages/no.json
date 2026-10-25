@@ -107,7 +107,14 @@
     "faq4q": "Hvilke butikker står her?",
     "faq4a": "Denne norske siden viser butikker i Norge.",
     "themeProgress": "Temapermer",
-    "themeHub": "Alle temapermer"
+    "themeHub": "Alle temapermer",
+    "cupTitle": "Landescupen",
+    "cupRules": "Ett poeng per kort en butikk sender, og bulk teller. En perm i pakken gir 1 000 poeng ekstra. Landet er butikkens land.",
+    "cupEmpty": "Hvilket land blir først på tavla?",
+    "cupError": "Tavla ble ikke lastet. Jeg viser heller denne linjen enn et oppdiktet tall.",
+    "cupPoints": "poeng",
+    "cupCards": "kort",
+    "cupBinders": "permer"
   },
   "bindersPage": {
     "kicker": "Lister",

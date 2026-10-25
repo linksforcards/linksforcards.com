@@ -107,7 +107,14 @@
     "faq4q": "Quelles boutiques sont listées ici ?",
     "faq4a": "Cette page en français liste les boutiques de France et de Belgique.",
     "themeProgress": "Classeurs à thème",
-    "themeHub": "Tous les classeurs à thème"
+    "themeHub": "Tous les classeurs à thème",
+    "cupTitle": "Coupe des pays",
+    "cupRules": "Un point par carte envoyée, et le vrac compte. Un classeur dans le colis ajoute 1 000 points. Le pays est celui de la boutique.",
+    "cupEmpty": "Quel pays sera le premier au tableau ?",
+    "cupError": "Le tableau ne s'est pas chargé. Je préfère cette note à un score inventé.",
+    "cupPoints": "points",
+    "cupCards": "cartes",
+    "cupBinders": "classeurs"
   },
   "bindersPage": {
     "kicker": "Listes",

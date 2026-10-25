@@ -50,7 +50,7 @@ Copy `.env.example`. Real values live on the host, in `.env.local`, or in the Ve
 Any Postgres that Vercel can reach is enough. [Neon](https://neon.tech) and Vercel Postgres both have a free tier.
 
 1. Create a database and copy the **pooled** connection string into `DATABASE_URL`.
-2. Deploy. The app creates its tables on first use (`CREATE TABLE IF NOT EXISTS`). There is no separate migration step.
+2. Deploy. The app creates its tables on first use (`CREATE TABLE IF NOT EXISTS`) and adds missing columns with `ADD COLUMN IF NOT EXISTS`. There is no separate migration step. The Country Cup reads the shop's country and the card copies already on a shipment, and `shipments.binders_included` (default 0) for binders that arrived in the parcel.
 3. Shipments, sessions, and cached price estimates live only in that database.
 
 The public catalog (set names, collector numbers, national Pokédex numbers) is the JSON in `data/catalog`. It is built from [PokemonTCG/pokemon-tcg-data](https://github.com/PokemonTCG/pokemon-tcg-data) at a pinned commit, with prices and images removed. Species names for English, German, French, Spanish, and Italian come from [PokeAPI](https://github.com/PokeAPI/pokeapi). The other languages show the English species names and say so. Refresh the files with `npm run catalog` when you want a newer snapshot, then commit the result. That command must not be pointed at a file that still contains prices. It also rebuilds `data/catalog/themes.json`. `npm run themes` rebuilds only the themed binders from the commit already pinned in `data/catalog/meta.json`. A theme that cannot be derived from the dataset can be added later as `data/themes/curated/{slug}.json` with `{ "slug", "cards": ["setId:number"] }`.

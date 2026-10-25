@@ -107,7 +107,14 @@
     "faq4q": "Mitkä kaupat näkyvät täällä?",
     "faq4a": "Tämä suomenkielinen sivu listaa kaupat Suomesta.",
     "themeProgress": "Teemakansiot",
-    "themeHub": "Kaikki teemakansiot"
+    "themeHub": "Kaikki teemakansiot",
+    "cupTitle": "Maacup",
+    "cupRules": "Yksi piste jokaisesta kortista, jonka kauppa lähettää, ja bulk lasketaan mukaan. Kansio paketissa tuo 1 000 pistettä lisää. Maa on kaupan maa.",
+    "cupEmpty": "Mikä maa ehtii taululle ensimmäisenä?",
+    "cupError": "Taulu ei latautunut. Näytän mieluummin tämän rivin kuin keksityn luvun.",
+    "cupPoints": "pistettä",
+    "cupCards": "korttia",
+    "cupBinders": "kansiota"
   },
   "bindersPage": {
     "kicker": "Listat",

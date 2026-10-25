@@ -107,7 +107,14 @@
     "faq4q": "Welke winkels staan hier?",
     "faq4a": "Deze Nederlandse pagina toont winkels uit Nederland en België.",
     "themeProgress": "Thematische binders",
-    "themeHub": "Alle thematische binders"
+    "themeHub": "Alle thematische binders",
+    "cupTitle": "Landenbeker",
+    "cupRules": "Eén punt per kaart die een winkel stuurt, en bulk telt mee. Een binder in het pakket is 1.000 punten extra. Het land is het land van de winkel.",
+    "cupEmpty": "Welk land staat als eerste op het bord?",
+    "cupError": "Het bord laadde niet. Ik laat liever deze noot zien dan een verzonnen score.",
+    "cupPoints": "punten",
+    "cupCards": "kaarten",
+    "cupBinders": "binders"
   },
   "bindersPage": {
     "kicker": "Lijsten",
