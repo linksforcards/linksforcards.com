@@ -20,6 +20,7 @@ export const metadata: Metadata = {
   applicationName: site.name,
   authors: [{ name: site.sender }],
   icons: { icon: "/icon.svg" },
+  other: { "p:domain_verify": "655c1d4935eb8936b435330420c2d586" },
 };
 
 export default async function LocaleLayout({
