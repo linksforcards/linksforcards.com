@@ -213,5 +213,31 @@ describe("sitemap xml", () => {
       absoluteUrl("/pl/collections/themes/yuka-morii"),
     );
     expect(sitemapEntries("nope")).toBeNull();
+    const cards = sitemapEntries("us-cards");
+    expect(cards?.some((entry) => entry.url === absoluteUrl("/cards/base1-4-charizard"))).toBe(true);
+    expect(cards?.some((entry) => entry.url === absoluteUrl("/cards/sv3pt5-25-pikachu"))).toBe(true);
+    expect(cards?.some((entry) => entry.url === absoluteUrl("/cards/sv8pt5-28-pikachu-ex"))).toBe(true);
+    expect(cards?.every((entry) => entry.url.startsWith(absoluteUrl("/cards/")))).toBe(true);
+    expect(cards && cards.length).toBeGreaterThan(20000);
+    expect(cards && cards.length).toBeLessThanOrEqual(40000);
+    const card = cards?.find((entry) => entry.url === absoluteUrl("/cards/base1-4-charizard"));
+    expect(card?.languages.en).toBe(absoluteUrl("/cards/base1-4-charizard"));
+    expect(card?.languages["en-GB"]).toBe(absoluteUrl("/uk/cards/base1-4-charizard"));
+    expect(card?.languages["x-default"]).toBe(absoluteUrl("/cards/base1-4-charizard"));
+    expect(card?.languages.de).toBeUndefined();
+    expect(card?.languages.nl).toBeUndefined();
+    const ukCards = sitemapEntries("uk-cards");
+    expect(ukCards?.find((entry) => entry.url.endsWith("/base1-4-charizard"))?.url).toBe(
+      absoluteUrl("/uk/cards/base1-4-charizard"),
+    );
+    expect(sitemapEntries("de-cards")).toBeNull();
+    expect(sitemapEntries("us-cards-1")).toBeNull();
+    expect(index).toContain(absoluteUrl("/sitemap/us-cards.xml"));
+    expect(index).toContain(absoluteUrl("/sitemap/uk-cards.xml"));
+    expect(index).not.toContain(absoluteUrl("/sitemap/de-cards.xml"));
+    const cardXml = renderUrlset(cards ?? []);
+    expect(cardXml.length).toBeLessThan(50_000_000);
+    expect(cardXml).toContain('hreflang="en-GB"');
+    expect(cardXml).not.toContain('hreflang="de"');
   });
 });

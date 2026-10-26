@@ -9,6 +9,16 @@ export type CatalogCard = {
   name: string;
   k: CardKind;
   dex?: number[];
+  /** Rarity label from the open dataset, when it has one. */
+  r?: string;
+  /** Subtypes such as Basic, Stage 2, Item, or Supporter. */
+  st?: string[];
+  /** Hit points, digits only. Pokémon cards. */
+  hp?: string;
+  /** Energy types, when the card has them. */
+  ty?: string[];
+  /** Illustrator. The dataset calls this field artist. */
+  a?: string;
 };
 
 export type CatalogSet = {
@@ -16,7 +26,10 @@ export type CatalogSet = {
   name: string;
   series: string;
   releaseDate: string;
+  /** Cards in the checklist, including numbers above the printed size. */
   count: number;
+  /** Denominator printed on the card, such as 102 in 4/102. */
+  printed?: number;
 };
 
 export type CatalogMeta = {
@@ -50,9 +63,49 @@ function asKind(value: string): CardKind {
   return "o";
 }
 
+function cleanText(value: unknown, max: number): string | undefined {
+  if (typeof value !== "string") return undefined;
+  const text = value.trim();
+  if (!text || text.length > max) return undefined;
+  return text;
+}
+
+function cleanList(value: unknown): string[] | undefined {
+  if (!Array.isArray(value)) return undefined;
+  const items = value.map((item) => cleanText(item, 40)).filter((item): item is string => Boolean(item));
+  return items.length ? items : undefined;
+}
+
+function normalizeCard(card: CatalogCard): CatalogCard {
+  const hp = cleanText(card.hp, 4);
+  const rarity = cleanText(card.r, 80);
+  const artist = cleanText(card.a, 120);
+  const subtypes = cleanList(card.st);
+  const types = cleanList(card.ty);
+  return {
+    n: card.n,
+    name: card.name,
+    k: asKind(card.k),
+    ...(card.dex?.length ? { dex: card.dex } : {}),
+    ...(rarity ? { r: rarity } : {}),
+    ...(subtypes ? { st: subtypes } : {}),
+    ...(hp && /^\d{1,4}$/.test(hp) ? { hp } : {}),
+    ...(types ? { ty: types } : {}),
+    ...(artist ? { a: artist } : {}),
+  };
+}
+
 export function getSets(): CatalogSet[] {
   if (!setsCache) {
-    setsCache = JSON.parse(readFileSync(catalogFile("sets.json"), "utf8")) as CatalogSet[];
+    const parsed = JSON.parse(readFileSync(catalogFile("sets.json"), "utf8")) as CatalogSet[];
+    setsCache = parsed.map((set) => ({
+      id: set.id,
+      name: set.name,
+      series: set.series,
+      releaseDate: set.releaseDate,
+      count: set.count,
+      ...(Number.isInteger(set.printed) && (set.printed ?? 0) > 0 ? { printed: set.printed } : {}),
+    }));
   }
   return setsCache;
 }
@@ -74,7 +127,7 @@ export function getSetCards(id: string): CatalogCard[] | null {
   const cached = cardCache.get(id);
   if (cached) return cached;
   const parsed = JSON.parse(readFileSync(catalogFile("cards", `${id}.json`), "utf8")) as CatalogCard[];
-  const cards = parsed.map((card) => ({ ...card, k: asKind(card.k) }));
+  const cards = parsed.map((card) => normalizeCard(card));
   cardCache.set(id, cards);
   return cards;
 }

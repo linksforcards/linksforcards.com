@@ -1,7 +1,8 @@
+import { listCardPaths } from "./card-page";
 import { getMeta, getSets, setsBySeries } from "./catalog";
 import { GENERATIONS, SPECIES_TOTAL } from "./generations";
 import { GUIDE_SLUGS, GUIDE_UPDATED } from "./guides";
-import { isLocale, LOCALES, SPECIES_INDEX_LOCALES, speciesPageIndexed } from "./locales";
+import { CARD_LOCALES, cardPageIndexed, isLocale, LOCALES, SPECIES_INDEX_LOCALES, speciesPageIndexed } from "./locales";
 import { localePath } from "./routing";
 import { hreflangMap } from "./seo";
 import { seriesSlug } from "./series";
@@ -10,15 +11,30 @@ import { getThemes, themeHreflangLocales, themeIndexed } from "./themes";
 
 const PAGE_PATHS = ["/", "/collections", "/collections/themes", "/guides", "/partners", "/updates", "/donations", "/privacy", "/imprint"];
 
+/** Stay under the 50,000 URL sitemap limit with room for hreflang weight. */
+const CARD_SITEMAP_LIMIT = 40_000;
+
 function catalogLastMod(): string {
   return getMeta().builtAt.slice(0, 10);
 }
 
+function cardSitemapParts(): number {
+  return Math.max(1, Math.ceil(listCardPaths().length / CARD_SITEMAP_LIMIT));
+}
+
+export function cardSitemapId(locale: string, part: number, parts: number): string {
+  return parts === 1 ? `${locale}-cards` : `${locale}-cards-${part}`;
+}
+
 export function sitemapIds(): string[] {
   const ids: string[] = [];
+  const parts = cardSitemapParts();
   for (const locale of LOCALES) {
     ids.push(`${locale}-pages`, `${locale}-sets`, `${locale}-guides`, `${locale}-themes`);
     if (speciesPageIndexed(locale)) ids.push(`${locale}-species`);
+    if (cardPageIndexed(locale)) {
+      for (let part = 1; part <= parts; part += 1) ids.push(cardSitemapId(locale, part, parts));
+    }
   }
   return ids;
 }
@@ -52,7 +68,28 @@ function pathsFor(kind: string, locale: string): string[] {
   return [];
 }
 
+function cardSitemapEntries(id: string): SitemapEntry[] | null {
+  const match = id.match(/^([a-z]{2})-cards(?:-(\d+))?$/);
+  if (!match) return null;
+  const locale = match[1] ?? "";
+  if (!isLocale(locale) || !cardPageIndexed(locale)) return null;
+  const paths = listCardPaths();
+  const parts = Math.max(1, Math.ceil(paths.length / CARD_SITEMAP_LIMIT));
+  const numbered = Boolean(match[2]);
+  if ((parts === 1 && numbered) || (parts > 1 && !numbered)) return null;
+  const part = match[2] ? Number(match[2]) : 1;
+  if (!Number.isInteger(part) || part < 1 || part > parts) return null;
+  const slice = paths.slice((part - 1) * CARD_SITEMAP_LIMIT, part * CARD_SITEMAP_LIMIT);
+  const catalogDate = catalogLastMod();
+  return slice.map((path) => ({
+    url: absoluteUrl(localePath(locale, path)),
+    lastModified: catalogDate,
+    languages: hreflangMap(path, CARD_LOCALES),
+  }));
+}
+
 export function sitemapEntries(id: string): SitemapEntry[] | null {
+  if (id.includes("-cards")) return cardSitemapEntries(id);
   const split = id.match(/^([a-z]{2})-(pages|sets|guides|species|themes)$/);
   if (!split) return null;
   const locale = split[1] ?? "";

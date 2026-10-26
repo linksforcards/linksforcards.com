@@ -5,7 +5,7 @@ import { Checklist } from "../src/components/site/checklist";
 import { LanguageSwitcher } from "../src/components/site/language-switcher";
 import { PokedexBrowser } from "../src/components/site/pokedex-browser";
 import { getMessages } from "../src/lib/i18n";
-import { LOCALES } from "../src/lib/locales";
+import { CARD_LOCALES, LOCALES } from "../src/lib/locales";
 import { localePath } from "../src/lib/routing";
 
 describe("public HTML without JavaScript", () => {
@@ -22,6 +22,17 @@ describe("public HTML without JavaScript", () => {
     }
     expect(html).toContain('href="/collections/set/base1"');
     expect(html).not.toContain('href="/us/');
+    const cards = renderToStaticMarkup(
+      createElement(LanguageSwitcher, {
+        locale: "uk",
+        label: "Language",
+        bare: "/cards/base1-4-charizard",
+        locales: CARD_LOCALES,
+      }),
+    );
+    expect(cards).toContain('href="/cards/base1-4-charizard"');
+    expect(cards).toContain('href="/uk/cards/base1-4-charizard"');
+    expect(cards).not.toContain('href="/de/cards/');
   });
 
   it("renders every checklist row in the first markup, including rows past the old page size", () => {

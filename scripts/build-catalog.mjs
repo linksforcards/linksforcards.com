@@ -1,6 +1,7 @@
 /**
  * Builds data/catalog from the public Pokémon TCG dataset.
- * Keeps names, collector numbers, supertypes, and national dex numbers.
+ * Keeps names, collector numbers, supertypes, subtypes, HP, types, rarity,
+ * illustrator, and national dex numbers.
  * Drops images, prices, and every other field on purpose.
  */
 import { mkdir, writeFile } from "node:fs/promises";
@@ -48,6 +49,39 @@ function kindOf(supertype) {
   if (supertype === "Trainer") return "t";
   if (supertype === "Energy") return "e";
   return "o";
+}
+
+function cleanText(value, max) {
+  if (typeof value !== "string") return "";
+  const text = value.replace(/\s+/g, " ").trim();
+  if (!text || text.length > max) return "";
+  return text;
+}
+
+function cleanList(value) {
+  if (!Array.isArray(value)) return undefined;
+  const items = [];
+  for (const item of value) {
+    const text = cleanText(item, 40);
+    if (text) items.push(text);
+  }
+  return items.length ? items : undefined;
+}
+
+/** Fields the card pages render. Prices and images never land here. */
+function cardFacts(card) {
+  const facts = {};
+  const rarity = cleanText(card.rarity, 80);
+  const artist = cleanText(card.artist, 120);
+  const hp = cleanText(card.hp, 4);
+  const subtypes = cleanList(card.subtypes);
+  const types = cleanList(card.types);
+  if (rarity) facts.r = rarity;
+  if (subtypes) facts.st = subtypes;
+  if (hp && /^\d{1,4}$/.test(hp)) facts.hp = hp;
+  if (types) facts.ty = types;
+  if (artist) facts.a = artist;
+  return facts;
 }
 
 function sortCards(cards) {
@@ -118,6 +152,7 @@ async function main() {
       const compact = { n: number, name: String(card.name ?? "").trim(), k: kindOf(card.supertype) };
       if (!compact.name) continue;
       if (dex.length) compact.dex = dex;
+      Object.assign(compact, cardFacts(card));
       if (byNumber.has(number)) duplicates += 1;
       byNumber.set(number, compact);
     }
@@ -125,12 +160,14 @@ async function main() {
     assertNoForbiddenKeys(cards, setId);
     await writeFile(path.join(cardsDir, `${setId}.json`), JSON.stringify(cards));
     const meta = setById.get(setId);
+    const printed = meta?.printedTotal;
     setSummaries.push({
       id: setId,
       name: meta?.name ?? setId,
       series: meta?.series || "Other",
       releaseDate: meta?.releaseDate ?? "",
       count: cards.length,
+      ...(Number.isInteger(printed) && printed > 0 ? { printed } : {}),
     });
     finished += 1;
     if (finished % 25 === 0) console.log(`  ${finished}/${cardPaths.length}`);
@@ -178,7 +215,8 @@ async function main() {
     cards: cardCount,
     maxDexSeen: maxDex,
     generationScope: "National Pokédex numbers 1–1025",
-    contents: "Collector numbers, English card names, supertypes, and national dex numbers. Prices and images are not stored.",
+    contents:
+      "Collector numbers, English card names, supertypes, subtypes, HP, types, rarity, illustrator, and national dex numbers. Prices and images are not stored.",
     duplicateNumbersCollapsed: duplicates,
   };
   assertNoForbiddenKeys(setSummaries, "sets");

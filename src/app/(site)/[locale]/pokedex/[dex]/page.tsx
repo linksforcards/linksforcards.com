@@ -9,6 +9,7 @@ import { RelatedLinks } from "@/components/site/related-links";
 import { SiteLinks } from "@/components/site/site-links";
 import { themeCopy } from "@/content/theme-copy";
 import { getArticle } from "@/lib/articles";
+import { cardRowHref } from "@/lib/card-page";
 import { numbersMatch } from "@/lib/cards";
 import { cardImageSrc, getSet, speciesName, type CardKind } from "@/lib/catalog";
 import { fill, formatDay, formatInt } from "@/lib/format";
@@ -90,7 +91,12 @@ export default async function SpeciesPage({ params }: { params: Promise<{ locale
       have,
       image: cardImageSrc(printing.setId, printing.number),
       alt: fill(m.checklist.cardAlt, { name, set: set?.name ?? printing.setId, number: printing.number }),
-      href: localePath(locale, `/collections/set/${printing.setId}`),
+      href: cardRowHref(
+        locale,
+        printing.setId,
+        { n: printing.number, name: printing.name },
+        localePath(locale, `/collections/set/${printing.setId}`),
+      ),
     };
   });
   const path = `/pokedex/${dex}`;

@@ -100,3 +100,13 @@ export const SPECIES_INDEX_LOCALES = ["us", "uk", "de", "fr", "es", "it"] as con
 export function speciesPageIndexed(locale: string): boolean {
   return (SPECIES_INDEX_LOCALES as readonly string[]).includes(locale);
 }
+
+/**
+ * Individual card pages exist for the two English sites only. Other languages
+ * keep the set and species lists and do not get a /cards URL yet.
+ */
+export const CARD_LOCALES = ["us", "uk"] as const satisfies readonly Locale[];
+
+export function cardPageIndexed(locale: string): boolean {
+  return (CARD_LOCALES as readonly string[]).includes(locale);
+}

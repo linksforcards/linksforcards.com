@@ -466,6 +466,28 @@ textarea { min-height: 8rem; resize: vertical; }
   margin: 1.6rem 0 0.4rem;
   font-weight: 700;
 }
+.facts {
+  background: var(--sheet);
+  border: 3px solid var(--ink);
+  border-radius: 24px;
+  box-shadow: 5px 5px 0 var(--ink);
+  padding: 0.35rem 1.1rem;
+  margin: 0.4rem 0 1.2rem;
+}
+.facts > div {
+  display: grid;
+  grid-template-columns: minmax(7.5rem, 11rem) 1fr;
+  gap: 0.35rem 0.9rem;
+  align-items: baseline;
+  padding: 0.45rem 0;
+  border-bottom: 2px solid var(--line);
+}
+.facts > div:last-child { border-bottom: 0; }
+.facts dt { font-weight: 800; }
+.facts dd { margin: 0; }
+@media (max-width: 640px) {
+  .facts > div { grid-template-columns: 1fr; gap: 0.1rem; }
+}
 .checklist strong { display: block; }
 .checklist small { color: var(--muted); }
 .checklist img {

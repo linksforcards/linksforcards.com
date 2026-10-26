@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import { BinderMark } from "@/components/site/doodles";
 import { LanguageSwitcher } from "@/components/site/language-switcher";
 import { getMessages } from "@/lib/i18n";
-import { type Locale } from "@/lib/locales";
+import { CARD_LOCALES, type Locale } from "@/lib/locales";
 import { localePath, stripLocale } from "@/lib/routing";
 
 export function SiteHeader({ locale }: { locale: Locale }) {
@@ -38,7 +38,12 @@ export function SiteHeader({ locale }: { locale: Locale }) {
             );
           })}
         </nav>
-        <LanguageSwitcher locale={locale} label={m.nav.language} bare={bare} />
+        <LanguageSwitcher
+          locale={locale}
+          label={m.nav.language}
+          bare={bare}
+          locales={bare.startsWith("/cards/") ? CARD_LOCALES : undefined}
+        />
       </div>
     </header>
   );
