@@ -312,6 +312,7 @@
     "setBinder": "{name} set binder",
     "genBinder": "Generation {gen} binder ({region})",
     "otherPrintings": "Other printings in the list",
+    "seeAllPrintings": "See all {count} printings",
     "neighbors": "Next to it in the set",
     "previous": "Previous card",
     "next": "Next card"

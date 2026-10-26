@@ -13,8 +13,18 @@ import { speciesByDex, type Printing } from "./species-index";
 import { themesForCard } from "./themes";
 
 export type CardLink = { href: string; name: string };
+export type PrintingCard = {
+  href: string;
+  name: string;
+  fraction: string;
+  setName: string;
+  year: string;
+};
 export type CardStatus = "have" | "need" | "unknown";
 export type CardFact = { label: string; value?: string; href?: string; links?: CardLink[] };
+
+/** Other printings shown on the card page. The rest stay on the Pokédex page. */
+export const PRINTING_CAP = 8;
 
 export type ResolvedCard = {
   set: CatalogSet;
@@ -31,7 +41,8 @@ export type CardView = {
   crumbs: Crumb[];
   facts: CardFact[];
   binders: CardLink[];
-  others: CardLink[];
+  others: PrintingCard[];
+  morePrintings: { href: string; count: number } | null;
   prev: CardLink | null;
   next: CardLink | null;
 };
@@ -215,7 +226,7 @@ function binderLinks(locale: Locale, m: Messages, set: CatalogSet, card: Catalog
   return links;
 }
 
-function otherPrintings(setId: string, card: CatalogCard, limit: number): Printing[] {
+function otherPrintings(setId: string, card: CatalogCard): Printing[] {
   const seen = new Set<string>();
   const current = `${setId}:${card.n}`;
   const out: Printing[] = [];
@@ -227,10 +238,24 @@ function otherPrintings(setId: string, card: CatalogCard, limit: number): Printi
       if (key === current || seen.has(key)) continue;
       seen.add(key);
       out.push(printing);
-      if (out.length >= limit) return out;
     }
   }
   return out;
+}
+
+function releaseYear(value: string | undefined): string {
+  const year = value?.slice(0, 4) ?? "";
+  return /^\d{4}$/.test(year) ? year : "";
+}
+
+function fullestDex(card: CatalogCard): { dex: number; count: number } | null {
+  let best: { dex: number; count: number } | null = null;
+  for (const dex of card.dex ?? []) {
+    if (!Number.isInteger(dex) || dex < 1 || dex > SPECIES_TOTAL) continue;
+    const count = speciesByDex(dex)?.printings.length ?? 0;
+    if (!best || count > best.count) best = { dex, count };
+  }
+  return best;
 }
 
 function neighbor(locale: Locale, set: CatalogSet, card: CatalogCard | null, label: string): CardLink | null {
@@ -285,17 +310,27 @@ export function buildCardView(
 
   const cards = getSetCards(set.id) ?? [];
   const index = cards.findIndex((item) => item.n === card.n);
-  const others = otherPrintings(set.id, card, 8).flatMap((printing) => {
+  const allOthers = otherPrintings(set.id, card);
+  const fullest = fullestDex(card);
+  const others = allOthers.slice(0, PRINTING_CAP).flatMap((printing) => {
     const printingSet = getSet(printing.setId);
+    if (!printingSet) return [];
     const full = getSetCards(printing.setId)?.find((item) => item.n === printing.number);
     const named = full ?? { n: printing.number, name: printing.name };
     return [
       {
         href: localePath(locale, cardPath(printing.setId, named)),
-        name: printingSet ? `${named.name} ${named.n} · ${printingSet.name}` : `${named.name} ${named.n}`,
+        name: named.name,
+        fraction: cardFraction(printingSet, named),
+        setName: printingSet.name,
+        year: releaseYear(printingSet.releaseDate),
       },
     ];
   });
+  const morePrintings =
+    fullest && allOthers.length > PRINTING_CAP
+      ? { href: localePath(locale, `/pokedex/${fullest.dex}`), count: fullest.count }
+      : null;
 
   return {
     path,
@@ -313,6 +348,7 @@ export function buildCardView(
     facts,
     binders,
     others,
+    morePrintings,
     prev: neighbor(locale, set, index > 0 ? (cards[index - 1] ?? null) : null, m.cardPage.previous),
     next: neighbor(locale, set, index >= 0 ? (cards[index + 1] ?? null) : null, m.cardPage.next),
   };

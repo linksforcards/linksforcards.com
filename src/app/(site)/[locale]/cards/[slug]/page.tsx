@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { notFound, permanentRedirect } from "next/navigation";
 import { Breadcrumbs } from "@/components/site/breadcrumbs";
+import { BinderChips, NeighborLinks, PrintingGrid } from "@/components/site/card-links";
 import { DoodleCluster } from "@/components/site/doodles";
 import { JsonLd } from "@/components/site/json-ld";
-import { RelatedLinks } from "@/components/site/related-links";
 import { SiteLinks } from "@/components/site/site-links";
 import {
   buildCardView,
@@ -13,6 +13,7 @@ import {
   resolveCardSlug,
   cardIsHeld,
 } from "@/lib/card-page";
+import { fill, formatInt } from "@/lib/format";
 import { readLocale } from "@/lib/i18n";
 import { CARD_LOCALES, cardPageIndexed } from "@/lib/locales";
 import { localePath } from "@/lib/routing";
@@ -96,18 +97,29 @@ export default async function CardPage({ params }: { params: Promise<{ locale: s
           </div>
         ))}
       </dl>
-      <h2>{m.cardPage.bindersHeading}</h2>
-      <RelatedLinks label={m.nav.related} links={view.binders} />
+      <h2 id="card-binders">{m.cardPage.bindersHeading}</h2>
+      <BinderChips labelledBy="card-binders" links={view.binders} />
       {view.others.length > 0 ? (
         <>
-          <h2>{m.cardPage.otherPrintings}</h2>
-          <RelatedLinks label={m.nav.related} links={view.others} />
+          <h2 id="card-printings">{m.cardPage.otherPrintings}</h2>
+          <PrintingGrid
+            labelledBy="card-printings"
+            cards={view.others}
+            more={
+              view.morePrintings
+                ? {
+                    href: view.morePrintings.href,
+                    label: fill(m.cardPage.seeAllPrintings, { count: formatInt(view.morePrintings.count, locale) }),
+                  }
+                : null
+            }
+          />
         </>
       ) : null}
       {neighbors.length > 0 ? (
         <>
-          <h2>{m.cardPage.neighbors}</h2>
-          <RelatedLinks label={m.nav.related} links={neighbors} />
+          <h2 id="card-neighbors">{m.cardPage.neighbors}</h2>
+          <NeighborLinks labelledBy="card-neighbors" links={neighbors} />
         </>
       ) : null}
       <SiteLinks locale={locale} m={m} current={view.path} />

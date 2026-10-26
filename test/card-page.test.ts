@@ -3,6 +3,7 @@ import { getSet, getSetCards } from "../src/lib/catalog";
 import {
   buildCardView,
   cardFraction,
+  PRINTING_CAP,
   cardIsHeld,
   cardPageGraph,
   cardPath,
@@ -80,6 +81,16 @@ describe("card page copy", () => {
     expect(view.facts.find((fact) => fact.label === "Set")?.href).toBe("/collections/set/base1");
     expect(view.facts.find((fact) => fact.label === "Pokédex")?.links?.[0]?.href).toBe("/pokedex/6");
     expect(view.binders.some((link) => link.href === "/collections/themes/charizard")).toBe(true);
+    expect(view.others).toHaveLength(PRINTING_CAP);
+    expect(view.others[0]?.fraction).toMatch(/\//);
+    expect(view.others[0]?.setName).toBeTruthy();
+    expect(view.others[0]?.year).toMatch(/^\d{4}$/);
+    expect(view.morePrintings?.href).toBe("/pokedex/6");
+    expect(view.morePrintings && view.morePrintings.count).toBeGreaterThan(PRINTING_CAP);
+    const bonsly = viewFor("dp1", "71");
+    expect(bonsly.view.others).toHaveLength(1);
+    expect(bonsly.view.others[0]?.name).toBe("Bonsly");
+    expect(bonsly.view.morePrintings).toBeNull();
     const graph = JSON.stringify(cardPageGraph("us", view));
     expect(graph).toContain("BreadcrumbList");
     expect(graph).toContain("WebPage");
