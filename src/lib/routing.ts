@@ -37,7 +37,8 @@ function isContentPath(pathname: string): boolean {
   if (/^\/collections\/(?:generation\/[1-9]|set\/[a-z0-9]+|series\/[a-z0-9-]+|themes(?:\/[a-z0-9-]+)?)$/.test(pathname)) return true;
   if (/^\/pokedex\/[1-9]\d*$/.test(pathname)) return true;
   if (/^\/guides\/[a-z0-9-]+$/.test(pathname)) return true;
-  if (/^\/cards\/[a-z0-9-]+$/.test(pathname)) return true;
+  // /cards/:slug is rewritten to /us/cards/:slug in next.config.ts. A middleware
+  // rewrite serves that on-demand page dynamically and skips its cache.
   return false;
 }
 

@@ -35,10 +35,7 @@ describe("locale routing", () => {
     expect(resolveLocaleRequest("/de/collections/themes")).toEqual({ action: "next", noindex: false });
     expect(resolveLocaleRequest("/guides/bulk-cards")).toEqual({ action: "rewrite", pathname: "/us/guides/bulk-cards" });
     expect(resolveLocaleRequest("/pokedex/25")).toEqual({ action: "rewrite", pathname: "/us/pokedex/25" });
-    expect(resolveLocaleRequest("/cards/base1-4-charizard")).toEqual({
-      action: "rewrite",
-      pathname: "/us/cards/base1-4-charizard",
-    });
+    expect(resolveLocaleRequest("/cards/base1-4-charizard")).toEqual({ action: "next", noindex: false });
     expect(resolveLocaleRequest("/us/cards/base1-4-charizard")).toEqual({
       action: "redirect",
       pathname: "/cards/base1-4-charizard",
