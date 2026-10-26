@@ -315,6 +315,8 @@
     "seeAllPrintings": "See all {count} printings",
     "neighbors": "Next to it in the set",
     "previous": "Previous card",
-    "next": "Next card"
+    "next": "Next card",
+    "listTwo": "{a} and {b}",
+    "listLast": "{list}, and {last}"
   }
 }

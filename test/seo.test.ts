@@ -224,20 +224,36 @@ describe("sitemap xml", () => {
     expect(card?.languages.en).toBe(absoluteUrl("/cards/base1-4-charizard"));
     expect(card?.languages["en-GB"]).toBe(absoluteUrl("/uk/cards/base1-4-charizard"));
     expect(card?.languages["x-default"]).toBe(absoluteUrl("/cards/base1-4-charizard"));
-    expect(card?.languages.de).toBeUndefined();
-    expect(card?.languages.nl).toBeUndefined();
+    expect(card?.languages.de).toBe(absoluteUrl("/de/cards/base1-4-charizard"));
+    expect(card?.languages["de-AT"]).toBe(absoluteUrl("/de/cards/base1-4-charizard"));
+    expect(card?.languages.fr).toBe(absoluteUrl("/fr/cards/base1-4-charizard"));
+    expect(card?.languages.sv).toBe(absoluteUrl("/sv/cards/base1-4-charizard"));
+    expect(card?.languages.nl).toBe(absoluteUrl("/nl/cards/base1-4-charizard"));
+    expect(card?.languages.nb).toBe(absoluteUrl("/no/cards/base1-4-charizard"));
+    expect(card?.languages.it).toBe(absoluteUrl("/it/cards/base1-4-charizard"));
+    expect(card?.languages.es).toBe(absoluteUrl("/es/cards/base1-4-charizard"));
+    expect(card?.languages.pl).toBe(absoluteUrl("/pl/cards/base1-4-charizard"));
+    expect(card?.languages.fi).toBe(absoluteUrl("/fi/cards/base1-4-charizard"));
     const ukCards = sitemapEntries("uk-cards");
     expect(ukCards?.find((entry) => entry.url.endsWith("/base1-4-charizard"))?.url).toBe(
       absoluteUrl("/uk/cards/base1-4-charizard"),
     );
-    expect(sitemapEntries("de-cards")).toBeNull();
+    const deCards = sitemapEntries("de-cards");
+    expect(deCards?.find((entry) => entry.url.endsWith("/base1-4-charizard"))?.url).toBe(
+      absoluteUrl("/de/cards/base1-4-charizard"),
+    );
+    expect(sitemapEntries("fr-cards")?.length).toBe(cards?.length);
+    expect(sitemapEntries("sv-cards")?.length).toBe(cards?.length);
     expect(sitemapEntries("us-cards-1")).toBeNull();
-    expect(index).toContain(absoluteUrl("/sitemap/us-cards.xml"));
-    expect(index).toContain(absoluteUrl("/sitemap/uk-cards.xml"));
-    expect(index).not.toContain(absoluteUrl("/sitemap/de-cards.xml"));
+    for (const locale of ["us", "uk", "de", "fr", "it", "es", "nl", "sv", "no", "fi", "pl"]) {
+      expect(index).toContain(absoluteUrl(`/sitemap/${locale}-cards.xml`));
+    }
     const cardXml = renderUrlset(cards ?? []);
     expect(cardXml.length).toBeLessThan(50_000_000);
     expect(cardXml).toContain('hreflang="en-GB"');
-    expect(cardXml).not.toContain('hreflang="de"');
+    expect(cardXml).toContain('hreflang="de"');
+    expect(cardXml).toContain('hreflang="fr"');
+    expect(cardXml).toContain('hreflang="sv"');
+    expect(cardXml).toContain('hreflang="x-default"');
   });
 });

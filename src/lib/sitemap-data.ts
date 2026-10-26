@@ -2,7 +2,7 @@ import { listCardPaths } from "./card-page";
 import { getMeta, getSets, setsBySeries } from "./catalog";
 import { GENERATIONS, SPECIES_TOTAL } from "./generations";
 import { GUIDE_SLUGS, GUIDE_UPDATED } from "./guides";
-import { CARD_LOCALES, cardPageIndexed, isLocale, LOCALES, SPECIES_INDEX_LOCALES, speciesPageIndexed } from "./locales";
+import { isLocale, LOCALES, SPECIES_INDEX_LOCALES, speciesPageIndexed } from "./locales";
 import { localePath } from "./routing";
 import { hreflangMap } from "./seo";
 import { seriesSlug } from "./series";
@@ -32,9 +32,7 @@ export function sitemapIds(): string[] {
   for (const locale of LOCALES) {
     ids.push(`${locale}-pages`, `${locale}-sets`, `${locale}-guides`, `${locale}-themes`);
     if (speciesPageIndexed(locale)) ids.push(`${locale}-species`);
-    if (cardPageIndexed(locale)) {
-      for (let part = 1; part <= parts; part += 1) ids.push(cardSitemapId(locale, part, parts));
-    }
+    for (let part = 1; part <= parts; part += 1) ids.push(cardSitemapId(locale, part, parts));
   }
   return ids;
 }
@@ -72,7 +70,7 @@ function cardSitemapEntries(id: string): SitemapEntry[] | null {
   const match = id.match(/^([a-z]{2})-cards(?:-(\d+))?$/);
   if (!match) return null;
   const locale = match[1] ?? "";
-  if (!isLocale(locale) || !cardPageIndexed(locale)) return null;
+  if (!isLocale(locale)) return null;
   const paths = listCardPaths();
   const parts = Math.max(1, Math.ceil(paths.length / CARD_SITEMAP_LIMIT));
   const numbered = Boolean(match[2]);
@@ -84,7 +82,7 @@ function cardSitemapEntries(id: string): SitemapEntry[] | null {
   return slice.map((path) => ({
     url: absoluteUrl(localePath(locale, path)),
     lastModified: catalogDate,
-    languages: hreflangMap(path, CARD_LOCALES),
+    languages: hreflangMap(path),
   }));
 }
 

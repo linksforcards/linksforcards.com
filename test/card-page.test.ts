@@ -16,6 +16,7 @@ import {
 } from "../src/lib/card-page";
 import { getMessages } from "../src/lib/i18n";
 import { emptyPublic } from "../src/lib/stats";
+import { localePath } from "../src/lib/routing";
 import { absoluteUrl } from "../src/lib/site";
 
 describe("card slugs", () => {
@@ -139,10 +140,53 @@ describe("card page copy", () => {
     expect(emptyPublic("unconfigured").held.base1).toBeUndefined();
   });
 
-  it("keeps hreflang on the English URLs only", () => {
+  it("keeps the US card URL at the root", () => {
     const { view } = viewFor("base1", "58");
     expect(view.path).toBe("/cards/base1-58-pikachu");
     expect(absoluteUrl(view.path)).toBe("https://linksforcards.com/cards/base1-58-pikachu");
     expect(view.paragraph).not.toBe(viewFor("base1", "4").view.paragraph);
+  });
+
+  it("translates German, French, and Swedish pages and keeps printed names", () => {
+    const set = getSet("base1");
+    const card = getSetCards("base1")?.find((item) => item.n === "4");
+    if (!set || !card) throw new Error("missing charizard");
+
+    const de = buildCardView("de", getMessages("de"), set, card, "need");
+    expect(localePath("de", de.path)).toBe("/de/cards/base1-4-charizard");
+    expect(JSON.stringify(cardPageGraph("de", de))).toContain("https://linksforcards.com/de/cards/base1-4-charizard");
+    expect(de.title).toContain("Charizard");
+    expect(de.title).toContain("Base");
+    expect(de.paragraph).toContain("Charizard");
+    expect(de.paragraph).toContain("Base");
+    expect(de.paragraph).toContain("Glurak (#006)");
+    expect(de.paragraph).toContain("Set-Binder Base");
+    expect(de.paragraph).toContain("Binder der Generation 1 (Kanto)");
+    expect(de.paragraph).toContain("Alle Glurak-Karten");
+    expect(de.paragraph).toContain("Ich brauche diese Karte noch.");
+    expect(de.paragraph).not.toContain("I still need");
+    expect(de.paragraph).not.toContain(" and ");
+    expect(de.morePrintings?.href).toBe("/de/pokedex/6");
+    expect(de.facts.find((fact) => fact.label === "Set")?.href).toBe("/de/collections/set/base1");
+
+    const fr = buildCardView("fr", getMessages("fr"), set, card, "need");
+    expect(localePath("fr", fr.path)).toBe("/fr/cards/base1-4-charizard");
+    expect(fr.paragraph).toContain("Charizard");
+    expect(fr.paragraph).toContain("Base");
+    expect(fr.paragraph).toContain("Dracaufeu (#006)");
+    expect(fr.paragraph).toContain("Classeur du set Base");
+    expect(fr.paragraph).toContain("Il me manque encore cette carte.");
+    expect(fr.paragraph).not.toContain("I still need");
+    expect(fr.morePrintings?.href).toBe("/fr/pokedex/6");
+
+    const sv = buildCardView("sv", getMessages("sv"), set, card, "need");
+    expect(localePath("sv", sv.path)).toBe("/sv/cards/base1-4-charizard");
+    expect(sv.paragraph).toContain("Charizard");
+    expect(sv.paragraph).toContain("Base");
+    expect(sv.paragraph).toContain("Setpärm Base");
+    expect(sv.paragraph).toContain("Generationspärm 1 (Kanto)");
+    expect(sv.paragraph).toContain("Jag behöver fortfarande det här kortet.");
+    expect(sv.paragraph).not.toContain("I still need");
+    expect(sv.morePrintings?.href).toBe("/sv/pokedex/6");
   });
 });

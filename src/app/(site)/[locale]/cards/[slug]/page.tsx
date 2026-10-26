@@ -15,14 +15,13 @@ import {
 } from "@/lib/card-page";
 import { fill, formatInt } from "@/lib/format";
 import { readLocale } from "@/lib/i18n";
-import { CARD_LOCALES, cardPageIndexed } from "@/lib/locales";
 import { localePath } from "@/lib/routing";
 import { pageMetadata } from "@/lib/seo";
 import { loadPublic } from "@/lib/stats";
 
 /**
- * About 20,000 English cards, and the parent layout also builds every locale.
- * Pre-rendering all of them would multiply the Vercel build. Pages are rendered
+ * About 20,000 cards in every locale. Pre-rendering all of them would
+ * multiply the Vercel build. Pages are rendered
  * on the first request and then cached for a day (ISR). Card facts come from
  * the catalog files. Whether a card is logged comes from the shipment table and
  * can lag by up to this window.
@@ -40,19 +39,17 @@ export async function generateMetadata({
   params: Promise<{ locale: string; slug: string }>;
 }): Promise<Metadata> {
   const { locale, m } = await readLocale(params);
-  if (!cardPageIndexed(locale)) return {};
   const { slug } = await params;
   const resolved = resolveCardSlug(slug);
   if (!resolved) return {};
   const snapshot = await loadPublic();
   const status = cardStatus(snapshot.state, cardIsHeld(snapshot.held, resolved.set.id, resolved.card.n));
   const view = buildCardView(locale, m, resolved.set, resolved.card, status);
-  return pageMetadata(locale, view.path, view.title, metaDescription(view.paragraph), { locales: CARD_LOCALES });
+  return pageMetadata(locale, view.path, view.title, metaDescription(view.paragraph));
 }
 
 export default async function CardPage({ params }: { params: Promise<{ locale: string; slug: string }> }) {
   const { locale, m } = await readLocale(params);
-  if (!cardPageIndexed(locale)) notFound();
   const { slug } = await params;
   const resolved = resolveCardSlug(slug);
   if (!resolved) notFound();

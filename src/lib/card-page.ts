@@ -6,7 +6,7 @@ import { fill, formatDay } from "./format";
 import { formatDexNumber, generationOf, SPECIES_TOTAL } from "./generations";
 import type { Messages } from "./i18n";
 import { breadcrumbNode, ldGraph, pageNode, type Crumb } from "./jsonld";
-import { cardPageIndexed, type Locale } from "./locales";
+import type { Locale } from "./locales";
 import { localePath } from "./routing";
 import { seriesSlug } from "./series";
 import { speciesByDex, type Printing } from "./species-index";
@@ -95,15 +95,7 @@ export function cardPath(setId: string, card: { n: string; name: string }): stri
   return `/cards/${cardSlug(setId, card)}`;
 }
 
-export function cardRowHref(locale: string, setId: string, card: { n: string; name: string }, fallback: string): string;
-export function cardRowHref(locale: string, setId: string, card: { n: string; name: string }, fallback?: string): string | undefined;
-export function cardRowHref(
-  locale: string,
-  setId: string,
-  card: { n: string; name: string },
-  fallback?: string,
-): string | undefined {
-  if (!cardPageIndexed(locale)) return fallback;
+export function cardRowHref(locale: string, setId: string, card: { n: string; name: string }, _fallback?: string): string {
   return localePath(locale, cardPath(setId, card));
 }
 
@@ -163,10 +155,10 @@ export function cardStatus(state: "ok" | "unconfigured" | "error", held: boolean
   return held ? "have" : "need";
 }
 
-function joinList(items: string[]): string {
+function joinList(m: Messages, items: string[]): string {
   if (items.length <= 1) return items[0] ?? "";
-  if (items.length === 2) return `${items[0]} and ${items[1]}`;
-  return `${items.slice(0, -1).join(", ")}, and ${items.at(-1)}`;
+  if (items.length === 2) return fill(m.cardPage.listTwo, { a: items[0] ?? "", b: items[1] ?? "" });
+  return fill(m.cardPage.listLast, { list: items.slice(0, -1).join(", "), last: items.at(-1) ?? "" });
 }
 
 function traits(card: CatalogCard): string {
@@ -284,12 +276,12 @@ export function buildCardView(
   ];
   if (card.r) sentences.push(fill(m.cardPage.rarityLine, { rarity: card.r }));
   if (card.a) sentences.push(fill(m.cardPage.illustratorLine, { name: card.a }));
-  if (species.length) sentences.push(fill(m.cardPage.speciesLine, { names: joinList(species.map((link) => link.name)) }));
+  if (species.length) sentences.push(fill(m.cardPage.speciesLine, { names: joinList(m, species.map((link) => link.name)) }));
   const numeric = /^(\d+)/.exec(card.n);
   if (set.printed && numeric && Number(numeric[1]) > set.printed) {
     sentences.push(fill(m.cardPage.secretLine, { printed: set.printed }));
   }
-  sentences.push(fill(m.cardPage.belongsLine, { list: joinList(binders.map((link) => link.name)) }));
+  sentences.push(fill(m.cardPage.belongsLine, { list: joinList(m, binders.map((link) => link.name)) }));
   if (status === "have") sentences.push(m.cardPage.statusHave);
   else if (status === "need") sentences.push(m.cardPage.statusNeed);
   else sentences.push(m.cardPage.statusUnknown);
