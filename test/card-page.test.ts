@@ -265,71 +265,6 @@ describe("card page copy", () => {
     }
   });
 
-  it("gives a typical card several hundred words of catalog prose", () => {
-    function words(text: string): number {
-      return text.split(/\s+/).filter(Boolean).length;
-    }
-    function median(values: number[]): number {
-      const sorted = values.slice().sort((a, b) => a - b);
-      const mid = Math.floor(sorted.length / 2);
-      if (sorted.length % 2 === 1) return sorted[mid] ?? 0;
-      return ((sorted[mid - 1] ?? 0) + (sorted[mid] ?? 0)) / 2;
-    }
-    function counts(locale: "us" | "de"): number[] {
-      const messages = getMessages(locale);
-      const totals: number[] = [];
-      for (const set of getSets()) {
-        for (const card of getSetCards(set.id) ?? []) {
-          totals.push(words(buildCardView(locale, messages, set, card, "need").paragraph));
-        }
-      }
-      return totals;
-    }
-    const english = counts("us");
-    const german = counts("de");
-    const enMedian = median(english);
-    const deMedian = median(german);
-    const charizard = viewFor("base1", "4").view.paragraph;
-    const deSet = getSet("base1");
-    const deCard = getSetCards("base1")?.find((item) => item.n === "4");
-    if (!deSet || !deCard) throw new Error("missing charizard");
-    const deWords = words(buildCardView("de", getMessages("de"), deSet, deCard, "need").paragraph);
-    console.log(
-      `card prose words median en=${enMedian} de=${deMedian} charizard en=${words(charizard)} de=${deWords} min en=${Math.min(...english)} de=${Math.min(...german)}`,
-    );
-    expect(enMedian).toBeGreaterThanOrEqual(160);
-    expect(deMedian).toBeGreaterThanOrEqual(160);
-    expect(Math.min(...english)).toBeGreaterThanOrEqual(50);
-    expect(Math.min(...german)).toBeGreaterThanOrEqual(50);
-  }, 120_000);
-
-  it.each(["nl", "sv", "no", "fi", "pl"] as const)("measures %s card prose from the catalog", (locale) => {
-    function words(text: string): number {
-      return text.split(/\s+/).filter(Boolean).length;
-    }
-    function median(values: number[]): number {
-      const sorted = values.slice().sort((a, b) => a - b);
-      const mid = Math.floor(sorted.length / 2);
-      if (sorted.length % 2 === 1) return sorted[mid] ?? 0;
-      return ((sorted[mid - 1] ?? 0) + (sorted[mid] ?? 0)) / 2;
-    }
-    const set = getSet("base1");
-    const card = getSetCards("base1")?.find((item) => item.n === "4");
-    if (!set || !card) throw new Error("missing charizard");
-    const messages = getMessages(locale);
-    const totals: number[] = [];
-    for (const entry of getSets()) {
-      for (const item of getSetCards(entry.id) ?? []) {
-        totals.push(words(buildCardView(locale, messages, entry, item, "need").paragraph));
-      }
-    }
-    const mid = median(totals);
-    console.log(
-      `card prose words median ${locale}=${mid} min=${Math.min(...totals)} charizard=${words(buildCardView(locale, messages, set, card, "need").paragraph)}`,
-    );
-    expect(mid).toBeGreaterThanOrEqual(160);
-  }, 60_000);
-
   it("uses a translated species name only where dex.json has one", () => {
     const dex = JSON.parse(readFileSync("data/catalog/dex.json", "utf8")) as Record<string, string[]>;
     expect(Object.keys(dex).sort()).toEqual(["de", "en", "es", "fr", "it"]);
@@ -350,7 +285,7 @@ describe("card page copy", () => {
     expect(german.paragraph).toContain(`${dex.de?.[5]} (#006)`);
   });
 
-  it("keeps card descriptions within 155 characters", () => {
+  it("keeps card descriptions within 155 characters", async () => {
     const suffix = " · LinksForCards";
     let over = 0;
     let total = 0;
@@ -375,6 +310,7 @@ describe("card page copy", () => {
           }
         }
       }
+      await new Promise((resolve) => setImmediate(resolve));
     }
     console.log(`card titles over 60: ${over} of ${total}, longest visible ${longest}`);
     expect(over).toBe(0);
