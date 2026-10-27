@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import Image from "next/image";
+import { CardPicture } from "@/components/site/card-picture";
 
 type Row = { key: string; title: string; detail: string; have: boolean; image?: string | null; alt?: string; href?: string };
 
@@ -75,11 +75,9 @@ export function Checklist({
       <ol className="checklist">
         {(printing ? rows : visible).map((row) => (
           <li key={row.key} id={`line-${row.key}`} className={row.have ? "have" : "miss"}>
-            {row.image ? (
-              <Image src={row.image} alt={row.alt ?? ""} width={36} height={50} sizes="36px" />
-            ) : (
-              <span className="slot" aria-hidden="true" />
-            )}
+            <span className="card-shot thumb">
+              <CardPicture src={row.image ?? null} alt={row.alt ?? ""} quality="low" />
+            </span>
             <span>
               <strong>{row.href ? <a href={row.href}>{row.title}</a> : row.title}</strong>
               {row.detail ? <small>{row.detail}</small> : null}

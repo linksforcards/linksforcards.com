@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Breadcrumbs } from "@/components/site/breadcrumbs";
+import { CardPicture } from "@/components/site/card-picture";
 import { DoodleCluster } from "@/components/site/doodles";
 import { JsonLd } from "@/components/site/json-ld";
 import { SiteLinks } from "@/components/site/site-links";
@@ -92,10 +93,15 @@ export default async function IllustratorPage({ params }: { params: Promise<{ lo
           <h3>
             <a href={group.href}>{group.heading}</a>
           </h3>
-          <ul className="dex-list">
+          <ul className="illust-cards">
             {group.cards.map((card) => (
               <li key={card.href}>
-                <a href={card.href}>{card.name}</a>
+                <a href={card.href}>
+                  <span className="card-shot">
+                    <CardPicture src={card.image} alt={card.alt} quality="low" />
+                  </span>
+                  <span>{card.name}</span>
+                </a>
               </li>
             ))}
           </ul>

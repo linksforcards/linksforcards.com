@@ -88,7 +88,6 @@ export default async function ThemePage({ params }: { params: Promise<{ locale: 
   const groups: { series: string; anchor: string; count: number }[] = [];
   const rows = resolveThemeCards(theme).map((item) => {
     const dex = item.card.dex?.find((number) => number >= 1 && number <= 1025);
-    const name = item.card.k === "p" && dex ? speciesName(dex, locale) : item.card.name;
     const anchor = anchorFor(item);
     const last = groups.at(-1);
     if (!last || last.series !== item.set.series) groups.push({ series: item.set.series, anchor, count: 1 });
@@ -104,7 +103,7 @@ export default async function ThemePage({ params }: { params: Promise<{ locale: 
       ].join(" · "),
       have: (snapshot.held[item.setId] ?? []).some((number) => numbersMatch(item.number, number)),
       image: cardImageSrc(item.setId, item.number),
-      alt: fill(m.checklist.cardAlt, { name, set: item.set.name, number: item.number }),
+      alt: fill(m.checklist.cardAlt, { name: item.card.name, set: item.set.name, number: item.number }),
       href: cardRowHref(locale, item.setId, item.card, dex ? localePath(locale, `/pokedex/${dex}`) : undefined),
     };
   });

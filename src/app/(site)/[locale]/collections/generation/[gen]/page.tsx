@@ -9,7 +9,7 @@ import { ProgressBar } from "@/components/site/progress-bar";
 import { RelatedLinks } from "@/components/site/related-links";
 import { SiteLinks } from "@/components/site/site-links";
 import { getArticle } from "@/lib/articles";
-import { getSet, speciesName, speciesNamesAreTranslated } from "@/lib/catalog";
+import { cardImageSrc, getSet, speciesName, speciesNamesAreTranslated } from "@/lib/catalog";
 import { fill, formatInt } from "@/lib/format";
 import { formatDexNumber, GENERATIONS, generationById } from "@/lib/generations";
 import { readLocale } from "@/lib/i18n";
@@ -73,6 +73,8 @@ export default async function GenerationPage({ params }: { params: Promise<{ loc
   const rows = [];
   for (let dex = generation.start; dex <= generation.end; dex += 1) {
     const record = speciesByDex(dex);
+    const first = record?.first;
+    const firstSet = first ? getSet(first.setId) : null;
     const names = (record?.setIds ?? []).slice(0, 3).map((id) => getSet(id)?.name ?? id);
     const extra = (record?.setIds.length ?? 0) - names.length;
     const setLabel = extra > 0 ? `${names.join(", ")} ${fill(m.home.andMore, { count: formatInt(extra, locale) })}` : names.join(", ");
@@ -83,6 +85,8 @@ export default async function GenerationPage({ params }: { params: Promise<{ loc
       detail: setLabel ? `${prints} · ${setLabel}` : prints,
       have: have.has(dex),
       href: localePath(locale, `/pokedex/${dex}`),
+      image: first ? cardImageSrc(first.setId, first.number) : null,
+      alt: first ? fill(m.checklist.cardAlt, { name: first.name, set: firstSet?.name ?? first.setId, number: first.number }) : "",
     });
   }
   const crumbs = [

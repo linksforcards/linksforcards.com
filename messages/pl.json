@@ -66,8 +66,8 @@
     "illustrators": "Ilustratorzy"
   },
   "footer": {
-    "disclaimer": "LinksForCards to nieoficjalny projekt fanowski Magnusa Schmidta. Nie jest powiązany z Nintendo, Creatures, Game Freak ani The Pokémon Company i nie jest przez nie popierany.",
-    "data": "Listy korzystają z nazw i numerów kolekcjonerskich z publicznego zbioru danych Pokémon TCG. Nazwy gatunków w niektórych językach pochodzą z PokéAPI. Nie ma oficjalnych logo ani skanów kart.",
+    "disclaimer": "LinksForCards to nieoficjalny projekt fanowski Magnusa Schmidta. Nie jest powiązany z Nintendo, Creatures, Game Freak ani The Pokémon Company i nie jest przez nie popierany. Obrazy kart są pokazywane przez TCGdex. Pokémon i obrazy kart © Nintendo, Creatures i GAME FREAK.",
+    "data": "Listy korzystają z nazw i numerów kolekcjonerskich z publicznego zbioru danych Pokémon TCG. Nazwy gatunków w niektórych językach pochodzą z PokéAPI. Nie ma oficjalnych logo.",
     "contactLabel": "E-mail"
   },
   "home": {
@@ -162,7 +162,7 @@
     "next": "Następna",
     "page": "{page} / {pages}",
     "pages": "Strony",
-    "cardAlt": "{name} – {set} #{number}",
+    "cardAlt": "{name}, {set} #{number}",
     "print": "Drukuj tę listę kontrolną"
   },
   "partners": {

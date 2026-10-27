@@ -66,8 +66,8 @@
     "illustrators": "Illustratörer"
   },
   "footer": {
-    "disclaimer": "LinksForCards är ett inofficiellt fanprojekt av Magnus Schmidt. Det är inte kopplat till eller godkänt av Nintendo, Creatures, Game Freak eller The Pokémon Company.",
-    "data": "Listorna använder namn och samlarnummer från det offentliga Pokémon-TCG-datat. Artnamn på vissa språk kommer från PokéAPI. Det finns inga officiella logotyper eller inskannade kort.",
+    "disclaimer": "LinksForCards är ett inofficiellt fanprojekt av Magnus Schmidt. Det är inte kopplat till eller godkänt av Nintendo, Creatures, Game Freak eller The Pokémon Company. Kortbilder visas via TCGdex. Pokémon och kortbilder © Nintendo, Creatures och GAME FREAK.",
+    "data": "Listorna använder namn och samlarnummer från det offentliga Pokémon-TCG-datat. Artnamn på vissa språk kommer från PokéAPI. Det finns inga officiella logotyper.",
     "contactLabel": "E-post"
   },
   "home": {
@@ -162,7 +162,7 @@
     "next": "Nästa",
     "page": "{page} / {pages}",
     "pages": "Sidor",
-    "cardAlt": "{name} – {set} #{number}",
+    "cardAlt": "{name}, {set} #{number}",
     "print": "Skriv ut den här checklistan"
   },
   "partners": {

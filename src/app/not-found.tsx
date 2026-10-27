@@ -17,7 +17,8 @@ export default function RootNotFound() {
           </p>
           <p>
             LinksForCards is an unofficial fan project by Magnus Schmidt. It is not affiliated with or endorsed by
-            Nintendo, Creatures, Game Freak, or The Pokémon Company.
+            Nintendo, Creatures, Game Freak, or The Pokémon Company. Card images are shown via TCGdex. Pokémon and
+            card images © Nintendo, Creatures, and GAME FREAK.
           </p>
         </main>
       </body>

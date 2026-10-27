@@ -87,8 +87,6 @@ export default async function DeltaReignPage({ params }: { params: Promise<{ loc
   const rows =
     catalog && facts
       ? catalog.cards.map((card) => {
-          const pokemon = (card.dex ?? []).map((dex) => speciesName(dex, locale)).filter(Boolean);
-          const name = card.k === "p" && pokemon.length ? pokemon.join(", ") : card.name;
           const dex = card.dex?.find((number) => number >= 1 && number <= 1025);
           return {
             key: card.n,
@@ -99,7 +97,7 @@ export default async function DeltaReignPage({ params }: { params: Promise<{ loc
             ].join(" · "),
             have: held.some((number) => numbersMatch(card.n, number)),
             image: cardImageSrc(catalog.set.id, card.n),
-            alt: fill(m.checklist.cardAlt, { name, set: catalog.set.name, number: card.n }),
+            alt: fill(m.checklist.cardAlt, { name: card.name, set: catalog.set.name, number: card.n }),
             href: dex ? localePath(locale, `/pokedex/${dex}`) : undefined,
           };
         })

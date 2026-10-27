@@ -67,12 +67,17 @@ describe("printable checklists", () => {
     expect(html).toContain('href="/de/checklists/set/base1/pdf/a4"');
     expect(html).toContain('href="/de/checklists/set/base1/pdf/letter"');
     expect(html).toContain("tick-box");
+    expect(html).toContain("https://assets.tcgdex.net/en/base/base1/4/low.webp");
+    expect(html).toContain('loading="lazy"');
+    expect(html).toContain("Charizard, Base #4");
     expect(html).not.toMatch(/tcgplayer|cardmarket|\$\d/i);
 
     const pdf = await renderChecklistPdf(model, "a4", false);
     const letter = await renderChecklistPdf(getChecklist("us", "theme", "pikachu")!, "letter", false);
     const text = pdf.toString("latin1");
     expect(text.startsWith("%PDF")).toBe(true);
+    expect(text).not.toContain("tcgdex");
+    expect(text).not.toContain("pokemontcg.io");
     expect(text).toContain("595.28");
     expect(text).toContain("841.89");
     expect(letter.toString("latin1")).toContain("612");

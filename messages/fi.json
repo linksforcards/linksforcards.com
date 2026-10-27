@@ -66,8 +66,8 @@
     "illustrators": "Kuvittajat"
   },
   "footer": {
-    "disclaimer": "LinksForCards on Magnus Schmidtin epävirallinen faniprojekti. Sillä ei ole yhteyttä Nintendoon, Creaturesiin, Game Freakiin tai The Pokémon Companyyn, eivätkä ne ole sitä tukeneet.",
-    "data": "Listat käyttävät nimiä ja keräilynumeroita julkisesta Pokémon-TCG-aineistosta. Osan kielten lajinimet tulevat PokéAPIsta. Virallisia logoja tai korttiskannauksia ei ole.",
+    "disclaimer": "LinksForCards on Magnus Schmidtin epävirallinen faniprojekti. Sillä ei ole yhteyttä Nintendoon, Creaturesiin, Game Freakiin tai The Pokémon Companyyn, eivätkä ne ole sitä tukeneet. Korttikuvat näytetään TCGdexin kautta. Pokémon ja korttikuvat © Nintendo, Creatures ja GAME FREAK.",
+    "data": "Listat käyttävät nimiä ja keräilynumeroita julkisesta Pokémon-TCG-aineistosta. Osan kielten lajinimet tulevat PokéAPIsta. Virallisia logoja ei ole.",
     "contactLabel": "Sähköposti"
   },
   "home": {
@@ -162,7 +162,7 @@
     "next": "Seuraava",
     "page": "{page} / {pages}",
     "pages": "Sivut",
-    "cardAlt": "{name} – {set} #{number}",
+    "cardAlt": "{name}, {set} #{number}",
     "print": "Tulosta tämä tarkistuslista"
   },
   "partners": {

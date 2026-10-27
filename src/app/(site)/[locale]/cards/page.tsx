@@ -103,6 +103,7 @@ export default async function CardsDatabasePage({
     results: m.cardSearch.results,
     filters: m.cardSearch.filters,
     fallback: m.cardSearch.fallback,
+    cardAlt: m.checklist.cardAlt,
     supertypes: {
       p: m.checklist.supertypeP,
       t: m.checklist.supertypeT,

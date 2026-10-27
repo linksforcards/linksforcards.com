@@ -3,6 +3,7 @@ import { notFound, permanentRedirect } from "next/navigation";
 import { Breadcrumbs } from "@/components/site/breadcrumbs";
 import { CardCopy, CardFaq, CardGameplay } from "@/components/site/card-body";
 import { BinderChips, NeighborLinks, PrintingGrid } from "@/components/site/card-links";
+import { CardPicture } from "@/components/site/card-picture";
 import { DoodleCluster } from "@/components/site/doodles";
 import { JsonLd } from "@/components/site/json-ld";
 import { SiteLinks } from "@/components/site/site-links";
@@ -13,6 +14,7 @@ import {
   resolveCardSlug,
   cardIsHeld,
 } from "@/lib/card-page";
+import { cardImageAlt, cardImageKind, cardImageUrl } from "@/lib/card-images";
 import { fill, formatInt } from "@/lib/format";
 import { readLocale } from "@/lib/i18n";
 import { CARD_INDEX_LOCALES, cardPageIndexed } from "@/lib/locales";
@@ -47,11 +49,23 @@ export async function generateMetadata({
   const status = cardStatus(snapshot.state, cardIsHeld(snapshot.held, resolved.set.id, resolved.card.n));
   const view = buildCardView(locale, m, resolved.set, resolved.card, status);
   const indexed = cardPageIndexed(locale);
+  const photo =
+    cardImageKind(resolved.set.id, resolved.card.n) === "tcgdex"
+      ? cardImageUrl(resolved.set.id, resolved.card.n, "high")
+      : null;
   return pageMetadata(locale, view.path, view.title, view.description, {
     index: indexed,
     hreflang: indexed,
     locales: CARD_INDEX_LOCALES,
     fitTitle: true,
+    ...(photo
+      ? {
+          image: photo,
+          imageAlt: cardImageAlt(m.checklist.cardAlt, resolved.card.name, resolved.set.name, resolved.card.n),
+          imageWidth: 600,
+          imageHeight: 825,
+        }
+      : {}),
   });
 }
 
@@ -65,6 +79,9 @@ export default async function CardPage({ params }: { params: Promise<{ locale: s
   const status = cardStatus(snapshot.state, cardIsHeld(snapshot.held, resolved.set.id, resolved.card.n));
   const view = buildCardView(locale, m, resolved.set, resolved.card, status);
   const graph = cardPageGraph(locale, view);
+  const alt = cardImageAlt(m.checklist.cardAlt, resolved.card.name, resolved.set.name, resolved.card.n);
+  const high = cardImageUrl(resolved.set.id, resolved.card.n, "high");
+  const low = cardImageUrl(resolved.set.id, resolved.card.n, "low");
   const neighbors = [view.prev, view.next].filter((link): link is NonNullable<typeof link> => Boolean(link));
 
   return (
@@ -78,7 +95,10 @@ export default async function CardPage({ params }: { params: Promise<{ locale: s
         </p>
         <h1>{view.title}</h1>
       </section>
-      <CardCopy paragraphs={view.paragraphs} />
+      <div className="card-layout">
+        <CardPicture src={high} fallbackSrc={low} alt={alt} quality="high" eager frame />
+        <CardCopy paragraphs={view.paragraphs} />
+      </div>
       <h2>{m.cardPage.facts}</h2>
       <dl className="facts">
         {view.facts.map((fact) => (

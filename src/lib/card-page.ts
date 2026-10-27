@@ -1,6 +1,7 @@
 import type { Graph } from "schema-dts";
 import type { CardFaq } from "@/content/card-story-types";
 import { themeCopy } from "@/content/theme-copy";
+import { cardImageAlt, cardImageUrl } from "./card-images";
 import { numbersMatch } from "./cards";
 import { printingsForDex, type LookupPrinting } from "./card-lookup";
 import { buildCardStory } from "./card-story";
@@ -22,6 +23,8 @@ export type PrintingCard = {
   fraction: string;
   setName: string;
   year: string;
+  image: string | null;
+  alt: string;
 };
 export type CardStatus = "have" | "need" | "unknown";
 export type CardFact = { label: string; value?: string; href?: string; links?: CardLink[] };
@@ -301,6 +304,8 @@ export function buildCardView(
         fraction: cardFraction(printingSet, named),
         setName: printingSet.name,
         year: releaseYear(printingSet.releaseDate),
+        image: cardImageUrl(printing.s, printing.n, "low"),
+        alt: cardImageAlt(m.checklist.cardAlt, named.name, printingSet.name, printing.n),
       },
     ];
   });

@@ -84,8 +84,6 @@ export default async function SetPage({ params }: { params: Promise<{ locale: st
   const path = `/collections/set/${set.id}`;
   const title = fill(m.meta.setTitle, { name: set.name });
   const rows = cards.map((card) => {
-    const pokemon = (card.dex ?? []).map((dex) => speciesName(dex, locale)).filter(Boolean);
-    const name = card.k === "p" && pokemon.length ? pokemon.join(", ") : card.name;
     const dex = card.dex?.find((number) => number >= 1 && number <= 1025);
     return {
       key: card.n,
@@ -96,7 +94,7 @@ export default async function SetPage({ params }: { params: Promise<{ locale: st
       ].join(" · "),
       have: held.some((number) => numbersMatch(card.n, number)),
       image: cardImageSrc(set.id, card.n),
-      alt: fill(m.checklist.cardAlt, { name, set: set.name, number: card.n }),
+      alt: fill(m.checklist.cardAlt, { name: card.name, set: set.name, number: card.n }),
       href: cardRowHref(locale, set.id, card, dex ? localePath(locale, `/pokedex/${dex}`) : undefined),
     };
   });

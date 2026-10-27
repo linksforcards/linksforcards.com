@@ -111,4 +111,4 @@ export function cardFacts(card) {
 }
 
 export const CATALOG_CONTENTS =
-  "Collector numbers, English card names, supertypes, subtypes, level, HP, types, evolves-from, evolves-to, attacks, abilities, weakness, resistance, retreat cost, flavor text, regulation mark, card text, ancient traits, rarity, illustrator, and national dex numbers. Prices and images are not stored.";
+  "Collector numbers, English card names, supertypes, subtypes, level, HP, types, evolves-from, evolves-to, attacks, abilities, weakness, resistance, retreat cost, flavor text, regulation mark, card text, ancient traits, rarity, illustrator, and national dex numbers. Prices are not stored. Hotlinked image base URLs live in data/catalog/images.json.";

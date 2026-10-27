@@ -1,5 +1,6 @@
 import { readFileSync } from "node:fs";
 import path from "node:path";
+import { cardImageUrl, type ImageQuality } from "./card-images";
 import { numbersMatch } from "./cards";
 
 export type CardKind = "p" | "t" | "e" | "o";
@@ -249,7 +250,7 @@ export function speciesName(dexNumber: number, locale: string): string {
   return dex[lang][dexNumber - 1] || dex.en[dexNumber - 1] || `Pokémon ${dexNumber}`;
 }
 
-/** Reserved for a rights-cleared image source. Returns null until one exists. */
-export function cardImageSrc(_setId: string, _number: string): string | null {
-  return null;
+/** Hotlinked scan. `low` is the list size. `high` is the card page. */
+export function cardImageSrc(setId: string, number: string, quality: ImageQuality = "low"): string | null {
+  return cardImageUrl(setId, number, quality);
 }

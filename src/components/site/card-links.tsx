@@ -1,3 +1,4 @@
+import { CardPicture } from "@/components/site/card-picture";
 import type { CardLink, PrintingCard } from "@/lib/card-page";
 
 function SetIcon() {
@@ -81,6 +82,9 @@ export function PrintingGrid({
         {cards.map((card) => (
           <li key={card.href}>
             <a href={card.href}>
+              <span className="card-shot">
+                <CardPicture src={card.image} alt={card.alt} quality="low" />
+              </span>
               <span className="printing-name">{card.name}</span>
               <span className="printing-number">{card.fraction}</span>
               <span className="printing-meta">{card.year ? `${card.setName} · ${card.year}` : card.setName}</span>
