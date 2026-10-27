@@ -1,3 +1,4 @@
+import { cardImageUrl } from "./card-images";
 import type { Locale } from "./locales";
 import { localePath } from "./routing";
 import { cardPath } from "./slug";
@@ -39,10 +40,12 @@ export type CardQuery = {
 export type SearchHit = {
   href: string;
   name: string;
+  number: string;
   fraction: string;
   setName: string;
   year: string;
   illustrator: string;
+  image: string | null;
 };
 
 export type PreparedIndex = {
@@ -213,10 +216,12 @@ export function searchCards(
       {
         href: localePath(options.locale, cardPath(set.id, { n: card[1], name })),
         name,
+        number: card[1],
         fraction: `${card[1]}/${set.printed}`,
         setName: set.name,
         year: set.year ? String(set.year) : "",
         illustrator: artist?.name ?? "",
+        image: cardImageUrl(set.id, card[1], "low"),
       },
     ];
   });

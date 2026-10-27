@@ -1,4 +1,5 @@
 import { themeCopy } from "@/content/theme-copy";
+import { cardImageAlt, cardImageUrl } from "@/lib/card-images";
 import { getSet, getSetCards, getSets, setsBySeries, speciesName, speciesNamesAreTranslated } from "@/lib/catalog";
 import { fill, formatDay, formatInt } from "@/lib/format";
 import { formatDexNumber, GENERATIONS, generationById } from "@/lib/generations";
@@ -9,7 +10,7 @@ import { getTheme, getThemes, resolveThemeCards } from "@/lib/themes";
 export type ChecklistKind = "set" | "theme" | "generation";
 export type Paper = "a4" | "letter";
 
-export type ChecklistLine = { number: string; name: string; rarity: string };
+export type ChecklistLine = { number: string; name: string; rarity: string; image?: string | null; alt?: string };
 
 export type ChecklistBlock = { heading: string; lines: ChecklistLine[] };
 
@@ -128,7 +129,13 @@ function setChecklist(locale: Locale, id: string, m: Messages, labels: Checklist
     blocks: [
       {
         heading: "",
-        lines: cards.map((card) => ({ number: card.n, name: card.name, rarity: card.r ?? "" })),
+        lines: cards.map((card) => ({
+          number: card.n,
+          name: card.name,
+          rarity: card.r ?? "",
+          image: cardImageUrl(set.id, card.n, "low"),
+          alt: cardImageAlt(m.checklist.cardAlt, card.name, set.name, card.n),
+        })),
       },
     ],
     indexed: false,
@@ -144,7 +151,13 @@ function themeChecklist(locale: Locale, id: string, m: Messages, labels: Checkli
   if (!theme || !copy) return null;
   const blocks: ChecklistBlock[] = [];
   for (const item of resolveThemeCards(theme)) {
-    const line = { number: item.number, name: item.card.name, rarity: item.card.r ?? "" };
+    const line = {
+      number: item.number,
+      name: item.card.name,
+      rarity: item.card.r ?? "",
+      image: cardImageUrl(item.set.id, item.number, "low"),
+      alt: cardImageAlt(m.checklist.cardAlt, item.card.name, item.set.name, item.number),
+    };
     const last = blocks.at(-1);
     if (!last || last.heading !== item.set.name) blocks.push({ heading: item.set.name, lines: [line] });
     else last.lines.push(line);

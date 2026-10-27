@@ -1,3 +1,4 @@
+import { CardPicture } from "@/components/site/card-picture";
 import { PrintButton } from "@/components/site/print-button";
 import { checklistPdfPath, type ChecklistModel } from "@/lib/checklists";
 import type { Locale } from "@/lib/locales";
@@ -37,8 +38,13 @@ export function PrintableSheet({ locale, model }: { locale: Locale; model: Check
             line += 1;
             const rarity = item.rarity || labels.missingRarity;
             return (
-              <li className="print-row" key={`${blockIndex}-${item.number}-${line}`}>
+              <li className={item.image ? "print-row has-pic" : "print-row"} key={`${blockIndex}-${item.number}-${line}`}>
                 <span className="tick-box" aria-hidden="true" />
+                {item.image ? (
+                  <span className="print-pic">
+                    <CardPicture src={item.image} alt={item.alt ?? item.name} quality="low" />
+                  </span>
+                ) : null}
                 <span className="print-num">{item.number}</span>
                 <span className="print-name">{item.name}</span>
                 <span className="print-rarity">{rarity}</span>

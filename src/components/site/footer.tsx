@@ -23,6 +23,8 @@ export function SiteFooter({ locale }: { locale: Locale }) {
           <a href="https://github.com/PokemonTCG/pokemon-tcg-data">PokemonTCG/pokemon-tcg-data</a>
           <span aria-hidden="true"> · </span>
           <a href="https://github.com/PokeAPI/pokeapi">PokeAPI/pokeapi</a>
+          <span aria-hidden="true"> · </span>
+          <a href="https://tcgdex.dev">TCGdex</a>
         </p>
         <p className="foot-links">
           <a href={localePath(locale, "/privacy")}>{m.nav.privacy}</a>

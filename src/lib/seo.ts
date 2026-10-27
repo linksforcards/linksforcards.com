@@ -31,6 +31,8 @@ export function pageMetadata(
     fitTitle?: boolean;
     image?: string;
     imageAlt?: string;
+    imageWidth?: number;
+    imageHeight?: number;
   },
 ): Metadata {
   const canonical = absoluteUrl(localePath(locale, path));
@@ -58,7 +60,14 @@ export function pageMetadata(
         ? OG_LOCALES.filter((item) => item !== currentOg && (!allowed || allowed.has(OG_PAGE_LOCALE[item])))
         : [],
       type: "website",
-      images: [{ url: options?.image ?? `/og/${locale}`, width: 1200, height: 630, alt: options?.imageAlt ?? m.meta.ogAlt }],
+      images: [
+        {
+          url: options?.image ?? `/og/${locale}`,
+          width: options?.imageWidth ?? 1200,
+          height: options?.imageHeight ?? 630,
+          alt: options?.imageAlt ?? m.meta.ogAlt,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",

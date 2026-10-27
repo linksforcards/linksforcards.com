@@ -90,7 +90,7 @@ export default async function SpeciesPage({ params }: { params: Promise<{ locale
         .join(" · "),
       have,
       image: cardImageSrc(printing.setId, printing.number),
-      alt: fill(m.checklist.cardAlt, { name, set: set?.name ?? printing.setId, number: printing.number }),
+      alt: fill(m.checklist.cardAlt, { name: printing.name, set: set?.name ?? printing.setId, number: printing.number }),
       href: cardRowHref(
         locale,
         printing.setId,

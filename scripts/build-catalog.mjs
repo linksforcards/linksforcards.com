@@ -1,7 +1,8 @@
 /**
  * Builds data/catalog from the public Pokémon TCG dataset.
  * Keeps names, collector numbers, and the card-text fields in scripts/card-facts.mjs.
- * Drops images, prices, and every other field on purpose.
+ * Drops prices, image objects, and every other field on purpose.
+ * Hotlink base URLs are a separate file from `npm run images`.
  */
 import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";

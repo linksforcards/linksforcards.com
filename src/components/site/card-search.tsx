@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState, type FormEvent, type MouseEvent } from "react";
+import { CardPicture } from "@/components/site/card-picture";
 import {
   cardQueryString,
   emptyCardQuery,
@@ -40,6 +41,7 @@ type Labels = {
   results: string;
   filters: string;
   fallback: string;
+  cardAlt: string;
   supertypes: Record<string, string>;
 };
 
@@ -219,10 +221,17 @@ export function CardSearch({
       <p>{countLine(labels, total, locale)}</p>
       {failed && !payload ? <p className="muted">{labels.fallback}</p> : null}
       {hits.length === 0 ? <p>{labels.empty}</p> : null}
-      <ul className="dex-list card-results" aria-labelledby="card-results">
+      <ul className="card-results" aria-labelledby="card-results">
         {hits.map((hit) => (
           <li key={hit.href}>
             <a href={hit.href}>
+              <span className="card-shot">
+                <CardPicture
+                  src={hit.image}
+                  alt={fill(labels.cardAlt, { name: hit.name, set: hit.setName, number: hit.number })}
+                  quality="low"
+                />
+              </span>
               <span className="printing-name">{hit.name}</span>
               <span className="printing-meta">
                 {hit.fraction} · {hit.setName}

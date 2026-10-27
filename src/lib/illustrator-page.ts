@@ -1,4 +1,5 @@
 import type { Graph } from "schema-dts";
+import { cardImageAlt, cardImageUrl } from "./card-images";
 import { speciesName } from "./catalog";
 import { metaDescription } from "./card-page";
 import { fill, formatInt } from "./format";
@@ -23,7 +24,7 @@ export type IllustratorView = {
     id: string;
     heading: string;
     href: string;
-    cards: IllustratorLink[];
+    cards: { href: string; name: string; image: string | null; alt: string }[];
   }[];
 };
 
@@ -148,6 +149,8 @@ export function buildIllustratorView(
       cards: group.cards.map((card) => ({
         href: localePath(locale, card.path),
         name: `${card.name} ${card.number}/${group.printed}`,
+        image: cardImageUrl(group.setId, card.number, "low"),
+        alt: cardImageAlt(m.checklist.cardAlt, card.name, group.setName, card.number),
       })),
     })),
   };
