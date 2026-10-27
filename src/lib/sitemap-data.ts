@@ -8,6 +8,7 @@ import { localePath } from "./routing";
 import { hreflangMap } from "./seo";
 import { seriesSlug } from "./series";
 import { absoluteUrl } from "./site";
+import { checklistSitemapPaths } from "./checklists";
 import { getThemes, themeHreflangLocales, themeIndexed } from "./themes";
 
 const PAGE_PATHS = ["/", "/collections", "/collections/themes", "/guides", "/partners", "/updates", "/donations", "/privacy", "/imprint"];
@@ -65,6 +66,7 @@ export function sitemapIds(): string[] {
     ids.push(`${locale}-pages`, `${locale}-sets`, `${locale}-guides`, `${locale}-themes`);
     if (speciesPageIndexed(locale)) ids.push(`${locale}-species`);
     if (cardPageIndexed(locale)) {
+      ids.push(`${locale}-checklists`);
       const cardSlices = cardSitemapSlices(locale, cardPaths);
       for (let part = 1; part <= cardSlices.length; part += 1) ids.push(cardSitemapId(locale, part, cardSlices.length));
       const artistSlices = cardSitemapSlices(locale, illustratorPaths);
@@ -132,7 +134,16 @@ function databaseSitemapEntries(id: string): SitemapEntry[] | null {
   return locEntries(locale, ["/cards"]);
 }
 
+function checklistSitemapEntries(id: string): SitemapEntry[] | null {
+  const match = id.match(/^([a-z]{2})-checklists$/);
+  if (!match) return null;
+  const locale = match[1] ?? "";
+  if (!isLocale(locale) || !cardPageIndexed(locale)) return null;
+  return locEntries(locale, checklistSitemapPaths(locale));
+}
+
 export function sitemapEntries(id: string): SitemapEntry[] | null {
+  if (id.endsWith("-checklists")) return checklistSitemapEntries(id);
   if (id.includes("-cards")) return slicedLocEntries(id, "cards", listCardPaths());
   if (id.includes("-illustrators")) return slicedLocEntries(id, "illustrators", illustratorSitemapPaths());
   if (id.endsWith("-database")) return databaseSitemapEntries(id);

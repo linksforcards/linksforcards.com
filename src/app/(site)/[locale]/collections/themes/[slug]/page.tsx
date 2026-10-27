@@ -165,6 +165,11 @@ export default async function ThemePage({ params }: { params: Promise<{ locale: 
       <p>{m.themesPage.disclaimer}</p>
       <ProgressBar value={collected} max={theme.total} label={`${copy.h1}: ${progressLabel}`} />
       <p className="count">{progressLabel}</p>
+      <p className="checklist-actions">
+        <a className="button" href={localePath(locale, `/checklists/theme/${theme.slug}`)}>
+          {m.printChecklist.button}
+        </a>
+      </p>
       {collected === theme.total && theme.total > 0 ? <p className="banner">{m.checklist.checklistFull}</p> : null}
       {mark?.status === "given_away" ? <p className="banner">{m.checklist.markedGiven}</p> : null}
       {mark?.status === "completed" ? <p className="banner">{m.checklist.markedComplete}</p> : null}

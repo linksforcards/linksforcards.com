@@ -173,6 +173,11 @@ export default async function SetPage({ params }: { params: Promise<{ locale: st
       <p>{m.bindersPage.anyLanguage}</p>
       <ProgressBar value={collected} max={cards.length} label={`${set.name}: ${progressLabel}`} />
       <p className="count">{progressLabel}</p>
+      <p className="checklist-actions">
+        <a className="button" href={localePath(locale, `/checklists/set/${set.id}`)}>
+          {m.printChecklist.button}
+        </a>
+      </p>
       {collected === cards.length && cards.length > 0 ? <p className="banner">{m.checklist.checklistFull}</p> : null}
       {mark?.status === "given_away" ? <p className="banner">{m.checklist.markedGiven}</p> : null}
       {mark?.status === "completed" ? <p className="banner">{m.checklist.markedComplete}</p> : null}

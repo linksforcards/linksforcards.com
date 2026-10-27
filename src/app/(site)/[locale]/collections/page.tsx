@@ -102,6 +102,9 @@ export default async function CollectionsPage({ params }: { params: Promise<{ lo
         {" · "}
         <a href={localePath(locale, "/illustrators")}>{m.nav.illustrators}</a>
       </p>
+      <p>
+        {m.printChecklist.hubLead} <a href={localePath(locale, "/checklists")}>{m.printChecklist.hubLink}</a>.
+      </p>
       <p>{m.bindersPage.anyLanguage}</p>
       <p>
         {speciesNamesAreTranslated(locale)
