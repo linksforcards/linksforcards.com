@@ -181,6 +181,24 @@ export function themesForDex(dex: number): Theme[] {
   return getThemes().filter((theme) => theme.dex.includes(dex));
 }
 
+let themesByCard: Map<string, Theme[]> | null = null;
+
+/** Themes whose checklist includes this exact printing. */
+export function themesForCard(setId: string, number: string): Theme[] {
+  if (!themesByCard) {
+    themesByCard = new Map();
+    for (const theme of getThemes()) {
+      for (const card of theme.cards) {
+        const key = `${card.setId}:${card.number}`;
+        const list = themesByCard.get(key);
+        if (list) list.push(theme);
+        else themesByCard.set(key, [theme]);
+      }
+    }
+  }
+  return themesByCard.get(`${setId}:${number}`) ?? [];
+}
+
 export function topSets(theme: Theme, limit = 8): { id: string; count: number }[] {
   const counts = new Map<string, number>();
   for (const card of theme.cards) counts.set(card.setId, (counts.get(card.setId) ?? 0) + 1);

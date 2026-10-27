@@ -3,7 +3,7 @@ import { deltaReignCopy } from "@/content/delta-reign";
 import { DELTA_REIGN_SOURCES } from "@/content/delta-reign/types";
 import { articleFaqSchema, getArticle } from "@/lib/articles";
 import { matchDeltaReignSet, findDeltaReignSet, DELTA_REIGN_PATH } from "@/lib/delta-reign";
-import { LOCALES } from "@/lib/locales";
+import { CARD_INDEX_LOCALES, LOCALES, cardPageIndexed } from "@/lib/locales";
 import { resolveLocaleRequest } from "@/lib/routing";
 import { sitemapEntries } from "@/lib/sitemap-data";
 import { absoluteUrl } from "@/lib/site";
@@ -79,15 +79,26 @@ describe("delta reign", () => {
     expect(resolveLocaleRequest("/de/collections/set/delta-reign")).toEqual({ action: "next", noindex: false });
   });
 
-  it("is in the page sitemap with alternates", () => {
+  it("is in the indexed sitemaps only, with alternates for those locales", () => {
     const us = sitemapEntries("us-pages");
     const de = sitemapEntries("de-pages");
     const usEntry = us?.find((entry) => entry.url === absoluteUrl(DELTA_REIGN_PATH));
     const deEntry = de?.find((entry) => entry.url === absoluteUrl(`/de${DELTA_REIGN_PATH}`));
-    expect(usEntry?.languages.de).toBe(absoluteUrl(`/de${DELTA_REIGN_PATH}`));
-    expect(usEntry?.languages["x-default"]).toBe(absoluteUrl(DELTA_REIGN_PATH));
-    expect(deEntry?.languages.en).toBe(absoluteUrl(DELTA_REIGN_PATH));
-    expect(usEntry?.lastModified).toBe("2026-10-24");
+    expect(usEntry?.languages?.de).toBe(absoluteUrl(`/de${DELTA_REIGN_PATH}`));
+    expect(usEntry?.languages?.["x-default"]).toBe(absoluteUrl(DELTA_REIGN_PATH));
+    expect(usEntry?.languages?.["en-GB"]).toBeUndefined();
+    expect(usEntry?.languages?.nl).toBeUndefined();
+    expect(deEntry?.languages?.en).toBe(absoluteUrl(DELTA_REIGN_PATH));
+    expect(usEntry?.lastModified).toBeUndefined();
+    for (const locale of LOCALES) {
+      const pages = sitemapEntries(`${locale}-pages`);
+      const guides = sitemapEntries(`${locale}-guides`);
+      const pageUrl = absoluteUrl(locale === "us" ? DELTA_REIGN_PATH : `/${locale}${DELTA_REIGN_PATH}`);
+      const guideUrl = absoluteUrl(locale === "us" ? "/guides/spot-fakes" : `/${locale}/guides/spot-fakes`);
+      expect(pages?.some((entry) => entry.url === pageUrl), locale).toBe(cardPageIndexed(locale));
+      expect(guides?.some((entry) => entry.url === guideUrl), locale).toBe(cardPageIndexed(locale));
+    }
+    expect([...CARD_INDEX_LOCALES]).toEqual(["us", "de", "fr", "es", "it"]);
   });
 
   it("keeps sourced copy in every language and skips FAQ markup on the new guide", () => {

@@ -22,6 +22,18 @@ describe("public HTML without JavaScript", () => {
     }
     expect(html).toContain('href="/collections/set/base1"');
     expect(html).not.toContain('href="/us/');
+    const cards = renderToStaticMarkup(
+      createElement(LanguageSwitcher, {
+        locale: "uk",
+        label: "Language",
+        bare: "/cards/base1-4-charizard",
+      }),
+    );
+    expect(cards).toContain('href="/cards/base1-4-charizard"');
+    expect(cards).toContain('href="/uk/cards/base1-4-charizard"');
+    expect(cards).toContain('href="/de/cards/base1-4-charizard"');
+    expect(cards).toContain('href="/fr/cards/base1-4-charizard"');
+    expect(cards).toContain('href="/sv/cards/base1-4-charizard"');
   });
 
   it("renders every checklist row in the first markup, including rows past the old page size", () => {

@@ -20,7 +20,7 @@ export type ArticleSlug = (typeof ARTICLE_SLUGS)[number];
 export const PILLAR_SLUG: ArticleSlug = "collecting-binders";
 
 export const GUIDE_SLUGS = ARTICLE_SLUGS;
-export const GUIDE_UPDATED = "2026-10-27";
+export const GUIDE_UPDATED = "2026-10-24";
 
 export type ArticleSection = { id: string; heading: string; paragraphs: string[] };
 

@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import { BinderMark } from "@/components/site/doodles";
 import { LanguageSwitcher } from "@/components/site/language-switcher";
 import { getMessages } from "@/lib/i18n";
-import { type Locale } from "@/lib/locales";
+import type { Locale } from "@/lib/locales";
 import { localePath, stripLocale } from "@/lib/routing";
 
 export function SiteHeader({ locale }: { locale: Locale }) {
@@ -12,6 +12,8 @@ export function SiteHeader({ locale }: { locale: Locale }) {
   const bare = stripLocale(usePathname() || "/");
   const items = [
     { href: "/collections", label: m.nav.collections },
+    { href: "/cards", label: m.nav.cards },
+    { href: "/illustrators", label: m.nav.illustrators },
     { href: "/guides", label: m.nav.guides },
     { href: "/partners", label: m.nav.partners },
     { href: "/updates", label: m.nav.updates },

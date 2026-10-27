@@ -7,6 +7,6 @@
   "cards": 20628,
   "maxDexSeen": 1025,
   "generationScope": "National Pokédex numbers 1–1025",
-  "contents": "Collector numbers, English card names, supertypes, and national dex numbers. Prices and images are not stored.",
+  "contents": "Collector numbers, English card names, supertypes, subtypes, level, HP, types, evolves-from, evolves-to, attacks, abilities, weakness, resistance, retreat cost, flavor text, regulation mark, card text, ancient traits, rarity, illustrator, and national dex numbers. Prices and images are not stored.",
   "duplicateNumbersCollapsed": 7
 }

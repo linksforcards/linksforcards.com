@@ -10,6 +10,7 @@ import { RelatedLinks } from "@/components/site/related-links";
 import { SiteLinks } from "@/components/site/site-links";
 import { themeCopy } from "@/content/theme-copy";
 import { getArticle } from "@/lib/articles";
+import { cardRowHref } from "@/lib/card-page";
 import { numbersMatch } from "@/lib/cards";
 import { cardImageSrc, getSet, getSetCards, getSets, speciesName, type CardKind } from "@/lib/catalog";
 import { fill, formatDay, formatInt } from "@/lib/format";
@@ -19,6 +20,7 @@ import { breadcrumbNode, itemListNode, ldGraph, pageNode } from "@/lib/jsonld";
 import { localePath } from "@/lib/routing";
 import { pageMetadata } from "@/lib/seo";
 import { seriesSlug } from "@/lib/series";
+import { absoluteUrl } from "@/lib/site";
 import { kindSummary, setFacts } from "@/lib/set-facts";
 import { loadPublic, markFor } from "@/lib/stats";
 import { themesForSet } from "@/lib/themes";
@@ -95,7 +97,7 @@ export default async function SetPage({ params }: { params: Promise<{ locale: st
       have: held.some((number) => numbersMatch(card.n, number)),
       image: cardImageSrc(set.id, card.n),
       alt: fill(m.checklist.cardAlt, { name, set: set.name, number: card.n }),
-      href: dex ? localePath(locale, `/pokedex/${dex}`) : undefined,
+      href: cardRowHref(locale, set.id, card, dex ? localePath(locale, `/pokedex/${dex}`) : undefined),
     };
   });
   const crumbs = [
@@ -107,7 +109,7 @@ export default async function SetPage({ params }: { params: Promise<{ locale: st
   const list = itemListNode(
     localePath(locale, path),
     title,
-    rows.map((row) => ({ name: row.title })),
+    rows.map((row) => ({ name: row.title, ...(row.href ? { url: absoluteUrl(row.href) } : {}) })),
   );
   const page = pageNode({
     kind: "CollectionPage",
@@ -171,6 +173,11 @@ export default async function SetPage({ params }: { params: Promise<{ locale: st
       <p>{m.bindersPage.anyLanguage}</p>
       <ProgressBar value={collected} max={cards.length} label={`${set.name}: ${progressLabel}`} />
       <p className="count">{progressLabel}</p>
+      <p className="checklist-actions">
+        <a className="button" href={localePath(locale, `/checklists/set/${set.id}`)}>
+          {m.printChecklist.button}
+        </a>
+      </p>
       {collected === cards.length && cards.length > 0 ? <p className="banner">{m.checklist.checklistFull}</p> : null}
       {mark?.status === "given_away" ? <p className="banner">{m.checklist.markedGiven}</p> : null}
       {mark?.status === "completed" ? <p className="banner">{m.checklist.markedComplete}</p> : null}

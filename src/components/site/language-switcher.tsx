@@ -2,7 +2,17 @@ import { getMessages } from "@/lib/i18n";
 import { htmlLang, LOCALES, primaryHreflang, type Locale } from "@/lib/locales";
 import { localePath } from "@/lib/routing";
 
-export function LanguageSwitcher({ locale, label, bare }: { locale: Locale; label: string; bare: string }) {
+export function LanguageSwitcher({
+  locale,
+  label,
+  bare,
+  locales = LOCALES,
+}: {
+  locale: Locale;
+  label: string;
+  bare: string;
+  locales?: readonly Locale[];
+}) {
   const currentName = getMessages(locale).langName;
 
   return (
@@ -15,7 +25,7 @@ export function LanguageSwitcher({ locale, label, bare }: { locale: Locale; labe
         </svg>
       </summary>
       <ul aria-label={label}>
-        {LOCALES.map((item) => (
+        {locales.map((item) => (
           <li key={item}>
             <a
               href={localePath(item, bare)}

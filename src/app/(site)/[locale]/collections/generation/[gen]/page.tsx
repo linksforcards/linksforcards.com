@@ -141,6 +141,11 @@ export default async function GenerationPage({ params }: { params: Promise<{ loc
       <p>{m.bindersPage.anyLanguage}</p>
       <ProgressBar value={collected} max={total} label={`${title}: ${progressLabel}`} />
       <p className="count">{progressLabel}</p>
+      <p className="checklist-actions">
+        <a className="button" href={localePath(locale, `/checklists/generation/${generation.id}`)}>
+          {m.printChecklist.button}
+        </a>
+      </p>
       {collected === total ? <p className="banner">{m.checklist.checklistFull}</p> : null}
       {mark?.status === "given_away" ? <p className="banner">{m.checklist.markedGiven}</p> : null}
       {mark?.status === "completed" ? <p className="banner">{m.checklist.markedComplete}</p> : null}

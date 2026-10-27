@@ -11,6 +11,7 @@ import { ARTICLE_LINKS, ARTICLE_SLUGS, articleFaqSchema, getArticle, getArticles
 import { getMeta, setsBySeries } from "@/lib/catalog";
 import { fill, formatDay, formatInt } from "@/lib/format";
 import { readLocale } from "@/lib/i18n";
+import { CARD_INDEX_LOCALES, cardPageIndexed } from "@/lib/locales";
 import { breadcrumbNode, faqNode, ldGraph, pageNode } from "@/lib/jsonld";
 import { localePath } from "@/lib/routing";
 import { pageMetadata } from "@/lib/seo";
@@ -46,7 +47,13 @@ export async function generateMetadata({
   const copy = getArticle(locale, slug);
   if (!copy || !isGuideSlug(slug)) return {};
   const image = `/og/${locale}/guides/${slug}`;
-  return pageMetadata(locale, `/guides/${slug}`, copy.title, copy.description, { image, imageAlt: copy.h1 });
+  const limited = slug === "spot-fakes";
+  const indexed = !limited || cardPageIndexed(locale);
+  return pageMetadata(locale, `/guides/${slug}`, copy.title, copy.description, {
+    image,
+    imageAlt: copy.h1,
+    ...(limited ? { index: indexed, hreflang: indexed, locales: CARD_INDEX_LOCALES } : {}),
+  });
 }
 
 export default async function GuidePage({ params }: { params: Promise<{ locale: string; slug: string }> }) {

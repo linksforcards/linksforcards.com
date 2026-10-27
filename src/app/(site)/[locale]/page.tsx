@@ -24,6 +24,7 @@ import { loadPublic, speciesInRange, type PublicShop } from "@/lib/stats";
 import { getThemes, themeCollected } from "@/lib/themes";
 
 export const revalidate = 60;
+export const dynamicParams = false;
 
 export function generateStaticParams() {
   return LOCALES.map((locale) => ({ locale }));

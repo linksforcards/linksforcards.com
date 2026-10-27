@@ -9,6 +9,7 @@ import { ProgressBar } from "@/components/site/progress-bar";
 import { RelatedLinks } from "@/components/site/related-links";
 import { SiteLinks } from "@/components/site/site-links";
 import { themeCopy } from "@/content/theme-copy";
+import { cardRowHref } from "@/lib/card-page";
 import { numbersMatch } from "@/lib/cards";
 import { cardImageSrc, getSet, speciesName, type CardKind } from "@/lib/catalog";
 import { fill, formatDay, formatInt } from "@/lib/format";
@@ -18,6 +19,7 @@ import type { Locale } from "@/lib/locales";
 import { breadcrumbNode, itemListNode, ldGraph, pageNode } from "@/lib/jsonld";
 import { localePath } from "@/lib/routing";
 import { pageMetadata } from "@/lib/seo";
+import { absoluteUrl } from "@/lib/site";
 import { loadPublic, markFor } from "@/lib/stats";
 import {
   anchorFor,
@@ -103,7 +105,7 @@ export default async function ThemePage({ params }: { params: Promise<{ locale: 
       have: (snapshot.held[item.setId] ?? []).some((number) => numbersMatch(item.number, number)),
       image: cardImageSrc(item.setId, item.number),
       alt: fill(m.checklist.cardAlt, { name, set: item.set.name, number: item.number }),
-      href: dex ? localePath(locale, `/pokedex/${dex}`) : undefined,
+      href: cardRowHref(locale, item.setId, item.card, dex ? localePath(locale, `/pokedex/${dex}`) : undefined),
     };
   });
   const progressLabel = fill(m.checklist.progress, {
@@ -121,7 +123,7 @@ export default async function ThemePage({ params }: { params: Promise<{ locale: 
   const list = itemListNode(
     localePath(locale, path),
     copy.title,
-    rows.map((row) => ({ name: row.title })),
+    rows.map((row) => ({ name: row.title, ...(row.href ? { url: absoluteUrl(row.href) } : {}) })),
   );
   const page = pageNode({
     kind: "CollectionPage",
@@ -163,6 +165,11 @@ export default async function ThemePage({ params }: { params: Promise<{ locale: 
       <p>{m.themesPage.disclaimer}</p>
       <ProgressBar value={collected} max={theme.total} label={`${copy.h1}: ${progressLabel}`} />
       <p className="count">{progressLabel}</p>
+      <p className="checklist-actions">
+        <a className="button" href={localePath(locale, `/checklists/theme/${theme.slug}`)}>
+          {m.printChecklist.button}
+        </a>
+      </p>
       {collected === theme.total && theme.total > 0 ? <p className="banner">{m.checklist.checklistFull}</p> : null}
       {mark?.status === "given_away" ? <p className="banner">{m.checklist.markedGiven}</p> : null}
       {mark?.status === "completed" ? <p className="banner">{m.checklist.markedComplete}</p> : null}

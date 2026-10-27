@@ -16,6 +16,7 @@ import { loadPublic } from "@/lib/stats";
 import { getThemes, themeCollected } from "@/lib/themes";
 
 export const revalidate = 3600;
+export const dynamicParams = false;
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale, m } = await readLocale(params);
@@ -63,6 +64,9 @@ export default async function ThemesHubPage({ params }: { params: Promise<{ loca
         <p className="lede">{m.collectionsPage.themesIntro}</p>
       </section>
       <p>{m.themesPage.disclaimer}</p>
+      <p>
+        {m.printChecklist.hubLead} <a href={localePath(locale, "/checklists")}>{m.printChecklist.hubLink}</a>.
+      </p>
       <ul className="gen-list">
         {themes.map(({ theme, copy }) => {
           const collected = themeCollected(theme, snapshot.held);

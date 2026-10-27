@@ -18,6 +18,7 @@ import { DELTA_REIGN_DATES, DELTA_REIGN_PATH, DELTA_REIGN_SERIES, deltaReignCard
 import { fill, formatDay, formatInt } from "@/lib/format";
 import { formatDexNumber } from "@/lib/generations";
 import { readLocale, type Messages } from "@/lib/i18n";
+import { CARD_INDEX_LOCALES, cardPageIndexed } from "@/lib/locales";
 import { breadcrumbNode, itemListNode, ldGraph, pageNode } from "@/lib/jsonld";
 import { localePath } from "@/lib/routing";
 import { pageMetadata } from "@/lib/seo";
@@ -26,6 +27,7 @@ import { kindSummary, setFacts } from "@/lib/set-facts";
 import { loadPublic } from "@/lib/stats";
 
 export const revalidate = 3600;
+export const dynamicParams = false;
 
 function kindLabel(kind: CardKind, m: Messages): string {
   if (kind === "p") return m.checklist.supertypeP;
@@ -37,7 +39,13 @@ function kindLabel(kind: CardKind, m: Messages): string {
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await readLocale(params);
   const copy = deltaReignCopy(locale);
-  return pageMetadata(locale, DELTA_REIGN_PATH, copy.title, copy.description, { imageAlt: copy.h1 });
+  const indexed = cardPageIndexed(locale);
+  return pageMetadata(locale, DELTA_REIGN_PATH, copy.title, copy.description, {
+    imageAlt: copy.h1,
+    index: indexed,
+    hreflang: indexed,
+    locales: CARD_INDEX_LOCALES,
+  });
 }
 
 export default async function DeltaReignPage({ params }: { params: Promise<{ locale: string }> }) {
