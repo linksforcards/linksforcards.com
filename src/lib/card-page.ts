@@ -10,7 +10,11 @@ import type { Locale } from "./locales";
 import { localePath } from "./routing";
 import { seriesSlug } from "./series";
 import { speciesByDex, type Printing } from "./species-index";
+import { illustratorForName, illustratorPath } from "./illustrators";
+import { cardPath, cardSlug, slugPart } from "./slug";
 import { themesForCard } from "./themes";
+
+export { cardPath, cardSlug, slugPart } from "./slug";
 
 export type CardLink = { href: string; name: string };
 export type PrintingCard = {
@@ -59,40 +63,6 @@ export function setPrintedTotal(set: CatalogSet): number {
 
 export function cardFraction(set: CatalogSet, card: { n: string }): string {
   return `${card.n}/${setPrintedTotal(set)}`;
-}
-
-/**
- * Stable URL piece. Symbols that are not letters are spelled out so two Unown
- * and two Nidoran cards do not collapse into one slug.
- */
-export function slugPart(value: string): string {
-  const replaced = value
-    .replace(/♂/g, "-m")
-    .replace(/♀/g, "-f")
-    .replace(/[δ∆Δ]/g, "-delta")
-    .replace(/α/g, "-alpha")
-    .replace(/β/g, "-beta")
-    .replace(/γ/g, "-gamma")
-    .replace(/★/g, "-star")
-    .replace(/◇/g, "-prism")
-    .replace(/!/g, "-excl")
-    .replace(/\?/g, "-qmark")
-    .replace(/['’]/g, "")
-    .normalize("NFKD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .toLowerCase();
-  return replaced.replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
-}
-
-export function cardSlug(setId: string, card: { n: string; name: string }): string {
-  const number = slugPart(card.n);
-  const name = slugPart(card.name);
-  if (!number) return name ? `${setId}-card-${name}` : `${setId}-card`;
-  return name ? `${setId}-${number}-${name}` : `${setId}-${number}`;
-}
-
-export function cardPath(setId: string, card: { n: string; name: string }): string {
-  return `/cards/${cardSlug(setId, card)}`;
 }
 
 export function cardRowHref(locale: string, setId: string, card: { n: string; name: string }, _fallback?: string): string {
@@ -297,7 +267,14 @@ export function buildCardView(
   if (card.st?.length) facts.push({ label: m.cardPage.subtypes, value: card.st.join(", ") });
   if (card.hp) facts.push({ label: m.cardPage.hp, value: card.hp });
   if (card.ty?.length) facts.push({ label: m.cardPage.types, value: card.ty.join(", ") });
-  if (card.a) facts.push({ label: m.cardPage.illustrator, value: card.a });
+  if (card.a) {
+    const illustrator = illustratorForName(card.a);
+    facts.push({
+      label: m.cardPage.illustrator,
+      value: card.a,
+      ...(illustrator ? { href: localePath(locale, illustratorPath(illustrator.slug)) } : {}),
+    });
+  }
   if (species.length) facts.push({ label: m.cardPage.pokedex, links: species });
 
   const cards = getSetCards(set.id) ?? [];

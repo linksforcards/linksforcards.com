@@ -16,6 +16,7 @@ const nextConfig: NextConfig = {
         // Card pages are generated on demand. A middleware rewrite would skip
         // that cache, so the public US path is mapped here instead.
         { source: "/cards/:slug", destination: "/us/cards/:slug" },
+        { source: "/illustrators/:slug", destination: "/us/illustrators/:slug" },
       ],
       afterFiles: [
         { source: "/sitemap.xml", destination: "/sitemap-index" },

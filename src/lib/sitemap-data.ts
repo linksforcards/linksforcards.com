@@ -1,4 +1,5 @@
 import { listCardPaths } from "./card-page";
+import { listIndexedIllustratorPaths } from "./illustrators";
 import { getMeta, getSets, setsBySeries } from "./catalog";
 import { GENERATIONS, SPECIES_TOTAL } from "./generations";
 import { GUIDE_SLUGS, GUIDE_UPDATED } from "./guides";
@@ -9,7 +10,7 @@ import { seriesSlug } from "./series";
 import { absoluteUrl } from "./site";
 import { getThemes, themeHreflangLocales, themeIndexed } from "./themes";
 
-const PAGE_PATHS = ["/", "/collections", "/collections/themes", "/guides", "/partners", "/updates", "/donations", "/privacy", "/imprint"];
+const PAGE_PATHS = ["/", "/collections", "/cards", "/illustrators", "/collections/themes", "/guides", "/partners", "/updates", "/donations", "/privacy", "/imprint"];
 
 /** Stay under the 50,000 URL sitemap limit with room for hreflang weight. */
 const CARD_SITEMAP_LIMIT = 40_000;
@@ -30,7 +31,7 @@ export function sitemapIds(): string[] {
   const ids: string[] = [];
   const parts = cardSitemapParts();
   for (const locale of LOCALES) {
-    ids.push(`${locale}-pages`, `${locale}-sets`, `${locale}-guides`, `${locale}-themes`);
+    ids.push(`${locale}-pages`, `${locale}-sets`, `${locale}-guides`, `${locale}-themes`, `${locale}-illustrators`);
     if (speciesPageIndexed(locale)) ids.push(`${locale}-species`);
     for (let part = 1; part <= parts; part += 1) ids.push(cardSitemapId(locale, part, parts));
   }
@@ -53,6 +54,7 @@ function pathsFor(kind: string, locale: string): string[] {
   if (kind === "pages") return pagePaths();
   if (kind === "sets") return getSets().map((set) => `/collections/set/${set.id}`);
   if (kind === "guides") return GUIDE_SLUGS.map((slug) => `/guides/${slug}`);
+  if (kind === "illustrators") return listIndexedIllustratorPaths();
   if (kind === "themes") {
     return getThemes()
       .filter((theme) => themeIndexed(theme, locale))
@@ -88,7 +90,7 @@ function cardSitemapEntries(id: string): SitemapEntry[] | null {
 
 export function sitemapEntries(id: string): SitemapEntry[] | null {
   if (id.includes("-cards")) return cardSitemapEntries(id);
-  const split = id.match(/^([a-z]{2})-(pages|sets|guides|species|themes)$/);
+  const split = id.match(/^([a-z]{2})-(pages|sets|guides|species|themes|illustrators)$/);
   if (!split) return null;
   const locale = split[1] ?? "";
   const kind = split[2] ?? "";

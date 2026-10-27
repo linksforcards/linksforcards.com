@@ -174,10 +174,13 @@ describe("sitemap xml", () => {
     expect(index).toContain(absoluteUrl("/sitemap/de-guides.xml"));
     expect(index).toContain(absoluteUrl("/sitemap/uk-species.xml"));
     expect(index).toContain(absoluteUrl("/sitemap/nl-themes.xml"));
+    expect(index).toContain(absoluteUrl("/sitemap/de-illustrators.xml"));
     expect(index).not.toContain(absoluteUrl("/sitemap/nl-species.xml"));
     const us = sitemapEntries("us-pages");
     expect(us?.[0]?.url).toBe(absoluteUrl("/"));
     expect(us?.some((entry) => entry.url === absoluteUrl("/collections"))).toBe(true);
+    expect(us?.some((entry) => entry.url === absoluteUrl("/cards"))).toBe(true);
+    expect(us?.some((entry) => entry.url === absoluteUrl("/illustrators"))).toBe(true);
     expect(us?.some((entry) => entry.url.includes("/us/"))).toBe(false);
     expect(us?.[0]?.languages.en).toBe(absoluteUrl("/"));
     expect(us?.[0]?.languages["x-default"]).toBe(absoluteUrl("/"));

@@ -97,6 +97,11 @@ export default async function CollectionsPage({ params }: { params: Promise<{ lo
         <h1>{m.meta.collectionsTitle}</h1>
         <p className="lede">{m.collectionsPage.intro}</p>
       </section>
+      <p>
+        <a href={localePath(locale, "/cards")}>{m.nav.cards}</a>
+        {" · "}
+        <a href={localePath(locale, "/illustrators")}>{m.nav.illustrators}</a>
+      </p>
       <p>{m.bindersPage.anyLanguage}</p>
       <p>
         {speciesNamesAreTranslated(locale)

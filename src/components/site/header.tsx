@@ -12,6 +12,8 @@ export function SiteHeader({ locale }: { locale: Locale }) {
   const bare = stripLocale(usePathname() || "/");
   const items = [
     { href: "/collections", label: m.nav.collections },
+    { href: "/cards", label: m.nav.cards },
+    { href: "/illustrators", label: m.nav.illustrators },
     { href: "/guides", label: m.nav.guides },
     { href: "/partners", label: m.nav.partners },
     { href: "/updates", label: m.nav.updates },
