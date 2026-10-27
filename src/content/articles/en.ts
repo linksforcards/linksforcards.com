@@ -1,4 +1,5 @@
 import type { ArticleCopy } from "@/lib/articles";
+import { spotFakesEn } from "./spot-fakes/en";
 
 function spellUK(text: string): string {
   return text
@@ -160,6 +161,14 @@ const us: ArticleCopy[] = [
         ],
       },
       {
+        id: "by-type",
+        heading: "Sorting by type, when the binder is not a checklist",
+        paragraphs: [
+          "Type is the symbol in the top-right corner of a Pokémon card. [[Pokémon's card database help|https://support.pokemon.com/hc/en-us/articles/360001025274-How-do-I-use-the-Trading-Card-Game-database]] describes it that way: the energy icon for Grass, Fire, Water, and the rest. A child who wants every water card on one page is sorting by type. I use that for a play pile on the table. I do not use it to order a set binder. The set list is numbered, and a page of one type hides the missing number.",
+          "Trainers do not carry that Pokémon type icon, and basic Energy is its own stack. On a type-sorting afternoon those cards get their own piles instead of being forced under a creature. Generation is the other order, a Pokédex range, which is what [[Generation 1|/collections/generation/1]] already is. Set, number, type, and generation are four different questions. I pick one question per binder. [[How I read the symbol|/guides/read-a-card]] is how I find the icon before I trust the pile.",
+        ],
+      },
+      {
         id: "marking-a-line",
         heading: "How I mark a line",
         paragraphs: [
@@ -218,7 +227,7 @@ const us: ArticleCopy[] = [
         paragraphs: [
           "Extras stay in a box labeled with the set, or in one mixed box when the stack is small. They are not trash. The next binder often needs the card I almost gave up on. I keep them dry, in a sleeve if the corner is already soft, and off the floor.",
           "When a binder is finished, the story changes. [[A finished binder can leave|/guides/donating-cards]] for a child. Loose extras do not leave with it. They stay and fill the next one. That split keeps the gift complete and keeps the checklist honest.",
-          "The box itself gets a boring label: the set name, or 'mixed' if I have not split it yet. I do not label a box with a guess about what the cards might sell for. I do not own a separate box for 'good' cards and a bin for 'junk.' That split is how commons disappear and holes stay open. Once a month I take the mixed box, run the set sort again, and shrink it. The goal is a smaller question stack, not a prettier display.",
+          "The box itself gets a boring label: the set name, or 'mixed' if I have not split it yet. I do not label a box with a guess about what the cards might sell for. I do not own a separate box for 'good' cards and a bin for 'junk.' That split is how commons disappear and holes stay open. Once a month I take the mixed box, run the set sort again, and shrink it. The goal is a smaller question stack, not a prettier display. A card I would not trust does not fill a line. [[Spotting a fake|/guides/spot-fakes]] is a separate note. The bulk box is where the ordinary real cards are, and those are the ones I want.",
         ],
       },
     ],
@@ -376,6 +385,14 @@ const us: ArticleCopy[] = [
         ],
       },
       {
+        id: "regulation",
+        heading: "The regulation mark is a format letter",
+        paragraphs: [
+          "On cards printed from 2020 onward, Play! Pokémon uses a regulation mark: a letter in the bottom-left corner. The [[Play! Pokémon rules|https://play.pokemon.com/en-us/resources/rules/]] say Standard format rotates by that letter. Older cards have no letter. A card with an older letter, or with none, can still be legal if the same card was reprinted with a current letter. The allowed letters change. I do not memorize the current list in a binder, and I do not sort by the letter.",
+          "The letter is not the collector number, and it is not the rarity symbol. [[Pokémon's database help|https://support.pokemon.com/hc/en-us/articles/360001025274-How-do-I-use-the-Trading-Card-Game-database]] puts the rarity symbol in the lower-right corner, with the expansion icon. I look at the letter only when someone asks whether a card can be played in a current event. For the binder, the number still decides the slot. A card I do not trust never reaches that slot, which is [[how I spot a fake|/guides/spot-fakes]].",
+        ],
+      },
+      {
         id: "in-practice",
         heading: "A pass through a mixed pile",
         paragraphs: [
@@ -425,6 +442,14 @@ const us: ArticleCopy[] = [
         paragraphs: [
           "Upright on a shelf, or flat if the binder is thin, away from a window and away from a damp outside wall. I do not store binders in a basement box, a hot attic, or the boot of a car. Heat curls a sleeve. Damp stains a page. Sun fades ink. None of that shows up the day I do it. It shows up when I open the binder a summer later.",
           "Bulk that is not in a binder lives in a dry box, stacked so the cards are not bent by a heavier object. I keep food and drinks off that table. It sounds fussy until orange juice is inside a sleeve. The [[collections hub|/collections]] can be rebuilt from the cards. A stuck-together stack cannot.",
+        ],
+      },
+      {
+        id: "toploader",
+        heading: "A toploader is for the trip",
+        paragraphs: [
+          "A toploader is a rigid plastic sleeve. I use one when a card leaves the house: a binder on its way to a child, or a single card in a parcel. It is thicker than a binder pocket wants, so it stays out of the nine-pocket page. At home the card lives in a soft sleeve, in the pocket. A hard case on every common would make a binder I do not open, and opening it is the point.",
+          "I do not tape a card into a toploader. If I do not have one, the soft sleeve and a flat box still beat a bent corner. [[The binder guide|/guides/collecting-binders]] already assumes the soft sleeve. The rigid one is the exception, for travel, not the daily page.",
         ],
       },
       {
@@ -528,7 +553,7 @@ const us: ArticleCopy[] = [
         heading: "Where I tell people to start looking",
         paragraphs: [
           "The [[Base series|/collections/series/base]] is the start of the published list. [[Base|/collections/set/base1]] itself is 9 January 1999, 102 cards. [[The Gen 1 checklist|/guides/gen-1-checklist]] explains why those 102 cards are not the same thing as the original 151 species. I send people to both pages on purpose. The confusion is common and the fix is just the two counts, side by side.",
-          "The other end of the list moves when the data moves. [[Mega Evolution|/collections/set/me1]] is in the current data as its own series. I link it so the timeline has a recent door, not because a new set is more important than an old common. The [[collections hub|/collections]] is the same list with the progress bars. This note is the list with the dates.",
+          "The other end of the list moves when the data moves. [[Mega Evolution|/collections/set/me1]] is in the current data as its own series. I link it so the timeline has a recent door, not because a new set is more important than an old common. [[Mega Evolution—Delta Reign|/collections/set/delta-reign]] is not in that list yet. I wrote a page for the binder before the collector numbers exist, and I am not inserting a guessed count here. The [[collections hub|/collections]] is the same list with the progress bars. This note is the list with the dates.",
         ],
       },
       {
@@ -589,7 +614,7 @@ const us: ArticleCopy[] = [
         paragraphs: [
           "I end the sitting when the child is still willing, not when I have reached a round number. Twenty minutes that ends with a closed binder will happen again. An hour that ends with a sigh might not. The [[collections hub|/collections]] will remember the lines I logged. Nothing on the screen is more important than the child wanting to open the binder next time.",
           "I do not track a child's binder as a contest against mine. The public pages of this project are my checklists. A kid's page is allowed to be unfinished forever. If they grow into the longer hobby, the set lists and the species pages are there. If they do not, the binder still did its job: cards in order, sleeves on, an afternoon that belonged to them.",
-          "The questions I actually answer are small. Which pocket does this one go in. Can this duplicate fill a hole. Is it all right to stop. Yes, the numbered pocket. Yes, if the line is empty. Yes, stop. I keep the bigger opinions to myself unless the child asks. A collection started this way can stay tiny and still be a real collection. It has an order, a sleeve, and a next empty line whenever someone feels like opening it.",
+          "The questions I actually answer are small. Which pocket does this one go in. Can this duplicate fill a hole. Is it all right to stop. Yes, the numbered pocket. Yes, if the line is empty. Yes, stop. A card that looks wrong does not go in while I am unsure. [[How I spot a fake|/guides/spot-fakes]] is that check, done quietly, with another bulk card offered in its place. I keep the bigger opinions to myself unless the child asks. A collection started this way can stay tiny and still be a real collection. It has an order, a sleeve, and a next empty line whenever someone feels like opening it.",
         ],
       },
     ],
@@ -604,6 +629,7 @@ const us: ArticleCopy[] = [
       },
     ],
   },
+  spotFakesEn,
 ];
 
 export function englishArticles(kind: "us" | "uk"): ArticleCopy[] {

@@ -81,6 +81,9 @@
     "genBody": "Ein Generationsbinder enthält eine Karte jeder Art dieser Generation, aus einem beliebigen Set. Generation 1 sind die ersten 151. Generation 1 bis 9 sind 1.025 Arten.",
     "bulkTitle": "Auch lose Karten sind willkommen",
     "bulkBody": "Ein Karpador aus der Bulk-Kiste ist mir so willkommen wie ein Holo. Ich sammle verschiedene Karten und von jedem Pokémon eine. Ich baue keine Sammlung zum Verkaufen auf, und diese Seite sagt nicht, was eine Karte kosten würde.",
+    "deltaTitle": "Mega Evolution—Delta Reign",
+    "deltaBody": "Ich richte einen Ordner her, bevor die Kartenliste existiert. Auf der Seite steht nur, was Pokémon veröffentlicht hat, und die Checkliste bleibt leer, bis die Nummern echt sind.",
+    "deltaLink": "Zur Seite für Delta Reign",
     "progressTitle": "Wo es steht",
     "progressZero": "Noch ist nichts eingetragen. Jede Zahl hier ist null, bis ich eine echte Sendung notiere.",
     "progressLive": "Diese Zahlen kommen aus Sendungen, die ich eingetragen habe.",
@@ -217,6 +220,8 @@
     "intro": "Kartenlisten der Sets, Checklisten der Generationen und eine Seite für jedes Pokémon. Ein gefüllter Balken ist das, was ich schon habe.",
     "generations": "Generations-Ordner",
     "sets": "Sets nach Serie",
+    "deltaLink": "Die Ordnerseite, die ich bereithalte",
+    "deltaNote": "Mega Evolution—Delta Reign steht noch nicht in der Kartenliste.",
     "pokedex": "Pokédex",
     "pokedexIntro": "Jedes Pokémon im nationalen Dex, mit einer eigenen Kartenliste.",
     "searchPokedex": "Pokédex durchsuchen",
@@ -229,7 +234,9 @@
   },
   "seriesPage": {
     "intro": "{series} hat {count} Sets in dieser Liste. Jede Set-Seite ist die Kartenliste und die Checkliste.",
-    "other": "Andere Serien"
+    "other": "Andere Serien",
+    "deltaLink": "Delta Reign, bevor die Nummern da sind",
+    "deltaPending": "Diese Erweiterung steht noch nicht in der Liste. Ich erfinde keine Zeile dafür."
   },
   "setPage": {
     "intro": "{name} erschien am {date} in der Serie {series}. Diese Kartenliste hat {total} Karten. Ich habe {collected} davon.",
@@ -255,7 +262,7 @@
   },
   "guides": {
     "kicker": "Aus dem Ordner",
-    "indexIntro": "Eine lange Notiz, wie ich sammle, und neun kürzere Notizen, die je eine Frage beantworten.",
+    "indexIntro": "Eine lange Notiz, wie ich sammle, und zehn kürzere Notizen, die je eine Frage beantworten.",
     "updated": "Aktualisiert am {date}",
     "toc": "Auf dieser Seite",
     "pillarLabel": "Hier anfangen",

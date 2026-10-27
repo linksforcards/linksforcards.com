@@ -1,4 +1,5 @@
 import type { ArticleCopy } from "@/lib/articles";
+import { spotFakesEs } from "./spot-fakes/es";
 
 export function spanishArticles(): ArticleCopy[] {
   return [
@@ -115,6 +116,14 @@ export function spanishArticles(): ArticleCopy[] {
           ],
         },
         {
+          id: "by-type",
+          heading: "Ordenar por tipo, cuando el archivador no es una lista",
+          paragraphs: [
+            "El tipo es el símbolo de arriba a la derecha en una carta de Pokémon. [[La ayuda de la base de cartas|https://support.pokemon.com/hc/en-us/articles/360001025274-How-do-I-use-the-Trading-Card-Game-database]] lo describe así: el icono de energía de Planta, Fuego, Agua y el resto. Un niño que quiere todas las cartas de Agua en una página ordena por tipo. Eso lo uso para un montón de juego en la mesa. No lo uso para ordenar un archivador de set. La lista va numerada, y una página de un solo tipo esconde el número que falta.",
+            "Los Entrenadores no llevan ese icono de tipo, y la Energía básica es un montón aparte. En una tarde de orden por tipo, esas cartas tienen su pila, en vez de quedar forzadas bajo una criatura. La generación es el otro orden, un tramo del Pokédex, y eso es ya lo que hace la [[generación 1|/collections/generation/1]]. Set, número, tipo y generación son cuatro preguntas. Elijo una por archivador. [[Cómo leo el símbolo|/guides/read-a-card]] es cómo encuentro el icono antes de fiarme del montón.",
+          ],
+        },
+        {
           id: "marking-a-line",
           heading: "Cómo marco una línea",
           paragraphs: [
@@ -173,7 +182,7 @@ export function spanishArticles(): ArticleCopy[] {
           paragraphs: [
             "Las que sobran se quedan en una caja etiquetada con el set, o en una sola caja mezclada si el montón es pequeño. No son basura. La carpeta siguiente suele necesitar la carta que estuve a punto de soltar. Las guardo secas, en una funda si la esquina ya está blanda, y fuera del suelo.",
             "Cuando una carpeta está terminada, la historia cambia. [[Una carpeta terminada puede irse|/guides/donating-cards]] hacia un niño. Las cartas sueltas no se van con ella. Se quedan y llenan la siguiente. Ese corte mantiene el regalo completo y mantiene la lista honesta. Un puñado de repetidas al lado de una carpeta terminada parece generoso y llega como deberes.",
-            "La caja misma lleva una etiqueta aburrida: el nombre del set, o «mezcla» si todavía no la he separado. No etiqueto una caja con una suposición de lo que las cartas podrían sacar en una venta. No tengo una caja para las cartas «buenas» y un cubo para la «basura». Ese corte es la forma en que desaparecen las comunes y los huecos se quedan abiertos. Una vez al mes cojo la caja mezclada, repito el orden por set y la achico. El objetivo es un montón de dudas más pequeño, no un expositor más bonito.",
+            "La caja misma lleva una etiqueta aburrida: el nombre del set, o «mezcla» si todavía no la he separado. No etiqueto una caja con una suposición de lo que las cartas podrían sacar en una venta. No tengo una caja para las cartas «buenas» y un cubo para la «basura». Ese corte es la forma en que desaparecen las comunes y los huecos se quedan abiertos. Una vez al mes cojo la caja mezclada, repito el orden por set y la achico. El objetivo es un montón de dudas más pequeño, no un expositor más bonito. Una carta en la que no confío no cierra una línea. [[Detectar una falsificación|/guides/spot-fakes]] es una nota aparte. La caja de bulk es el sitio de las cartas corrientes y de verdad, y esas son las que quiero.",
           ],
         },
       ],
@@ -331,6 +340,14 @@ export function spanishArticles(): ArticleCopy[] {
           ],
         },
         {
+          id: "regulation",
+          heading: "La marca de regulación es una letra de formato",
+          paragraphs: [
+            "En las cartas impresas desde 2020, Play! Pokémon usa una marca de regulación: una letra abajo a la izquierda. Las [[reglas de Play! Pokémon|https://play.pokemon.com/en-us/resources/rules/]] dicen que el formato Standard rota según esa letra. Las cartas más viejas no tienen letra. Una carta con una letra antigua, o sin letra, puede seguir siendo legal si la misma carta se reimprimió con una letra vigente. Las letras permitidas cambian. No me aprendo la lista de ahora en un archivador, y no ordeno por la letra.",
+            "La letra no es el número de colección, y no es el símbolo de rareza. [[La ayuda de la base de cartas|https://support.pokemon.com/hc/en-us/articles/360001025274-How-do-I-use-the-Trading-Card-Game-database]] pone el símbolo de rareza en la esquina inferior derecha, junto al icono de expansión. Miro la letra solo cuando alguien pregunta si una carta se puede jugar en un evento actual. Para el archivador, el número sigue decidiendo el hueco. Una carta en la que no confío no llega a ese hueco. De eso trata [[cómo detecto una falsificación|/guides/spot-fakes]].",
+          ],
+        },
+        {
           id: "in-practice",
           heading: "Una pasada por un montón mezclado",
           paragraphs: [
@@ -380,6 +397,14 @@ export function spanishArticles(): ArticleCopy[] {
           paragraphs: [
             "De pie en una balda, o tumbadas si la carpeta es fina, lejos de una ventana y lejos de una pared exterior húmeda. No guardo carpetas en una caja de sótano, un ático caliente o el maletero de un coche. El calor curva una funda. La humedad mancha una página. El sol apaga la tinta. Nada de eso se ve el día en que lo hago. Se ve cuando abro la carpeta un verano después.",
             "El bulk que no está en una carpeta vive en una caja seca, apilado para que las cartas no se doblen bajo un objeto más pesado. Mantengo la comida y los vasos fuera de esa mesa. Suena quisquilloso hasta que hay zumo de naranja dentro de una funda. La [[página de colecciones|/collections]] se puede reconstruir a partir de las cartas. Un montón pegado, no. Prefiero una caja aburrida y seca a un montón que luego tenga que despegar.",
+          ],
+        },
+        {
+          id: "toploader",
+          heading: "Un toploader es para el viaje",
+          paragraphs: [
+            "Un toploader es una funda de plástico rígido. Uso una cuando una carta sale de casa: un archivador de camino a un niño, o una carta suelta en un paquete. Es más gruesa de lo que quiere una página, así que se queda fuera de la página de nueve bolsillos. En casa, la carta vive en una funda blanda, en el bolsillo. Una caja dura en cada común haría un archivador que no abro, y abrirlo es el sentido.",
+            "No pego una carta dentro de un toploader. Si no tengo uno, la funda blanda y una caja plana siguen ganando a una esquina doblada. [[La guía larga|/guides/collecting-binders]] ya da por hecha la funda blanda. La rígida es la excepción, para el viaje, no para la página de cada día.",
           ],
         },
         {
@@ -483,7 +508,7 @@ export function spanishArticles(): ArticleCopy[] {
           heading: "Por dónde digo que se empiece a mirar",
           paragraphs: [
             "La [[serie Base|/collections/series/base]] es el principio de la lista publicada. [[Base|/collections/set/base1]] en sí es el 9 de enero de 1999, 102 cartas. [[La lista de la generación 1|/guides/gen-1-checklist]] explica por qué esas 102 cartas no son lo mismo que las 151 especies originales. Mando a la gente a las dos páginas a propósito. La confusión es habitual, y el arreglo es simplemente las dos cuentas, una al lado de la otra. Una cuenta cartas. La otra cuenta especies.",
-            "El otro extremo de la lista se mueve cuando se mueven los datos. [[Mega Evolution|/collections/set/me1]] está en los datos actuales como serie propia. Lo enlazo para que la cronología tenga una puerta reciente, no porque un set nuevo sea más importante que una común vieja. La [[página de colecciones|/collections]] es la misma lista con las barras de avance. Esta nota es la lista con las fechas. Las barras dicen por dónde voy. Las fechas dicen cuándo salió el set.",
+            "El otro extremo de la lista se mueve cuando se mueven los datos. [[Mega Evolution|/collections/set/me1]] está en los datos actuales como serie propia. Lo enlazo para que la cronología tenga una puerta reciente, no porque un set nuevo sea más importante que una común vieja. La [[página de colecciones|/collections]] es la misma lista con las barras de avance. Esta nota es la lista con las fechas. Las barras dicen por dónde voy. Las fechas dicen cuándo salió el set. [[Mega Evolution—Delta Reign|/collections/set/delta-reign]] todavía no está en esa lista. Escribí una página para el archivador antes de que existan los números, y aquí no meto una cuenta adivinada.",
           ],
         },
         {
@@ -544,7 +569,7 @@ export function spanishArticles(): ArticleCopy[] {
           paragraphs: [
             "Termino la sesión cuando el niño todavía quiere, no cuando he llegado a un número redondo. Veinte minutos que acaban con una carpeta cerrada volverán a ocurrir. Una hora que acaba en un suspiro, quizá no. La [[página de colecciones|/collections]] recordará las líneas que anoté. Nada en la pantalla importa más que el niño quiera abrir la carpeta la próxima vez. Anoto lo que de verdad está en los bolsillos y cierro.",
             "No llevo la carpeta de un niño como una competición contra la mía. Las páginas públicas de este proyecto son mis listas. La página de un niño puede quedarse inacabada para siempre. Si más adelante entra en la afición larga, las listas de sets y las páginas de especies están ahí. Si no entra, la carpeta hizo igual su trabajo: cartas en orden, fundas puestas, una tarde que era suya.",
-            "Las preguntas que de verdad contesto son pequeñas. En qué bolsillo va esta. Si esta repetida puede cerrar un hueco. Si se puede parar. Sí, el bolsillo numerado. Sí, si la línea está vacía. Sí, se para. Me guardo las opiniones más grandes salvo que el niño las pida. Una colección empezada así puede quedarse diminuta y seguir siendo una colección de verdad. Tiene un orden, una funda y una próxima línea vacía para el día en que alguien tenga ganas de abrirla.",
+            "Las preguntas que de verdad contesto son pequeñas. En qué bolsillo va esta. Si esta repetida puede cerrar un hueco. Si se puede parar. Sí, el bolsillo numerado. Sí, si la línea está vacía. Sí, se para. Me guardo las opiniones más grandes salvo que el niño las pida. Una colección empezada así puede quedarse diminuta y seguir siendo una colección de verdad. Tiene un orden, una funda y una próxima línea vacía para el día en que alguien tenga ganas de abrirla. Una carta que parece falsa no entra mientras dude. [[Cómo detecto una falsificación|/guides/spot-fakes]] es esa revisión, en voz baja, con otra carta del bulk ofrecida en su lugar.",
           ],
         },
       ],
@@ -559,5 +584,6 @@ export function spanishArticles(): ArticleCopy[] {
         },
       ],
     },
+    spotFakesEs,
   ];
 }

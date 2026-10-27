@@ -42,7 +42,8 @@ function isContentPath(pathname: string): boolean {
   ) {
     return true;
   }
-  if (/^\/collections\/(?:generation\/[1-9]|set\/[a-z0-9]+|series\/[a-z0-9-]+|themes(?:\/[a-z0-9-]+)?)$/.test(pathname)) return true;
+  // Hyphens stay allowed so /collections/set/delta-reign rewrites with the other set pages.
+  if (/^\/collections\/(?:generation\/[1-9]|set\/[a-z0-9-]+|series\/[a-z0-9-]+|themes(?:\/[a-z0-9-]+)?)$/.test(pathname)) return true;
   if (/^\/pokedex\/[1-9]\d*$/.test(pathname)) return true;
   if (/^\/guides\/[a-z0-9-]+$/.test(pathname)) return true;
   // Card, illustrator, and checklist detail pages are rewritten in next.config.ts.

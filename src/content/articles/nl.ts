@@ -1,4 +1,5 @@
 import type { ArticleCopy } from "@/lib/articles";
+import { spotFakesNl } from "./spot-fakes/nl";
 
 export function dutchArticles(): ArticleCopy[] {
   return [
@@ -115,6 +116,14 @@ export function dutchArticles(): ArticleCopy[] {
           ],
         },
         {
+          id: "by-type",
+          heading: "Op type sorteren, als de binder geen checklist is",
+          paragraphs: [
+            "Het type is het teken rechtsboven op een Pokémon-kaart. [[De hulp bij de kaartdatabase|https://support.pokemon.com/hc/en-us/articles/360001025274-How-do-I-use-the-Trading-Card-Game-database]] beschrijft het zo: het energie-icoon voor Gras, Vuur, Water en de rest. Een kind dat elke waterkaart op één pagina wil, sorteert op type. Dat gebruik ik voor een speelstapel op tafel. Voor een setbinder gebruik ik het niet. De lijst is genummerd, en een pagina van één type verbergt het ontbrekende nummer.",
+            "Trainers dragen dat type-icoon niet, en basis-Energie blijft een eigen stapel. Op zo'n middag krijgen die kaarten een eigen hoop, in plaats van onder een wezen te worden geduwd. Generatie is de andere volgorde, een stuk van de Pokédex, en dat is al wat [[generatie 1|/collections/generation/1]] doet. Set, nummer, type en generatie zijn vier vragen. Per binder neem ik er één. [[Hoe ik het teken lees|/guides/read-a-card]] laat zien waar het icoon zit, voordat ik de stapel vertrouw.",
+          ],
+        },
+        {
           id: "marking-a-line",
           heading: "Wanneer ik een regel afvink",
           paragraphs: [
@@ -173,7 +182,7 @@ export function dutchArticles(): ArticleCopy[] {
           paragraphs: [
             "De rest blijft in een doos met de setnaam, of in één gemengde doos als de stapel klein is. Dat is geen afval. De volgende binder heeft vaak net de kaart nodig die ik bijna had weggelegd. Ik houd ze droog, doe ze in een hoes als de hoek al zacht is, en laat ze niet op de vloer liggen. Een zachte hoek wordt in een open doos alleen zachter. De hoes is ook hier de kleinere handeling.",
             "Is een binder af, dan verandert het verhaal. [[Een afgewerkte binder mag weg|/guides/donating-cards]], naar een kind. Losse rest gaat niet mee. Die blijft en vult de volgende binder. Die scheiding houdt het cadeau compleet en de checklist eerlijk. Een handvol losse kaarten oogt gul en komt aan als huiswerk. Een dichte binder kan iemand openslaan zonder mijn gaten te erven.",
-            "De doos zelf krijgt een saai etiket: de setnaam, of gemengd als ik haar nog niet heb gesplitst. Op het etiket schrijf ik geen gok over wat de kaarten in de handel zouden doen. Ik heb geen aparte doos voor mooie kaarten en geen bak voor rest. Die scheiding is hoe gewone kaarten verdwijnen en gaten open blijven. Eens per maand neem ik de gemengde doos, sorteer weer op set en maak haar kleiner. Het doel is een kleinere twijfelstapel, geen mooiere uitstalling.",
+            "De doos zelf krijgt een saai etiket: de setnaam, of gemengd als ik haar nog niet heb gesplitst. Op het etiket schrijf ik geen gok over wat de kaarten in de handel zouden doen. Ik heb geen aparte doos voor mooie kaarten en geen bak voor rest. Die scheiding is hoe gewone kaarten verdwijnen en gaten open blijven. Eens per maand neem ik de gemengde doos, sorteer weer op set en maak haar kleiner. Het doel is een kleinere twijfelstapel, geen mooiere uitstalling. Een kaart die ik niet vertrouw, vult geen regel. [[Een vervalsing herkennen|/guides/spot-fakes]] is een aparte notitie. In de bulkdoos liggen de gewone echte kaarten, en die wil ik.",
           ],
         },
       ],
@@ -331,6 +340,14 @@ export function dutchArticles(): ArticleCopy[] {
           ],
         },
         {
+          id: "regulation",
+          heading: "Het regulation-teken is een formatletter",
+          paragraphs: [
+            "Op kaarten vanaf 2020 zet Play! Pokémon een regulation-teken: een letter linksonder. De [[regels van Play! Pokémon|https://play.pokemon.com/en-us/resources/rules/]] zeggen dat Standard roteert op die letter. Oudere kaarten hebben geen letter. Een kaart met een oudere letter, of zonder letter, kan toch legaal zijn als dezelfde kaart met een huidige letter is herdrukt. De toegestane letters wisselen. De lijst van nu leer ik niet uit het hoofd in een binder, en op de letter sorteer ik niet.",
+            "De letter is niet het verzamelnummer en niet het zeldzaamheidsteken. [[De hulp bij de kaartdatabase|https://support.pokemon.com/hc/en-us/articles/360001025274-How-do-I-use-the-Trading-Card-Game-database]] zet het zeldzaamheidsteken in de rechteronderhoek, bij het uitbreidingsicoon. Naar de letter kijk ik alleen als iemand vraagt of een kaart in een huidig evenement gespeeld mag worden. Voor de binder beslist het nummer nog steeds over het vak. Een kaart die ik niet vertrouw, bereikt dat vak niet. Daarover gaat [[hoe ik een vervalsing herken|/guides/spot-fakes]].",
+          ],
+        },
+        {
           id: "in-practice",
           heading: "Een ronde door een gemengde stapel",
           paragraphs: [
@@ -380,6 +397,14 @@ export function dutchArticles(): ArticleCopy[] {
           paragraphs: [
             "Rechtop op een plank, of plat als de binder dun is, weg van een raam en weg van een vochtige buitenmuur. In een kelderdoos, op een hete zolder of in de kofferbak zet ik binders niet. Warmte bolt een hoes. Vocht vlekt een pagina. Zon bleekt inkt. Daar merk ik op de dag zelf niets van. Ik merk het als ik de binder een zomer later opensla. De vochtige plank heb ik met een blik uit de supermarkt geleerd. Eén keer was genoeg.",
             "Bulk die niet in een binder zit, leeft in een droge doos, zo gestapeld dat geen zwaarder voorwerp de kaarten buigt. Eten en drinken blijven van die tafel af. Dat klinkt zeurderig, tot er sinaasappelsap in een hoes staat. [[De verzamelingen|/collections]] kan ik uit de kaarten opnieuw opbouwen. Een aan elkaar geplakte stapel kan ik niet. De doos gaat na de avond dicht, ook als er nog een kleine stapel blijft liggen. De hele nacht open is een uitnodiging voor het glas dat iemand neerzet.",
+          ],
+        },
+        {
+          id: "toploader",
+          heading: "Een toploader is voor de reis",
+          paragraphs: [
+            "Een toploader is een stijve plastic hoes. Ik gebruik er een als een kaart het huis verlaat: een binder op weg naar een kind, of een losse kaart in een pakket. Hij is dikker dan een binderpagina wil, dus hij blijft uit de negenvakspagina. Thuis leeft de kaart in een zachte hoes, in het vak. Een harde houder op elke gewone kaart zou een binder maken die ik niet opensla, en openslaan is het punt.",
+            "Ik plak een kaart niet in een toploader. Heb ik er geen, dan winnen de zachte hoes en een platte doos het nog van een gevouwen hoek. [[De lange notitie|/guides/collecting-binders]] rekent al op de zachte hoes. De stijve is de uitzondering, voor onderweg, niet voor de dagelijkse pagina.",
           ],
         },
         {
@@ -483,7 +508,7 @@ export function dutchArticles(): ArticleCopy[] {
           heading: "Waar ik mensen naartoe stuur om te kijken",
           paragraphs: [
             "De [[Base-serie|/collections/series/base]] is het begin van de gepubliceerde lijst. [[Base|/collections/set/base1]] zelf is 9 januari 1999, 102 kaarten, aanduiding base1. [[De checklist van de eerste 151|/guides/gen-1-checklist]] legt uit waarom die 102 kaarten niet hetzelfde zijn als de oorspronkelijke 151 soorten. Naar beide pagina's stuur ik met opzet. De verwarring komt vaak voor, en de correctie is alleen de twee tellingen naast elkaar. Trainers en energie zitten in de 102. In de 151 zitten wezens, van Bulbasaur tot Mew, uit elke set.",
-            "Het andere eind van de lijst beweegt als de gegevens bewegen. [[Mega Evolution|/collections/set/me1]] staat in de huidige gegevens als eigen serie, aanduiding me1. Ik verwijs ernaar zodat de tijdlijn een recente deur heeft, niet omdat een nieuwe set belangrijker zou zijn dan een oude gewone kaart. [[De verzamelingen|/collections]] zijn dezelfde lijst met de balken. Deze notitie is de lijst met de datums. Een balk zegt wat ik heb vastgelegd. Een datum zegt wanneer de set in de gegevens staat. Samen is dat de oriëntatie in een doos die meerdere jaren mengt.",
+            "Het andere eind van de lijst beweegt als de gegevens bewegen. [[Mega Evolution|/collections/set/me1]] staat in de huidige gegevens als eigen serie, aanduiding me1. Ik verwijs ernaar zodat de tijdlijn een recente deur heeft, niet omdat een nieuwe set belangrijker zou zijn dan een oude gewone kaart. [[De verzamelingen|/collections]] zijn dezelfde lijst met de balken. Deze notitie is de lijst met de datums. Een balk zegt wat ik heb vastgelegd. Een datum zegt wanneer de set in de gegevens staat. Samen is dat de oriëntatie in een doos die meerdere jaren mengt. [[Mega Evolution—Delta Reign|/collections/set/delta-reign]] staat nog niet in deze lijst. Ik heb een pagina voor de binder geschreven voordat de kaartnummers bestaan, en hier zet ik geen geraden telling neer.",
           ],
         },
         {
@@ -544,7 +569,7 @@ export function dutchArticles(): ArticleCopy[] {
           paragraphs: [
             "Ik eindig de zit als het kind nog wil, niet als ik een rond getal heb gehaald. Twintig minuten die eindigen met een dichte binder, komen terug. Een uur dat eindigt met een zucht, misschien niet. [[De verzamelingen|/collections]] onthouden de regels die ik heb vastgelegd. Niets op het scherm is belangrijker dan de zin om de binder de volgende keer weer open te slaan. De balk kan ik later zetten. De zin niet.",
             "De binder van een kind houd ik niet bij als een wedstrijd tegen de mijne. De openbare pagina's van dit karwei zijn mijn checklists. De pagina van een kind mag voor altijd onaf blijven. Groeit daar de langere hobby uit, dan liggen de setlijsten en de soortpagina's klaar. Groeit het niet, dan heeft de binder zijn werk gedaan: kaarten op volgorde, hoezen erom, een middag die van het kind was. Mijn plank is daarbij geen meetlat.",
-            "De vragen die ik echt beantwoord, zijn klein. In welk vak gaat deze. Kan deze dubbele een gat sluiten. Mag er gestopt worden. Ja, het genummerde vak. Ja, als de regel leeg is. Ja, stoppen. De grotere meningen houd ik voor me zolang het kind niet vraagt. Een verzameling die zo begint, mag klein blijven en is toch een echte verzameling. Ze heeft een volgorde, een hoes en een volgende lege regel, wanneer iemand haar wil openslaan. Meer vraag ik van een zaterdag niet.",
+            "De vragen die ik echt beantwoord, zijn klein. In welk vak gaat deze. Kan deze dubbele een gat sluiten. Mag er gestopt worden. Ja, het genummerde vak. Ja, als de regel leeg is. Ja, stoppen. De grotere meningen houd ik voor me zolang het kind niet vraagt. Een verzameling die zo begint, mag klein blijven en is toch een echte verzameling. Ze heeft een volgorde, een hoes en een volgende lege regel, wanneer iemand haar wil openslaan. Meer vraag ik van een zaterdag niet. Een kaart die er verkeerd uitziet, gaat er niet in zolang ik twijfel. [[Hoe ik een vervalsing herken|/guides/spot-fakes]] is die controle, stil gedaan, met een andere bulkkaart aangeboden op die plek.",
           ],
         },
       ],
@@ -559,5 +584,6 @@ export function dutchArticles(): ArticleCopy[] {
         },
       ],
     },
+    spotFakesNl,
   ];
 }

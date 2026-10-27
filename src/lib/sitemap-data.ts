@@ -3,7 +3,8 @@ import { getSets, setsBySeries } from "./catalog";
 import { GENERATIONS, SPECIES_TOTAL } from "./generations";
 import { GUIDE_SLUGS, GUIDE_UPDATED } from "./guides";
 import { listIndexedIllustratorPaths } from "./illustrators";
-import { cardPageIndexed, isLocale, LOCALES, SPECIES_INDEX_LOCALES, speciesPageIndexed } from "./locales";
+import { DELTA_REIGN_PATH } from "./delta-reign";
+import { CARD_INDEX_LOCALES, cardPageIndexed, isLocale, LOCALES, SPECIES_INDEX_LOCALES, speciesPageIndexed } from "./locales";
 import { localePath } from "./routing";
 import { hreflangMap } from "./seo";
 import { seriesSlug } from "./series";
@@ -11,7 +12,20 @@ import { absoluteUrl } from "./site";
 import { checklistSitemapPaths } from "./checklists";
 import { getThemes, themeHreflangLocales, themeIndexed } from "./themes";
 
-const PAGE_PATHS = ["/", "/collections", "/collections/themes", "/guides", "/partners", "/updates", "/donations", "/privacy", "/imprint"];
+const PAGE_PATHS = [
+  "/",
+  "/collections",
+  "/collections/themes",
+  "/guides",
+  "/partners",
+  "/updates",
+  "/donations",
+  "/privacy",
+  "/imprint",
+];
+
+/** Editorial pages that follow the card-page index: US, German, French, Spanish, Italian. */
+const LIMITED_SITEMAP_PATHS = new Set<string>([DELTA_REIGN_PATH, "/guides/spot-fakes"]);
 
 /**
  * Split a loc-only sitemap before a file reaches 10,000 URLs or 5 MB.
@@ -83,18 +97,21 @@ export const SITEMAP_IDS = sitemapIds();
 
 export type SitemapEntry = { url: string; lastModified?: string; languages?: Record<string, string> };
 
-function pagePaths(): string[] {
+function pagePaths(locale: string): string[] {
   return [
     ...PAGE_PATHS,
+    ...(cardPageIndexed(locale) ? [DELTA_REIGN_PATH] : []),
     ...GENERATIONS.map((generation) => `/collections/generation/${generation.id}`),
     ...setsBySeries().map((group) => `/collections/series/${seriesSlug(group.series)}`),
   ];
 }
 
 function pathsFor(kind: string, locale: string): string[] {
-  if (kind === "pages") return pagePaths();
+  if (kind === "pages") return pagePaths(locale);
   if (kind === "sets") return getSets().map((set) => `/collections/set/${set.id}`);
-  if (kind === "guides") return GUIDE_SLUGS.map((slug) => `/guides/${slug}`);
+  if (kind === "guides") {
+    return GUIDE_SLUGS.filter((slug) => slug !== "spot-fakes" || cardPageIndexed(locale)).map((slug) => `/guides/${slug}`);
+  }
   if (kind === "themes") {
     return getThemes()
       .filter((theme) => themeIndexed(theme, locale))
@@ -154,6 +171,7 @@ export function sitemapEntries(id: string): SitemapEntry[] | null {
   if (!isLocale(locale)) return null;
   if (kind === "species" && !speciesPageIndexed(locale)) return null;
   const languagesFor = (path: string) => {
+    if (LIMITED_SITEMAP_PATHS.has(path)) return hreflangMap(path, CARD_INDEX_LOCALES);
     if (kind === "species") return hreflangMap(path, SPECIES_INDEX_LOCALES);
     if (kind === "themes") {
       const slug = path.split("/").at(-1) ?? "";

@@ -7,10 +7,11 @@ import { JsonLd } from "@/components/site/json-ld";
 import { RelatedLinks } from "@/components/site/related-links";
 import { RichText } from "@/components/site/rich-text";
 import { SiteLinks } from "@/components/site/site-links";
-import { ARTICLE_LINKS, ARTICLE_SLUGS, getArticle, getArticles, GUIDE_UPDATED, isGuideSlug } from "@/lib/articles";
+import { ARTICLE_LINKS, ARTICLE_SLUGS, articleFaqSchema, getArticle, getArticles, GUIDE_UPDATED, isGuideSlug } from "@/lib/articles";
 import { getMeta, setsBySeries } from "@/lib/catalog";
 import { fill, formatDay, formatInt } from "@/lib/format";
 import { readLocale } from "@/lib/i18n";
+import { CARD_INDEX_LOCALES, cardPageIndexed } from "@/lib/locales";
 import { breadcrumbNode, faqNode, ldGraph, pageNode } from "@/lib/jsonld";
 import { localePath } from "@/lib/routing";
 import { pageMetadata } from "@/lib/seo";
@@ -46,7 +47,13 @@ export async function generateMetadata({
   const copy = getArticle(locale, slug);
   if (!copy || !isGuideSlug(slug)) return {};
   const image = `/og/${locale}/guides/${slug}`;
-  return pageMetadata(locale, `/guides/${slug}`, copy.title, copy.description, { image, imageAlt: copy.h1 });
+  const limited = slug === "spot-fakes";
+  const indexed = !limited || cardPageIndexed(locale);
+  return pageMetadata(locale, `/guides/${slug}`, copy.title, copy.description, {
+    image,
+    imageAlt: copy.h1,
+    ...(limited ? { index: indexed, hreflang: indexed, locales: CARD_INDEX_LOCALES } : {}),
+  });
 }
 
 export default async function GuidePage({ params }: { params: Promise<{ locale: string; slug: string }> }) {
@@ -73,7 +80,7 @@ export default async function GuidePage({ params }: { params: Promise<{ locale: 
     imagePath: `/og/${locale}/guides/${slug}`,
   });
   const nodes = [page, breadcrumbNode(crumbs)];
-  if (copy.faqs.length > 0) {
+  if (articleFaqSchema(copy)) {
     nodes.push(faqNode(localePath(locale, path), copy.faqs.map((faq) => ({ q: text(faq.q), a: text(faq.a) }))));
   }
   const articles = new Map(getArticles(locale).map((article) => [article.slug, article]));

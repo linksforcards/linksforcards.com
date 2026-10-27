@@ -81,6 +81,9 @@
     "genBody": "Sukupolvikansio sisältää yhden kortin jokaisesta sen sukupolven lajista, mistä setistä tahansa. Sukupolvi 1 on alkuperäiset 151. Sukupolvet 1–9 ovat 1 025 lajia.",
     "bulkTitle": "Irtokortit ovat tervetulleita",
     "bulkBody": "Magikarp bulkkilaatikosta on yhtä tervetullut kuin holo. Kerään eri kortteja ja yhden jokaisesta Pokémonista. En kokoa kokoelmaa myytäväksi, eikä tämä sivu kerro, mitä kortti maksaisi.",
+    "deltaTitle": "Mega Evolution—Delta Reign",
+    "deltaBody": "Laitan kansion valmiiksi ennen kuin korttilista on olemassa. Sivulla on vain se, mitä Pokémon on julkaissut, ja tarkistuslista pysyy tyhjänä kunnes numerot ovat oikeita.",
+    "deltaLink": "Avaa Delta Reign -sivu",
     "progressTitle": "Missä mennään",
     "progressZero": "Mitään ei ole vielä kirjattu. Jokainen luku täällä on nolla, kunnes kirjaan oikean lähetyksen.",
     "progressLive": "Nämä luvut tulevat lähetyksistä, jotka olen kirjannut.",
@@ -217,6 +220,8 @@
     "intro": "Settien korttilistat, sukupolvien tarkistuslistat ja sivu jokaiselle Pokémonille. Täysi palkki on se, mitä minulla jo on.",
     "generations": "Sukupolvikansiot",
     "sets": "Setit sarjoittain",
+    "deltaLink": "Kansiosivu, jonka pidän valmiina",
+    "deltaNote": "Mega Evolution—Delta Reign ei ole vielä korttilistalla.",
     "pokedex": "Pokédex",
     "pokedexIntro": "Jokainen kansallisen dexin Pokémon, omalla korttilistallaan.",
     "searchPokedex": "Hae Pokédexistä",
@@ -229,7 +234,9 @@
   },
   "seriesPage": {
     "intro": "Sarjassa {series} on {count} settiä tässä listassa. Jokainen settisivu on korttilista ja tarkistuslista.",
-    "other": "Muut sarjat"
+    "other": "Muut sarjat",
+    "deltaLink": "Delta Reign, ennen numeroita",
+    "deltaPending": "Tämä laajennus ei ole vielä listalla. En keksi sille riviä."
   },
   "setPage": {
     "intro": "{name} ilmestyi {date} sarjassa {series}. Tässä korttilistassa on {total} korttia. Minulla on niistä {collected}.",
@@ -255,7 +262,7 @@
   },
   "guides": {
     "kicker": "Kansiosta",
-    "indexIntro": "Yksi pitkä muistiinpano siitä, miten kerään, ja yhdeksän lyhyempää muistiinpanoa, jotka vastaavat kukin yhteen kysymykseen.",
+    "indexIntro": "Yksi pitkä muistiinpano siitä, miten kerään, ja kymmenen lyhyempää muistiinpanoa, jotka vastaavat kukin yhteen kysymykseen.",
     "updated": "Päivitetty {date}",
     "toc": "Tällä sivulla",
     "pillarLabel": "Aloita tästä",

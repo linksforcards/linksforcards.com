@@ -1,4 +1,5 @@
 import type { ArticleCopy } from "@/lib/articles";
+import { spotFakesFr } from "./spot-fakes/fr";
 
 export function frenchArticles(): ArticleCopy[] {
   return [
@@ -115,6 +116,14 @@ export function frenchArticles(): ArticleCopy[] {
           ],
         },
         {
+          id: "by-type",
+          heading: "Trier par type, quand le classeur n'est pas une liste",
+          paragraphs: [
+            "Le type est le symbole en haut à droite d'une carte Pokémon. [[L'aide de la base de cartes|https://support.pokemon.com/hc/en-us/articles/360001025274-How-do-I-use-the-Trading-Card-Game-database]] le décrit ainsi : l'icône d'énergie pour Plante, Feu, Eau et le reste. Un enfant qui veut toutes les cartes Eau sur une page trie par type. Je m'en sers pour une pile de jeu sur la table. Je ne m'en sers pas pour ordonner un classeur de série. La liste est numérotée, et une page d'un seul type cache le numéro manquant.",
+            "Les Dresseurs ne portent pas cette icône de type, et l'Énergie de base reste une pile à part. Cet après-midi-là, ces cartes ont leur tas, au lieu d'être forcées sous une créature. La génération est l'autre ordre, une tranche du Pokédex, et c'est déjà ce qu'est la [[génération 1|/collections/generation/1]]. Série, numéro, type et génération sont quatre questions. J'en prends une par classeur. [[Comment je lis le symbole|/guides/read-a-card]] montre où il se trouve avant que je fasse confiance au tas.",
+          ],
+        },
+        {
           id: "marking-a-line",
           heading: "Comment je coche une ligne",
           paragraphs: [
@@ -173,7 +182,7 @@ export function frenchArticles(): ArticleCopy[] {
           paragraphs: [
             "Les cartes en trop restent dans une boîte étiquetée au nom de la série, ou dans une seule boîte mélangée quand la pile est petite. Ce n'est pas une poubelle. Le classeur suivant a souvent besoin de la carte que j'étais prêt à laisser partir. Je les garde au sec, dans un protège-cartes si le coin est déjà mou, et loin du sol.",
             "Quand un classeur est fini, l'histoire change. [[Un classeur fini peut partir|/guides/donating-cards]] vers un enfant. Les cartes en trop, elles, ne partent pas avec lui. Elles restent et ferment le classeur d'après. Cette séparation garde le cadeau complet et garde la liste honnête. Une poignée de doubles à côté d'un classeur fini ressemble à de la générosité et arrive comme un travail à finir.",
-            "La boîte elle-même reçoit une étiquette ennuyeuse : le nom de la série, ou « mélange » si je ne l'ai pas encore séparée. Je n'étiquette pas une boîte avec une supposition sur ce que les cartes pourraient rapporter à la vente. Je n'ai pas une boîte pour les « bonnes » cartes et un bac pour le « rebut ». Cette coupure fait disparaître les communes et laisse les trous ouverts. Une fois par mois, je reprends la boîte mélangée, je refais le tri par série, et je la réduis. Le but est une pile de questions plus petite, pas une vitrine plus jolie.",
+            "La boîte elle-même reçoit une étiquette ennuyeuse : le nom de la série, ou « mélange » si je ne l'ai pas encore séparée. Je n'étiquette pas une boîte avec une supposition sur ce que les cartes pourraient rapporter à la vente. Je n'ai pas une boîte pour les « bonnes » cartes et un bac pour le « rebut ». Cette coupure fait disparaître les communes et laisse les trous ouverts. Une fois par mois, je reprends la boîte mélangée, je refais le tri par série, et je la réduis. Le but est une pile de questions plus petite, pas une vitrine plus jolie. Une carte à laquelle je ne fais pas confiance ne ferme pas une ligne. [[Repérer une contrefaçon|/guides/spot-fakes]] est une note à part. La boîte de vrac est l'endroit des cartes ordinaires et vraies, et ce sont celles-là que je veux.",
           ],
         },
       ],
@@ -331,6 +340,14 @@ export function frenchArticles(): ArticleCopy[] {
           ],
         },
         {
+          id: "regulation",
+          heading: "La marque de régulation est une lettre de format",
+          paragraphs: [
+            "Sur les cartes imprimées à partir de 2020, Play! Pokémon pose une marque de régulation : une lettre en bas à gauche. Les [[règles de Play! Pokémon|https://play.pokemon.com/en-us/resources/rules/]] disent que le format Standard tourne selon cette lettre. Les cartes plus anciennes n'ont pas de lettre. Une carte avec une lettre ancienne, ou sans lettre, peut rester légale si la même carte a été réimprimée avec une lettre actuelle. Les lettres permises changent. Je n'apprends pas la liste du moment dans un classeur, et je ne trie pas selon la lettre.",
+            "La lettre n'est pas le numéro de collection, et ce n'est pas le symbole de rareté. [[L'aide de la base de cartes|https://support.pokemon.com/hc/en-us/articles/360001025274-How-do-I-use-the-Trading-Card-Game-database]] place le symbole de rareté dans le coin inférieur droit, avec l'icône d'extension. Je regarde la lettre seulement quand quelqu'un demande si une carte peut être jouée dans un événement actuel. Pour le classeur, le numéro décide encore de la poche. Une carte à laquelle je ne fais pas confiance n'atteint pas cette poche. C'est [[comment je repère une contrefaçon|/guides/spot-fakes]].",
+          ],
+        },
+        {
           id: "in-practice",
           heading: "Un passage dans une pile mélangée",
           paragraphs: [
@@ -380,6 +397,14 @@ export function frenchArticles(): ArticleCopy[] {
           paragraphs: [
             "Debout sur une étagère, ou à plat si le classeur est mince, loin d'une fenêtre et loin d'un mur extérieur humide. Je ne range pas les classeurs dans un carton de cave, un grenier chaud, ou le coffre d'une voiture. La chaleur recourbe un protège-cartes. L'humidité tache une page. Le soleil pâlit l'encre. Rien de tout ça ne se voit le jour où je le fais. Ça se voit quand j'ouvre le classeur un été plus tard.",
             "Le vrac qui n'est pas dans un classeur vit dans une boîte sèche, empilé pour que les cartes ne soient pas pliées par un objet plus lourd. Je garde la nourriture et les verres hors de cette table. Ça a l'air pointilleux jusqu'au moment où du jus d'orange est à l'intérieur d'un protège-cartes. La [[page des collections|/collections]] peut être reconstruit à partir des cartes. Une pile collée, non. Je préfère une boîte ennuyeuse et sèche à une pile que je devrai décoller.",
+          ],
+        },
+        {
+          id: "toploader",
+          heading: "Un toploader sert au trajet",
+          paragraphs: [
+            "Un toploader est une pochette de plastique rigide. J'en prends un quand une carte quitte la maison : un classeur en route vers un enfant, ou une carte seule dans un colis. Il est plus épais qu'une page de classeur ne le souhaite, donc il reste hors de la page à neuf poches. À la maison, la carte vit dans une pochette souple, dans la poche. Un étui dur sur chaque commune donnerait un classeur que je n'ouvre pas, et l'ouvrir est le but.",
+            "Je ne scotche pas une carte dans un toploader. Si je n'en ai pas, la pochette souple et une boîte plate battent encore un coin plié. [[Le guide long|/guides/collecting-binders]] suppose déjà la pochette souple. La rigide est l'exception, pour le voyage, pas pour la page de tous les jours.",
           ],
         },
         {
@@ -483,7 +508,7 @@ export function frenchArticles(): ArticleCopy[] {
           heading: "Par où je dis aux gens de commencer à regarder",
           paragraphs: [
             "Le [[bloc de Base|/collections/series/base]] est le début de la liste publiée. [[Base|/collections/set/base1]] elle-même, c'est le 9 janvier 1999, 102 cartes. [[La liste de la génération 1|/guides/gen-1-checklist]] explique pourquoi ces 102 cartes ne sont pas la même chose que les 151 espèces d'origine. J'envoie les gens vers les deux pages exprès. La confusion est courante, et le correctif est simplement les deux comptes, côte à côte. L'un compte des cartes. L'autre compte des espèces.",
-            "L'autre bout de la liste bouge quand les données bougent. [[Mega Evolution|/collections/set/me1]] est dans les données actuelles comme son propre bloc. Je le relie pour que la chronologie ait une porte récente, pas parce qu'une série nouvelle serait plus importante qu'une vieille commune. La [[page des collections|/collections]] est la même liste avec les barres d'avancement. Cette note est la liste avec les dates. Les barres disent où j'en suis. Les dates disent quand la série est sortie.",
+            "L'autre bout de la liste bouge quand les données bougent. [[Mega Evolution|/collections/set/me1]] est dans les données actuelles comme son propre bloc. Je le relie pour que la chronologie ait une porte récente, pas parce qu'une série nouvelle serait plus importante qu'une vieille commune. La [[page des collections|/collections]] est la même liste avec les barres d'avancement. Cette note est la liste avec les dates. Les barres disent où j'en suis. Les dates disent quand la série est sortie. [[Mega Evolution—Delta Reign|/collections/set/delta-reign]] n'est pas encore dans cette liste. J'ai écrit une page pour le classeur avant que les numéros existent, et je n'insère pas ici un compte deviné.",
           ],
         },
         {
@@ -544,7 +569,7 @@ export function frenchArticles(): ArticleCopy[] {
           paragraphs: [
             "Je termine la séance quand l'enfant est encore partant, pas quand j'ai atteint un chiffre rond. Vingt minutes qui finissent par un classeur fermé reviendront. Une heure qui finit par un soupir, peut-être pas. La [[page des collections|/collections]] se souviendra des lignes que j'ai notées. Rien sur l'écran n'est plus important que l'envie de l'enfant d'ouvrir le classeur la fois d'après. Je note ce qui est vraiment dans les pochettes, puis je ferme.",
             "Je ne suis pas le classeur d'un enfant comme une compétition contre le mien. Les pages publiques de ce projet sont mes listes. La page d'un enfant a le droit de rester inachevée pour toujours. S'il entre plus tard dans le passe-temps long, les listes de séries et les pages d'espèces sont là. S'il n'y entre pas, le classeur a quand même fait son travail : des cartes dans l'ordre, des protège-cartes en place, un après-midi qui lui appartenait.",
-            "Les questions auxquelles je réponds vraiment sont petites. Dans quelle pochette va celle-ci. Est-ce que ce double peut fermer un trou. Est-ce qu'on peut s'arrêter. Oui, la pochette numérotée. Oui, si la ligne est vide. Oui, on s'arrête. Je garde les opinions plus grandes pour moi, sauf si l'enfant les demande. Une collection commencée ainsi peut rester minuscule et être quand même une vraie collection. Elle a un ordre, un protège-cartes, et une prochaine ligne vide pour le jour où quelqu'un aura envie de l'ouvrir.",
+            "Les questions auxquelles je réponds vraiment sont petites. Dans quelle pochette va celle-ci. Est-ce que ce double peut fermer un trou. Est-ce qu'on peut s'arrêter. Oui, la pochette numérotée. Oui, si la ligne est vide. Oui, on s'arrête. Je garde les opinions plus grandes pour moi, sauf si l'enfant les demande. Une collection commencée ainsi peut rester minuscule et être quand même une vraie collection. Elle a un ordre, un protège-cartes, et une prochaine ligne vide pour le jour où quelqu'un aura envie de l'ouvrir. Une carte qui a l'air fausse n'entre pas tant que je doute. [[Comment je repère une contrefaçon|/guides/spot-fakes]] est cette vérification, faite calmement, avec une autre carte du vrac proposée à sa place.",
           ],
         },
       ],
@@ -559,5 +584,6 @@ export function frenchArticles(): ArticleCopy[] {
         },
       ],
     },
+    spotFakesFr,
   ];
 }

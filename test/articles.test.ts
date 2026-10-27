@@ -41,7 +41,7 @@ function words(article: ArticleCopy): number {
 }
 
 describe("article cluster", () => {
-  it("keeps ten articles, the required links, and the word counts in every locale", () => {
+  it("keeps eleven articles, the required links, and the word counts in every locale", () => {
     for (const pack of packs) {
       expect(pack.articles.map((article) => article.slug), pack.name).toEqual([...ARTICLE_SLUGS]);
       for (const article of pack.articles) {
@@ -56,7 +56,11 @@ describe("article cluster", () => {
         expect(body, pack.name).not.toMatch(/[$€£]/);
         expect(article.faqs).toHaveLength(2);
         expect(article.sections.length).toBeGreaterThanOrEqual(4);
+        if (article.slug === "spot-fakes") expect(article.faqSchema, pack.name).toBe(false);
       }
+      expect(pack.articles.find((article) => article.slug === "organize-binder")?.sections.some((section) => section.id === "by-type")).toBe(true);
+      expect(pack.articles.find((article) => article.slug === "read-a-card")?.sections.some((section) => section.id === "regulation")).toBe(true);
+      expect(pack.articles.find((article) => article.slug === "protect-cards")?.sections.some((section) => section.id === "toploader")).toBe(true);
       const donating = pack.articles.find((article) => article.slug === "donating-cards");
       expect(prose(donating!)).toContain("mailto:magnus@linksforcards.com");
       expect(pack.articles.find((article) => article.slug === "collecting-binders")?.diagram?.kind).toBe("binders");

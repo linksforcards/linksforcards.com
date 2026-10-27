@@ -1,4 +1,5 @@
 import type { ArticleCopy } from "@/lib/articles";
+import { spotFakesFi } from "./spot-fakes/fi";
 
 export function finnishArticles(): ArticleCopy[] {
   return [
@@ -115,6 +116,14 @@ export function finnishArticles(): ArticleCopy[] {
           ],
         },
         {
+          id: "by-type",
+          heading: "Lajittelu tyypin mukaan, kun kansio ei ole tarkistuslista",
+          paragraphs: [
+            "Tyyppi on symboli Pokémon-kortin oikeassa yläkulmassa. [[Korttitietokannan ohje|https://support.pokemon.com/hc/en-us/articles/360001025274-How-do-I-use-the-Trading-Card-Game-database]] kuvaa sen näin: energiaikoni Ruoholle, Tulelle, Vedelle ja muille. Lapsi, joka tahtoo jokaisen vesikortin yhdelle sivulle, lajittelee tyypin mukaan. Sitä käytän pelipinoon pöydällä. Settikansion järjestykseen sitä en käytä. Lista on numeroitu, ja yhden tyypin sivu piilottaa puuttuvan numeron.",
+            "Trainerit eivät kanna sitä tyyppi-ikonia, ja perus-Energy on oma pino. Sellaisena iltapäivänä ne kortit saavat oman kasan, sen sijaan että ne tungettaisiin olennon alle. Sukupolvi on toinen järjestys, Pokédexin väli, ja juuri sitä [[sukupolvi 1|/collections/generation/1]] jo on. Setti, numero, tyyppi ja sukupolvi ovat neljä kysymystä. Otan yhden kansiota kohti. [[Miten luen symbolin|/guides/read-a-card]] näyttää, mistä ikonin löydän ennen kuin luotan pinoon.",
+          ],
+        },
+        {
           id: "marking-a-line",
           heading: "Miten minä merkitsen rivin",
           paragraphs: [
@@ -173,7 +182,7 @@ export function finnishArticles(): ArticleCopy[] {
           paragraphs: [
             "Ylimääräiset jäävät laatikkoon, jossa on setin nimi, tai yhteen sekalaatikkoon, kun pino on pieni. Ne eivät ole roskaa. Seuraava kansio tarvitsee usein sen kortin, josta minä melkein luovuin. Pidän ne kuivina, suojassa jos kulma on jo pehmeä, enkä lattialla. Pehmeä kulma, joka saa lojua irtonaisena vielä viikon, on kulma jolle joudun myöhemmin etsimään korvaajan, joten suoja menee päälle samana iltana kun huomaan sen.",
             "Kun kansio on valmis, tarina muuttuu. [[Valmis kansio voi lähteä talosta|/guides/donating-cards]] ja mennä lapselle. Irralliset ylimääräiset eivät lähde mukaan. Ne jäävät ja täyttävät seuraavan kansion. Se jako tekee lahjasta kokonaisen ja pitää tarkistuslistan rehellisenä.",
-            "Itse laatikko saa tylsän lapun: setin nimen, tai sanan «sekalainen», jos en ole vielä jakanut sitä. Minä en merkitse laatikkoa arvauksella siitä, mistä korteista saisi rahaa. Minulla ei ole erillistä laatikkoa «hyville» korteille enkä saavia «roskille». Se jako on tapa, jolla tavalliset kortit katoavat ja reiät jäävät auki. Kerran kuussa otan sekalaatikon, teen settilajittelun uudestaan ja pienennän sitä. Tavoite on pienempi kysymyspino, ei sievempi näyte. Pienempi kysymyspino on kuukauden ainoa tavoite. Sievä pino, jota en ole tarkistanut, ei ole edistystä. Tarkistus on se hetki, jolloin kortti joko täyttää rivin tai palaa laatikkoon.",
+            "Itse laatikko saa tylsän lapun: setin nimen, tai sanan «sekalainen», jos en ole vielä jakanut sitä. Minä en merkitse laatikkoa arvauksella siitä, mistä korteista saisi rahaa. Minulla ei ole erillistä laatikkoa «hyville» korteille enkä saavia «roskille». Se jako on tapa, jolla tavalliset kortit katoavat ja reiät jäävät auki. Kerran kuussa otan sekalaatikon, teen settilajittelun uudestaan ja pienennän sitä. Tavoite on pienempi kysymyspino, ei sievempi näyte. Pienempi kysymyspino on kuukauden ainoa tavoite. Sievä pino, jota en ole tarkistanut, ei ole edistystä. Tarkistus on se hetki, jolloin kortti joko täyttää rivin tai palaa laatikkoon. Kortti, johon en luota, ei sulje riviä. [[Väärennöksen tunnistaminen|/guides/spot-fakes]] on oma muistiinpano. Bulkkilaatikossa ovat tavalliset oikeat kortit, ja niitä tahdon.",
           ],
         },
       ],
@@ -331,6 +340,14 @@ export function finnishArticles(): ArticleCopy[] {
           ],
         },
         {
+          id: "regulation",
+          heading: "Sääntömerkki on formaatin kirjain",
+          paragraphs: [
+            "Vuodesta 2020 painetuissa korteissa Play! Pokémon käyttää sääntömerkkiä: kirjain vasemmassa alakulmassa. [[Play! Pokémonin säännöt|https://play.pokemon.com/en-us/resources/rules/]] sanovat, että Standard kiertää tuon kirjaimen mukaan. Vanhemmissa korteissa kirjainta ei ole. Kortti, jossa on vanhempi kirjain tai ei kirjainta lainkaan, voi yhä olla laillinen, jos sama kortti on painettu uudelleen nykyisellä kirjaimella. Sallitut kirjaimet vaihtuvat. Nykyistä listaa en opettele kansioon, enkä lajittele kirjaimen mukaan.",
+            "Kirjain ei ole keräilijänumero eikä harvinaisuusmerkki. [[Korttitietokannan ohje|https://support.pokemon.com/hc/en-us/articles/360001025274-How-do-I-use-the-Trading-Card-Game-database]] panee harvinaisuusmerkin oikeaan alakulmaan, laajennuskuvakkeen viereen. Kirjainta katson vain, kun joku kysyy, saako kortilla pelata nykyisessä tapahtumassa. Kansiossa numero päättää yhä taskun. Kortti, johon en luota, ei pääse siihen taskuun. Siitä on [[muistiinpano väärennöksistä|/guides/spot-fakes]].",
+          ],
+        },
+        {
           id: "in-practice",
           heading: "Kierros sekakasan läpi",
           paragraphs: [
@@ -380,6 +397,14 @@ export function finnishArticles(): ArticleCopy[] {
           paragraphs: [
             "Pystyssä hyllyllä, tai lappeellaan jos kansio on ohut, poissa ikkunasta ja poissa kosteasta ulkoseinästä. Minä en säilytä kansioita kellarin laatikossa, kuumalla vintillä enkä auton tavaratilassa. Kuumuus käyristää suojan. Kosteus tahraa sivun. Aurinko haalistaa painatuksen. Mikään siitä ei näy samana päivänä. Se näkyy, kun avaan kansion kesää myöhemmin. Kansio, joka nojaa lämpimään patteriin, saa saman kohtelun kuin vintti: se siirretään. Kuiva ja viileä riittää, ja tunnustelen hyllyä kädellä, jos olen epävarma kylmänä aamuna.",
             "Bulk, joka ei ole kansiossa, asuu kuivassa laatikossa, pinottuna niin etteivät kortit taivu painavamman esineen alle. Pidän ruoan ja juoman poissa siltä pöydältä. Se kuulostaa pikkutarkalta, kunnes appelsiinimehu on suojan sisällä. [[Kokoelmat|/collections]] voidaan rakentaa uudestaan korteista. Toisiinsa liimautunutta pinoa ei voida. Mehulasi siirtyy toiselle pöydälle ennen kuin laatikko aukeaa. Se sääntö on tylsä, ja se pitää kortit irti toisistaan. Liimautunut pino on lista, jota ei voi enää lukea.",
+          ],
+        },
+        {
+          id: "toploader",
+          heading: "Toploader on matkaa varten",
+          paragraphs: [
+            "Toploader on jäykkä muovikotelo. Käytän sellaista, kun kortti lähtee kotoa: kansio matkalla lapselle tai yksittäinen kortti paketissa. Se on paksumpi kuin kansion sivu tahtoo, joten se jää yhdeksän taskun sivun ulkopuolelle. Kotona kortti elää pehmeässä suojassa, taskussa. Kova kotelo jokaiseen tavalliseen korttiin tekisi kansion, jota en avaa, ja avaaminen on pointti.",
+            "En teippaa korttia toploaderiin. Jos sellaista ei ole, pehmeä suoja ja litteä laatikko voittavat yhä taittuneen kulman. [[Pitkä opas|/guides/collecting-binders]] olettaa pehmeän suojan jo valmiiksi. Jäykkä on poikkeus, matkaa varten, ei joka päivän sivua.",
           ],
         },
         {
@@ -483,7 +508,7 @@ export function finnishArticles(): ArticleCopy[] {
           heading: "Mistä pyydän ihmisiä aloittamaan katsomisen",
           paragraphs: [
             "[[Base-sarja|/collections/series/base]] on julkaistun listan alku. [[Base|/collections/set/base1]] itse on 9. tammikuuta 1999, 102 korttia. [[Sukupolven 1 tarkistuslista|/guides/gen-1-checklist]] selittää, miksi ne 102 korttia eivät ole sama asia kuin alkuperäiset 151 lajia. Lähetän ihmiset molemmille sivuille tahallani. Sekaannus on tavallinen, ja korjaus on vain ne kaksi lukua rinnakkain. 102 ja 151 saavat jäädä kahdeksi luvuksi lapulle, jos huomaan alkavani sanoa niitä kuin ne olisivat sama asia. Eivät ole. Lappu on halvempi kuin väärin lajiteltu kansio. Pidän lapun setin sivun vieressä, kunnes en enää sekoita lukuja keskenään. Sitten lappu saa mennä. Ennen sitä kaksi lukua pysyvät kahdessa paikassa.",
-            "Listan toinen pää liikkuu, kun aineisto liikkuu. [[Mega Evolution|/collections/set/me1]] on nykyisessä aineistossa omana sarjanaan. Linkitän sen, jotta aikajanalla on tuore ovi, en siksi että uusi setti olisi tärkeämpi kuin vanha tavallinen kortti. [[Kokoelmat|/collections]] on sama lista palkeilla. Tämä muistiinpano on lista päivämäärineen.",
+            "Listan toinen pää liikkuu, kun aineisto liikkuu. [[Mega Evolution|/collections/set/me1]] on nykyisessä aineistossa omana sarjanaan. Linkitän sen, jotta aikajanalla on tuore ovi, en siksi että uusi setti olisi tärkeämpi kuin vanha tavallinen kortti. [[Kokoelmat|/collections]] on sama lista palkeilla. Tämä muistiinpano on lista päivämäärineen. [[Mega Evolution—Delta Reign|/collections/set/delta-reign]] ei ole vielä sillä listalla. Kirjoitin sivun kansiolle ennen kuin keräilijänumerot ovat olemassa, enkä lisää tähän arvattua lukua.",
           ],
         },
         {
@@ -544,7 +569,7 @@ export function finnishArticles(): ArticleCopy[] {
           paragraphs: [
             "Lopetan istunnon, kun lapsi on yhä halukas, en kun olen päässyt pyöreään lukuun. Kaksikymmentä minuuttia, jotka päättyvät suljettuun kansioon, tapahtuvat uudestaan. Tunti, joka päättyy huokaukseen, ei ehkä tapahdu. [[Kokoelmat|/collections]] muistavat rivit, jotka olen kirjannut. Mikään ruudulla ei ole tärkeämpää kuin se, että lapsi haluaa avata kansion ensi kerralla. En aseta tavoitteeksi kymmentä korttia tai täyttä sivua. Tavoite on, että kansio suljetaan silloin, kun joku yhä haluaa avata sen uudestaan.",
             "En seuraa lapsen kansiota kilpailuna omaani vastaan. Tämän hankkeen julkiset sivut ovat minun tarkistuslistojani. Lapsen sivu saa olla kesken ikuisesti. Jos he kasvavat pitempään harrastukseen, settilistat ja lajien sivut ovat siellä. Jos eivät, kansio teki silti työnsä: kortit järjestyksessä, suojat päällä, iltapäivä joka kuului heille.",
-            "Kysymykset, joihin minä oikeasti vastaan, ovat pieniä. Mihin taskuun tämä kortti menee. Voiko tämä kaksoiskappale täyttää reiän. Saako lopettaa. Kyllä, numeroituun taskuun. Kyllä, jos rivi on tyhjä. Kyllä, lopeta. Isommat mielipiteet pidän omana tietonani, ellei lapsi kysy. Näin alkanut kokoelma voi pysyä pienenä ja olla silti oikea kokoelma. Sillä on järjestys, suoja ja seuraava tyhjä rivi, kun joku haluaa avata sen. Pieni kansio, jossa on järjestys ja suoja, on jo kokoelma. Sen ei tarvitse kasvaa minun hyllyni mittaiseksi. Mitta on lapsen iltapäivä, ei minun rivieni lukumäärä. Jos iltapäivä päättyy yhteen korttiin suojassa, se on valmis kerta. En avaa toista kansiota vain siksi, että pöydällä on vielä tilaa. Kun kansio sulkeutuu hymyyn, ilta onnistui, vaikka rivejä olisi tullut vain kaksi. Kaksi riviä riittää, jos kansio sulkeutuu rauhassa.",
+            "Kysymykset, joihin minä oikeasti vastaan, ovat pieniä. Mihin taskuun tämä kortti menee. Voiko tämä kaksoiskappale täyttää reiän. Saako lopettaa. Kyllä, numeroituun taskuun. Kyllä, jos rivi on tyhjä. Kyllä, lopeta. Isommat mielipiteet pidän omana tietonani, ellei lapsi kysy. Näin alkanut kokoelma voi pysyä pienenä ja olla silti oikea kokoelma. Sillä on järjestys, suoja ja seuraava tyhjä rivi, kun joku haluaa avata sen. Pieni kansio, jossa on järjestys ja suoja, on jo kokoelma. Sen ei tarvitse kasvaa minun hyllyni mittaiseksi. Mitta on lapsen iltapäivä, ei minun rivieni lukumäärä. Jos iltapäivä päättyy yhteen korttiin suojassa, se on valmis kerta. En avaa toista kansiota vain siksi, että pöydällä on vielä tilaa. Kun kansio sulkeutuu hymyyn, ilta onnistui, vaikka rivejä olisi tullut vain kaksi. Kaksi riviä riittää, jos kansio sulkeutuu rauhassa. Kortti, joka näyttää väärältä, ei mene sisään niin kauan kuin epäilen. [[Miten tunnistan väärennöksen|/guides/spot-fakes]] on se tarkistus, hiljaa, ja tilalle tarjotaan toinen kortti bulkista.",
           ],
         },
       ],
@@ -559,5 +584,6 @@ export function finnishArticles(): ArticleCopy[] {
         },
       ],
     },
+    spotFakesFi,
   ];
 }

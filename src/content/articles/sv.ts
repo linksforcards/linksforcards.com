@@ -1,4 +1,5 @@
 import type { ArticleCopy } from "@/lib/articles";
+import { spotFakesSv } from "./spot-fakes/sv";
 
 export function swedishArticles(): ArticleCopy[] {
   return [
@@ -115,6 +116,14 @@ export function swedishArticles(): ArticleCopy[] {
           ],
         },
         {
+          id: "by-type",
+          heading: "Sortera efter typ, när pärmen inte är en checklista",
+          paragraphs: [
+            "Typen är symbolen uppe till höger på ett Pokémon-kort. [[Hjälpen till kortdatabasen|https://support.pokemon.com/hc/en-us/articles/360001025274-How-do-I-use-the-Trading-Card-Game-database]] beskriver den så: energiikonen för Gräs, Eld, Vatten och resten. Ett barn som vill ha varje vattenkort på en sida sorterar efter typ. Det använder jag till en spelhog på bordet. Till en setpärm använder jag det inte. Listan är numrerad, och en sida med en enda typ gömmer det nummer som saknas.",
+            "Tränare bär inte den typikonen, och bas-Energy är en egen hög. En sådan eftermiddag får de korten en egen trave, i stället för att tvingas in under en varelse. Generation är den andra ordningen, ett spann i Pokédex, och det är redan det [[generation 1|/collections/generation/1]] är. Set, nummer, typ och generation är fyra frågor. Jag tar en per pärm. [[Hur jag läser symbolen|/guides/read-a-card]] är hur jag hittar ikonen innan jag litar på traven.",
+          ],
+        },
+        {
           id: "marking-a-line",
           heading: "Hur jag markerar en rad",
           paragraphs: [
@@ -173,7 +182,7 @@ export function swedishArticles(): ArticleCopy[] {
           paragraphs: [
             "Extrakort stannar i en låda märkt med setet, eller i en blandad låda när traven är liten. De är inte sopor. Nästa pärm behöver ofta kortet jag nästan gav upp. Jag håller dem torra, i en sleeve om hörnet redan är mjukt, och inte på golvet. Ett mjukt hörn som får ligga löst en vecka till är ett hörn jag sedan får leta ersättare till, så sleeven åker på samma kväll som jag märker det.",
             "När en pärm är färdig ändras historien. [[En färdig pärm kan lämna huset|/guides/donating-cards]] och gå till ett barn. Lösa extrakort följer inte med. De stannar och fyller nästa pärm. Den delningen gör gåvan hel och håller checklistan ärlig.",
-            "Själva lådan får en tråkig etikett: setets namn, eller «blandat» om jag inte har delat den ännu. Jag märker inte en låda med en gissning om vad korten skulle kunna säljas för. Jag har ingen separat låda för «bra» kort och en tunna för «skräp». Den delningen är så commons försvinner och hål står öppna. En gång i månaden tar jag den blandade lådan, kör setsorteringen igen och krymper den. Målet är en mindre frågetrave, inte en snyggare uppvisning.",
+            "Själva lådan får en tråkig etikett: setets namn, eller «blandat» om jag inte har delat den ännu. Jag märker inte en låda med en gissning om vad korten skulle kunna säljas för. Jag har ingen separat låda för «bra» kort och en tunna för «skräp». Den delningen är så commons försvinner och hål står öppna. En gång i månaden tar jag den blandade lådan, kör setsorteringen igen och krymper den. Målet är en mindre frågetrave, inte en snyggare uppvisning. Ett kort jag inte litar på fyller ingen rad. [[Att känna igen en förfalskning|/guides/spot-fakes]] är en egen not. Bulklådan är platsen för de vanliga riktiga korten, och det är de jag vill ha.",
           ],
         },
       ],
@@ -331,6 +340,14 @@ export function swedishArticles(): ArticleCopy[] {
           ],
         },
         {
+          id: "regulation",
+          heading: "Regleringsmärket är en formatbokstav",
+          paragraphs: [
+            "På kort tryckta från 2020 använder Play! Pokémon ett regleringsmärke: en bokstav nere till vänster. [[Reglerna för Play! Pokémon|https://play.pokemon.com/en-us/resources/rules/]] säger att Standard roterar efter den bokstaven. Äldre kort har ingen bokstav. Ett kort med en äldre bokstav, eller utan bokstav, kan ändå vara lagligt om samma kort tryckts om med en aktuell bokstav. De tillåtna bokstäverna byts. Jag lär inte in dagens lista i en pärm, och jag sorterar inte efter bokstaven.",
+            "Bokstaven är inte samlarnumret, och den är inte sällsynthetstecknet. [[Hjälpen till kortdatabasen|https://support.pokemon.com/hc/en-us/articles/360001025274-How-do-I-use-the-Trading-Card-Game-database]] lägger sällsynthetstecknet i nedre högra hörnet, vid expansionssymbolen. Jag tittar på bokstaven bara när någon frågar om ett kort får spelas i ett aktuellt event. För pärmen avgör numret fortfarande fickan. Ett kort jag inte litar på når aldrig den fickan. Det är [[hur jag känner igen en förfalskning|/guides/spot-fakes]].",
+          ],
+        },
+        {
           id: "in-practice",
           heading: "En genomgång av en blandad hög",
           paragraphs: [
@@ -380,6 +397,14 @@ export function swedishArticles(): ArticleCopy[] {
           paragraphs: [
             "Stående på en hylla, eller liggande om pärmen är tunn, borta från ett fönster och borta från en fuktig yttervägg. Jag förvarar inte pärmar i en källarlåda, en het vind eller bagageutrymmet i en bil. Värme böjer en sleeve. Fukt fläckar en sida. Sol bleker tryck. Inget av det syns samma dag. Det syns när jag öppnar pärmen en sommar senare. En pärm som lutar mot en varm radiator får samma behandling som vinden: den flyttas. Torr och sval räcker, och jag känner på hyllan med handen om jag är osäker en kall morgon.",
             "Bulk som inte sitter i en pärm bor i en torr låda, staplad så att korten inte böjs av något tyngre. Jag håller mat och dryck borta från det bordet. Det låter petigt tills apelsinjuice är inne i en sleeve. [[Samlingarna|/collections]] kan byggas upp igen från korten. En hopklibbad trave kan det inte.",
+          ],
+        },
+        {
+          id: "toploader",
+          heading: "En toploader är till resan",
+          paragraphs: [
+            "En toploader är ett styvt plastfodral. Jag tar ett när ett kort lämnar huset: en pärm på väg till ett barn, eller ett enstaka kort i ett paket. Den är tjockare än en pärmsida vill, så den stannar utanför nisidan. Hemma bor kortet i en mjuk sleeve, i fickan. Ett hårt fodral på varje common skulle ge en pärm jag inte öppnar, och att öppna den är poängen.",
+            "Jag tejpar inte fast ett kort i en toploader. Har jag ingen, slår den mjuka sleeven och en platt ask fortfarande ett böjt hörn. [[Pärmguiden|/guides/collecting-binders]] räknar redan med den mjuka sleeven. Den styva är undantaget, för resan, inte för vardagssidan.",
           ],
         },
         {
@@ -483,7 +508,7 @@ export function swedishArticles(): ArticleCopy[] {
           heading: "Var jag ber folk börja titta",
           paragraphs: [
             "[[Base-serien|/collections/series/base]] är början på den publicerade listan. [[Base|/collections/set/base1]] själv är 9 januari 1999, 102 kort. [[Checklistan för generation 1|/guides/gen-1-checklist]] förklarar varför de 102 korten inte är samma sak som de ursprungliga 151 arterna. Jag skickar folk till båda sidorna med flit. Förväxlingen är vanlig och lösningen är bara de två antalen, sida vid sida. 102 och 151 får stå kvar som två tal på en lapp om jag märker att jag börjar säga dem som om de vore samma sak. De är inte samma sak. Lappen är billigare än en felsorterad pärm.",
-            "Andra änden av listan rör sig när datat rör sig. [[Mega Evolution|/collections/set/me1]] finns i det nuvarande datat som en egen serie. Jag länkar dit så att tidslinjen har en ny dörr, inte för att ett nytt set är viktigare än en gammal common. [[Samlingarna|/collections]] är samma lista med staplarna. Den här anteckningen är listan med datumen.",
+            "Andra änden av listan rör sig när datat rör sig. [[Mega Evolution|/collections/set/me1]] finns i det nuvarande datat som en egen serie. Jag länkar dit så att tidslinjen har en ny dörr, inte för att ett nytt set är viktigare än en gammal common. [[Samlingarna|/collections]] är samma lista med staplarna. Den här anteckningen är listan med datumen. [[Mega Evolution—Delta Reign|/collections/set/delta-reign]] finns inte i den listan än. Jag har skrivit en sida till pärmen innan samlarnumren finns, och jag sätter inte in en gissad räkning här.",
           ],
         },
         {
@@ -544,7 +569,7 @@ export function swedishArticles(): ArticleCopy[] {
           paragraphs: [
             "Jag avslutar sittningen när barnet fortfarande är villigt, inte när jag har nått ett jämnt tal. Tjugo minuter som slutar med en stängd pärm händer igen. En timme som slutar med en suck kanske inte gör det. [[Samlingarna|/collections]] kommer ihåg raderna jag har noterat. Ingenting på skärmen är viktigare än att barnet vill öppna pärmen nästa gång. Jag ställer inte ett mål om tio kort eller en full sida. Målet är att pärmen stängs medan någon fortfarande vill öppna den igen.",
             "Jag följer inte ett barns pärm som en tävling mot min. De offentliga sidorna i det här projektet är mina checklistor. Ett barns sida får vara ofärdig för alltid. Växer de in i den längre hobbyn finns setlistorna och artsidorna där. Gör de inte det har pärmen ändå gjort sitt jobb: kort i ordning, sleeves på, en eftermiddag som tillhörde dem.",
-            "Frågorna jag faktiskt svarar på är små. Vilken ficka det här kortet ska ligga i. Om den här dubbletten kan fylla ett hål. Om det är okej att sluta. Ja, den numrerade fickan. Ja, om raden är tom. Ja, sluta. De större åsikterna behåller jag för mig själv om barnet inte frågar. En samling som börjar så här kan förbli liten och ändå vara en riktig samling. Den har en ordning, en sleeve och en nästa tom rad när någon känner för att öppna den.",
+            "Frågorna jag faktiskt svarar på är små. Vilken ficka det här kortet ska ligga i. Om den här dubbletten kan fylla ett hål. Om det är okej att sluta. Ja, den numrerade fickan. Ja, om raden är tom. Ja, sluta. De större åsikterna behåller jag för mig själv om barnet inte frågar. En samling som börjar så här kan förbli liten och ändå vara en riktig samling. Den har en ordning, en sleeve och en nästa tom rad när någon känner för att öppna den. Ett kort som ser fel ut kommer inte in medan jag är osäker. [[Hur jag känner igen en förfalskning|/guides/spot-fakes]] är den kontrollen, tyst, med ett annat bulk-kort erbjudet i stället.",
           ],
         },
       ],
@@ -559,5 +584,6 @@ export function swedishArticles(): ArticleCopy[] {
         },
       ],
     },
+    spotFakesSv,
   ];
 }

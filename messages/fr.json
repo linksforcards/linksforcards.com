@@ -81,6 +81,9 @@
     "genBody": "Un classeur de génération contient une carte de chaque espèce de cette génération, quelle que soit la série. La génération 1, ce sont les 151 d'origine. Les générations 1 à 9 font 1 025 espèces.",
     "bulkTitle": "Le vrac est bienvenu",
     "bulkBody": "Un Magicarpe sorti d'une boîte de vrac est aussi bienvenu qu'une holographique. Je rassemble des cartes différentes, et une de chaque Pokémon. Je ne construis pas une collection à vendre, et ce site ne dit pas ce qu'une carte vaudrait à la vente.",
+    "deltaTitle": "Mega Evolution—Delta Reign",
+    "deltaBody": "Je prépare un classeur avant que la liste de cartes existe. La page ne garde que ce que Pokémon a publié, et la liste à cocher reste vide tant que les numéros ne sont pas réels.",
+    "deltaLink": "Ouvrir la page Delta Reign",
     "progressTitle": "Où j'en suis",
     "progressZero": "Rien n'est encore noté. Chaque chiffre ici est à zéro tant que je n'ai pas enregistré un envoi réel.",
     "progressLive": "Ces chiffres viennent des envois que j'ai notés.",
@@ -217,6 +220,8 @@
     "intro": "Listes de cartes des sets, checklists des générations, et une page pour chaque Pokémon. Une barre remplie, c'est ce que j'ai déjà.",
     "generations": "Classeurs de génération",
     "sets": "Sets par série",
+    "deltaLink": "La page de classeur que je tiens prête",
+    "deltaNote": "Mega Evolution—Delta Reign n'est pas encore dans la liste de cartes.",
     "pokedex": "Pokédex",
     "pokedexIntro": "Chaque Pokémon du dex national, avec sa propre liste de cartes.",
     "searchPokedex": "Chercher dans le Pokédex",
@@ -229,7 +234,9 @@
   },
   "seriesPage": {
     "intro": "{series} compte {count} sets dans cette liste. Chaque page de set est la liste de cartes et la checklist.",
-    "other": "Autres séries"
+    "other": "Autres séries",
+    "deltaLink": "Delta Reign, avant les numéros",
+    "deltaPending": "Cette extension n'est pas encore dans la liste. Je n'invente pas de ligne pour elle."
   },
   "setPage": {
     "intro": "{name} est sorti le {date} dans la série {series}. Cette liste de cartes compte {total} cartes. J'en ai {collected}.",
@@ -255,7 +262,7 @@
   },
   "guides": {
     "kicker": "Depuis le classeur",
-    "indexIntro": "Une longue note sur ma façon de collectionner, et neuf notes plus courtes qui répondent chacune à une question.",
+    "indexIntro": "Une longue note sur ma façon de collectionner, et dix notes plus courtes qui répondent chacune à une question.",
     "updated": "Mis à jour le {date}",
     "toc": "Sur cette page",
     "pillarLabel": "Commencer ici",
