@@ -4,8 +4,9 @@ import { randomUUID } from "node:crypto";
 import { revalidatePath, revalidateTag } from "next/cache";
 import { redirect } from "next/navigation";
 import { attemptLogin, clearSessionCookie, clientIp, requireSession, writeSessionCookie } from "@/lib/auth";
-import { formatDexList, parseBulk } from "@/lib/cards";
-import { getSet, getSetCards, matchCard } from "@/lib/catalog";
+import { parseBulk } from "@/lib/cards";
+import { getSet } from "@/lib/catalog";
+import { resolveShipmentLines } from "@/lib/inventory";
 import { getTheme } from "@/lib/themes";
 import { getDatabase } from "@/lib/db";
 import { num } from "@/lib/sql";
@@ -68,8 +69,7 @@ export async function createShipment(_prev: FormState, formData: FormData): Prom
   const receivedOn = String(formData.get("received_on") ?? "");
   if (!isIsoDate(receivedOn)) return { error: "Enter the date you received the parcel." };
   const setId = String(formData.get("set_id") ?? "");
-  const cards = getSetCards(setId);
-  if (!cards) return { error: "Choose a set from the list." };
+  const language = String(formData.get("language") ?? "en");
   const notes = clip(formData.get("notes"), 2000);
   const bindersIncluded = parseBindersIncluded(formData.get("binders_included"));
   if (bindersIncluded === null) return { error: "Binders included needs a whole number from 0 to 99." };
@@ -85,16 +85,9 @@ export async function createShipment(_prev: FormState, formData: FormData): Prom
       .join(" ");
     return { error: sample };
   }
-
-  const resolved: { number: string; name: string; qty: number; dex: string }[] = [];
-  const missing: string[] = [];
-  for (const item of parsed.items) {
-    const card = matchCard(cards, item.number);
-    if (!card) missing.push(item.number);
-    else resolved.push({ number: card.n, name: card.name, qty: item.quantity, dex: formatDexList(card.dex ?? []) });
-  }
-  if (missing.length) {
-    return { error: `Not in this set: ${missing.slice(0, 12).join(", ")}.` };
+  const resolvedLines = await resolveShipmentLines(parsed.items, { language, setId });
+  if (resolvedLines.errors.length || !resolvedLines.lines.length) {
+    return { error: resolvedLines.errors.slice(0, 6).join(" ") || "Add at least one card number." };
   }
 
   const shopIdInput = String(formData.get("shop_id") ?? "");
@@ -134,11 +127,23 @@ export async function createShipment(_prev: FormState, formData: FormData): Prom
        VALUES ($1, $2, $3, $4, $5, 0, $6)`,
       [shipmentId, shopId, receivedOn, notes, bindersIncluded, now],
     );
-    for (const card of resolved) {
+    for (const card of resolvedLines.lines) {
       await tx.query(
-        `INSERT INTO shipment_cards (id, shipment_id, set_id, card_number, card_name, quantity, dex_numbers)
-         VALUES ($1, $2, $3, $4, $5, $6, $7)`,
-        [randomUUID(), shipmentId, setId, card.number, card.name, card.qty, card.dex],
+        `INSERT INTO shipment_cards (
+           id, shipment_id, set_id, card_number, card_name, quantity, dex_numbers, language, external_source, external_id
+         ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`,
+        [
+          randomUUID(),
+          shipmentId,
+          card.setId,
+          card.number,
+          card.name,
+          card.quantity,
+          card.dex,
+          card.language,
+          card.externalSource,
+          card.externalId,
+        ],
       );
     }
   });

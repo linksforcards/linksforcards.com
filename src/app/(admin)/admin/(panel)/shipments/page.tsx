@@ -34,6 +34,7 @@ export default async function ShipmentsPage({
             <tr>
               <th>Received</th>
               <th>Shop</th>
+              <th>Languages</th>
               <th className="num">Lines</th>
               <th className="num">Cards</th>
               <th className="num">Binders</th>
@@ -44,7 +45,7 @@ export default async function ShipmentsPage({
           <tbody>
             {rows.length === 0 ? (
               <tr>
-                <td colSpan={7}>No shipments yet.</td>
+                <td colSpan={8}>No shipments yet.</td>
               </tr>
             ) : (
               rows.map((row) => (
@@ -55,6 +56,7 @@ export default async function ShipmentsPage({
                     <span className="muted"> · {row.country}</span>
                     {num(row.is_demo) === 1 ? <span className="muted"> · DEMO</span> : null}
                   </td>
+                  <td>{row.languages || "en"}</td>
                   <td className="num">{num(row.lines)}</td>
                   <td className="num">{num(row.copies)}</td>
                   <td className="num">

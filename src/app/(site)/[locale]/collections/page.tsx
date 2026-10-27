@@ -11,6 +11,7 @@ import { SiteLinks } from "@/components/site/site-links";
 import { themeCopy } from "@/content/theme-copy";
 import { getArticles } from "@/lib/articles";
 import { getMeta, getSetCards, setsBySeries, speciesName, speciesNamesAreTranslated } from "@/lib/catalog";
+import { formatHeldLanguages } from "@/lib/card-page";
 import { fill, formatDay, formatInt } from "@/lib/format";
 import { GENERATIONS, SPECIES_TOTAL } from "@/lib/generations";
 import { readLocale } from "@/lib/i18n";
@@ -167,6 +168,20 @@ export default async function CollectionsPage({ params }: { params: Promise<{ lo
           progress: m.checklist.progress,
         }}
       />
+      {snapshot.otherPrintings.length > 0 ? (
+        <>
+          <h2>{m.collectionsPage.otherPrintings}</h2>
+          <p>{m.collectionsPage.otherPrintingsIntro}</p>
+          <ul className="plain-list">
+            {snapshot.otherPrintings.map((printing) => (
+              <li key={`${printing.language}:${printing.setId}:${printing.number}`}>
+                {formatHeldLanguages(m, [printing.language])} · {printing.name} · {printing.setId} {printing.number}
+                {printing.quantity > 1 ? ` ×${formatInt(printing.quantity, locale)}` : ""}
+              </li>
+            ))}
+          </ul>
+        </>
+      ) : null}
       <h2>{m.collectionsPage.pokedex}</h2>
       <p>{m.collectionsPage.pokedexIntro}</p>
       <PokedexBrowser

@@ -11,6 +11,20 @@
     "Galar",
     "Paldea"
   ],
+  "printLanguages": {
+    "en": "inglés",
+    "de": "alemán",
+    "fr": "francés",
+    "it": "italiano",
+    "es": "español",
+    "pt": "portugués",
+    "ja": "japonés",
+    "zh-tw": "chino tradicional",
+    "zh-cn": "chino simplificado",
+    "ko": "coreano",
+    "th": "tailandés",
+    "id": "indonesio"
+  },
   "meta": {
     "homeTitle": "LinksForCards",
     "homeDescription": "Soy Magnus Schmidt. Reúno cartas Pokémon de tiendas de Europa y de Estados Unidos, completo carpetas de expansión y de generación, y las entrego a niños. Esta página es el registro público.",
@@ -230,7 +244,9 @@
     "letters": "Primera letra",
     "guides": "Guías",
     "themes": "Carpetas temáticas",
-    "themesIntro": "Una carpeta para un Pokémon, un artista o un tipo de carta. La barra es lo que ya tengo."
+    "themesIntro": "Una carpeta para un Pokémon, un artista o un tipo de carta. La barra es lo que ya tengo.",
+    "otherPrintings": "Impresiones fuera de la lista inglesa",
+    "otherPrintingsIntro": "Estas copias están en la colección. No tienen página en la lista inglesa."
   },
   "seriesPage": {
     "intro": "{series} tiene {count} sets en esta lista. Cada página de set es la lista de cartas y la checklist.",
@@ -349,7 +365,8 @@
     "rules": "Texto de la carta",
     "faq": "Preguntas sobre esta carta",
     "cost": "Coste",
-    "damage": "Daño"
+    "damage": "Daño",
+    "alsoHeld": "También en la colección: {languages}."
   },
   "cardSearch": {
     "kicker": "Lista de cartas",

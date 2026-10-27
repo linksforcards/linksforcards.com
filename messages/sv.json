@@ -11,6 +11,20 @@
     "Galar",
     "Paldea"
   ],
+  "printLanguages": {
+    "en": "engelska",
+    "de": "tyska",
+    "fr": "franska",
+    "it": "italienska",
+    "es": "spanska",
+    "pt": "portugisiska",
+    "ja": "japanska",
+    "zh-tw": "traditionell kinesiska",
+    "zh-cn": "förenklad kinesiska",
+    "ko": "koreanska",
+    "th": "thailändska",
+    "id": "indonesiska"
+  },
   "meta": {
     "homeTitle": "LinksForCards",
     "homeDescription": "Jag är Magnus Schmidt. Jag samlar Pokémon-kort från butiker i Europa och USA, fyller set- och generationspärmar och ger pärmarna till barn. Den här sidan är den offentliga förteckningen.",
@@ -230,7 +244,9 @@
     "letters": "Första bokstaven",
     "guides": "Guider",
     "themes": "Temapärmar",
-    "themesIntro": "En pärm för en Pokémon, en konstnär eller ett slags kort. Stapeln är det jag redan har."
+    "themesIntro": "En pärm för en Pokémon, en konstnär eller ett slags kort. Stapeln är det jag redan har.",
+    "otherPrintings": "Tryck utanför den engelska listan",
+    "otherPrintingsIntro": "De här exemplaren finns i samlingen. De har ingen sida i den engelska kortlistan."
   },
   "seriesPage": {
     "intro": "{series} har {count} set i den här listan. Varje setsida är kortlistan och checklistan.",
@@ -349,7 +365,8 @@
     "rules": "Korttext",
     "faq": "Frågor om det här kortet",
     "cost": "Kostnad",
-    "damage": "Skada"
+    "damage": "Skada",
+    "alsoHeld": "Också i samlingen: {languages}."
   },
   "cardSearch": {
     "kicker": "Kortlista",

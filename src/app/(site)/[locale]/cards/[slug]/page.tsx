@@ -11,6 +11,7 @@ import {
   buildCardView,
   cardPageGraph,
   cardStatus,
+  formatHeldLanguages,
   resolveCardSlug,
   cardIsHeld,
 } from "@/lib/card-page";
@@ -20,7 +21,7 @@ import { readLocale } from "@/lib/i18n";
 import { CARD_INDEX_LOCALES, cardPageIndexed } from "@/lib/locales";
 import { localePath } from "@/lib/routing";
 import { pageMetadata } from "@/lib/seo";
-import { loadPublic } from "@/lib/stats";
+import { loadPublic, otherLanguagesHeld } from "@/lib/stats";
 
 /**
  * About 20,000 cards in every locale. Pre-rendering all of them would
@@ -78,6 +79,7 @@ export default async function CardPage({ params }: { params: Promise<{ locale: s
   const snapshot = await loadPublic();
   const status = cardStatus(snapshot.state, cardIsHeld(snapshot.held, resolved.set.id, resolved.card.n));
   const view = buildCardView(locale, m, resolved.set, resolved.card, status);
+  const alsoHeld = otherLanguagesHeld(snapshot, resolved.set.id, resolved.card.n);
   const graph = cardPageGraph(locale, view);
   const alt = cardImageAlt(m.checklist.cardAlt, resolved.card.name, resolved.set.name, resolved.card.n);
   const high = cardImageUrl(resolved.set.id, resolved.card.n, "high");
@@ -94,6 +96,9 @@ export default async function CardPage({ params }: { params: Promise<{ locale: s
           <a href={localePath(locale, `/collections/set/${resolved.set.id}`)}>{resolved.set.name}</a>
         </p>
         <h1>{view.title}</h1>
+        {alsoHeld.length ? (
+          <p className="muted">{fill(m.cardPage.alsoHeld, { languages: formatHeldLanguages(m, alsoHeld) })}</p>
+        ) : null}
       </section>
       <div className="card-layout">
         <CardPicture src={high} fallbackSrc={low} alt={alt} quality="high" eager frame />

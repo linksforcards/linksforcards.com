@@ -157,6 +157,7 @@ export default async function OverviewPage({
           <thead>
             <tr>
               <th>Set</th>
+              <th>Language</th>
               <th>No.</th>
               <th>Name</th>
               <th>Shops</th>
@@ -171,12 +172,13 @@ export default async function OverviewPage({
           <tbody>
             {overview.cards.length === 0 ? (
               <tr>
-                <td colSpan={10}>No cards logged.</td>
+                <td colSpan={11}>No cards logged.</td>
               </tr>
             ) : (
               overview.cards.map((card) => (
-                <tr key={`${card.setId}:${card.number}`}>
+                <tr key={`${card.language}:${card.setId}:${card.number}`}>
                   <td>{card.setName}</td>
+                  <td>{card.language}</td>
                   <td>{card.number}</td>
                   <td>{card.name}</td>
                   <td>{card.shops.map((shop) => `${shop.name} (${shop.qty})`).join(", ")}</td>

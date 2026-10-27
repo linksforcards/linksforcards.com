@@ -1,6 +1,7 @@
 "use client";
 
 import { useActionState, useState } from "react";
+import { PRINT_LANGUAGES, PRINT_LANGUAGE_LABELS } from "@/lib/print-languages";
 import { createShipment, type FormState } from "@/server/actions";
 import { SubmitButton } from "./submit-button";
 
@@ -50,11 +51,19 @@ export function ShipmentForm({ shops, groups }: { shops: Shop[]; groups: Group[]
         <input name="received_on" type="date" required />
       </label>
       <label>
+        Language
+        <select name="language" defaultValue="en">
+          {PRINT_LANGUAGES.map((code) => (
+            <option key={code} value={code}>
+              {PRINT_LANGUAGE_LABELS[code]} ({code})
+            </option>
+          ))}
+        </select>
+      </label>
+      <label>
         Set
-        <select name="set_id" required defaultValue="">
-          <option value="" disabled>
-            Choose a set
-          </option>
+        <select name="set_id" defaultValue="">
+          <option value="">Lines name their own set</option>
           {groups.map((group) => (
             <optgroup key={group.series} label={group.series}>
               {group.sets.map((set) => (
@@ -68,9 +77,11 @@ export function ShipmentForm({ shops, groups }: { shops: Shop[]; groups: Group[]
       </label>
       <label>
         Cards
-        <textarea name="bulk" required placeholder={"4\n4 x3\n12-20"} />
+        <textarea name="bulk" required placeholder={"4\n4 x3\n12-20\nde swsh3 136\nzh-cn CSV1C 001 x2 = name"} />
       </label>
-      <p className="muted">One number per line. A quantity looks like 4 x3. A range looks like 12-20. Lines starting with # are skipped.</p>
+      <p className="muted">
+        One number per line, for the language and set above. A quantity looks like 4 x3. A range looks like 12-20. A line can name its own language and set, as in de swsh3 136 or zh-cn CSV1C 001 x2. When the list has no name, add = and the name. Lines starting with # are skipped.
+      </p>
       <label>
         Binders included
         <input name="binders_included" type="number" min={0} max={99} step={1} defaultValue={0} inputMode="numeric" />

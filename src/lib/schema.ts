@@ -25,7 +25,10 @@ export const SCHEMA: string[] = [
     card_number TEXT NOT NULL,
     card_name TEXT NOT NULL,
     quantity INTEGER NOT NULL CHECK (quantity > 0),
-    dex_numbers TEXT NOT NULL DEFAULT ''
+    dex_numbers TEXT NOT NULL DEFAULT '',
+    language TEXT NOT NULL DEFAULT 'en',
+    external_source TEXT,
+    external_id TEXT
   )`,
   `CREATE TABLE IF NOT EXISTS binders (
     binder_kind TEXT NOT NULL CHECK (binder_kind IN ('set', 'generation', 'theme')),
@@ -98,8 +101,37 @@ BEGIN
       ADD CONSTRAINT shipments_binders_included_check CHECK (binders_included >= 0);
   END IF;
 END $$`,
+  `ALTER TABLE shipment_cards ADD COLUMN IF NOT EXISTS language TEXT NOT NULL DEFAULT 'en'`,
+  `ALTER TABLE shipment_cards ADD COLUMN IF NOT EXISTS external_source TEXT`,
+  `ALTER TABLE shipment_cards ADD COLUMN IF NOT EXISTS external_id TEXT`,
+  `UPDATE shipment_cards SET language = 'en' WHERE language IS NULL OR btrim(language) = ''`,
+  `DO $$
+BEGIN
+  IF NOT EXISTS (
+    SELECT 1 FROM pg_constraint
+    WHERE conrelid = 'shipment_cards'::regclass
+      AND conname = 'shipment_cards_language_check'
+  ) THEN
+    ALTER TABLE shipment_cards
+      ADD CONSTRAINT shipment_cards_language_check
+      CHECK (language IN ('en', 'de', 'fr', 'it', 'es', 'pt', 'ja', 'zh-tw', 'zh-cn', 'ko', 'th', 'id'));
+  END IF;
+END $$`,
+  `DO $$
+BEGIN
+  IF NOT EXISTS (
+    SELECT 1 FROM pg_constraint
+    WHERE conrelid = 'shipment_cards'::regclass
+      AND conname = 'shipment_cards_external_source_check'
+  ) THEN
+    ALTER TABLE shipment_cards
+      ADD CONSTRAINT shipment_cards_external_source_check
+      CHECK (external_source IS NULL OR external_source IN ('tcgdex', 'manual'));
+  END IF;
+END $$`,
   `CREATE INDEX IF NOT EXISTS shipment_cards_shipment_idx ON shipment_cards (shipment_id)`,
   `CREATE INDEX IF NOT EXISTS shipment_cards_set_idx ON shipment_cards (set_id, card_number)`,
+  `CREATE INDEX IF NOT EXISTS shipment_cards_identity_idx ON shipment_cards (language, set_id, card_number)`,
   `CREATE INDEX IF NOT EXISTS shipments_shop_idx ON shipments (shop_id)`,
   `CREATE INDEX IF NOT EXISTS login_attempts_email_idx ON login_attempts (email, attempted_at)`,
   `CREATE INDEX IF NOT EXISTS login_attempts_ip_idx ON login_attempts (ip, attempted_at)`,

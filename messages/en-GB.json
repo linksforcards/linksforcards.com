@@ -11,6 +11,20 @@
     "Galar",
     "Paldea"
   ],
+  "printLanguages": {
+    "en": "English",
+    "de": "German",
+    "fr": "French",
+    "it": "Italian",
+    "es": "Spanish",
+    "pt": "Portuguese",
+    "ja": "Japanese",
+    "zh-tw": "Traditional Chinese",
+    "zh-cn": "Simplified Chinese",
+    "ko": "Korean",
+    "th": "Thai",
+    "id": "Indonesian"
+  },
   "meta": {
     "homeTitle": "LinksForCards",
     "homeDescription": "I'm Magnus Schmidt. I collect Pokémon cards from shops in Europe and the United States, complete set and generation binders, and give the binders to children. This page is the public record.",
@@ -230,7 +244,9 @@
     "letters": "First letter",
     "guides": "Guides",
     "themes": "Themed binders",
-    "themesIntro": "A binder for one Pokémon, one artist, or one kind of card, organised as its own checklist. The bar is what I already have."
+    "themesIntro": "A binder for one Pokémon, one artist, or one kind of card, organised as its own checklist. The bar is what I already have.",
+    "otherPrintings": "Printings outside the English list",
+    "otherPrintingsIntro": "These copies are in the collection. They do not have a page in the English card list."
   },
   "seriesPage": {
     "intro": "{series} has {count} sets in this list. Each set page is the card list and the checklist.",
@@ -349,7 +365,8 @@
     "rules": "Card text",
     "faq": "Questions about this card",
     "cost": "Cost",
-    "damage": "Damage"
+    "damage": "Damage",
+    "alsoHeld": "Also in the collection: {languages}."
   },
   "cardSearch": {
     "kicker": "Card list",

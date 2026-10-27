@@ -11,6 +11,20 @@
     "Galar",
     "Paldea"
   ],
+  "printLanguages": {
+    "en": "englanti",
+    "de": "saksa",
+    "fr": "ranska",
+    "it": "italia",
+    "es": "espanja",
+    "pt": "portugali",
+    "ja": "japani",
+    "zh-tw": "perinteinen kiina",
+    "zh-cn": "yksinkertaistettu kiina",
+    "ko": "korea",
+    "th": "thai",
+    "id": "indonesia"
+  },
   "meta": {
     "homeTitle": "LinksForCards",
     "homeDescription": "Olen Magnus Schmidt. Kerään Pokémon-kortteja kaupoista Euroopassa ja Yhdysvalloissa, täytän setti- ja sukupolvikansioita ja annan kansiot lapsille. Tämä sivu on julkinen kirjanpito.",
@@ -230,7 +244,9 @@
     "letters": "Alkukirjain",
     "guides": "Oppaat",
     "themes": "Teemakansiot",
-    "themesIntro": "Kansio yhdelle Pokémonille, yhdelle taiteilijalle tai yhdelle korttityypille. Palkki on se, mitä minulla jo on."
+    "themesIntro": "Kansio yhdelle Pokémonille, yhdelle taiteilijalle tai yhdelle korttityypille. Palkki on se, mitä minulla jo on.",
+    "otherPrintings": "Painokset englanninkielisen listan ulkopuolella",
+    "otherPrintingsIntro": "Nämä kappaleet ovat kokoelmassa. Niillä ei ole sivua englanninkielisessä korttilistassa."
   },
   "seriesPage": {
     "intro": "Sarjassa {series} on {count} settiä tässä listassa. Jokainen settisivu on korttilista ja tarkistuslista.",
@@ -349,7 +365,8 @@
     "rules": "Kortin teksti",
     "faq": "Kysymyksiä tästä kortista",
     "cost": "Kustannus",
-    "damage": "Vahinko"
+    "damage": "Vahinko",
+    "alsoHeld": "Myös kokoelmassa: {languages}."
   },
   "cardSearch": {
     "kicker": "Korttilista",

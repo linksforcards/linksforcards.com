@@ -19,7 +19,9 @@ export default async function NewShipmentPage() {
   return (
     <>
       <h1>Log a parcel</h1>
-      <p>Pick the set, then paste collector numbers. Quantities are how many copies arrived, not a price. The shop&apos;s country and those copies feed the public Country Cup, with 1,000 points for each binder in the parcel.</p>
+      <p>
+        Pick the language and set, then paste collector numbers. A line can override both, for example de swsh3 136 or zh-cn CSV1C 001 x2. Quantities are how many copies arrived, not a price. The shop&apos;s country and those copies feed the public Country Cup, with 1,000 points for each binder in the parcel.
+      </p>
       <ShipmentForm shops={shops} groups={groups} />
     </>
   );
