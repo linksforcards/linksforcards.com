@@ -6,6 +6,8 @@ export function SiteLinks({ locale, m, current }: { locale: Locale; m: Messages;
   const items = [
     ["/", m.nav.home],
     ["/collections", m.nav.collections],
+    ["/cards", m.nav.cards],
+    ["/illustrators", m.nav.illustrators],
     ["/guides", m.nav.guides],
     ["/partners", m.nav.partners],
     ["/updates", m.nav.updates],

@@ -10,6 +10,7 @@ import { formatDexNumber, generationOf, SPECIES_TOTAL } from "./generations";
 import type { Messages } from "./i18n";
 import { breadcrumbNode, ldGraph, pageNode, type Crumb } from "./jsonld";
 import type { Locale } from "./locales";
+import { illustratorForName, illustratorPath } from "./illustrators";
 import { localePath } from "./routing";
 import { seriesSlug } from "./series";
 import { themesForCard } from "./themes";
@@ -268,7 +269,14 @@ export function buildCardView(
   if (card.st?.length) facts.push({ label: m.cardPage.subtypes, value: card.st.join(", ") });
   if (card.hp) facts.push({ label: m.cardPage.hp, value: card.hp });
   if (card.ty?.length) facts.push({ label: m.cardPage.types, value: card.ty.join(", ") });
-  if (card.a) facts.push({ label: m.cardPage.illustrator, value: card.a });
+  if (card.a) {
+    const illustrator = illustratorForName(card.a);
+    facts.push({
+      label: m.cardPage.illustrator,
+      value: card.a,
+      ...(illustrator ? { href: localePath(locale, illustratorPath(illustrator.slug)) } : {}),
+    });
+  }
   if (species.length) facts.push({ label: m.cardPage.pokedex, links: species });
   if (card.lv) facts.push({ label: m.cardPage.level, value: card.lv });
   if (card.ef) facts.push({ label: m.cardPage.evolvesFrom, value: card.ef });

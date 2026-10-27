@@ -750,6 +750,35 @@ caption { text-align: left; padding: 0.75rem 0.65rem 0.25rem; font-weight: 700; 
   margin: 0;
 }
 .dex-list a { font-weight: 700; }
+.dex-list li { content-visibility: auto; contain-intrinsic-size: auto 2.6rem; }
+.card-filters { margin: 1rem 0 1.4rem; }
+.card-filters .search { margin-top: 0; }
+.card-filters fieldset { width: 100%; }
+.filter-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: 0.7rem 0.8rem;
+}
+.filter-grid label { display: flex; flex-direction: column; gap: 0.25rem; font-weight: 700; min-width: 0; }
+.need-toggle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.55rem;
+  font-weight: 800;
+  margin: 0.8rem 0;
+}
+.need-toggle input { width: 1.15rem; height: 1.15rem; }
+.card-results a {
+  display: flex;
+  flex-direction: column;
+  gap: 0.12rem;
+  min-height: 3.2rem;
+  justify-content: center;
+}
+.card-results { margin-bottom: 1rem; }
+.card-results li { content-visibility: auto; contain-intrinsic-size: auto 3.4rem; }
+.dex-list .count { color: var(--muted); font-weight: 700; }
 .article { max-width: 44rem; }
 .article h2, .set-timeline h2, .set-timeline h3 { scroll-margin-top: 1rem; }
 .toc {

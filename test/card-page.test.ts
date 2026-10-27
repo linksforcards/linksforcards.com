@@ -100,6 +100,7 @@ describe("card page copy", () => {
     expect(view.paragraph).toContain("I still need this card.");
     expect(view.paragraph).not.toMatch(/price|worth|\$|cardmarket|tcgplayer/i);
     expect(view.facts.find((fact) => fact.label === "Set")?.href).toBe("/collections/set/base1");
+    expect(view.facts.find((fact) => fact.value === "Mitsuhiro Arita")?.href).toBe("/illustrators/mitsuhiro-arita");
     expect(view.facts.find((fact) => fact.label === "Pokédex")?.links?.[0]?.href).toBe("/pokedex/6");
     expect(view.binders.some((link) => link.href === "/collections/themes/charizard")).toBe(true);
     expect(view.others).toHaveLength(PRINTING_CAP);
@@ -208,6 +209,7 @@ describe("card page copy", () => {
     expect(de.paragraph).not.toContain(" and ");
     expect(de.morePrintings?.href).toBe("/de/pokedex/6");
     expect(de.facts.find((fact) => fact.label === "Set")?.href).toBe("/de/collections/set/base1");
+    expect(de.facts.find((fact) => fact.value === "Mitsuhiro Arita")?.href).toBe("/de/illustrators/mitsuhiro-arita");
 
     const fr = buildCardView("fr", getMessages("fr"), set, card, "need");
     expect(localePath("fr", fr.path)).toBe("/fr/cards/base1-4-charizard");

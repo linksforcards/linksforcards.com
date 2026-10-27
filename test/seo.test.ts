@@ -206,6 +206,8 @@ describe("sitemap xml", () => {
     const us = sitemapEntries("us-pages");
     expect(us?.[0]?.url).toBe(absoluteUrl("/"));
     expect(us?.some((entry) => entry.url === absoluteUrl("/collections"))).toBe(true);
+    expect(us?.some((entry) => entry.url === absoluteUrl("/cards"))).toBe(false);
+    expect(us?.some((entry) => entry.url === absoluteUrl("/illustrators"))).toBe(false);
     expect(us?.some((entry) => entry.url.includes("/us/"))).toBe(false);
     expect(us?.[0]?.languages.en).toBe(absoluteUrl("/"));
     expect(us?.[0]?.languages["x-default"]).toBe(absoluteUrl("/"));
@@ -299,6 +301,24 @@ describe("sitemap xml", () => {
       expect(sitemapEntries(`${locale}-cards-1`)).toBeNull();
       expect(index).not.toContain(absoluteUrl(`/sitemap/${locale}-cards.xml`));
       expect(index).not.toContain(absoluteUrl(`/sitemap/${locale}-cards-1.xml`));
+    }
+    const artists = sitemapEntries("de-illustrators");
+    expect(artists?.[0]?.url).toBe(absoluteUrl("/de/illustrators"));
+    expect(artists?.some((entry) => entry.url.endsWith("/de/illustrators/mitsuhiro-arita"))).toBe(true);
+    expect(artists?.every((entry) => entry.languages == null && entry.lastModified == null)).toBe(true);
+    const artistXml = renderUrlset(artists ?? []);
+    expect(artistXml).not.toContain("hreflang");
+    expect(artistXml).not.toContain("<lastmod>");
+    expect(Buffer.byteLength(artistXml)).toBeLessThanOrEqual(byteLimit);
+    expect(index).toContain(absoluteUrl("/sitemap/us-illustrators.xml"));
+    expect(index).toContain(absoluteUrl("/sitemap/it-database.xml"));
+    expect(sitemapEntries("us-database")).toEqual([{ url: absoluteUrl("/cards") }]);
+    expect(renderUrlset(sitemapEntries("fr-database") ?? [])).not.toContain("hreflang");
+    for (const locale of ["uk", "nl", "sv", "no", "fi", "pl"]) {
+      expect(sitemapEntries(`${locale}-illustrators`)).toBeNull();
+      expect(sitemapEntries(`${locale}-database`)).toBeNull();
+      expect(index).not.toContain(absoluteUrl(`/sitemap/${locale}-illustrators.xml`));
+      expect(index).not.toContain(absoluteUrl(`/sitemap/${locale}-database.xml`));
     }
     let largest = 0;
     let largestId = "";

@@ -2,6 +2,7 @@ import { listCardPaths } from "./card-page";
 import { getSets, setsBySeries } from "./catalog";
 import { GENERATIONS, SPECIES_TOTAL } from "./generations";
 import { GUIDE_SLUGS, GUIDE_UPDATED } from "./guides";
+import { listIndexedIllustratorPaths } from "./illustrators";
 import { cardPageIndexed, isLocale, LOCALES, SPECIES_INDEX_LOCALES, speciesPageIndexed } from "./locales";
 import { localePath } from "./routing";
 import { hreflangMap } from "./seo";
@@ -12,9 +13,10 @@ import { getThemes, themeHreflangLocales, themeIndexed } from "./themes";
 const PAGE_PATHS = ["/", "/collections", "/collections/themes", "/guides", "/partners", "/updates", "/donations", "/privacy", "/imprint"];
 
 /**
- * Split a card sitemap before a file reaches 10,000 URLs or 5 MB.
+ * Split a loc-only sitemap before a file reaches 10,000 URLs or 5 MB.
  * Google allows 50,000 URLs and 50 MiB. A prerendered Vercel response fails
- * above 20 MB, so each file stays under 5 MB. These files list the loc only.
+ * above 20 MB, so each file stays under 5 MB. Card, illustrator, and card-list
+ * files list the loc only: no hreflang alternate and no lastmod.
  */
 export const CARD_SITEMAP_URL_LIMIT = 10_000;
 export const CARD_SITEMAP_BYTE_LIMIT = 5 * 1024 * 1024;
@@ -47,15 +49,29 @@ export function cardSitemapId(locale: string, part: number, parts: number): stri
   return parts === 1 ? `${locale}-cards` : `${locale}-cards-${part}`;
 }
 
+function illustratorSitemapPaths(): string[] {
+  return ["/illustrators", ...listIndexedIllustratorPaths()];
+}
+
+export function illustratorSitemapId(locale: string, part: number, parts: number): string {
+  return parts === 1 ? `${locale}-illustrators` : `${locale}-illustrators-${part}`;
+}
+
 export function sitemapIds(): string[] {
   const ids: string[] = [];
-  const paths = listCardPaths();
+  const cardPaths = listCardPaths();
+  const illustratorPaths = illustratorSitemapPaths();
   for (const locale of LOCALES) {
     ids.push(`${locale}-pages`, `${locale}-sets`, `${locale}-guides`, `${locale}-themes`);
     if (speciesPageIndexed(locale)) ids.push(`${locale}-species`);
     if (cardPageIndexed(locale)) {
-      const slices = cardSitemapSlices(locale, paths);
-      for (let part = 1; part <= slices.length; part += 1) ids.push(cardSitemapId(locale, part, slices.length));
+      const cardSlices = cardSitemapSlices(locale, cardPaths);
+      for (let part = 1; part <= cardSlices.length; part += 1) ids.push(cardSitemapId(locale, part, cardSlices.length));
+      const artistSlices = cardSitemapSlices(locale, illustratorPaths);
+      for (let part = 1; part <= artistSlices.length; part += 1) {
+        ids.push(illustratorSitemapId(locale, part, artistSlices.length));
+      }
+      ids.push(`${locale}-database`);
     }
   }
   return ids;
@@ -90,25 +106,36 @@ function pathsFor(kind: string, locale: string): string[] {
   return [];
 }
 
-function cardSitemapEntries(id: string): SitemapEntry[] | null {
-  const match = id.match(/^([a-z]{2})-cards(?:-(\d+))?$/);
+function locEntries(locale: string, paths: readonly string[]): SitemapEntry[] {
+  return paths.map((path) => ({ url: absoluteUrl(localePath(locale, path)) }));
+}
+
+function slicedLocEntries(id: string, kind: "cards" | "illustrators", paths: readonly string[]): SitemapEntry[] | null {
+  const match = id.match(kind === "cards" ? /^([a-z]{2})-cards(?:-(\d+))?$/ : /^([a-z]{2})-illustrators(?:-(\d+))?$/);
   if (!match) return null;
   const locale = match[1] ?? "";
   if (!isLocale(locale) || !cardPageIndexed(locale)) return null;
-  const slices = cardSitemapSlices(locale, listCardPaths());
+  const slices = cardSitemapSlices(locale, paths);
   const parts = slices.length;
   const numbered = Boolean(match[2]);
   if ((parts === 1 && numbered) || (parts > 1 && !numbered)) return null;
   const part = match[2] ? Number(match[2]) : 1;
   if (!Number.isInteger(part) || part < 1 || part > parts) return null;
-  const slice = slices[part - 1] ?? [];
-  return slice.map((path) => ({
-    url: absoluteUrl(localePath(locale, path)),
-  }));
+  return locEntries(locale, slices[part - 1] ?? []);
+}
+
+function databaseSitemapEntries(id: string): SitemapEntry[] | null {
+  const match = id.match(/^([a-z]{2})-database$/);
+  if (!match) return null;
+  const locale = match[1] ?? "";
+  if (!isLocale(locale) || !cardPageIndexed(locale)) return null;
+  return locEntries(locale, ["/cards"]);
 }
 
 export function sitemapEntries(id: string): SitemapEntry[] | null {
-  if (id.includes("-cards")) return cardSitemapEntries(id);
+  if (id.includes("-cards")) return slicedLocEntries(id, "cards", listCardPaths());
+  if (id.includes("-illustrators")) return slicedLocEntries(id, "illustrators", illustratorSitemapPaths());
+  if (id.endsWith("-database")) return databaseSitemapEntries(id);
   const split = id.match(/^([a-z]{2})-(pages|sets|guides|species|themes)$/);
   if (!split) return null;
   const locale = split[1] ?? "";
