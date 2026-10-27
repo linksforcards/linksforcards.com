@@ -12,8 +12,9 @@ import {
   type PageKind,
 } from "../src/lib/jsonld";
 import { localePath } from "../src/lib/routing";
+import { CARD_INDEX_LOCALES } from "../src/lib/locales";
 import { hreflangMap, pageMetadata } from "../src/lib/seo";
-import { renderSitemapIndex, renderUrlset, sitemapEntries } from "../src/lib/sitemap-data";
+import { renderSitemapIndex, renderUrlset, SITEMAP_IDS, sitemapEntries } from "../src/lib/sitemap-data";
 import { absoluteUrl } from "../src/lib/site";
 
 function typesOf(value: unknown, found = new Set<string>()): Set<string> {
@@ -85,6 +86,33 @@ describe("hreflang", () => {
     expect(hidden.robots).toEqual({ index: false, follow: true });
     expect(hidden.alternates?.canonical).toBe(absoluteUrl("/nl/pokedex/25"));
     expect(hidden.alternates?.languages).not.toHaveProperty("nl");
+    const hiddenCard = pageMetadata("uk", "/cards/base1-4-charizard", "Charizard 4/102 · Base", "Charizard 4/102 is a Rare Holo card in the Base set.", {
+      index: false,
+      hreflang: false,
+      fitTitle: true,
+    });
+    expect(hiddenCard.robots).toEqual({ index: false, follow: true });
+    expect(hiddenCard.alternates?.canonical).toBe(absoluteUrl("/uk/cards/base1-4-charizard"));
+    expect(hiddenCard.alternates?.languages).toBeUndefined();
+    const indexedCard = pageMetadata("de", "/cards/base1-4-charizard", "Charizard 4/102 · Base", "Charizard 4/102 ist eine Rare Holo-Karte im Set Base.", {
+      locales: CARD_INDEX_LOCALES,
+      fitTitle: true,
+    });
+    expect(indexedCard.robots).toBeUndefined();
+    expect(indexedCard.alternates?.languages?.de).toBe(absoluteUrl("/de/cards/base1-4-charizard"));
+    expect(indexedCard.alternates?.languages?.["de-AT"]).toBe(absoluteUrl("/de/cards/base1-4-charizard"));
+    expect(indexedCard.alternates?.languages?.en).toBe(absoluteUrl("/cards/base1-4-charizard"));
+    expect(indexedCard.alternates?.languages?.["x-default"]).toBe(absoluteUrl("/cards/base1-4-charizard"));
+    expect(indexedCard.alternates?.languages?.fr).toBe(absoluteUrl("/fr/cards/base1-4-charizard"));
+    expect(indexedCard.alternates?.languages?.it).toBe(absoluteUrl("/it/cards/base1-4-charizard"));
+    expect(indexedCard.alternates?.languages?.es).toBe(absoluteUrl("/es/cards/base1-4-charizard"));
+    expect(indexedCard.alternates?.languages?.["en-GB"]).toBeUndefined();
+    expect(indexedCard.alternates?.languages?.sv).toBeUndefined();
+    expect(indexedCard.alternates?.languages?.nl).toBeUndefined();
+    expect(indexedCard.title).toBe("Charizard 4/102 · Base");
+    const longTitle = "X".repeat(50);
+    const fitted = pageMetadata("us", "/cards/example", longTitle, "Short.", { fitTitle: true });
+    expect(fitted.title).toEqual({ absolute: longTitle });
     const partners = pageMetadata("us", "/guides/bulk-cards", "Bulk", "What to do with bulk.");
     expect(partners.alternates?.canonical).toBe(absoluteUrl("/guides/bulk-cards"));
     expect(partners.openGraph?.url).toBe(absoluteUrl("/guides/bulk-cards"));
@@ -184,14 +212,17 @@ describe("sitemap xml", () => {
     const uk = sitemapEntries("uk-pages");
     expect(uk?.[0]?.url).toBe(absoluteUrl("/uk"));
     expect(uk?.some((entry) => entry.url === absoluteUrl("/uk/collections"))).toBe(true);
-    expect(uk?.every((entry) => entry.lastModified === "2026-10-24")).toBe(true);
+    expect(uk?.every((entry) => entry.lastModified == null)).toBe(true);
     const xml = renderUrlset(uk ?? []);
     expect(xml).toContain('hreflang="en"');
     expect(xml).toContain('hreflang="en-US"');
     expect(xml).toContain('hreflang="en-GB"');
     expect(xml).toContain('hreflang="en-IE"');
     expect(xml).toContain('hreflang="x-default"');
-    expect(xml).toContain("<lastmod>2026-10-24</lastmod>");
+    expect(xml).not.toContain("<lastmod>");
+    const guides = sitemapEntries("uk-guides");
+    expect(guides?.every((entry) => entry.lastModified === "2026-10-24")).toBe(true);
+    expect(renderUrlset(guides ?? [])).toContain("<lastmod>2026-10-24</lastmod>");
     const species = sitemapEntries("de-species");
     expect(species).toHaveLength(1025);
     expect(species?.[24]?.url).toBe(absoluteUrl("/de/pokedex/25"));
@@ -213,5 +244,75 @@ describe("sitemap xml", () => {
       absoluteUrl("/pl/collections/themes/yuka-morii"),
     );
     expect(sitemapEntries("nope")).toBeNull();
+    expect(sitemapEntries("us-cards")).toBeNull();
+    expect(sitemapEntries("de-cards")).toBeNull();
+    const byteLimit = 5 * 1024 * 1024;
+    let indexed = 0;
+    let usTotal = 0;
+    for (const locale of ["us", "de", "fr", "es", "it"]) {
+      const parts: { url: string }[][] = [];
+      for (let part = 1; part <= 20; part += 1) {
+        const entries = sitemapEntries(`${locale}-cards-${part}`);
+        if (!entries) break;
+        parts.push(entries);
+      }
+      expect(parts.length).toBeGreaterThan(1);
+      let localeTotal = 0;
+      for (let part = 0; part < parts.length; part += 1) {
+        const entries = parts[part] ?? [];
+        expect(entries.length).toBeGreaterThan(0);
+        expect(entries.length).toBeLessThanOrEqual(10_000);
+        expect(entries.every((entry) => entry.url.includes("/cards/"))).toBe(true);
+        expect(entries.every((entry) => !("languages" in entry) || entry.languages == null)).toBe(true);
+        const cardXml = renderUrlset(entries);
+        const bytes = Buffer.byteLength(cardXml);
+        expect(bytes).toBeLessThanOrEqual(byteLimit);
+        expect(cardXml).not.toContain("hreflang");
+        expect(cardXml).not.toContain("<lastmod>");
+        expect(index).toContain(absoluteUrl(`/sitemap/${locale}-cards-${part + 1}.xml`));
+        console.log(`sitemap ${locale}-cards-${part + 1} urls=${entries.length} bytes=${bytes}`);
+        localeTotal += entries.length;
+      }
+      expect(sitemapEntries(`${locale}-cards-${parts.length + 1}`)).toBeNull();
+      expect(index).not.toContain(absoluteUrl(`/sitemap/${locale}-cards.xml`));
+      indexed += localeTotal;
+      if (locale === "us") usTotal = localeTotal;
+      else expect(localeTotal).toBe(usTotal);
+    }
+    expect(usTotal).toBeGreaterThan(20_000);
+    expect(indexed).toBe(usTotal * 5);
+    const listed = ["us", "de", "fr", "es", "it"].flatMap((locale) => {
+      const found: string[] = [];
+      for (let part = 1; part <= 20; part += 1) {
+        const entries = sitemapEntries(`${locale}-cards-${part}`);
+        if (!entries) break;
+        for (const entry of entries) found.push(entry.url);
+      }
+      return found;
+    });
+    expect(listed).toContain(absoluteUrl("/cards/base1-4-charizard"));
+    expect(listed).toContain(absoluteUrl("/cards/sv3pt5-25-pikachu"));
+    expect(listed).toContain(absoluteUrl("/cards/sv8pt5-28-pikachu-ex"));
+    expect(listed).toContain(absoluteUrl("/de/cards/base1-4-charizard"));
+    for (const locale of ["uk", "nl", "sv", "no", "fi", "pl"]) {
+      expect(sitemapEntries(`${locale}-cards`)).toBeNull();
+      expect(sitemapEntries(`${locale}-cards-1`)).toBeNull();
+      expect(index).not.toContain(absoluteUrl(`/sitemap/${locale}-cards.xml`));
+      expect(index).not.toContain(absoluteUrl(`/sitemap/${locale}-cards-1.xml`));
+    }
+    let largest = 0;
+    let largestId = "";
+    for (const id of SITEMAP_IDS) {
+      expect(index).toContain(absoluteUrl(`/sitemap/${id}.xml`));
+      const entries = sitemapEntries(id);
+      expect(entries && entries.length).toBeGreaterThan(0);
+      const bytes = Buffer.byteLength(renderUrlset(entries ?? []));
+      expect(bytes, id).toBeLessThanOrEqual(byteLimit);
+      if (bytes > largest) {
+        largest = bytes;
+        largestId = id;
+      }
+    }
+    console.log(`largest sitemap ${largestId} bytes=${largest} files=${SITEMAP_IDS.length}`);
   });
 });

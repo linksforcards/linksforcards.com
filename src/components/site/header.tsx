@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import { BinderMark } from "@/components/site/doodles";
 import { LanguageSwitcher } from "@/components/site/language-switcher";
 import { getMessages } from "@/lib/i18n";
-import { type Locale } from "@/lib/locales";
+import type { Locale } from "@/lib/locales";
 import { localePath, stripLocale } from "@/lib/routing";
 
 export function SiteHeader({ locale }: { locale: Locale }) {

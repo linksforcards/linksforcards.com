@@ -11,10 +11,17 @@ const nextConfig: NextConfig = {
     "*": ["node_modules/@electric-sql/**"],
   },
   async rewrites() {
-    return [
-      { source: "/sitemap.xml", destination: "/sitemap-index" },
-      { source: "/sitemap/:id.xml", destination: "/sitemap/:id" },
-    ];
+    return {
+      beforeFiles: [
+        // Card pages are generated on demand. A middleware rewrite would skip
+        // that cache, so the public US path is mapped here instead.
+        { source: "/cards/:slug", destination: "/us/cards/:slug" },
+      ],
+      afterFiles: [
+        { source: "/sitemap.xml", destination: "/sitemap-index" },
+        { source: "/sitemap/:id.xml", destination: "/sitemap/:id" },
+      ],
+    };
   },
   async headers() {
     return [

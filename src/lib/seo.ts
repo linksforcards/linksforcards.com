@@ -15,29 +15,48 @@ export function hreflangMap(path: string, locales?: readonly Locale[]): Record<s
   return map;
 }
 
+const BRAND_SUFFIX = ` · ${site.name}`;
+
 export function pageMetadata(
   locale: Locale,
   path: string,
   title: string,
   description: string,
-  options?: { locales?: readonly Locale[]; index?: boolean; image?: string; imageAlt?: string },
+  options?: {
+    locales?: readonly Locale[];
+    index?: boolean;
+    /** When false, the page keeps its canonical and emits no hreflang. */
+    hreflang?: boolean;
+    /** Drop the brand suffix when the templated title would pass 60 characters. */
+    fitTitle?: boolean;
+    image?: string;
+    imageAlt?: string;
+  },
 ): Metadata {
   const canonical = absoluteUrl(localePath(locale, path));
   const m = getMessages(locale);
   const currentOg = ogLocale(locale);
   const allowed = options?.locales ? new Set<string>(options.locales) : null;
+  const emitHreflang = options?.hreflang !== false;
+  const documentTitle =
+    options?.fitTitle && title.length + BRAND_SUFFIX.length > 60 ? { absolute: title } : title;
   return {
-    title,
+    title: documentTitle,
     description,
     ...(options?.index === false ? { robots: { index: false, follow: true } } : {}),
-    alternates: { canonical, languages: hreflangMap(path, options?.locales) },
+    alternates: {
+      canonical,
+      ...(emitHreflang ? { languages: hreflangMap(path, options?.locales) } : {}),
+    },
     openGraph: {
       title,
       description,
       url: canonical,
       siteName: site.name,
       locale: currentOg,
-      alternateLocale: OG_LOCALES.filter((item) => item !== currentOg && (!allowed || allowed.has(OG_PAGE_LOCALE[item]))),
+      alternateLocale: emitHreflang
+        ? OG_LOCALES.filter((item) => item !== currentOg && (!allowed || allowed.has(OG_PAGE_LOCALE[item])))
+        : [],
       type: "website",
       images: [{ url: options?.image ?? `/og/${locale}`, width: 1200, height: 630, alt: options?.imageAlt ?? m.meta.ogAlt }],
     },

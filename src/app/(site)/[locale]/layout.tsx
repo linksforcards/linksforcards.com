@@ -8,7 +8,9 @@ import { htmlLang, LOCALES } from "@/lib/locales";
 import { site } from "@/lib/site";
 import "@/styles/globals.css";
 
-export const dynamicParams = false;
+// Leave this segment open. `dynamicParams` is false for a whole route when any
+// segment sets it, so a false here would 404 card pages that are rendered on
+// demand. Routes that must stay closed set the flag on their own page.
 
 export function generateStaticParams() {
   return LOCALES.map((locale) => ({ locale }));

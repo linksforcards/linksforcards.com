@@ -35,6 +35,14 @@ describe("locale routing", () => {
     expect(resolveLocaleRequest("/de/collections/themes")).toEqual({ action: "next", noindex: false });
     expect(resolveLocaleRequest("/guides/bulk-cards")).toEqual({ action: "rewrite", pathname: "/us/guides/bulk-cards" });
     expect(resolveLocaleRequest("/pokedex/25")).toEqual({ action: "rewrite", pathname: "/us/pokedex/25" });
+    expect(resolveLocaleRequest("/cards/base1-4-charizard")).toEqual({ action: "next", noindex: false });
+    expect(resolveLocaleRequest("/us/cards/base1-4-charizard")).toEqual({
+      action: "redirect",
+      pathname: "/cards/base1-4-charizard",
+    });
+    expect(resolveLocaleRequest("/uk/cards/base1-4-charizard")).toEqual({ action: "next", noindex: false });
+    expect(resolveLocaleRequest("/de/cards/base1-4-charizard")).toEqual({ action: "next", noindex: false });
+    expect(resolveLocaleRequest("/cards")).toEqual({ action: "next", noindex: false });
     expect(resolveLocaleRequest("/partners")).toEqual({ action: "rewrite", pathname: "/us/partners" });
     expect(resolveLocaleRequest("/us")).toEqual({ action: "redirect", pathname: "/" });
     expect(resolveLocaleRequest("/us/")).toEqual({ action: "redirect", pathname: "/" });
@@ -93,6 +101,10 @@ describe("locale routing", () => {
       "/collections",
       "/collections/",
       "/pokedex/25",
+      "/cards/base1-4-charizard",
+      "/cards/base1-4-charizard/",
+      "/us/cards/base1-4-charizard",
+      "/en/cards/base1-4-charizard",
       "/guides/organize-binder",
       "/partners",
       "/partners/",
