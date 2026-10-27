@@ -244,6 +244,7 @@ export function speciesNamesAreTranslated(locale: string): boolean {
 
 export function speciesName(dexNumber: number, locale: string): string {
   const dex = dexFile();
+  // dex.json has English, German, French, Spanish, and Italian. The other locales use the English name.
   const lang = TRANSLATED.has(locale) ? (locale as keyof DexFile) : "en";
   return dex[lang][dexNumber - 1] || dex.en[dexNumber - 1] || `Pokémon ${dexNumber}`;
 }

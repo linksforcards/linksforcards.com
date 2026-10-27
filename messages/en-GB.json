@@ -275,7 +275,11 @@
     "moreSets": "The list spans {count} sets."
   },
   "cardPage": {
-    "title": "{name} {fraction} · {set} card",
+    "title": "{name} {fraction} · {set}",
+    "titleShort": "{name} {fraction}",
+    "description": "{name} {fraction} is in the {set} set.",
+    "descriptionRare": "{name} {fraction} is a {rarity} card in the {set} set.",
+    "descriptionShort": "{name} {fraction}.",
     "lead": "{name} is card {fraction} in the {set} set, from the {series} series{released}",
     "releasedClause": ", released {date}.",
     "pokemonHp": "The card is a {traits} Pokémon with {hp} HP.",

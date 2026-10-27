@@ -275,7 +275,11 @@
     "moreSets": "Listen spenner over {count} sett."
   },
   "cardPage": {
-    "title": "{name} {fraction} · {set}-kort",
+    "title": "{name} {fraction} · {set}",
+    "titleShort": "{name} {fraction}",
+    "description": "{name} {fraction} hører til settet {set}.",
+    "descriptionRare": "{name} {fraction} er et {rarity}-kort i settet {set}.",
+    "descriptionShort": "{name} {fraction}.",
     "lead": "{name} er kort {fraction} i settet {set}, fra serien {series}{released}",
     "releasedClause": ", utgitt {date}.",
     "pokemonHp": "Kortet er en {traits}-Pokémon med {hp} HP.",

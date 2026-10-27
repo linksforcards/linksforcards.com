@@ -5,6 +5,7 @@ import {
   cardFraction,
   PRINTING_CAP,
   cardIsHeld,
+  cardMetaDescription,
   cardPageGraph,
   cardPath,
   cardSlug,
@@ -14,6 +15,10 @@ import {
   resolveCardSlug,
   slugPart,
 } from "../src/lib/card-page";
+import { readFileSync } from "node:fs";
+import { cardLookup } from "../src/lib/card-lookup";
+import { speciesName } from "../src/lib/catalog";
+import { fill } from "../src/lib/format";
 import { getMessages } from "../src/lib/i18n";
 import { emptyPublic } from "../src/lib/stats";
 import { localePath } from "../src/lib/routing";
@@ -66,7 +71,9 @@ describe("card page copy", () => {
   it("writes a distinct paragraph for Base Set Charizard and shows it as needed", () => {
     const { view } = viewFor("base1", "4");
     expect(view.path).toBe("/cards/base1-4-charizard");
-    expect(view.title).toBe("Charizard 4/102 · Base card");
+    expect(view.title).toBe("Charizard 4/102 · Base");
+    expect(view.description).toBe("Charizard 4/102 is a Rare Holo card in the Base set.");
+    expect(view.description.length).toBeLessThanOrEqual(155);
     expect(view.fraction).toBe("4/102");
     expect(view.status).toBe("need");
     expect(view.paragraphs.length).toBeGreaterThanOrEqual(4);
@@ -252,7 +259,7 @@ describe("card page copy", () => {
         if (!set || !card) throw new Error(`missing ${setId} ${number}`);
         const view = buildCardView(locale as Locale, messages, set, card, "need");
         expect(view.paragraphs.length, `${locale} ${setId}-${number}`).toBeGreaterThanOrEqual(3);
-        const text = view.paragraphs.join("\n");
+        const text = `${view.paragraphs.join("\n")}\n${view.description}`;
         for (const pattern of voice[code] ?? []) expect(text, `${locale} ${setId}-${number} ${pattern}`).not.toMatch(pattern);
       }
     }
@@ -294,5 +301,91 @@ describe("card page copy", () => {
     expect(deMedian).toBeGreaterThanOrEqual(160);
     expect(Math.min(...english)).toBeGreaterThanOrEqual(50);
     expect(Math.min(...german)).toBeGreaterThanOrEqual(50);
-  }, 180_000);
+  }, 120_000);
+
+  it.each(["nl", "sv", "no", "fi", "pl"] as const)("measures %s card prose from the catalog", (locale) => {
+    function words(text: string): number {
+      return text.split(/\s+/).filter(Boolean).length;
+    }
+    function median(values: number[]): number {
+      const sorted = values.slice().sort((a, b) => a - b);
+      const mid = Math.floor(sorted.length / 2);
+      if (sorted.length % 2 === 1) return sorted[mid] ?? 0;
+      return ((sorted[mid - 1] ?? 0) + (sorted[mid] ?? 0)) / 2;
+    }
+    const set = getSet("base1");
+    const card = getSetCards("base1")?.find((item) => item.n === "4");
+    if (!set || !card) throw new Error("missing charizard");
+    const messages = getMessages(locale);
+    const totals: number[] = [];
+    for (const entry of getSets()) {
+      for (const item of getSetCards(entry.id) ?? []) {
+        totals.push(words(buildCardView(locale, messages, entry, item, "need").paragraph));
+      }
+    }
+    const mid = median(totals);
+    console.log(
+      `card prose words median ${locale}=${mid} min=${Math.min(...totals)} charizard=${words(buildCardView(locale, messages, set, card, "need").paragraph)}`,
+    );
+    expect(mid).toBeGreaterThanOrEqual(160);
+  }, 60_000);
+
+  it("uses a translated species name only where dex.json has one", () => {
+    const dex = JSON.parse(readFileSync("data/catalog/dex.json", "utf8")) as Record<string, string[]>;
+    expect(Object.keys(dex).sort()).toEqual(["de", "en", "es", "fr", "it"]);
+    const set = getSet("base1");
+    const card = getSetCards("base1")?.find((item) => item.n === "4");
+    if (!set || !card) throw new Error("missing charizard");
+    expect(speciesName(6, "de")).toBe(dex.de?.[5]);
+    expect(speciesName(6, "fr")).toBe(dex.fr?.[5]);
+    expect(speciesName(6, "es")).toBe(dex.es?.[5]);
+    expect(speciesName(6, "it")).toBe(dex.it?.[5]);
+    for (const locale of ["nl", "sv", "no", "fi", "pl"] as const) {
+      expect(speciesName(6, locale)).toBe(dex.en?.[5]);
+      const view = buildCardView(locale, getMessages(locale), set, card, "need");
+      expect(view.paragraph).toContain(`${dex.en?.[5]} (#006)`);
+      if (dex.de?.[5] && dex.de[5] !== dex.en?.[5]) expect(view.paragraph).not.toContain(dex.de[5]);
+    }
+    const german = buildCardView("de", getMessages("de"), set, card, "need");
+    expect(german.paragraph).toContain(`${dex.de?.[5]} (#006)`);
+  });
+
+  it("keeps card descriptions within 155 characters", () => {
+    const suffix = " · LinksForCards";
+    let over = 0;
+    let total = 0;
+    let longest = 0;
+    for (const locale of LOCALES) {
+      const messages = getMessages(locale);
+      for (const set of getSets()) {
+        for (const card of getSetCards(set.id) ?? []) {
+          total += 1;
+          const fraction = cardFraction(set, card);
+          const fullTitle = fill(messages.cardPage.title, { name: card.name, fraction, set: set.name });
+          const title = fullTitle.length <= 60 ? fullTitle : fill(messages.cardPage.titleShort, { name: card.name, fraction });
+          const visible = title.length + suffix.length <= 60 ? title.length + suffix.length : title.length;
+          if (visible > 60) over += 1;
+          if (visible > longest) longest = visible;
+          const description = cardMetaDescription(messages, set, card, fraction);
+          if (description.length > 155) {
+            throw new Error(`${locale} ${set.id} ${card.n} description is ${description.length}: ${description}`);
+          }
+          if (!description.includes(card.name) || !description.includes(fraction)) {
+            throw new Error(`${locale} ${set.id} ${card.n} description dropped the name or number: ${description}`);
+          }
+        }
+      }
+    }
+    console.log(`card titles over 60: ${over} of ${total}, longest visible ${longest}`);
+    expect(over).toBe(0);
+    const lookup = cardLookup();
+    let arita = 0;
+    for (const set of getSets()) {
+      for (const card of getSetCards(set.id) ?? []) {
+        if (card.a === "Mitsuhiro Arita") arita += 1;
+      }
+    }
+    expect(lookup.artists["Mitsuhiro Arita"]).toBe(arita);
+    expect(lookup.dex["6"]?.find((printing) => printing.s === "base1" && printing.n === "4")?.hp).toBe("120");
+  });
 });

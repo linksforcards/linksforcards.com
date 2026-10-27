@@ -10,12 +10,12 @@ import {
   buildCardView,
   cardPageGraph,
   cardStatus,
-  metaDescription,
   resolveCardSlug,
   cardIsHeld,
 } from "@/lib/card-page";
 import { fill, formatInt } from "@/lib/format";
 import { readLocale } from "@/lib/i18n";
+import { CARD_INDEX_LOCALES, cardPageIndexed } from "@/lib/locales";
 import { localePath } from "@/lib/routing";
 import { pageMetadata } from "@/lib/seo";
 import { loadPublic } from "@/lib/stats";
@@ -46,7 +46,13 @@ export async function generateMetadata({
   const snapshot = await loadPublic();
   const status = cardStatus(snapshot.state, cardIsHeld(snapshot.held, resolved.set.id, resolved.card.n));
   const view = buildCardView(locale, m, resolved.set, resolved.card, status);
-  return pageMetadata(locale, view.path, view.title, metaDescription(view.paragraphs[0] ?? view.paragraph));
+  const indexed = cardPageIndexed(locale);
+  return pageMetadata(locale, view.path, view.title, view.description, {
+    index: indexed,
+    hreflang: indexed,
+    locales: CARD_INDEX_LOCALES,
+    fitTitle: true,
+  });
 }
 
 export default async function CardPage({ params }: { params: Promise<{ locale: string; slug: string }> }) {

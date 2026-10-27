@@ -2,6 +2,7 @@ import type { Graph } from "schema-dts";
 import type { CardFaq } from "@/content/card-story-types";
 import { themeCopy } from "@/content/theme-copy";
 import { numbersMatch } from "./cards";
+import { printingsForDex, type LookupPrinting } from "./card-lookup";
 import { buildCardStory } from "./card-story";
 import { getSet, getSetCards, getSets, speciesName, type CatalogCard, type CatalogSet } from "./catalog";
 import { fill, formatDay } from "./format";
@@ -11,7 +12,6 @@ import { breadcrumbNode, ldGraph, pageNode, type Crumb } from "./jsonld";
 import type { Locale } from "./locales";
 import { localePath } from "./routing";
 import { seriesSlug } from "./series";
-import { speciesByDex, type Printing } from "./species-index";
 import { themesForCard } from "./themes";
 
 export type CardLink = { href: string; name: string };
@@ -37,6 +37,7 @@ export type ResolvedCard = {
 export type CardView = {
   path: string;
   title: string;
+  description: string;
   paragraph: string;
   paragraphs: string[];
   faqs: CardFaq[];
@@ -203,15 +204,13 @@ function binderLinks(locale: Locale, m: Messages, set: CatalogSet, card: Catalog
   return links;
 }
 
-function otherPrintings(setId: string, card: CatalogCard): Printing[] {
+function otherPrintings(setId: string, card: CatalogCard): LookupPrinting[] {
   const seen = new Set<string>();
   const current = `${setId}:${card.n}`;
-  const out: Printing[] = [];
+  const out: LookupPrinting[] = [];
   for (const dex of card.dex ?? []) {
-    const record = speciesByDex(dex);
-    if (!record) continue;
-    for (const printing of record.printings) {
-      const key = `${printing.setId}:${printing.number}`;
+    for (const printing of printingsForDex(dex)) {
+      const key = `${printing.s}:${printing.n}`;
       if (key === current || seen.has(key)) continue;
       seen.add(key);
       out.push(printing);
@@ -229,7 +228,7 @@ function fullestDex(card: CatalogCard): { dex: number; count: number } | null {
   let best: { dex: number; count: number } | null = null;
   for (const dex of card.dex ?? []) {
     if (!Number.isInteger(dex) || dex < 1 || dex > SPECIES_TOTAL) continue;
-    const count = speciesByDex(dex)?.printings.length ?? 0;
+    const count = printingsForDex(dex).length;
     if (!best || count > best.count) best = { dex, count };
   }
   return best;
@@ -249,7 +248,9 @@ export function buildCardView(
 ): CardView {
   const fraction = cardFraction(set, card);
   const path = cardPath(set.id, card);
-  const title = fill(m.cardPage.title, { name: card.name, fraction, set: set.name });
+  const fullTitle = fill(m.cardPage.title, { name: card.name, fraction, set: set.name });
+  const title = fullTitle.length <= 60 ? fullTitle : fill(m.cardPage.titleShort, { name: card.name, fraction });
+  const description = cardMetaDescription(m, set, card, fraction);
   const binders = binderLinks(locale, m, set, card);
   const species = speciesLinks(locale, card);
   const statusLine =
@@ -282,13 +283,12 @@ export function buildCardView(
   const allOthers = otherPrintings(set.id, card);
   const fullest = fullestDex(card);
   const others = allOthers.slice(0, PRINTING_CAP).flatMap((printing) => {
-    const printingSet = getSet(printing.setId);
+    const printingSet = getSet(printing.s);
     if (!printingSet) return [];
-    const full = getSetCards(printing.setId)?.find((item) => item.n === printing.number);
-    const named = full ?? { n: printing.number, name: printing.name };
+    const named = { n: printing.n, name: printing.m };
     return [
       {
-        href: localePath(locale, cardPath(printing.setId, named)),
+        href: localePath(locale, cardPath(printing.s, named)),
         name: named.name,
         fraction: cardFraction(printingSet, named),
         setName: printingSet.name,
@@ -304,6 +304,7 @@ export function buildCardView(
   return {
     path,
     title,
+    description,
     paragraph: story.paragraphs.join(" "),
     paragraphs: story.paragraphs,
     faqs: story.faqs,
@@ -339,6 +340,21 @@ export function metaDescription(paragraph: string): string {
   return `${(space > 140 ? cut.slice(0, space) : cut).trimEnd()}…`;
 }
 
+const DESCRIPTION_LIMIT = 155;
+
+/** One short sentence for the meta description. Name and collector number stay in the first clause. */
+export function cardMetaDescription(m: Messages, set: CatalogSet, card: CatalogCard, fraction: string): string {
+  const plain = fill(m.cardPage.description, { name: card.name, fraction, set: set.name });
+  const rare = card.r
+    ? fill(m.cardPage.descriptionRare, { name: card.name, fraction, set: set.name, rarity: card.r })
+    : "";
+  if (rare && rare.length <= DESCRIPTION_LIMIT) return rare;
+  if (plain.length <= DESCRIPTION_LIMIT) return plain;
+  const short = fill(m.cardPage.descriptionShort, { name: card.name, fraction });
+  if (short.length <= DESCRIPTION_LIMIT) return short;
+  return `${short.slice(0, DESCRIPTION_LIMIT - 1).trimEnd()}…`;
+}
+
 export function cardPageGraph(locale: Locale, view: CardView): Graph {
   return ldGraph([
     pageNode({
@@ -346,7 +362,7 @@ export function cardPageGraph(locale: Locale, view: CardView): Graph {
       locale,
       path: view.path,
       name: view.title,
-      description: metaDescription(view.paragraphs[0] ?? view.paragraph),
+      description: view.description,
     }),
     breadcrumbNode(view.crumbs),
   ]);

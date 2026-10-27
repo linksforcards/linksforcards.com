@@ -1,7 +1,8 @@
+import { unstable_cache } from "next/cache";
 import { getSetCards } from "./catalog";
 import { numbersMatch, parseDex } from "./cards";
 import { generationOf } from "./generations";
-import { getDatabase } from "./db";
+import { databaseUrl, getDatabase, localDbAllowed } from "./db";
 import { num, str, type Sql } from "./sql";
 import { safeHttpUrl } from "./urls";
 
@@ -79,13 +80,32 @@ type MarkRow = {
 };
 type UpdateRow = { id: string; title: string; body: string; published_at: string };
 
+export const PUBLIC_SNAPSHOT_TAG = "public-snapshot";
+
 export async function readPublic(db: Sql): Promise<PublicSnapshot> {
-  const cardRows = await db.query<CardRow>(
-    `SELECT sc.set_id, sc.card_number, sc.quantity, sc.dex_numbers
-     FROM shipment_cards sc
-     JOIN shipments s ON s.id = sc.shipment_id
-     WHERE s.is_demo = 0`,
-  );
+  const [cardRows, shopRows, markRows, updateRows] = await Promise.all([
+    db.query<CardRow>(
+      `SELECT sc.set_id, sc.card_number, sc.quantity, sc.dex_numbers
+       FROM shipment_cards sc
+       JOIN shipments s ON s.id = sc.shipment_id
+       WHERE s.is_demo = 0`,
+    ),
+    db.query<ShopRow>(
+      `SELECT sh.id AS shop_id, sh.name, sh.country, sh.website, s.received_on, sc.set_id, sc.dex_numbers
+       FROM shops sh
+       JOIN shipments s ON s.shop_id = sh.id
+       JOIN shipment_cards sc ON sc.shipment_id = s.id
+       WHERE sh.is_demo = 0 AND sh.is_public = 1 AND s.is_demo = 0`,
+    ),
+    db.query<MarkRow>(
+      `SELECT binder_kind, binder_key, status, completed_on, given_on, recipient, notes
+       FROM binders
+       WHERE is_demo = 0 AND is_public = 1`,
+    ),
+    db.query<UpdateRow>(
+      `SELECT id, title, body, published_at FROM updates WHERE is_demo = 0 ORDER BY published_at DESC`,
+    ),
+  ]);
   const unique = new Map<string, { setId: string; number: string; qty: number; dex: number[] }>();
   for (const row of cardRows) {
     const setId = str(row.set_id);
@@ -117,13 +137,6 @@ export async function readPublic(db: Sql): Promise<PublicSnapshot> {
     setCounts[setId] = cards ? cards.filter((card) => list.some((number) => numbersMatch(card.n, number))).length : list.length;
   }
 
-  const shopRows = await db.query<ShopRow>(
-    `SELECT sh.id AS shop_id, sh.name, sh.country, sh.website, s.received_on, sc.set_id, sc.dex_numbers
-     FROM shops sh
-     JOIN shipments s ON s.shop_id = sh.id
-     JOIN shipment_cards sc ON sc.shipment_id = s.id
-     WHERE sh.is_demo = 0 AND sh.is_public = 1 AND s.is_demo = 0`,
-  );
   const shops = new Map<string, PublicShop>();
   for (const row of shopRows) {
     const id = str(row.shop_id);
@@ -146,11 +159,6 @@ export async function readPublic(db: Sql): Promise<PublicSnapshot> {
     shops.set(id, current);
   }
 
-  const markRows = await db.query<MarkRow>(
-    `SELECT binder_kind, binder_key, status, completed_on, given_on, recipient, notes
-     FROM binders
-     WHERE is_demo = 0 AND is_public = 1`,
-  );
   const marks: BinderMark[] = markRows
     .filter((row) => row.binder_kind === "set" || row.binder_kind === "generation" || row.binder_kind === "theme")
     .filter((row) => row.status === "completed" || row.status === "given_away")
@@ -163,10 +171,6 @@ export async function readPublic(db: Sql): Promise<PublicSnapshot> {
       recipient: str(row.recipient),
       notes: str(row.notes),
     }));
-
-  const updateRows = await db.query<UpdateRow>(
-    `SELECT id, title, body, published_at FROM updates WHERE is_demo = 0 ORDER BY published_at DESC`,
-  );
 
   return {
     state: "ok",
@@ -186,25 +190,30 @@ export async function readPublic(db: Sql): Promise<PublicSnapshot> {
   };
 }
 
-async function loadPublicNow(): Promise<PublicSnapshot> {
-  try {
+const loadPublicCached = unstable_cache(
+  async () => {
     const db = await getDatabase();
-    if (!db) return emptyPublic("unconfigured");
-    return await readPublic(db);
+    if (!db) throw new Error("database unavailable");
+    return readPublic(db);
+  },
+  ["public-snapshot-v1"],
+  { revalidate: 86400, tags: [PUBLIC_SNAPSHOT_TAG] },
+);
+
+/**
+ * One tagged snapshot for every page. A miss runs the four registration
+ * reads in parallel and stores the result for a day. A failed read is not
+ * stored, so the next request tries again. With no database configured, the
+ * result is an empty snapshot and nothing is cached.
+ */
+export async function loadPublic(): Promise<PublicSnapshot> {
+  if (!databaseUrl() && !localDbAllowed()) return emptyPublic("unconfigured");
+  try {
+    return await loadPublicCached();
   } catch (error) {
     console.error("public read failed", error instanceof Error ? error.message : "error");
     return emptyPublic("error");
   }
-}
-
-let publicMemo: { at: number; pending: Promise<PublicSnapshot> } | null = null;
-
-export function loadPublic(): Promise<PublicSnapshot> {
-  const now = Date.now();
-  if (publicMemo && now - publicMemo.at < 15_000) return publicMemo.pending;
-  const pending = loadPublicNow();
-  publicMemo = { at: now, pending };
-  return pending;
 }
 
 export function speciesInRange(species: number[], start: number, end: number): number {

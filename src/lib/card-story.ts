@@ -1,52 +1,15 @@
 import { themeCopy } from "@/content/theme-copy";
 import { renderCardStory } from "@/content/card-story";
 import type { CardStory, ComparedPrinting, FieldCompare, SpeciesFact } from "@/content/card-story-types";
-import { getSet, getSetCards, getSets, speciesName, type CatalogCard, type CatalogSet } from "./catalog";
+import { artistCardCount, dexesForPrintedName, printingsForDex } from "./card-lookup";
+import { getSet, getSetCards, speciesName, type CatalogCard, type CatalogSet } from "./catalog";
 import { fill, formatDay, formatInt } from "./format";
 import { formatDexNumber, generationOf, SPECIES_TOTAL } from "./generations";
 import type { Messages } from "./i18n";
 import type { Locale } from "./locales";
-import { speciesByDex } from "./species-index";
 import { themesForCard } from "./themes";
 
 export type CardFaq = { q: string; a: string };
-
-let artistCounts: Map<string, number> | null = null;
-let nameDex: Map<string, number[]> | null = null;
-
-function artistTotal(name: string): number {
-  if (!artistCounts) {
-    artistCounts = new Map();
-    for (const set of getSets()) {
-      for (const card of getSetCards(set.id) ?? []) {
-        if (!card.a) continue;
-        artistCounts.set(card.a, (artistCounts.get(card.a) ?? 0) + 1);
-      }
-    }
-  }
-  return artistCounts.get(name) ?? 0;
-}
-
-function dexesNamed(name: string): number[] {
-  if (!nameDex) {
-    const found = new Map<string, Set<number>>();
-    for (const set of getSets()) {
-      for (const card of getSetCards(set.id) ?? []) {
-        if (!card.dex?.length) continue;
-        let bucket = found.get(card.name);
-        if (!bucket) {
-          bucket = new Set();
-          found.set(card.name, bucket);
-        }
-        for (const dex of card.dex) {
-          if (Number.isInteger(dex) && dex >= 1 && dex <= SPECIES_TOTAL) bucket.add(dex);
-        }
-      }
-    }
-    nameDex = new Map([...found].map(([name, dexes]) => [name, [...dexes].sort((a, b) => a - b)]));
-  }
-  return nameDex.get(name) ?? [];
-}
 
 function variantOf(setId: string, number: string): 0 | 1 {
   let hash = 2166136261;
@@ -90,8 +53,8 @@ export function buildCardStory(
     if (!Number.isInteger(dex) || dex < 1 || dex > SPECIES_TOTAL) continue;
     const generation = generationOf(dex);
     if (!generation) continue;
-    const printings = speciesByDex(dex)?.printings ?? [];
-    const listed = printings.some((printing) => printing.setId === set.id && printing.number === card.n);
+    const printings = printingsForDex(dex);
+    const listed = printings.some((printing) => printing.s === set.id && printing.n === card.n);
     const total = printings.length;
     species.push({
       name: speciesName(dex, locale),
@@ -107,23 +70,19 @@ export function buildCardStory(
 
   const primaryDex = card.dex?.find((dex) => Number.isInteger(dex) && dex >= 1 && dex <= SPECIES_TOTAL) ?? null;
   const others = primaryDex
-    ? (speciesByDex(primaryDex)?.printings ?? []).filter((printing) => !(printing.setId === set.id && printing.number === card.n))
+    ? printingsForDex(primaryDex).filter((printing) => !(printing.s === set.id && printing.n === card.n))
     : [];
-  const ordered = others
-    .map((printing) => ({ printing, date: getSet(printing.setId)?.releaseDate ?? "9999/99/99" }))
-    .sort((a, b) => a.date.localeCompare(b.date) || a.printing.setId.localeCompare(b.printing.setId) || a.printing.number.localeCompare(b.printing.number, "en", { numeric: true }));
-  const years = ordered.map((item) => yearOf(item.printing.setId)).filter(Boolean).sort();
+  const years = others.map((printing) => yearOf(printing.s)).filter(Boolean).sort();
   let differentHp = 0;
   let hpComparable = 0;
   if (card.hp) {
-    for (const item of ordered) {
-      const other = getSetCards(item.printing.setId)?.find((entry) => entry.n === item.printing.number);
-      if (!other?.hp) continue;
+    for (const printing of others) {
+      if (!printing.hp) continue;
       hpComparable += 1;
-      if (other.hp !== card.hp) differentHp += 1;
+      if (printing.hp !== card.hp) differentHp += 1;
     }
   }
-  const first = ordered[0];
+  const first = others[0];
   let earliest: ComparedPrinting | null = null;
   let hp: FieldCompare = "skip";
   let rarity: FieldCompare = "skip";
@@ -131,19 +90,18 @@ export function buildCardStory(
   let regulation: FieldCompare = "skip";
   let retreat: FieldCompare = "skip";
   if (first) {
-    const otherSet = getSet(first.printing.setId);
-    const other = getSetCards(first.printing.setId)?.find((entry) => entry.n === first.printing.number);
+    const otherSet = getSet(first.s);
     const otherPrinted = otherSet && otherSet.printed && otherSet.printed > 0 ? otherSet.printed : otherSet?.count;
     earliest = {
-      name: other?.name ?? first.printing.name,
-      setName: otherSet?.name ?? first.printing.setId,
-      fraction: otherPrinted ? `${first.printing.number}/${otherPrinted}` : first.printing.number,
-      year: yearOf(first.printing.setId),
-      hp: other?.hp ?? null,
-      rarity: other?.r ?? null,
-      artist: other?.a ?? null,
-      regulation: other?.rm ?? null,
-      retreat: other?.rc ?? null,
+      name: first.m,
+      setName: otherSet?.name ?? first.s,
+      fraction: otherPrinted ? `${first.n}/${otherPrinted}` : first.n,
+      year: yearOf(first.s),
+      hp: first.hp ?? null,
+      rarity: first.r ?? null,
+      artist: first.a ?? null,
+      regulation: first.rm ?? null,
+      retreat: first.rc ?? null,
     };
     hp = compare(card.hp ?? null, earliest.hp);
     rarity = compare(card.r ?? null, earliest.rarity);
@@ -152,19 +110,19 @@ export function buildCardStory(
     retreat = compare(card.rc ?? null, earliest.retreat);
   }
 
-  const fromDex = card.ef ? dexesNamed(card.ef) : [];
+  const fromDex = card.ef ? dexesForPrintedName(card.ef) : [];
   const evolvesFromSpecies =
     card.ef && fromDex.length === 1
       ? { printed: card.ef, name: speciesName(fromDex[0] ?? 0, locale), dexLabel: formatDexNumber(fromDex[0] ?? 0) }
       : null;
   const evolvesTo = (card.et ?? []).map((printedName) => {
-    const dexes = dexesNamed(printedName);
+    const dexes = dexesForPrintedName(printedName);
     if (dexes.length !== 1) return { printed: printedName, name: null, dexLabel: null };
     const dex = dexes[0] ?? 0;
     return { printed: printedName, name: speciesName(dex, locale), dexLabel: formatDexNumber(dex) };
   });
 
-  const artistTotalCount = card.a ? artistTotal(card.a) : 0;
+  const artistTotalCount = card.a ? artistCardCount(card.a) : 0;
   const artistOthers = card.a ? Math.max(0, artistTotalCount - 1) : null;
   const themes = themesForCard(set.id, card.n)
     .map((theme) => themeCopy(locale, theme.slug)?.h1)
@@ -224,7 +182,7 @@ export function buildCardStory(
     regulation: card.rm ?? null,
     rules: card.ru ?? [],
     ancient: card.ag ? { name: card.ag.n, text: card.ag.x } : null,
-    otherSets: new Set(others.map((printing) => printing.setId)).size,
+    otherSets: new Set(others.map((printing) => printing.s)).size,
     yearFrom: years[0] ?? null,
     yearTo: years.at(-1) ?? null,
     differentHp: card.hp && hpComparable > 0 ? differentHp : null,

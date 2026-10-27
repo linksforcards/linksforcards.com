@@ -275,7 +275,11 @@
     "moreSets": "Lista kattaa {count} settiä."
   },
   "cardPage": {
-    "title": "{name} {fraction} · {set}-kortti",
+    "title": "{name} {fraction} · {set}",
+    "titleShort": "{name} {fraction}",
+    "description": "{name} {fraction} kuuluu settiin {set}.",
+    "descriptionRare": "{name} {fraction} on {rarity}-kortti setissä {set}.",
+    "descriptionShort": "{name} {fraction}.",
     "lead": "{name} on kortti {fraction} setissä {set}, sarjasta {series}{released}",
     "releasedClause": ", julkaistu {date}.",
     "pokemonHp": "Kortti on {traits}-Pokémon, jolla on {hp} HP.",

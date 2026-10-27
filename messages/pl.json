@@ -275,7 +275,11 @@
     "moreSets": "Lista obejmuje {count} setów."
   },
   "cardPage": {
-    "title": "{name} {fraction} · karta {set}",
+    "title": "{name} {fraction} · {set}",
+    "titleShort": "{name} {fraction}",
+    "description": "{name} {fraction} należy do setu {set}.",
+    "descriptionRare": "{name} {fraction} to karta {rarity} z setu {set}.",
+    "descriptionShort": "{name} {fraction}.",
     "lead": "{name} to karta {fraction} w secie {set}, z serii {series}{released}",
     "releasedClause": ", wydana {date}.",
     "pokemonHp": "Karta to Pokémon {traits} z {hp} HP.",

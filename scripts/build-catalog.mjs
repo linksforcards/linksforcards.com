@@ -5,6 +5,7 @@
  */
 import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { buildCardLookup } from "./build-card-lookup.mjs";
 import { cardFacts, CATALOG_CONTENTS } from "./card-facts.mjs";
 
 const ROOT = path.resolve(import.meta.dirname, "..");
@@ -190,6 +191,7 @@ async function main() {
   await writeFile(path.join(OUT, "sets.json"), JSON.stringify(setSummaries));
   await writeFile(path.join(OUT, "dex.json"), JSON.stringify(dex));
   await writeFile(path.join(OUT, "meta.json"), JSON.stringify(meta, null, 2) + "\n");
+  buildCardLookup();
   console.log(JSON.stringify(meta, null, 2));
   console.log("number charset:", [...numberChars].sort().join(""));
 }
