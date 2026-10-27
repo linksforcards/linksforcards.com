@@ -7,7 +7,7 @@ import { JsonLd } from "@/components/site/json-ld";
 import { RelatedLinks } from "@/components/site/related-links";
 import { RichText } from "@/components/site/rich-text";
 import { SiteLinks } from "@/components/site/site-links";
-import { ARTICLE_LINKS, ARTICLE_SLUGS, getArticle, getArticles, GUIDE_UPDATED, isGuideSlug } from "@/lib/articles";
+import { ARTICLE_LINKS, ARTICLE_SLUGS, articleFaqSchema, getArticle, getArticles, GUIDE_UPDATED, isGuideSlug } from "@/lib/articles";
 import { getMeta, setsBySeries } from "@/lib/catalog";
 import { fill, formatDay, formatInt } from "@/lib/format";
 import { readLocale } from "@/lib/i18n";
@@ -73,7 +73,7 @@ export default async function GuidePage({ params }: { params: Promise<{ locale: 
     imagePath: `/og/${locale}/guides/${slug}`,
   });
   const nodes = [page, breadcrumbNode(crumbs)];
-  if (copy.faqs.length > 0) {
+  if (articleFaqSchema(copy)) {
     nodes.push(faqNode(localePath(locale, path), copy.faqs.map((faq) => ({ q: text(faq.q), a: text(faq.a) }))));
   }
   const articles = new Map(getArticles(locale).map((article) => [article.slug, article]));

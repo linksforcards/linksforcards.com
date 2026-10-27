@@ -76,6 +76,9 @@
     "genBody": "Una carpeta de generación contiene una carta de cada especie de esa generación, de cualquier expansión. La generación 1 son las 151 originales. De la generación 1 a la 9 hay 1.025 especies.",
     "bulkTitle": "Las cartas sueltas son bienvenidas",
     "bulkBody": "Un Magikarp de una caja de bulk es tan bienvenido como un holo. Estoy reuniendo cartas distintas, y una de cada Pokémon. No estoy armando una colección para vender, y este sitio no dice por cuánto se vendería una carta.",
+    "deltaTitle": "Mega Evolution—Delta Reign",
+    "deltaBody": "Estoy dejando un archivador listo antes de que exista la lista de cartas. La página guarda solo lo que Pokémon ha publicado, y la lista de control sigue vacía hasta que los números sean reales.",
+    "deltaLink": "Abrir la página de Delta Reign",
     "progressTitle": "Cómo va",
     "progressZero": "Todavía no hay nada apuntado. Cada cifra de aquí es cero hasta que registre un envío real.",
     "progressLive": "Estas cifras salen de los envíos que he apuntado.",
@@ -212,6 +215,8 @@
     "intro": "Listas de cartas de los sets, checklists de las generaciones y una página para cada Pokémon. Una barra llena es lo que ya tengo.",
     "generations": "Carpetas de generación",
     "sets": "Sets por serie",
+    "deltaLink": "La página del archivador que dejo preparada",
+    "deltaNote": "Mega Evolution—Delta Reign todavía no está en la lista de cartas.",
     "pokedex": "Pokédex",
     "pokedexIntro": "Cada Pokémon del dex nacional, con su propia lista de cartas.",
     "searchPokedex": "Buscar en el Pokédex",
@@ -224,7 +229,9 @@
   },
   "seriesPage": {
     "intro": "{series} tiene {count} sets en esta lista. Cada página de set es la lista de cartas y la checklist.",
-    "other": "Otras series"
+    "other": "Otras series",
+    "deltaLink": "Delta Reign, antes de los números",
+    "deltaPending": "Esta expansión todavía no está en la lista. No invento una fila para ella."
   },
   "setPage": {
     "intro": "{name} salió el {date} en la serie {series}. Esta lista de cartas tiene {total} cartas. Tengo {collected}.",
@@ -250,7 +257,7 @@
   },
   "guides": {
     "kicker": "Desde la carpeta",
-    "indexIntro": "Una nota larga sobre cómo colecciono, y nueve notas más cortas que responden cada una a una pregunta.",
+    "indexIntro": "Una nota larga sobre cómo colecciono, y diez notas más cortas que responden cada una a una pregunta.",
     "updated": "Actualizado el {date}",
     "toc": "En esta página",
     "pillarLabel": "Empieza aquí",

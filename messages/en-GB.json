@@ -76,6 +76,9 @@
     "genBody": "A generation binder holds one card of every species from that generation, from any set. Generation 1 is the original 151. Generations 1 through 9 are 1,025 species.",
     "bulkTitle": "Bulk is welcome",
     "bulkBody": "A Magikarp from a bulk box is as welcome as a holo. I am gathering different cards, and one of each Pokémon. I am not building a collection to sell, and this site does not say what a card would sell for.",
+    "deltaTitle": "Mega Evolution—Delta Reign",
+    "deltaBody": "I am getting a binder ready before the card list exists. The page keeps only what Pokémon has published, and the checklist stays empty until the numbers are real.",
+    "deltaLink": "Open the Delta Reign page",
     "progressTitle": "Where it stands",
     "progressZero": "Nothing has been logged yet. Every figure here is zero until I record a real shipment.",
     "progressLive": "These figures come from shipments I have logged.",
@@ -212,6 +215,8 @@
     "intro": "Set card lists, generation checklists, and one page for each Pokémon. A filled bar is what I already have.",
     "generations": "Generation binders",
     "sets": "Sets by series",
+    "deltaLink": "The binder page I am keeping ready",
+    "deltaNote": "Mega Evolution—Delta Reign is not in the card list yet.",
     "pokedex": "Pokédex",
     "pokedexIntro": "Every Pokémon in the national dex, with a card list of its own.",
     "searchPokedex": "Search the Pokédex",
@@ -224,7 +229,9 @@
   },
   "seriesPage": {
     "intro": "{series} has {count} sets in this list. Each set page is the card list and the checklist.",
-    "other": "Other series"
+    "other": "Other series",
+    "deltaLink": "Delta Reign, before the numbers",
+    "deltaPending": "This expansion is not in the list yet. I am not inventing a row for it."
   },
   "setPage": {
     "intro": "{name} came out on {date} in the {series} series. This card list has {total} cards. I have {collected} of them.",
@@ -250,7 +257,7 @@
   },
   "guides": {
     "kicker": "From the binder",
-    "indexIntro": "One long note on how I collect, and nine shorter notes that each answer one question.",
+    "indexIntro": "One long note on how I collect, and ten shorter notes that each answer one question.",
     "updated": "Updated {date}",
     "toc": "On this page",
     "pillarLabel": "Start here",

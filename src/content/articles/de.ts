@@ -1,4 +1,5 @@
 import type { ArticleCopy } from "@/lib/articles";
+import { spotFakesDe } from "./spot-fakes/de";
 
 export function germanArticles(): ArticleCopy[] {
   return [
@@ -115,6 +116,14 @@ export function germanArticles(): ArticleCopy[] {
           ],
         },
         {
+          id: "by-type",
+          heading: "Nach Typ sortieren, wenn der Ordner keine Checkliste ist",
+          paragraphs: [
+            "Der Typ ist das Zeichen oben rechts auf einer Pokémon-Karte. [[Die Hilfe zur Kartendatenbank|https://support.pokemon.com/hc/en-us/articles/360001025274-How-do-I-use-the-Trading-Card-Game-database]] beschreibt es so: das Energie-Symbol für Pflanze, Feuer, Wasser und den Rest. Ein Kind, das jede Wasserkarte auf einer Seite haben will, sortiert nach Typ. Das nutze ich für einen Spielstapel auf dem Tisch. Für einen Set-Ordner nutze ich es nicht. Die Liste ist nummeriert, und eine Seite eines einzigen Typs versteckt die fehlende Nummer.",
+            "Trainer tragen dieses Typ-Zeichen nicht, und Basis-Energie bleibt ein eigener Stapel. An so einem Nachmittag bekommen diese Karten eigene Haufen, statt unter ein Wesen gezwungen zu werden. Generation ist die andere Ordnung, ein Bereich im Pokédex, und genau das ist [[Generation 1|/collections/generation/1]] schon. Set, Nummer, Typ und Generation sind vier Fragen. Pro Ordner nehme ich eine. [[Wie ich das Zeichen lese|/guides/read-a-card]] zeigt, wo das Symbol sitzt, bevor ich dem Stapel traue.",
+          ],
+        },
+        {
           id: "marking-a-line",
           heading: "Wann ich eine Zeile markiere",
           paragraphs: [
@@ -173,7 +182,7 @@ export function germanArticles(): ArticleCopy[] {
           paragraphs: [
             "Der Rest bleibt in einer Schachtel mit dem Set-Namen, oder in einer gemischten Schachtel, wenn der Stapel klein ist. Das ist kein Abfall. Der nächste Ordner braucht oft genau die Karte, die ich fast weggelegt hätte. Ich halte sie trocken, stecke sie in eine Hülle, wenn die Ecke schon weich ist, und lasse sie nicht auf dem Boden liegen. Eine weiche Ecke wird in einer offenen Schachtel nur weicher. Die Hülle ist auch hier der kleinere Aufwand.",
             "Ist ein Ordner fertig, ändert sich die Geschichte. [[Ein fertiger Ordner kann gehen|/guides/donating-cards]], zu einem Kind. Lose Reste gehen nicht mit. Sie bleiben und füllen den nächsten Ordner. Diese Trennung hält die Gabe vollständig und die Checkliste ehrlich. Eine Handvoll lose Karten sieht großzügig aus und kommt als Hausaufgabe an. Ein geschlossener Ordner ist etwas, das jemand aufschlagen kann, ohne meine Lücken zu erben.",
-            "Die Schachtel selbst bekommt ein langweiliges Schild: den Set-Namen, oder gemischt, wenn ich sie noch nicht getrennt habe. Auf das Schild schreibe ich keine Vermutung darüber, was die Karten im Handel tun könnten. Ich führe keine eigene Schachtel für tolle Karten und keine Kiste für Rest. Diese Trennung ist die Art, wie gewöhnliche Karten verschwinden und Löcher offen bleiben. Einmal im Monat nehme ich die gemischte Schachtel, sortiere wieder nach Set und mache sie kleiner. Das Ziel ist ein kleinerer Fragenstapel, keine schönere Ausstellung.",
+            "Die Schachtel selbst bekommt ein langweiliges Schild: den Set-Namen, oder gemischt, wenn ich sie noch nicht getrennt habe. Auf das Schild schreibe ich keine Vermutung darüber, was die Karten im Handel tun könnten. Ich führe keine eigene Schachtel für tolle Karten und keine Kiste für Rest. Diese Trennung ist die Art, wie gewöhnliche Karten verschwinden und Löcher offen bleiben. Einmal im Monat nehme ich die gemischte Schachtel, sortiere wieder nach Set und mache sie kleiner. Das Ziel ist ein kleinerer Fragenstapel, keine schönere Ausstellung. Eine Karte, der ich nicht traue, füllt keine Zeile. [[Eine Fälschung erkennen|/guides/spot-fakes]] ist eine eigene Notiz. In der Bulk-Schachtel liegen die gewöhnlichen echten Karten, und genau die will ich.",
           ],
         },
       ],
@@ -331,6 +340,14 @@ export function germanArticles(): ArticleCopy[] {
           ],
         },
         {
+          id: "regulation",
+          heading: "Das Regulation-Zeichen ist ein Formatbuchstabe",
+          paragraphs: [
+            "Auf Karten ab 2020 setzt Play! Pokémon ein Regulation-Zeichen: einen Buchstaben unten links. Die [[Regeln von Play! Pokémon|https://play.pokemon.com/en-us/resources/rules/]] sagen, dass Standard nach diesem Buchstaben rotiert. Ältere Karten haben keinen Buchstaben. Eine Karte mit älterem Buchstaben oder ganz ohne kann trotzdem legal sein, wenn dieselbe Karte mit einem aktuellen Buchstaben nachgedruckt wurde. Die erlaubten Buchstaben wechseln. Die aktuelle Liste lerne ich nicht in einem Ordner auswendig, und nach dem Buchstaben sortiere ich nicht.",
+            "Der Buchstabe ist nicht die Kartennummer und nicht das Seltenheitszeichen. [[Die Hilfe zur Kartendatenbank|https://support.pokemon.com/hc/en-us/articles/360001025274-How-do-I-use-the-Trading-Card-Game-database]] setzt das Seltenheitszeichen in die untere rechte Ecke, beim Erweiterungssymbol. Auf den Buchstaben schaue ich nur, wenn jemand fragt, ob eine Karte bei einem aktuellen Event gespielt werden darf. Für den Ordner entscheidet die Nummer über das Fach. Eine Karte, der ich nicht traue, erreicht das Fach nicht. Dazu gibt es [[eine eigene Notiz|/guides/spot-fakes]].",
+          ],
+        },
+        {
           id: "in-practice",
           heading: "Ein Durchgang durch einen gemischten Stapel",
           paragraphs: [
@@ -380,6 +397,14 @@ export function germanArticles(): ArticleCopy[] {
           paragraphs: [
             "Aufrecht im Regal, oder flach, wenn der Ordner dünn ist, weg vom Fenster und weg von einer feuchten Außenwand. In einen Kellerkarton, auf einen heißen Dachboden oder in den Kofferraum stelle ich Ordner nicht. Wärme wölbt eine Hülle. Feuchtigkeit fleckt eine Seite. Sonne bleicht Farbe. Davon sieht man am Tag, an dem man es tut, nichts. Man sieht es, wenn man den Ordner einen Sommer später aufschlägt. Das feuchte Regal habe ich mit einer Blechdose aus dem Supermarkt gelernt. Einmal hat gereicht.",
             "Bulk, der nicht im Ordner steckt, lebt in einer trockenen Schachtel, so gestapelt, dass kein schwererer Gegenstand die Karten biegt. Essen und Trinken bleiben von diesem Tisch weg. Das klingt pedantisch, bis Orangensaft in einer Hülle steht. [[Die Sammlungen|/collections]] kann ich aus den Karten neu aufbauen. Einen zusammengeklebten Stapel kann ich nicht. Die Schachtel kommt nach dem Abend zu, auch wenn noch ein kleiner Stapel liegen bleibt. Offen über Nacht ist eine Einladung für das Glas, das jemand abstellt.",
+          ],
+        },
+        {
+          id: "toploader",
+          heading: "Ein Toploader ist für den Weg",
+          paragraphs: [
+            "Ein Toploader ist eine steife Kunststoffhülle. Ich nehme eine, wenn eine Karte das Haus verlässt: ein Ordner auf dem Weg zu einem Kind, oder eine einzelne Karte in einem Paket. Sie ist dicker, als eine Ordnerseite mag, also bleibt sie aus der Neunfachseite draußen. Zu Hause lebt die Karte in einer weichen Hülle, im Fach. Eine harte Hülle auf jeder gewöhnlichen Karte ergäbe einen Ordner, den ich nicht aufschlage, und das Aufschlagen ist der Punkt.",
+            "Ich klebe eine Karte nicht in einen Toploader. Habe ich keinen, schlagen die weiche Hülle und eine flache Schachtel eine geknickte Ecke immer noch. [[Die lange Notiz|/guides/collecting-binders]] setzt die weiche Hülle schon voraus. Die steife ist die Ausnahme, für den Transport, nicht für die alltägliche Seite.",
           ],
         },
         {
@@ -483,7 +508,7 @@ export function germanArticles(): ArticleCopy[] {
           heading: "Wo ich zum Hinschauen schicke",
           paragraphs: [
             "Die [[Basis-Serie|/collections/series/base]] ist der Anfang der veröffentlichten Liste. [[Base|/collections/set/base1]] selbst ist der 9. Januar 1999, 102 Karten, Kennung base1. [[Die Checkliste der ersten 151|/guides/gen-1-checklist]] erklärt, warum diese 102 Karten nicht dasselbe sind wie die ursprünglichen 151 Arten. Auf beide Seiten schicke ich mit Absicht. Die Verwechslung ist häufig, und die Korrektur sind nur die beiden Zählungen nebeneinander. Trainer und Energie stecken in den 102. In den 151 stecken Wesen, von Bisasam bis Mew, aus jedem Set.",
-            "Das andere Ende der Liste bewegt sich, wenn die Daten sich bewegen. [[Mega Evolution|/collections/set/me1]] steht in den aktuellen Daten als eigene Serie, Kennung me1. Ich verlinke es, damit die Zeitlinie eine jüngere Tür hat, nicht weil ein neues Set wichtiger wäre als eine alte gewöhnliche Karte. [[Die Sammlungen|/collections]] sind dieselbe Liste mit den Balken. Diese Notiz ist die Liste mit den Daten. Ein Balken sagt, was ich eingetragen habe. Ein Datum sagt, wann das Set in den Daten steht. Beides zusammen ist die Orientierung in einer Schachtel, die mehrere Jahre mischt.",
+            "Das andere Ende der Liste bewegt sich, wenn die Daten sich bewegen. [[Mega Evolution|/collections/set/me1]] steht in den aktuellen Daten als eigene Serie, Kennung me1. Ich verlinke es, damit die Zeitlinie eine jüngere Tür hat, nicht weil ein neues Set wichtiger wäre als eine alte gewöhnliche Karte. [[Die Sammlungen|/collections]] sind dieselbe Liste mit den Balken. Diese Notiz ist die Liste mit den Daten. Ein Balken sagt, was ich eingetragen habe. Ein Datum sagt, wann das Set in den Daten steht. Beides zusammen ist die Orientierung in einer Schachtel, die mehrere Jahre mischt. [[Mega Evolution—Delta Reign|/collections/set/delta-reign]] steht in dieser Liste noch nicht. Ich habe eine Seite für den Ordner geschrieben, bevor die Kartennummern existieren, und hier setze ich keine geratene Zählung ein.",
           ],
         },
         {
@@ -544,7 +569,7 @@ export function germanArticles(): ArticleCopy[] {
           paragraphs: [
             "Ich beende das Sitzen, wenn das Kind noch bereit ist, nicht wenn ich eine runde Zahl erreicht habe. Zwanzig Minuten, die mit einem geschlossenen Ordner enden, gibt es wieder. Eine Stunde, die mit einem Seufzer endet, vielleicht nicht. [[Die Sammlungen|/collections]] merken sich die Zeilen, die ich eingetragen habe. Nichts auf dem Bildschirm ist wichtiger als der Wunsch, den Ordner beim nächsten Mal wieder aufzuschlagen. Den Balken kann ich später setzen. Die Bereitschaft nicht.",
             "Den Ordner eines Kindes führe ich nicht als Wettstreit gegen meinen. Die öffentlichen Seiten dieses Vorhabens sind meine Checklisten. Die Seite eines Kindes darf für immer unfertig bleiben. Wächst daraus das längere Hobby, liegen die Set-Listen und die Art-Seiten bereit. Wächst es nicht, hat der Ordner seine Aufgabe erfüllt: Karten in einer Reihe, Hüllen drauf, ein Nachmittag, der dem Kind gehört hat. Mein Regal ist dabei keine Messlatte.",
-            "Die Fragen, die ich wirklich beantworte, sind klein. In welches Fach kommt diese. Kann diese Dublette ein Loch schließen. Ist es in Ordnung aufzuhören. Ja, das nummerierte Fach. Ja, wenn die Zeile leer ist. Ja, aufhören. Die größeren Meinungen behalte ich für mich, solange das Kind nicht fragt. Eine so angefangene Sammlung darf klein bleiben und ist trotzdem eine richtige Sammlung. Sie hat eine Ordnung, eine Hülle und eine nächste leere Zeile, wann immer jemand sie aufschlagen mag. Mehr verlange ich von einem Samstag nicht.",
+            "Die Fragen, die ich wirklich beantworte, sind klein. In welches Fach kommt diese. Kann diese Dublette ein Loch schließen. Ist es in Ordnung aufzuhören. Ja, das nummerierte Fach. Ja, wenn die Zeile leer ist. Ja, aufhören. Die größeren Meinungen behalte ich für mich, solange das Kind nicht fragt. Eine so angefangene Sammlung darf klein bleiben und ist trotzdem eine richtige Sammlung. Sie hat eine Ordnung, eine Hülle und eine nächste leere Zeile, wann immer jemand sie aufschlagen mag. Mehr verlange ich von einem Samstag nicht. Eine Karte, die falsch aussieht, kommt nicht hinein, solange ich unsicher bin. [[Wie ich eine Fälschung erkenne|/guides/spot-fakes]] ist diese Prüfung, leise, und eine andere Karte aus dem Bulk liegt an ihrer Stelle bereit.",
           ],
         },
       ],
@@ -559,5 +584,6 @@ export function germanArticles(): ArticleCopy[] {
         },
       ],
     },
+    spotFakesDe,
   ];
 }

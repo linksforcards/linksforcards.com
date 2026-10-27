@@ -8,6 +8,7 @@ import { ProgressBar } from "@/components/site/progress-bar";
 import { RelatedLinks } from "@/components/site/related-links";
 import { SiteLinks } from "@/components/site/site-links";
 import { getSetCards, setsBySeries } from "@/lib/catalog";
+import { DELTA_REIGN_PATH, DELTA_REIGN_SERIES } from "@/lib/delta-reign";
 import { fill, formatInt } from "@/lib/format";
 import { readLocale } from "@/lib/i18n";
 import { breadcrumbNode, itemListNode, ldGraph, pageNode } from "@/lib/jsonld";
@@ -86,6 +87,11 @@ export default async function SeriesPage({ params }: { params: Promise<{ locale:
         </p>
         <h1>{title}</h1>
         <p className="lede">{fill(m.seriesPage.intro, { series: group.series, count: formatInt(group.sets.length, locale) })}</p>
+        {group.series === DELTA_REIGN_SERIES ? (
+          <p>
+            {m.seriesPage.deltaPending} <a href={localePath(locale, DELTA_REIGN_PATH)}>{m.seriesPage.deltaLink}</a>
+          </p>
+        ) : null}
       </section>
       <ul className="set-list">
         {sets.map((set) => {

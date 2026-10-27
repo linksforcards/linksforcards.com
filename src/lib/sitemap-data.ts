@@ -8,7 +8,18 @@ import { seriesSlug } from "./series";
 import { absoluteUrl } from "./site";
 import { getThemes, themeHreflangLocales, themeIndexed } from "./themes";
 
-const PAGE_PATHS = ["/", "/collections", "/collections/themes", "/guides", "/partners", "/updates", "/donations", "/privacy", "/imprint"];
+const PAGE_PATHS = [
+  "/",
+  "/collections",
+  "/collections/themes",
+  "/collections/set/delta-reign",
+  "/guides",
+  "/partners",
+  "/updates",
+  "/donations",
+  "/privacy",
+  "/imprint",
+];
 
 function catalogLastMod(): string {
   return getMeta().builtAt.slice(0, 10);

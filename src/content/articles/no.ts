@@ -1,4 +1,5 @@
 import type { ArticleCopy } from "@/lib/articles";
+import { spotFakesNo } from "./spot-fakes/no";
 
 export function norwegianArticles(): ArticleCopy[] {
   return [
@@ -115,6 +116,14 @@ export function norwegianArticles(): ArticleCopy[] {
           ],
         },
         {
+          id: "by-type",
+          heading: "Sortere etter type, når permen ikke er en sjekkliste",
+          paragraphs: [
+            "Typen er symbolet oppe til høyre på et Pokémon-kort. [[Hjelpen til kortdatabasen|https://support.pokemon.com/hc/en-us/articles/360001025274-How-do-I-use-the-Trading-Card-Game-database]] beskriver det slik: energiikonet for Gress, Ild, Vann og resten. Et barn som vil ha hvert vannkort på én side, sorterer etter type. Det bruker jeg til en spillhaug på bordet. Til en settperm bruker jeg det ikke. Listen er nummerert, og en side med én type skjuler nummeret som mangler.",
+            "Trenere bærer ikke det typeikonet, og basis-Energy er en egen haug. En slik ettermiddag får de kortene en egen stabel, i stedet for å bli tvunget inn under en skapning. Generasjon er den andre rekkefølgen, et spenn i Pokédex, og det er allerede det [[generasjon 1|/collections/generation/1]] er. Sett, nummer, type og generasjon er fire spørsmål. Jeg tar ett per perm. [[Hvordan jeg leser symbolet|/guides/read-a-card]] er hvordan jeg finner ikonet før jeg stoler på stabelen.",
+          ],
+        },
+        {
           id: "marking-a-line",
           heading: "Hvordan jeg krysser av en rad",
           paragraphs: [
@@ -173,7 +182,7 @@ export function norwegianArticles(): ArticleCopy[] {
           paragraphs: [
             "Ekstrakort blir i en boks merket med settet, eller i én blandet boks når stabelen er liten. De er ikke søppel. Neste perm trenger ofte kortet jeg nesten ga opp. Jeg holder dem tørre, i en sleeve hvis hjørnet allerede er mykt, og ikke på gulvet. Et mykt hjørne som får ligge løst en uke til, er et hjørne jeg siden må finne en erstatning for, så sleeven går på samme kveld som jeg oppdager det.",
             "Når en perm er ferdig, endrer historien seg. [[En ferdig perm kan forlate huset|/guides/donating-cards]] og gå til et barn. Løse ekstrakort følger ikke med. De blir og fyller neste perm. Det skillet gjør gaven hel og holder sjekklisten ærlig.",
-            "Selve boksen får en kjedelig etikett: settets navn, eller «blandet» hvis jeg ikke har delt den ennå. Jeg merker ikke en boks med et gjett om hva kortene kunne bli solgt for. Jeg har ingen egen boks for «bra» kort og en dunk for «søppel». Det skillet er slik commons forsvinner og hull står åpne. Én gang i måneden tar jeg den blandede boksen, kjører settsorteringen igjen og krymper den. Målet er en mindre spørsmålsstabel, ikke en penere utstilling.",
+            "Selve boksen får en kjedelig etikett: settets navn, eller «blandet» hvis jeg ikke har delt den ennå. Jeg merker ikke en boks med et gjett om hva kortene kunne bli solgt for. Jeg har ingen egen boks for «bra» kort og en dunk for «søppel». Det skillet er slik commons forsvinner og hull står åpne. Én gang i måneden tar jeg den blandede boksen, kjører settsorteringen igjen og krymper den. Målet er en mindre spørsmålsstabel, ikke en penere utstilling. Et kort jeg ikke stoler på, fyller ingen rad. [[Å kjenne igjen en forfalskning|/guides/spot-fakes]] er et eget notat. Bulkesken er stedet for de vanlige ekte kortene, og det er de jeg vil ha.",
           ],
         },
       ],
@@ -331,6 +340,14 @@ export function norwegianArticles(): ArticleCopy[] {
           ],
         },
         {
+          id: "regulation",
+          heading: "Reguleringsmerket er en formatbokstav",
+          paragraphs: [
+            "På kort trykt fra 2020 bruker Play! Pokémon et reguleringsmerke: en bokstav nede til venstre. [[Reglene for Play! Pokémon|https://play.pokemon.com/en-us/resources/rules/]] sier at Standard roterer etter den bokstaven. Eldre kort har ingen bokstav. Et kort med en eldre bokstav, eller uten bokstav, kan likevel være lovlig hvis det samme kortet er trykt på nytt med en aktuell bokstav. De tillatte bokstavene skifter. Jeg pugger ikke dagens liste i en perm, og jeg sorterer ikke etter bokstaven.",
+            "Bokstaven er ikke samlenummeret, og den er ikke sjeldenhetstegnet. [[Hjelpen til kortdatabasen|https://support.pokemon.com/hc/en-us/articles/360001025274-How-do-I-use-the-Trading-Card-Game-database]] legger sjeldenhetstegnet i nedre høyre hjørne, ved utvidelsessymbolet. Jeg ser på bokstaven bare når noen spør om et kort kan spilles i et aktuelt arrangement. For permen avgjør nummeret fortsatt lommen. Et kort jeg ikke stoler på, når aldri den lommen. Det er [[hvordan jeg kjenner igjen en forfalskning|/guides/spot-fakes]].",
+          ],
+        },
+        {
           id: "in-practice",
           heading: "En gjennomgang av en blandet haug",
           paragraphs: [
@@ -380,6 +397,14 @@ export function norwegianArticles(): ArticleCopy[] {
           paragraphs: [
             "Stående på en hylle, eller liggende hvis permen er tynn, borte fra et vindu og borte fra en fuktig yttervegg. Jeg oppbevarer ikke permer i en kjellerboks, et varmt loft eller bagasjerommet i en bil. Varme bøyer en sleeve. Fukt flekker en side. Sol bleker trykk. Ingenting av det synes samme dag. Det synes når jeg åpner permen en sommer senere. En perm som lener seg mot en varm radiator, får samme behandling som loftet: den flyttes. Tørt og svalt holder, og jeg kjenner på hylla med hånden hvis jeg er usikker en kald morgen.",
             "Bulk som ikke sitter i en perm, bor i en tørr boks, stablet så kortene ikke bøyes av noe tyngre. Jeg holder mat og drikke borte fra det bordet. Det høres pirkete ut til appelsinjuice er inne i en sleeve. [[Samlingene|/collections]] kan bygges opp igjen fra kortene. En sammenklebet stabel kan det ikke.",
+          ],
+        },
+        {
+          id: "toploader",
+          heading: "En toploader er til reisen",
+          paragraphs: [
+            "En toploader er et stivt plastfutteral. Jeg tar et når et kort forlater huset: en perm på vei til et barn, eller ett enkelt kort i en pakke. Den er tykkere enn en permside vil, så den blir utenfor nisiden. Hjemme bor kortet i en myk sleeve, i lommen. Et hardt futteral på hver common ville gitt en perm jeg ikke åpner, og å åpne den er poenget.",
+            "Jeg teiper ikke et kort fast i en toploader. Har jeg ingen, slår den myke sleeven og en flat eske fortsatt et bøyd hjørne. [[Permguiden|/guides/collecting-binders]] regner allerede med den myke sleeven. Den stive er unntaket, til reisen, ikke til hverdagssiden.",
           ],
         },
         {
@@ -483,7 +508,7 @@ export function norwegianArticles(): ArticleCopy[] {
           heading: "Hvor jeg ber folk begynne å se",
           paragraphs: [
             "[[Base-serien|/collections/series/base]] er starten på den publiserte listen. [[Base|/collections/set/base1]] selv er 9. januar 1999, 102 kort. [[Sjekklisten for generasjon 1|/guides/gen-1-checklist]] forklarer hvorfor de 102 kortene ikke er det samme som de opprinnelige 151 artene. Jeg sender folk til begge sidene med vilje. Forvekslingen er vanlig, og løsningen er bare de to tallene, side om side. 102 og 151 får stå igjen som to tall på en lapp hvis jeg merker at jeg begynner å si dem som om de var samme ting. Det er de ikke. Lappen er billigere enn en feilsortert perm.",
-            "Den andre enden av listen flytter seg når dataene flytter seg. [[Mega Evolution|/collections/set/me1]] finnes i de nåværende dataene som en egen serie. Jeg lenker dit så tidslinjen har en ny dør, ikke fordi et nytt sett er viktigere enn en gammel common. [[Samlingene|/collections]] er samme liste med stolpene. Dette notatet er listen med datoene.",
+            "Den andre enden av listen flytter seg når dataene flytter seg. [[Mega Evolution|/collections/set/me1]] finnes i de nåværende dataene som en egen serie. Jeg lenker dit så tidslinjen har en ny dør, ikke fordi et nytt sett er viktigere enn en gammel common. [[Samlingene|/collections]] er samme liste med stolpene. Dette notatet er listen med datoene. [[Mega Evolution—Delta Reign|/collections/set/delta-reign]] står ikke i den listen ennå. Jeg har skrevet en side til permen før samlenumrene finnes, og jeg setter ikke inn en gjettet telling her.",
           ],
         },
         {
@@ -544,7 +569,7 @@ export function norwegianArticles(): ArticleCopy[] {
           paragraphs: [
             "Jeg avslutter økten når barnet fortsatt er villig, ikke når jeg har nådd et rundt tall. Tjue minutter som slutter med en lukket perm, skjer igjen. En time som slutter med et sukk, gjør det kanskje ikke. [[Samlingene|/collections]] husker radene jeg har notert. Ingenting på skjermen er viktigere enn at barnet vil åpne permen neste gang. Jeg setter ikke et mål om ti kort eller en full side. Målet er at permen lukkes mens noen fortsatt vil åpne den igjen.",
             "Jeg følger ikke et barns perm som en konkurranse mot min. De offentlige sidene i dette prosjektet er mine sjekklister. Et barns side får være uferdig for alltid. Vokser de inn i den lengre hobbyen, finnes settlistene og artsidene der. Gjør de ikke det, har permen likevel gjort jobben sin: kort i rekkefølge, sleeves på, en ettermiddag som tilhørte dem.",
-            "Spørsmålene jeg faktisk svarer på, er små. Hvilken lomme dette kortet skal ligge i. Om denne dubletten kan fylle et hull. Om det er greit å stoppe. Ja, den nummererte lommen. Ja, hvis raden er tom. Ja, stopp. De større meningene beholder jeg for meg selv hvis barnet ikke spør. En samling som begynner slik, kan forbli liten og likevel være en ekte samling. Den har en rekkefølge, en sleeve og en neste tom rad når noen har lyst til å åpne den.",
+            "Spørsmålene jeg faktisk svarer på, er små. Hvilken lomme dette kortet skal ligge i. Om denne dubletten kan fylle et hull. Om det er greit å stoppe. Ja, den nummererte lommen. Ja, hvis raden er tom. Ja, stopp. De større meningene beholder jeg for meg selv hvis barnet ikke spør. En samling som begynner slik, kan forbli liten og likevel være en ekte samling. Den har en rekkefølge, en sleeve og en neste tom rad når noen har lyst til å åpne den. Et kort som ser galt ut, kommer ikke inn mens jeg er usikker. [[Hvordan jeg kjenner igjen en forfalskning|/guides/spot-fakes]] er den kontrollen, stille, med et annet bulkkort tilbudt i stedet.",
           ],
         },
       ],
@@ -559,5 +584,6 @@ export function norwegianArticles(): ArticleCopy[] {
         },
       ],
     },
+    spotFakesNo,
   ];
 }

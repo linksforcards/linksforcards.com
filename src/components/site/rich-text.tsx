@@ -12,9 +12,10 @@ export function RichText({ text, locale }: { text: string; locale: Locale }) {
     if (index > last) nodes.push(text.slice(last, index));
     const label = match[1] ?? "";
     const target = match[2] ?? "";
-    const href = target.startsWith("mailto:") || target.startsWith("#") ? target : localePath(locale, target);
+    const external = target.startsWith("https://") || target.startsWith("http://");
+    const href = target.startsWith("mailto:") || target.startsWith("#") || external ? target : localePath(locale, target);
     nodes.push(
-      <a key={`${index}-${target}`} href={href}>
+      <a key={`${index}-${target}`} href={href} {...(external ? { rel: "noreferrer" } : {})}>
         {label}
       </a>,
     );

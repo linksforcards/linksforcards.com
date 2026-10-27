@@ -1,4 +1,5 @@
 import type { ArticleCopy } from "@/lib/articles";
+import { spotFakesPl } from "./spot-fakes/pl";
 
 export function polishArticles(): ArticleCopy[] {
   return [
@@ -115,6 +116,14 @@ export function polishArticles(): ArticleCopy[] {
           ],
         },
         {
+          id: "by-type",
+          heading: "Sortowanie według typu, gdy segregator nie jest listą",
+          paragraphs: [
+            "Typ to symbol w prawym górnym rogu karty Pokémon. [[Pomoc do bazy kart|https://support.pokemon.com/hc/en-us/articles/360001025274-How-do-I-use-the-Trading-Card-Game-database]] opisuje go tak: ikona energii dla Trawy, Ognia, Wody i reszty. Dziecko, które chce każdą kartę wody na jednej stronie, sortuje według typu. Tego używam do stosu do gry na stole. Do segregatora setu tego nie używam. Lista jest numerowana, a strona jednego typu chowa brakujący numer.",
+            "Trenerzy nie noszą tej ikony typu, a podstawowa Energia zostaje osobnym stosem. Takiego popołudnia te karty dostają własny stos, zamiast być wciskane pod stwora. Generacja to inny porządek, zakres Pokédexa, i właśnie tym jest już [[generacja 1|/collections/generation/1]]. Set, numer, typ i generacja to cztery pytania. Biorę jedno na segregator. [[Jak czytam symbol|/guides/read-a-card]] pokazuje, gdzie jest ikona, zanim zaufam stosowi.",
+          ],
+        },
+        {
           id: "marking-a-line",
           heading: "Jak zaznaczam rząd",
           paragraphs: [
@@ -175,7 +184,7 @@ export function polishArticles(): ArticleCopy[] {
             "Zapas zostaje w pudełku opisanym nazwą setu albo w jednym mieszanym pudełku, kiedy stos jest mały. To nie śmieci. Następny segregator często potrzebuje karty, z której prawie zrezygnowałem. Trzymam je sucho, w koszulce jeśli róg jest już miękki, i nie na podłodze. Miękki róg, który poleży luzem jeszcze tydzień, to róg, do którego potem szukam zastępstwa, więc koszulka wchodzi tego samego wieczoru, kiedy to zauważę.",
             "Kiedy segregator jest gotowy, historia się zmienia. [[Gotowy segregator może wyjść z domu|/guides/donating-cards]] i trafić do dziecka. Luźny zapas nie idzie z nim. Zostaje i wypełnia następny. Ten podział robi z podarku całość i trzyma listę kontrolną w prawdzie.",
             "Samemu pudełku daję nudną etykietę: nazwę setu albo słowo «mieszane», jeśli jeszcze go nie rozdzieliłem. Nie opisuję pudełka domysłem, za ile karty dałoby się sprzedać. Nie mam osobnego pudełka na karty «dobre» i kosza na «śmieci». Taki podział sprawia, że zwykłe karty znikają, a dziury zostają otwarte. Raz w miesiącu biorę mieszane pudełko, robię sortowanie według setu jeszcze raz i je zmniejszam. Celem jest mniejszy stos pytań, nie ładniejsza wystawa. Mniejszy stos pytań jest jedynym celem miesiąca. Ładny stos, którego nie sprawdziłem, nie jest postępem. Sprawdzenie jest chwilą, w której karta albo zamyka rząd, albo wraca do pudełka.",
-            "Po miesięcznym przejściu dopisuję na pudełku dzień i set, który został w połowie. Nie dopisuję domysłu, co w stosie jest warte zachodu. Następny raz zaczyna się od tej kartki. Mały stos, który mieści się w jednym woreczku, dostaje tę samą kartkę co pudełko. Mały stos ginie na dnie dużego łatwiej niż duży, a właśnie stamtąd zwykle wychodzi brakująca zwykła karta. Nie łączę dwóch setów w jednym woreczku, żeby oszczędzić miejsce. Miejsce jest na półce. Pomieszanie kosztuje następny wieczór.",
+            "Po miesięcznym przejściu dopisuję na pudełku dzień i set, który został w połowie. Nie dopisuję domysłu, co w stosie jest warte zachodu. Następny raz zaczyna się od tej kartki. Mały stos, który mieści się w jednym woreczku, dostaje tę samą kartkę co pudełko. Mały stos ginie na dnie dużego łatwiej niż duży, a właśnie stamtąd zwykle wychodzi brakująca zwykła karta. Nie łączę dwóch setów w jednym woreczku, żeby oszczędzić miejsce. Miejsce jest na półce. Pomieszanie kosztuje następny wieczór. Karta, której nie ufam, nie zamyka rzędu. [[Rozpoznawanie fałszywki|/guides/spot-fakes]] to osobna notatka. W pudełku bulk leżą zwykłe prawdziwe karty i właśnie tych chcę.",
           ],
         },
       ],
@@ -335,6 +344,14 @@ export function polishArticles(): ArticleCopy[] {
           ],
         },
         {
+          id: "regulation",
+          heading: "Znak regulacji to litera formatu",
+          paragraphs: [
+            "Na kartach drukowanych od 2020 roku Play! Pokémon stawia znak regulacji: literę w lewym dolnym rogu. [[Zasady Play! Pokémon|https://play.pokemon.com/en-us/resources/rules/]] mówią, że Standard obraca się według tej litery. Starsze karty nie mają litery. Karta ze starszą literą albo bez litery może zostać legalna, jeśli ta sama karta została dodrukowana z aktualną literą. Dozwolone litery się zmieniają. Aktualnej listy nie wkuwam do segregatora i nie sortuję według litery.",
+            "Litera nie jest numerem kolekcjonerskim i nie jest znakiem rzadkości. [[Pomoc do bazy kart|https://support.pokemon.com/hc/en-us/articles/360001025274-How-do-I-use-the-Trading-Card-Game-database]] kładzie znak rzadkości w prawym dolnym rogu, przy ikonie dodatku. Na literę patrzę tylko, gdy ktoś pyta, czy kartą wolno grać na aktualnej imprezie. W segregatorze numer wciąż decyduje o kieszonce. Karta, której nie ufam, do tej kieszonki nie dochodzi. O tym jest [[jak rozpoznaję fałszywkę|/guides/spot-fakes]].",
+          ],
+        },
+        {
           id: "in-practice",
           heading: "Przejście przez mieszany stos",
           paragraphs: [
@@ -385,6 +402,14 @@ export function polishArticles(): ArticleCopy[] {
           paragraphs: [
             "Pionowo na półce albo na płask, jeśli segregator jest cienki, z dala od okna i od wilgotnej ściany zewnętrznej. Nie trzymam segregatorów w pudle w piwnicy, na gorącym strychu ani w bagażniku samochodu. Ciepło wygina koszulkę. Wilgoć plami stronę. Słońce płowieje druk. Nic z tego nie widać tego samego dnia. Widać to, kiedy otwieram segregator lato później. Segregator oparty o ciepły kaloryfer dostaje to samo co strych: zostaje przeniesiony. Sucho i chłodno wystarcza, a jeśli zimnym rankiem nie jestem pewien, sprawdzam półkę dłonią.",
             "Bulk, który nie siedzi w segregatorze, mieszka w suchym pudełku, ułożony tak, żeby kart nie zginał cięższy przedmiot. Jedzenie i picie trzymam z dala od tego stołu. Brzmi to drobiazgowo, dopóki sok pomarańczowy nie jest w koszulce. [[Kolekcje|/collections]] da się odbudować z kart. Sklejonego stosu się nie da. Szklanka soku przechodzi na drugi stół, zanim pudełko się otworzy. Ta zasada jest nudna i trzyma karty osobno. Sklejony stos jest listą, której nie da się już czytać.",
+          ],
+        },
+        {
+          id: "toploader",
+          heading: "Toploader jest na drogę",
+          paragraphs: [
+            "Toploader to sztywna plastikowa koszulka. Biorę taki, gdy karta wychodzi z domu: segregator w drodze do dziecka albo pojedyncza karta w paczce. Jest grubszy, niż chce tego strona segregatora, więc zostaje poza stroną z dziewięcioma kieszonkami. W domu karta żyje w miękkiej koszulce, w kieszonce. Twardy futerał na każdą zwykłą kartę zrobiłby segregator, którego nie otwieram, a otwieranie jest sensem.",
+            "Nie przyklejam karty taśmą do toploadera. Jeśli go nie mam, miękka koszulka i płaskie pudełko i tak wygrywają ze zgiętym rogiem. [[Długi przewodnik|/guides/collecting-binders]] zakłada już miękką koszulkę. Sztywna jest wyjątkiem, na podróż, nie na codzienną stronę.",
           ],
         },
         {
@@ -490,7 +515,7 @@ export function polishArticles(): ArticleCopy[] {
           heading: "Od czego proszę ludzi, żeby zaczęli oglądać",
           paragraphs: [
             "[[Seria Base|/collections/series/base]] jest początkiem opublikowanej listy. Sam [[Base|/collections/set/base1]] to 9 stycznia 1999, 102 karty. [[Lista kontrolna generacji 1|/guides/gen-1-checklist]] wyjaśnia, czemu te 102 karty nie są tym samym co pierwsze 151 gatunków. Wysyłam ludzi na obie strony celowo. Pomylenie jest częste, a naprawa to tylko te dwie liczby, obok siebie. 102 i 151 zostają dwiema liczbami na kartce, jeśli złapię się na tym, że zaczynam mówić o nich jak o jednej rzeczy. Nie są jedną rzeczą. Kartka jest tańsza niż źle posortowany segregator. Trzymam kartkę obok strony setu, dopóki te dwie liczby już mi się nie mieszają. Potem kartka może zniknąć. Do tej pory dwie liczby zostają w dwóch miejscach.",
-            "Drugi koniec listy rusza się, kiedy ruszają się dane. [[Mega Evolution|/collections/set/me1]] jest w obecnych danych jako własna seria. Linkuję tam, żeby oś czasu miała świeże drzwi, nie dlatego, że nowy set jest ważniejszy od starej zwykłej karty. [[Kolekcje|/collections]] to ta sama lista z paskami. Ta notatka jest listą z datami.",
+            "Drugi koniec listy rusza się, kiedy ruszają się dane. [[Mega Evolution|/collections/set/me1]] jest w obecnych danych jako własna seria. Linkuję tam, żeby oś czasu miała świeże drzwi, nie dlatego, że nowy set jest ważniejszy od starej zwykłej karty. [[Kolekcje|/collections]] to ta sama lista z paskami. Ta notatka jest listą z datami. [[Mega Evolution—Delta Reign|/collections/set/delta-reign]] nie ma jeszcze na tej liście. Napisałem stronę segregatora, zanim istnieją numery kolekcjonerskie, i nie wstawiam tu zgadniętej liczby.",
           ],
         },
         {
@@ -553,7 +578,7 @@ export function polishArticles(): ArticleCopy[] {
             "Kończę siedzenie, kiedy dziecko wciąż ma ochotę, nie kiedy dobiję do okrągłej liczby. Dwadzieścia minut, które kończą się zamkniętym segregatorem, zdarzy się znowu. Godzina, która kończy się westchnieniem, może się nie zdarzyć. [[Kolekcje|/collections]] pamiętają rzędy, które zapisałem. Nic na ekranie nie jest ważniejsze od tego, że dziecko zechce otworzyć segregator następnym razem. Nie stawiam celu dziesięciu kart ani pełnej strony. Celem jest, żeby segregator zamknął się, kiedy ktoś wciąż chce go otworzyć.",
             "Nie śledzę segregatora dziecka jak zawodów z moim. Publiczne strony tego projektu są moimi listami kontrolnymi. Strona dziecka może zostać niedokończona na zawsze. Jeśli wejdą w dłuższe hobby, listy setów i strony gatunków tam są. Jeśli nie, segregator i tak zrobił swoją robotę: karty po kolei, koszulki nałożone, popołudnie, które należało do nich.",
             "Pytania, na które naprawdę odpowiadam, są małe. Do której kieszonki idzie ta karta. Czy ten dublet może zamknąć dziurę. Czy wolno skończyć. Tak, do numerowanej kieszonki. Tak, jeśli rząd jest pusty. Tak, skończ. Większe zdania zostawiam przy sobie, jeśli dziecko nie pyta. Kolekcja zaczęta w ten sposób może zostać mała i wciąż być prawdziwą kolekcją. Ma kolejność, koszulkę i następny pusty rząd, kiedy ktoś ma ochotę ją otworzyć. Mały segregator z kolejnością i koszulką już jest kolekcją. Nie musi dorosnąć do rozmiaru mojej półki. Miarą jest popołudnie dziecka, nie liczba moich rzędów.",
-            "Jeśli dziecko chce zabrać segregator do swojego pokoju, segregator może iść, byle nie został na podłodze. Pokazuję półkę albo blat raz. Nie robię z tego kontroli w następnym tygodniu. Karty są w koszulkach, a strona znosi kartkowanie. Jeśli karta wraca zgięta, wymieniam ją z bulk bez mowy o tym, kto ją zgiął. Pusty rząd jest uczciwszy niż zgięta karta, którą udaję gotową. Następny raz zaczyna się od tej dziury, a dziecko znowu wybiera. Moja robota to trzymać kieszonkę przy właściwym numerze i picie z dala od stołu.",
+            "Jeśli dziecko chce zabrać segregator do swojego pokoju, segregator może iść, byle nie został na podłodze. Pokazuję półkę albo blat raz. Nie robię z tego kontroli w następnym tygodniu. Karty są w koszulkach, a strona znosi kartkowanie. Jeśli karta wraca zgięta, wymieniam ją z bulk bez mowy o tym, kto ją zgiął. Pusty rząd jest uczciwszy niż zgięta karta, którą udaję gotową. Następny raz zaczyna się od tej dziury, a dziecko znowu wybiera. Moja robota to trzymać kieszonkę przy właściwym numerze i picie z dala od stołu. Karta, która wygląda źle, nie wchodzi, dopóki mam wątpliwość. [[Jak rozpoznaję fałszywkę|/guides/spot-fakes]] to to sprawdzenie, po cichu, z inną kartą z bulku podaną w zamian.",
           ],
         },
       ],
@@ -568,5 +593,6 @@ export function polishArticles(): ArticleCopy[] {
         },
       ],
     },
+    spotFakesPl,
   ];
 }

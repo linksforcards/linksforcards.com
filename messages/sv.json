@@ -76,6 +76,9 @@
     "genBody": "En generationspärm rymmer ett kort av varje art från den generationen, från vilket set som helst. Generation 1 är de ursprungliga 151. Generation 1 till 9 är 1 025 arter.",
     "bulkTitle": "Bulk är välkommet",
     "bulkBody": "En Magikarp från en bulklåda är lika välkommen som en holo. Jag samlar olika kort, och ett av varje Pokémon. Jag bygger inte en samling att sälja, och den här sidan säger inte vad ett kort skulle kosta.",
+    "deltaTitle": "Mega Evolution—Delta Reign",
+    "deltaBody": "Jag ställer i ordning en pärm innan kortlistan finns. Sidan behåller bara det Pokémon har publicerat, och checklistan förblir tom tills numren är riktiga.",
+    "deltaLink": "Öppna sidan för Delta Reign",
     "progressTitle": "Var det står",
     "progressZero": "Inget är inskrivet ännu. Varje siffra här är noll tills jag noterar en verklig försändelse.",
     "progressLive": "De här siffrorna kommer från försändelser jag har skrivit in.",
@@ -212,6 +215,8 @@
     "intro": "Kortlistor för seten, checklistor för generationerna och en sida för varje Pokémon. En fylld stapel är det jag redan har.",
     "generations": "Generationspärmar",
     "sets": "Set efter serie",
+    "deltaLink": "Pärmsidan jag håller redo",
+    "deltaNote": "Mega Evolution—Delta Reign finns inte i kortlistan än.",
     "pokedex": "Pokédex",
     "pokedexIntro": "Varje Pokémon i den nationella dexen, med en egen kortlista.",
     "searchPokedex": "Sök i Pokédex",
@@ -224,7 +229,9 @@
   },
   "seriesPage": {
     "intro": "{series} har {count} set i den här listan. Varje setsida är kortlistan och checklistan.",
-    "other": "Andra serier"
+    "other": "Andra serier",
+    "deltaLink": "Delta Reign, innan numren finns",
+    "deltaPending": "Den här expansionen finns inte i listan än. Jag hittar inte på en rad åt den."
   },
   "setPage": {
     "intro": "{name} kom {date} i serien {series}. Den här kortlistan har {total} kort. Jag har {collected} av dem.",
@@ -250,7 +257,7 @@
   },
   "guides": {
     "kicker": "Ur pärmen",
-    "indexIntro": "En lång anteckning om hur jag samlar, och nio kortare anteckningar som var och en svarar på en fråga.",
+    "indexIntro": "En lång anteckning om hur jag samlar, och tio kortare anteckningar som var och en svarar på en fråga.",
     "updated": "Uppdaterad {date}",
     "toc": "På den här sidan",
     "pillarLabel": "Börja här",

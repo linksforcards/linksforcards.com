@@ -76,6 +76,9 @@
     "genBody": "En generasjonsperm holder ett kort av hver art fra den generasjonen, fra et hvilket som helst sett. Generasjon 1 er de opprinnelige 151. Generasjon 1 til 9 er 1 025 arter.",
     "bulkTitle": "Bulk er velkomment",
     "bulkBody": "En Magikarp fra en bulkboks er like velkommen som en holo. Jeg samler ulike kort, og ett av hver Pokémon. Jeg bygger ikke en samling for å selge, og dette nettstedet sier ikke hva et kort ville koste.",
+    "deltaTitle": "Mega Evolution—Delta Reign",
+    "deltaBody": "Jeg gjør klar en perm før kortlisten finnes. Siden beholder bare det Pokémon har publisert, og sjekklisten blir stående tom til numrene er ekte.",
+    "deltaLink": "Åpne siden for Delta Reign",
     "progressTitle": "Hvor det står",
     "progressZero": "Ingenting er logget ennå. Hvert tall her er null til jeg noterer en ekte forsendelse.",
     "progressLive": "Disse tallene kommer fra forsendelser jeg har logget.",
@@ -212,6 +215,8 @@
     "intro": "Kortlister for settene, sjekklister for generasjonene og en side for hver Pokémon. En fylt stolpe er det jeg allerede har.",
     "generations": "Generasjonspermer",
     "sets": "Sett etter serie",
+    "deltaLink": "Permsiden jeg holder klar",
+    "deltaNote": "Mega Evolution—Delta Reign står ikke i kortlisten ennå.",
     "pokedex": "Pokédex",
     "pokedexIntro": "Hver Pokémon i den nasjonale dexen, med en egen kortliste.",
     "searchPokedex": "Søk i Pokédex",
@@ -224,7 +229,9 @@
   },
   "seriesPage": {
     "intro": "{series} har {count} sett i denne listen. Hver settside er kortlisten og sjekklisten.",
-    "other": "Andre serier"
+    "other": "Andre serier",
+    "deltaLink": "Delta Reign, før numrene finnes",
+    "deltaPending": "Denne utvidelsen står ikke i listen ennå. Jeg finner ikke på en rad til den."
   },
   "setPage": {
     "intro": "{name} kom {date} i serien {series}. Denne kortlisten har {total} kort. Jeg har {collected} av dem.",
@@ -250,7 +257,7 @@
   },
   "guides": {
     "kicker": "Fra permen",
-    "indexIntro": "Ett langt notat om hvordan jeg samler, og ni kortere notater som hver svarer på ett spørsmål.",
+    "indexIntro": "Ett langt notat om hvordan jeg samler, og ti kortere notater som hver svarer på ett spørsmål.",
     "updated": "Oppdatert {date}",
     "toc": "På denne siden",
     "pillarLabel": "Start her",

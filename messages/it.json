@@ -76,6 +76,9 @@
     "genBody": "Un raccoglitore di generazione tiene una carta di ogni specie di quella generazione, da qualunque set. La generazione 1 sono i 151 originali. Dalla generazione 1 alla 9 sono 1.025 specie.",
     "bulkTitle": "Anche le carte sfuse sono benvenute",
     "bulkBody": "Un Magikarp da una scatola di bulk è benvenuto quanto un holo. Sto raccogliendo carte diverse, e una di ogni Pokémon. Non sto costruendo una collezione da vendere, e questo sito non dice a quanto si venderebbe una carta.",
+    "deltaTitle": "Mega Evolution—Delta Reign",
+    "deltaBody": "Sto preparando un raccoglitore prima che esista la lista delle carte. La pagina tiene solo ciò che Pokémon ha pubblicato, e la checklist resta vuota finché i numeri non sono veri.",
+    "deltaLink": "Apri la pagina di Delta Reign",
     "progressTitle": "A che punto sono",
     "progressZero": "Non ho ancora segnato nulla. Ogni cifra qui è zero finché non registro una spedizione vera.",
     "progressLive": "Queste cifre vengono dalle spedizioni che ho segnato.",
@@ -212,6 +215,8 @@
     "intro": "Liste carte dei set, checklist delle generazioni e una pagina per ogni Pokémon. Una barra piena è ciò che ho già.",
     "generations": "Raccoglitori di generazione",
     "sets": "Set per serie",
+    "deltaLink": "La pagina del raccoglitore che tengo pronta",
+    "deltaNote": "Mega Evolution—Delta Reign non è ancora nella lista delle carte.",
     "pokedex": "Pokédex",
     "pokedexIntro": "Ogni Pokémon del dex nazionale, con una lista carte tutta sua.",
     "searchPokedex": "Cerca nel Pokédex",
@@ -224,7 +229,9 @@
   },
   "seriesPage": {
     "intro": "{series} ha {count} set in questa lista. Ogni pagina di set è la lista carte e la checklist.",
-    "other": "Altre serie"
+    "other": "Altre serie",
+    "deltaLink": "Delta Reign, prima dei numeri",
+    "deltaPending": "Questa espansione non è ancora nella lista. Non invento una riga per lei."
   },
   "setPage": {
     "intro": "{name} è uscito il {date} nella serie {series}. Questa lista carte ha {total} carte. Ne ho {collected}.",
@@ -250,7 +257,7 @@
   },
   "guides": {
     "kicker": "Dal raccoglitore",
-    "indexIntro": "Una nota lunga su come colleziono, e nove note più brevi che rispondono ciascuna a una domanda.",
+    "indexIntro": "Una nota lunga su come colleziono, e dieci note più brevi che rispondono ciascuna a una domanda.",
     "updated": "Aggiornato il {date}",
     "toc": "In questa pagina",
     "pillarLabel": "Inizia qui",

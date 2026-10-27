@@ -1,4 +1,5 @@
 import type { ArticleCopy } from "@/lib/articles";
+import { spotFakesIt } from "./spot-fakes/it";
 
 export function italianArticles(): ArticleCopy[] {
   return [
@@ -115,6 +116,14 @@ export function italianArticles(): ArticleCopy[] {
           ],
         },
         {
+          id: "by-type",
+          heading: "Ordinare per tipo, quando il raccoglitore non è una lista",
+          paragraphs: [
+            "Il tipo è il simbolo in alto a destra su una carta Pokémon. [[L'aiuto del database delle carte|https://support.pokemon.com/hc/en-us/articles/360001025274-How-do-I-use-the-Trading-Card-Game-database]] lo descrive così: l'icona energia per Erba, Fuoco, Acqua e il resto. Un bambino che vuole ogni carta Acqua su una pagina ordina per tipo. Lo uso per una pila da gioco sul tavolo. Non lo uso per ordinare un raccoglitore di set. La lista è numerata, e una pagina di un solo tipo nasconde il numero che manca.",
+            "Gli Allenatori non portano quell'icona di tipo, e l'Energia base resta una pila a sé. In un pomeriggio di ordine per tipo, quelle carte hanno il mucchio, invece di finire forzate sotto una creatura. La generazione è l'altro ordine, un tratto del Pokédex, ed è già quello che fa la [[generazione 1|/collections/generation/1]]. Set, numero, tipo e generazione sono quattro domande. Ne prendo una per raccoglitore. [[Come leggo il simbolo|/guides/read-a-card]] è il modo in cui trovo l'icona prima di fidarmi della pila.",
+          ],
+        },
+        {
           id: "marking-a-line",
           heading: "Come segno una riga",
           paragraphs: [
@@ -173,7 +182,7 @@ export function italianArticles(): ArticleCopy[] {
           paragraphs: [
             "Le carte in più restano in una scatola etichettata con il nome del set, o in una sola scatola mescolata quando il mucchio è piccolo. Non è un cestino. Il raccoglitore successivo ha spesso bisogno della carta che ero pronto a lasciare andare. Le tengo asciutte, in una bustina se l'angolo è già morbido, e lontano dal pavimento.",
             "Quando un raccoglitore è finito, la storia cambia. [[Un raccoglitore finito può partire|/guides/donating-cards]] verso un bambino. Le carte in più non partono con lui. Restano e chiudono il raccoglitore dopo. Quella separazione tiene il regalo completo e tiene la lista onesta. Una manciata di doppioni accanto a un raccoglitore finito sembra generosa e arriva come un compito da finire.",
-            "La scatola stessa riceve un'etichetta noiosa: il nome del set, o «misto» se non l'ho ancora divisa. Non etichetto una scatola con una supposizione su quanto le carte potrebbero rendere in una vendita. Non ho una scatola per le carte «buone» e un contenitore per lo «scarto». Quel taglio fa sparire le comuni e lascia i buchi aperti. Una volta al mese riprendo la scatola mista, rifaccio lo smistamento per set e la riduco. L'obiettivo è un mucchio di domande più piccolo, non una vetrina più bella.",
+            "La scatola stessa riceve un'etichetta noiosa: il nome del set, o «misto» se non l'ho ancora divisa. Non etichetto una scatola con una supposizione su quanto le carte potrebbero rendere in una vendita. Non ho una scatola per le carte «buone» e un contenitore per lo «scarto». Quel taglio fa sparire le comuni e lascia i buchi aperti. Una volta al mese riprendo la scatola mista, rifaccio lo smistamento per set e la riduco. L'obiettivo è un mucchio di domande più piccolo, non una vetrina più bella. Una carta di cui non mi fido non chiude una riga. [[Riconoscere un falso|/guides/spot-fakes]] è una nota a parte. La scatola del bulk è il posto delle carte ordinarie e vere, e sono quelle che voglio.",
           ],
         },
       ],
@@ -331,6 +340,14 @@ export function italianArticles(): ArticleCopy[] {
           ],
         },
         {
+          id: "regulation",
+          heading: "Il marchio di regolamento è una lettera di formato",
+          paragraphs: [
+            "Sulle carte stampate dal 2020, Play! Pokémon usa un marchio di regolamento: una lettera in basso a sinistra. Le [[regole di Play! Pokémon|https://play.pokemon.com/en-us/resources/rules/]] dicono che il formato Standard ruota secondo quella lettera. Le carte più vecchie non hanno lettera. Una carta con una lettera vecchia, o senza lettera, può restare legale se la stessa carta è stata ristampata con una lettera attuale. Le lettere permesse cambiano. Non imparo a memoria la lista di adesso in un raccoglitore, e non ordino secondo la lettera.",
+            "La lettera non è il numero di collezione, e non è il simbolo di rarità. [[L'aiuto del database delle carte|https://support.pokemon.com/hc/en-us/articles/360001025274-How-do-I-use-the-Trading-Card-Game-database]] mette il simbolo di rarità nell'angolo in basso a destra, con l'icona dell'espansione. Guardo la lettera solo quando qualcuno chiede se una carta si può giocare in un evento attuale. Per il raccoglitore, il numero decide ancora lo slot. Una carta di cui non mi fido non arriva a quello slot. Di questo parla [[come riconosco un falso|/guides/spot-fakes]].",
+          ],
+        },
+        {
           id: "in-practice",
           heading: "Un passaggio in un mucchio mescolato",
           paragraphs: [
@@ -380,6 +397,14 @@ export function italianArticles(): ArticleCopy[] {
           paragraphs: [
             "In piedi su uno scaffale, o piatti se il raccoglitore è sottile, lontano da una finestra e lontano da un muro esterno umido. Non tengo i raccoglitori in uno scatolone di cantina, in una soffitta calda, o nel bagagliaio di un'auto. Il calore arriccia una bustina. L'umidità macchia una pagina. Il sole sbiadisce l'inchiostro. Niente di tutto questo si vede il giorno in cui lo faccio. Si vede quando apro il raccoglitore un'estate dopo.",
             "Il bulk che non è in un raccoglitore vive in una scatola asciutta, impilato così che le carte non siano piegate da un oggetto più pesante. Tengo cibo e bicchieri fuori da quel tavolo. Sembra pignolo finché del succo d'arancia è dentro una bustina. La [[pagina delle collezioni|/collections]] si può ricostruire dalle carte. Un mucchio incollato, no. Preferisco una scatola noiosa e asciutta a un mucchio che poi dovrò staccare.",
+          ],
+        },
+        {
+          id: "toploader",
+          heading: "Un toploader serve per il viaggio",
+          paragraphs: [
+            "Un toploader è una bustina di plastica rigida. Ne uso uno quando una carta esce di casa: un raccoglitore in viaggio verso un bambino, o una carta sola in un pacco. È più spesso di quanto una pagina voglia, quindi resta fuori dalla pagina a nove tasche. A casa la carta vive in una bustina morbida, nella tasca. Una custodia dura su ogni comune farebbe un raccoglitore che non apro, e aprirlo è il punto.",
+            "Non nastrò una carta dentro un toploader. Se non ne ho uno, la bustina morbida e una scatola piatta battono ancora un angolo piegato. [[La guida lunga|/guides/collecting-binders]] dà già per fatta la bustina morbida. Quella rigida è l'eccezione, per il viaggio, non per la pagina di ogni giorno.",
           ],
         },
         {
@@ -483,7 +508,7 @@ export function italianArticles(): ArticleCopy[] {
           heading: "Da dove dico di cominciare a guardare",
           paragraphs: [
             "La [[serie Base|/collections/series/base]] è l'inizio della lista pubblicata. [[Base|/collections/set/base1]] in sé è il 9 gennaio 1999, 102 carte. [[La lista della generazione 1|/guides/gen-1-checklist]] spiega perché quelle 102 carte non sono la stessa cosa delle 151 specie originali. Mando la gente a entrambe le pagine apposta. La confusione è comune, e la correzione è semplicemente i due conteggi, uno accanto all'altro. Uno conta carte. L'altro conta specie.",
-            "L'altro capo della lista si muove quando si muovono i dati. [[Mega Evolution|/collections/set/me1]] è nei dati attuali come serie propria. Lo collego perché la cronologia abbia una porta recente, non perché un set nuovo sia più importante di una comune vecchia. La [[pagina delle collezioni|/collections]] è la stessa lista con le barre di avanzamento. Questa nota è la lista con le date. Le barre dicono a che punto sono. Le date dicono quando è uscito il set.",
+            "L'altro capo della lista si muove quando si muovono i dati. [[Mega Evolution|/collections/set/me1]] è nei dati attuali come serie propria. Lo collego perché la cronologia abbia una porta recente, non perché un set nuovo sia più importante di una comune vecchia. La [[pagina delle collezioni|/collections]] è la stessa lista con le barre di avanzamento. Questa nota è la lista con le date. Le barre dicono a che punto sono. Le date dicono quando è uscito il set. [[Mega Evolution—Delta Reign|/collections/set/delta-reign]] non è ancora in quella lista. Ho scritto una pagina per il raccoglitore prima che i numeri esistano, e qui non inserisco un conteggio indovinato.",
           ],
         },
         {
@@ -544,7 +569,7 @@ export function italianArticles(): ArticleCopy[] {
           paragraphs: [
             "Chiudo la seduta quando il bambino è ancora disposto, non quando ho raggiunto un numero tondo. Venti minuti che finiscono con un raccoglitore chiuso torneranno. Un'ora che finisce con un sospiro, forse no. La [[pagina delle collezioni|/collections]] ricorderà le righe che ho segnato. Niente sullo schermo è più importante del bambino che voglia aprire il raccoglitore la volta dopo. Segno ciò che è davvero nelle tasche, poi chiudo.",
             "Non seguo il raccoglitore di un bambino come una gara contro il mio. Le pagine pubbliche di questo progetto sono le mie liste. La pagina di un bambino ha il diritto di restare incompiuta per sempre. Se più avanti entra nel passatempo lungo, le liste dei set e le pagine delle specie sono lì. Se non ci entra, il raccoglitore ha comunque fatto il suo lavoro: carte in ordine, bustine al loro posto, un pomeriggio che era suo.",
-            "Le domande a cui rispondo davvero sono piccole. In quale tasca va questa. Se questo doppione può chiudere un buco. Se si può smettere. Sì, la tasca numerata. Sì, se la riga è vuota. Sì, si smette. Tengo per me le opinioni più grandi, salvo che il bambino le chieda. Una collezione cominciata così può restare minuscola ed essere comunque una collezione vera. Ha un ordine, una bustina, e una prossima riga vuota per il giorno in cui qualcuno avrà voglia di aprirla.",
+            "Le domande a cui rispondo davvero sono piccole. In quale tasca va questa. Se questo doppione può chiudere un buco. Se si può smettere. Sì, la tasca numerata. Sì, se la riga è vuota. Sì, si smette. Tengo per me le opinioni più grandi, salvo che il bambino le chieda. Una collezione cominciata così può restare minuscola ed essere comunque una collezione vera. Ha un ordine, una bustina, e una prossima riga vuota per il giorno in cui qualcuno avrà voglia di aprirla. Una carta che sembra falsa non entra finché ho un dubbio. [[Come riconosco un falso|/guides/spot-fakes]] è quel controllo, fatto a bassa voce, con un'altra carta del bulk offerta al suo posto.",
           ],
         },
       ],
@@ -559,5 +584,6 @@ export function italianArticles(): ArticleCopy[] {
         },
       ],
     },
+    spotFakesIt,
   ];
 }

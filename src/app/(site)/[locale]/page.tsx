@@ -110,6 +110,12 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         <h2>{m.home.bulkTitle}</h2>
         <p>{m.home.bulkBody}</p>
       </section>
+      <section className="note">
+        <h2>{m.home.deltaTitle}</h2>
+        <p>
+          {m.home.deltaBody} <a href={localePath(locale, "/collections/set/delta-reign")}>{m.home.deltaLink}</a>
+        </p>
+      </section>
       <CountryCup
         locale={locale}
         failed={cup.state === "error"}

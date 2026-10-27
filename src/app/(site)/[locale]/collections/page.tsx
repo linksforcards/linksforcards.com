@@ -144,6 +144,10 @@ export default async function CollectionsPage({ params }: { params: Promise<{ lo
         })}
       </ul>
       <h2>{m.collectionsPage.sets}</h2>
+      <p>
+        {m.collectionsPage.deltaNote}{" "}
+        <a href={localePath(locale, "/collections/set/delta-reign")}>{m.collectionsPage.deltaLink}</a>
+      </p>
       <SetBrowser
         groups={groups}
         locale={locale}

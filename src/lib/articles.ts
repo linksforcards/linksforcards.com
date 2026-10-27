@@ -12,6 +12,7 @@ export const ARTICLE_SLUGS = [
   "donating-cards",
   "sets-in-order",
   "collecting-with-a-child",
+  "spot-fakes",
 ] as const;
 
 export type ArticleSlug = (typeof ARTICLE_SLUGS)[number];
@@ -19,7 +20,7 @@ export type ArticleSlug = (typeof ARTICLE_SLUGS)[number];
 export const PILLAR_SLUG: ArticleSlug = "collecting-binders";
 
 export const GUIDE_SLUGS = ARTICLE_SLUGS;
-export const GUIDE_UPDATED = "2026-10-24";
+export const GUIDE_UPDATED = "2026-10-27";
 
 export type ArticleSection = { id: string; heading: string; paragraphs: string[] };
 
@@ -32,6 +33,12 @@ export type ArticleCopy = {
   diagram?: { kind: "binders" | "pockets" | "card"; title: string; description: string; caption: string };
   sections: ArticleSection[];
   faqs: { q: string; a: string }[];
+  /**
+   * When false, the questions stay visible but FAQPage JSON-LD is omitted.
+   * Google removed FAQ rich results on 7 May 2026 and the feature docs on 12 June 2026,
+   * so new guides do not add that markup.
+   */
+  faqSchema?: boolean;
 };
 
 /** Contextual links that every locale of an article must include in the prose. */
@@ -60,9 +67,11 @@ export const ARTICLE_LINKS: Record<ArticleSlug, readonly string[]> = {
     "/guides/pokedex-binder",
     "/guides/gen-1-checklist",
     "/guides/sets-in-order",
+    "/guides/read-a-card",
     "/collections",
     "/collections/set/sv4pt5",
     "/collections/generation/1",
+    "https://support.pokemon.com/hc/en-us/articles/360001025274-How-do-I-use-the-Trading-Card-Game-database",
   ],
   "bulk-cards": [
     "/guides/collecting-binders",
@@ -70,6 +79,7 @@ export const ARTICLE_LINKS: Record<ArticleSlug, readonly string[]> = {
     "/guides/donating-cards",
     "/guides/pokedex-binder",
     "/guides/collecting-with-a-child",
+    "/guides/spot-fakes",
     "/collections",
     "/pokedex/129",
     "/collections/themes",
@@ -100,8 +110,11 @@ export const ARTICLE_LINKS: Record<ArticleSlug, readonly string[]> = {
     "/guides/collecting-binders",
     "/guides/bulk-cards",
     "/guides/sets-in-order",
+    "/guides/spot-fakes",
     "/collections/set/base1",
     "/pokedex/25",
+    "https://play.pokemon.com/en-us/resources/rules/",
+    "https://support.pokemon.com/hc/en-us/articles/360001025274-How-do-I-use-the-Trading-Card-Game-database",
   ],
   "protect-cards": [
     "/guides/collecting-binders",
@@ -126,6 +139,7 @@ export const ARTICLE_LINKS: Record<ArticleSlug, readonly string[]> = {
     "/collections/series/base",
     "/collections/set/base1",
     "/collections/set/me1",
+    "/collections/set/delta-reign",
   ],
   "collecting-with-a-child": [
     "/guides/collecting-binders",
@@ -133,8 +147,22 @@ export const ARTICLE_LINKS: Record<ArticleSlug, readonly string[]> = {
     "/guides/bulk-cards",
     "/guides/donating-cards",
     "/guides/gen-1-checklist",
+    "/guides/spot-fakes",
     "/collections/generation/1",
     "/collections",
+  ],
+  "spot-fakes": [
+    "/guides/read-a-card",
+    "/guides/bulk-cards",
+    "/guides/protect-cards",
+    "/guides/collecting-with-a-child",
+    "/guides/collecting-binders",
+    "/collections",
+    "/collections/set/base1",
+    "/pokedex/25",
+    "/collections/themes/pikachu",
+    "https://support.pokemon.com/hc/en-us/articles/360002068953-Did-I-purchase-fake-or-counterfeit-cards",
+    "https://support.pokemon.com/hc/en-us/articles/360001025274-How-do-I-use-the-Trading-Card-Game-database",
   ],
 };
 
@@ -144,6 +172,11 @@ export function isArticleSlug(value: string): value is ArticleSlug {
 
 export function isGuideSlug(value: string): value is ArticleSlug {
   return isArticleSlug(value);
+}
+
+/** Visible questions are fine. FAQPage JSON-LD is only emitted where it was already shipped. */
+export function articleFaqSchema(article: ArticleCopy): boolean {
+  return article.faqSchema !== false && article.faqs.length > 0;
 }
 
 export function getArticle(locale: Locale, slug: string): ArticleCopy | null {

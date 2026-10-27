@@ -76,6 +76,9 @@
     "genBody": "Een generatiebinder bevat één kaart van elke soort uit die generatie, uit welke set dan ook. Generatie 1 is de oorspronkelijke 151. Generatie 1 tot en met 9 zijn 1.025 soorten.",
     "bulkTitle": "Bulk is welkom",
     "bulkBody": "Een Magikarp uit een bulkdoos is net zo welkom als een holo. Ik verzamel verschillende kaarten, en één van elke Pokémon. Ik bouw geen verzameling om te verkopen, en deze site zegt niet wat een kaart zou opbrengen.",
+    "deltaTitle": "Mega Evolution—Delta Reign",
+    "deltaBody": "Ik maak een binder klaar voordat de kaartenlijst bestaat. Op de pagina staat alleen wat Pokémon heeft gepubliceerd, en de checklist blijft leeg tot de nummers echt zijn.",
+    "deltaLink": "Naar de pagina voor Delta Reign",
     "progressTitle": "Waar het staat",
     "progressZero": "Er is nog niets ingevuld. Elk getal hier is nul tot ik een echte zending noteer.",
     "progressLive": "Deze getallen komen uit zendingen die ik heb genoteerd.",
@@ -212,6 +215,8 @@
     "intro": "Kaartenlijsten van de sets, checklists van de generaties en een pagina voor elke Pokémon. Een gevulde balk is wat ik al heb.",
     "generations": "Generatiebinders",
     "sets": "Sets per serie",
+    "deltaLink": "De binderpagina die ik klaarhoud",
+    "deltaNote": "Mega Evolution—Delta Reign staat nog niet in de kaartenlijst.",
     "pokedex": "Pokédex",
     "pokedexIntro": "Elke Pokémon in de nationale dex, met een eigen kaartenlijst.",
     "searchPokedex": "Zoek in de Pokédex",
@@ -224,7 +229,9 @@
   },
   "seriesPage": {
     "intro": "{series} heeft {count} sets in deze lijst. Elke setpagina is de kaartenlijst en de checklist.",
-    "other": "Andere series"
+    "other": "Andere series",
+    "deltaLink": "Delta Reign, vóór de nummers",
+    "deltaPending": "Deze uitbreiding staat nog niet in de lijst. Ik verzin er geen regel voor."
   },
   "setPage": {
     "intro": "{name} verscheen op {date} in de serie {series}. Deze kaartenlijst heeft {total} kaarten. Ik heb er {collected}.",
@@ -250,7 +257,7 @@
   },
   "guides": {
     "kicker": "Uit de binder",
-    "indexIntro": "Eén lange notitie over hoe ik verzamel, en negen kortere notities die elk één vraag beantwoorden.",
+    "indexIntro": "Eén lange notitie over hoe ik verzamel, en tien kortere notities die elk één vraag beantwoorden.",
     "updated": "Bijgewerkt op {date}",
     "toc": "Op deze pagina",
     "pillarLabel": "Begin hier",

@@ -76,6 +76,9 @@
     "genBody": "Segregator generacji mieści jedną kartę każdego gatunku z tej generacji, z dowolnego setu. Generacja 1 to pierwsze 151. Generacje od 1 do 9 to 1 025 gatunków.",
     "bulkTitle": "Luźne karty są mile widziane",
     "bulkBody": "Magikarp z pudła bulk jest tak samo mile widziany jak holo. Zbieram różne karty i po jednej każdego Pokémona. Nie buduję kolekcji na sprzedaż, a ta strona nie podaje, za ile karta by się sprzedała.",
+    "deltaTitle": "Mega Evolution—Delta Reign",
+    "deltaBody": "Szykuję segregator, zanim lista kart będzie istniała. Na stronie zostaje tylko to, co opublikowało Pokémon, a lista kontrolna zostaje pusta, dopóki numery nie są prawdziwe.",
+    "deltaLink": "Otwórz stronę Delta Reign",
     "progressTitle": "Jak to wygląda",
     "progressZero": "Nic jeszcze nie jest zapisane. Każda liczba tutaj wynosi zero, dopóki nie odnotuję prawdziwej przesyłki.",
     "progressLive": "Te liczby pochodzą z przesyłek, które zapisałem.",
@@ -212,6 +215,8 @@
     "intro": "Listy kart setów, listy kontrolne generacji i strona dla każdego Pokémona. Pełny pasek to to, co już mam.",
     "generations": "Segregatory generacji",
     "sets": "Sety według serii",
+    "deltaLink": "Strona segregatora, którą trzymam w gotowości",
+    "deltaNote": "Mega Evolution—Delta Reign nie ma jeszcze na liście kart.",
     "pokedex": "Pokédex",
     "pokedexIntro": "Każdy Pokémon w narodowym dexie, z własną listą kart.",
     "searchPokedex": "Szukaj w Pokédexie",
@@ -224,7 +229,9 @@
   },
   "seriesPage": {
     "intro": "Seria {series} ma {count} setów na tej liście. Każda strona setu to lista kart i lista kontrolna.",
-    "other": "Inne serie"
+    "other": "Inne serie",
+    "deltaLink": "Delta Reign, zanim będą numery",
+    "deltaPending": "Tego dodatku nie ma jeszcze na liście. Nie wymyślam dla niego rzędu."
   },
   "setPage": {
     "intro": "{name} wyszło {date} w serii {series}. Ta lista kart ma {total} kart. Mam {collected} z nich.",
@@ -250,7 +257,7 @@
   },
   "guides": {
     "kicker": "Z segregatora",
-    "indexIntro": "Jedna długa notatka o tym, jak zbieram, i dziewięć krótszych notatek, z których każda odpowiada na jedno pytanie.",
+    "indexIntro": "Jedna długa notatka o tym, jak zbieram, i dziesięć krótszych notatek, z których każda odpowiada na jedno pytanie.",
     "updated": "Aktualizacja: {date}",
     "toc": "Na tej stronie",
     "pillarLabel": "Zacznij tutaj",
