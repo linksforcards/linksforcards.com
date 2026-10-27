@@ -317,6 +317,22 @@
     "previous": "Poprzednia karta",
     "next": "Następna karta",
     "listTwo": "{a} i {b}",
-    "listLast": "{list} i {last}"
+    "listLast": "{list} i {last}",
+    "gameplay": "Ataki i tekst karty",
+    "attack": "Atak",
+    "ability": "Zdolność",
+    "weakness": "Słabość",
+    "resistance": "Odporność",
+    "retreat": "Odwrót",
+    "flavor": "Tekst fabularny",
+    "regulation": "Znacznik regulacji",
+    "evolvesFrom": "Ewoluuje z",
+    "evolvesTo": "Ewoluuje w",
+    "level": "Poziom",
+    "ancient": "Starożytna cecha",
+    "rules": "Tekst karty",
+    "faq": "Pytania o tę kartę",
+    "cost": "Koszt",
+    "damage": "Obrażenia"
   }
 }

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { getSet, getSetCards } from "../src/lib/catalog";
+import { getSet, getSetCards, getSets } from "../src/lib/catalog";
 import {
   buildCardView,
   cardFraction,
@@ -17,6 +17,7 @@ import {
 import { getMessages } from "../src/lib/i18n";
 import { emptyPublic } from "../src/lib/stats";
 import { localePath } from "../src/lib/routing";
+import { LOCALES, type Locale } from "../src/lib/locales";
 import { absoluteUrl } from "../src/lib/site";
 
 describe("card slugs", () => {
@@ -68,11 +69,23 @@ describe("card page copy", () => {
     expect(view.title).toBe("Charizard 4/102 · Base card");
     expect(view.fraction).toBe("4/102");
     expect(view.status).toBe("need");
-    expect(view.paragraph).toContain("Charizard is card 4/102 in the Base set");
+    expect(view.paragraphs.length).toBeGreaterThanOrEqual(4);
+    expect(view.paragraph).toContain("4/102");
+    expect(view.paragraph).toContain("Base");
     expect(view.paragraph).toContain("Stage 2 Fire Pokémon with 120 HP");
     expect(view.paragraph).toContain("Rare Holo");
     expect(view.paragraph).toContain("Mitsuhiro Arita");
     expect(view.paragraph).toContain("Charizard (#006)");
+    expect(view.paragraph).toContain("Charmeleon");
+    expect(view.paragraph).toContain("level 76");
+    expect(view.paragraph).toContain("Fire Spin");
+    expect(view.paragraph).toContain("Energy Burn");
+    expect(view.paragraph).toContain("melt boulders");
+    expect(view.paragraph).toMatch(/other cards in the catalog/);
+    expect(view.faqs.some((faq) => faq.q.toLowerCase().includes("set"))).toBe(true);
+    expect(view.faqs.some((faq) => faq.a.includes("Mitsuhiro Arita"))).toBe(true);
+    expect(view.facts.some((fact) => fact.label === "Level" && fact.value === "76")).toBe(true);
+    expect(view.facts.some((fact) => fact.label === "Retreat" && fact.value === "3")).toBe(true);
     expect(view.paragraph).toContain("Base set binder");
     expect(view.paragraph).toContain("Generation 1 binder (Kanto)");
     expect(view.paragraph).toContain("All Charizard cards");
@@ -97,15 +110,20 @@ describe("card page copy", () => {
     expect(graph).toContain("WebPage");
     expect(graph).not.toContain("Product");
     expect(graph).not.toContain("Offer");
+    expect(graph).not.toContain("FAQPage");
     expect(graph).not.toContain('"price"');
+    expect(graph.length).toBeLessThan(view.paragraph.length + 2500);
   });
 
   it("uses the printed total for a modern card and marks a logged card as held", () => {
     const set = getSet("sv3pt5");
     expect(set && cardFraction(set, { n: "25" })).toBe("25/165");
     const needed = viewFor("sv3pt5", "25");
-    expect(needed.view.paragraph).toContain("Pikachu is card 25/165");
+    expect(needed.view.paragraph).toContain("25/165");
+    expect(needed.view.paragraph).toContain("Pikachu");
     expect(needed.view.paragraph).toContain("Naoyo Kimura");
+    expect(needed.view.paragraph).toContain("The regulation mark is G.");
+    expect(needed.view.paragraph).toContain("Raichu");
     expect(needed.view.paragraph).toContain("I still need this card.");
     const held = viewFor("sv3pt5", "25", true);
     expect(held.view.status).toBe("have");
@@ -115,7 +133,18 @@ describe("card page copy", () => {
     expect(modern.view.path).toBe(cardPath("sv8pt5", modern.card));
     expect(modern.view.paragraph).toContain("Pikachu ex");
     expect(modern.view.paragraph).toContain("Double Rare");
+    expect(modern.view.paragraph).toContain("Prize cards");
+    expect(modern.view.paragraph).toContain("The regulation mark is H.");
     expect(modern.view.paragraph).not.toContain("The illustrator is");
+    const bill = viewFor("base1", "91");
+    expect(bill.view.paragraphs.length).toBeGreaterThanOrEqual(4);
+    expect(bill.view.paragraph).toContain("Draw 2 cards.");
+    expect(bill.view.paragraph).toContain("Ken Sugimori");
+    const energy = viewFor("base1", "98");
+    expect(energy.view.paragraphs.length).toBeGreaterThanOrEqual(3);
+    expect(energy.view.paragraph).toContain("Fire Energy");
+    expect(energy.view.paragraph).toContain("Keiji Kinebuchi");
+    expect(energy.view.paragraph).toContain("Energy card");
     const secret = viewFor("sv3pt5", "199");
     expect(secret.view.fraction).toBe("199/165");
     expect(secret.view.paragraph).toContain("above the printed set size of 165");
@@ -163,6 +192,10 @@ describe("card page copy", () => {
     expect(de.paragraph).toContain("Set-Binder Base");
     expect(de.paragraph).toContain("Binder der Generation 1 (Kanto)");
     expect(de.paragraph).toContain("Alle Glurak-Karten");
+    expect(de.paragraph).toContain("Charmeleon");
+    expect(de.paragraph).toContain("Fire Spin");
+    expect(de.paragraph).toContain("Energy Burn");
+    expect(de.faqs.length).toBeGreaterThanOrEqual(4);
     expect(de.paragraph).toContain("Ich brauche diese Karte noch.");
     expect(de.paragraph).not.toContain("I still need");
     expect(de.paragraph).not.toContain(" and ");
@@ -189,4 +222,77 @@ describe("card page copy", () => {
     expect(sv.paragraph).not.toContain("I still need");
     expect(sv.morePrintings?.href).toBe("/sv/pokedex/6");
   });
+
+  it("stays in the first person on sample cards in every language", () => {
+    const voice: Record<string, RegExp[]> = {
+      en: [/\bwe\b/i, /\bour\b/i, /\bours\b/i],
+      de: [/\bwir\b/i, /\bunser\w*/i, /\buns\b/i],
+      fr: [/\bnous\b/i, /\bnotre\b/i, /\bnos\b/i],
+      es: [/\bnosotros\b/i, /\bnuestro\w*/i],
+      it: [/\bnoi\b/i, /\bnostro\b/i, /\bnostra\b/i, /\bnostri\b/i],
+      nl: [/\bwij\b/i, /\bons\b/i, /\bonze\b/i],
+      sv: [/\bvi\b/i, /\bvår\b/i, /\bvåra\b/i, /\bvårt\b/i],
+      no: [/\bvi\b/i, /\bvår\b/i, /\bvåre\b/i, /\bvårt\b/i],
+      fi: [/\bme\b/i, /\bmeidän\b/i],
+      pl: [/\bmy\b/i, /\bnasz\w*/i],
+    };
+    const samples = [
+      ["base1", "4"],
+      ["sv3pt5", "25"],
+      ["base1", "91"],
+      ["base1", "98"],
+      ["sv8pt5", "28"],
+    ] as const;
+    for (const locale of LOCALES) {
+      const messages = getMessages(locale);
+      const code = locale === "us" || locale === "uk" ? "en" : locale;
+      for (const [setId, number] of samples) {
+        const set = getSet(setId);
+        const card = getSetCards(setId)?.find((item) => item.n === number);
+        if (!set || !card) throw new Error(`missing ${setId} ${number}`);
+        const view = buildCardView(locale as Locale, messages, set, card, "need");
+        expect(view.paragraphs.length, `${locale} ${setId}-${number}`).toBeGreaterThanOrEqual(3);
+        const text = view.paragraphs.join("\n");
+        for (const pattern of voice[code] ?? []) expect(text, `${locale} ${setId}-${number} ${pattern}`).not.toMatch(pattern);
+      }
+    }
+  });
+
+  it("gives a typical card several hundred words of catalog prose", () => {
+    function words(text: string): number {
+      return text.split(/\s+/).filter(Boolean).length;
+    }
+    function median(values: number[]): number {
+      const sorted = values.slice().sort((a, b) => a - b);
+      const mid = Math.floor(sorted.length / 2);
+      if (sorted.length % 2 === 1) return sorted[mid] ?? 0;
+      return ((sorted[mid - 1] ?? 0) + (sorted[mid] ?? 0)) / 2;
+    }
+    function counts(locale: "us" | "de"): number[] {
+      const messages = getMessages(locale);
+      const totals: number[] = [];
+      for (const set of getSets()) {
+        for (const card of getSetCards(set.id) ?? []) {
+          totals.push(words(buildCardView(locale, messages, set, card, "need").paragraph));
+        }
+      }
+      return totals;
+    }
+    const english = counts("us");
+    const german = counts("de");
+    const enMedian = median(english);
+    const deMedian = median(german);
+    const charizard = viewFor("base1", "4").view.paragraph;
+    const deSet = getSet("base1");
+    const deCard = getSetCards("base1")?.find((item) => item.n === "4");
+    if (!deSet || !deCard) throw new Error("missing charizard");
+    const deWords = words(buildCardView("de", getMessages("de"), deSet, deCard, "need").paragraph);
+    console.log(
+      `card prose words median en=${enMedian} de=${deMedian} charizard en=${words(charizard)} de=${deWords} min en=${Math.min(...english)} de=${Math.min(...german)}`,
+    );
+    expect(enMedian).toBeGreaterThanOrEqual(160);
+    expect(deMedian).toBeGreaterThanOrEqual(160);
+    expect(Math.min(...english)).toBeGreaterThanOrEqual(50);
+    expect(Math.min(...german)).toBeGreaterThanOrEqual(50);
+  }, 180_000);
 });

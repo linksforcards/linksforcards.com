@@ -1,6 +1,8 @@
 import type { Graph } from "schema-dts";
+import type { CardFaq } from "@/content/card-story-types";
 import { themeCopy } from "@/content/theme-copy";
 import { numbersMatch } from "./cards";
+import { buildCardStory } from "./card-story";
 import { getSet, getSetCards, getSets, speciesName, type CatalogCard, type CatalogSet } from "./catalog";
 import { fill, formatDay } from "./format";
 import { formatDexNumber, generationOf, SPECIES_TOTAL } from "./generations";
@@ -36,6 +38,8 @@ export type CardView = {
   path: string;
   title: string;
   paragraph: string;
+  paragraphs: string[];
+  faqs: CardFaq[];
   fraction: string;
   status: CardStatus;
   crumbs: Crumb[];
@@ -155,27 +159,8 @@ export function cardStatus(state: "ok" | "unconfigured" | "error", held: boolean
   return held ? "have" : "need";
 }
 
-function joinList(m: Messages, items: string[]): string {
-  if (items.length <= 1) return items[0] ?? "";
-  if (items.length === 2) return fill(m.cardPage.listTwo, { a: items[0] ?? "", b: items[1] ?? "" });
-  return fill(m.cardPage.listLast, { list: items.slice(0, -1).join(", "), last: items.at(-1) ?? "" });
-}
-
-function traits(card: CatalogCard): string {
-  return [...(card.st ?? []), ...(card.ty ?? [])].join(" ");
-}
-
-function kindSentence(m: Messages, card: CatalogCard): string {
-  const line = traits(card);
-  if (card.k === "p") {
-    if (line && card.hp) return fill(m.cardPage.pokemonHp, { traits: line, hp: card.hp });
-    if (line) return fill(m.cardPage.pokemon, { traits: line });
-    if (card.hp) return fill(m.cardPage.pokemonPlainHp, { hp: card.hp });
-    return m.cardPage.pokemonPlain;
-  }
-  if (card.k === "t") return line ? fill(m.cardPage.trainer, { traits: line }) : m.cardPage.trainerPlain;
-  if (card.k === "e") return line ? fill(m.cardPage.energy, { traits: line }) : m.cardPage.energyPlain;
-  return line ? fill(m.cardPage.other, { traits: line }) : m.cardPage.otherPlain;
+function pairLine(pair: { t: string; v?: string }): string {
+  return pair.v ? `${pair.t} ${pair.v}` : pair.t;
 }
 
 function speciesLinks(locale: Locale, card: CatalogCard): CardLink[] {
@@ -267,24 +252,9 @@ export function buildCardView(
   const title = fill(m.cardPage.title, { name: card.name, fraction, set: set.name });
   const binders = binderLinks(locale, m, set, card);
   const species = speciesLinks(locale, card);
-  const released = set.releaseDate
-    ? fill(m.cardPage.releasedClause, { date: formatDay(set.releaseDate, locale) })
-    : ".";
-  const sentences = [
-    fill(m.cardPage.lead, { name: card.name, fraction, set: set.name, series: set.series, released }),
-    kindSentence(m, card),
-  ];
-  if (card.r) sentences.push(fill(m.cardPage.rarityLine, { rarity: card.r }));
-  if (card.a) sentences.push(fill(m.cardPage.illustratorLine, { name: card.a }));
-  if (species.length) sentences.push(fill(m.cardPage.speciesLine, { names: joinList(m, species.map((link) => link.name)) }));
-  const numeric = /^(\d+)/.exec(card.n);
-  if (set.printed && numeric && Number(numeric[1]) > set.printed) {
-    sentences.push(fill(m.cardPage.secretLine, { printed: set.printed }));
-  }
-  sentences.push(fill(m.cardPage.belongsLine, { list: joinList(m, binders.map((link) => link.name)) }));
-  if (status === "have") sentences.push(m.cardPage.statusHave);
-  else if (status === "need") sentences.push(m.cardPage.statusNeed);
-  else sentences.push(m.cardPage.statusUnknown);
+  const statusLine =
+    status === "have" ? m.cardPage.statusHave : status === "need" ? m.cardPage.statusNeed : m.cardPage.statusUnknown;
+  const story = buildCardStory(locale, m, set, card, statusLine);
 
   const facts: CardFact[] = [
     { label: m.cardPage.number, value: fraction },
@@ -299,6 +269,13 @@ export function buildCardView(
   if (card.ty?.length) facts.push({ label: m.cardPage.types, value: card.ty.join(", ") });
   if (card.a) facts.push({ label: m.cardPage.illustrator, value: card.a });
   if (species.length) facts.push({ label: m.cardPage.pokedex, links: species });
+  if (card.lv) facts.push({ label: m.cardPage.level, value: card.lv });
+  if (card.ef) facts.push({ label: m.cardPage.evolvesFrom, value: card.ef });
+  if (card.et?.length) facts.push({ label: m.cardPage.evolvesTo, value: card.et.join(", ") });
+  if (card.w?.length) facts.push({ label: m.cardPage.weakness, value: card.w.map(pairLine).join(", ") });
+  if (card.rs?.length) facts.push({ label: m.cardPage.resistance, value: card.rs.map(pairLine).join(", ") });
+  if (card.rc != null) facts.push({ label: m.cardPage.retreat, value: String(card.rc) });
+  if (card.rm) facts.push({ label: m.cardPage.regulation, value: card.rm });
 
   const cards = getSetCards(set.id) ?? [];
   const index = cards.findIndex((item) => item.n === card.n);
@@ -327,7 +304,9 @@ export function buildCardView(
   return {
     path,
     title,
-    paragraph: sentences.join(" "),
+    paragraph: story.paragraphs.join(" "),
+    paragraphs: story.paragraphs,
+    faqs: story.faqs,
     fraction,
     status,
     crumbs: [
@@ -367,7 +346,7 @@ export function cardPageGraph(locale: Locale, view: CardView): Graph {
       locale,
       path: view.path,
       name: view.title,
-      description: view.paragraph,
+      description: metaDescription(view.paragraphs[0] ?? view.paragraph),
     }),
     breadcrumbNode(view.crumbs),
   ]);

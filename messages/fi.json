@@ -317,6 +317,22 @@
     "previous": "Edellinen kortti",
     "next": "Seuraava kortti",
     "listTwo": "{a} ja {b}",
-    "listLast": "{list} ja {last}"
+    "listLast": "{list} ja {last}",
+    "gameplay": "Hyökkäykset ja kortin teksti",
+    "attack": "Hyökkäys",
+    "ability": "Kyky",
+    "weakness": "Heikkous",
+    "resistance": "Vastustus",
+    "retreat": "Perääntyminen",
+    "flavor": "Flavorteksti",
+    "regulation": "Sääntömerkki",
+    "evolvesFrom": "Kehittyy lajista",
+    "evolvesTo": "Kehittyy lajiksi",
+    "level": "Taso",
+    "ancient": "Muinainen ominaisuus",
+    "rules": "Kortin teksti",
+    "faq": "Kysymyksiä tästä kortista",
+    "cost": "Kustannus",
+    "damage": "Vahinko"
   }
 }

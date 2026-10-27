@@ -317,6 +317,22 @@
     "previous": "Föregående kort",
     "next": "Nästa kort",
     "listTwo": "{a} och {b}",
-    "listLast": "{list} och {last}"
+    "listLast": "{list} och {last}",
+    "gameplay": "Attacker och korttext",
+    "attack": "Attack",
+    "ability": "Förmåga",
+    "weakness": "Svaghet",
+    "resistance": "Motstånd",
+    "retreat": "Reträtt",
+    "flavor": "Flavortext",
+    "regulation": "Regleringsmärke",
+    "evolvesFrom": "Utvecklas från",
+    "evolvesTo": "Utvecklas till",
+    "level": "Nivå",
+    "ancient": "Ancient Trait",
+    "rules": "Korttext",
+    "faq": "Frågor om det här kortet",
+    "cost": "Kostnad",
+    "damage": "Skada"
   }
 }

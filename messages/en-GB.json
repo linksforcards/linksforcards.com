@@ -317,6 +317,22 @@
     "previous": "Previous card",
     "next": "Next card",
     "listTwo": "{a} and {b}",
-    "listLast": "{list}, and {last}"
+    "listLast": "{list}, and {last}",
+    "gameplay": "Attacks and card text",
+    "attack": "Attack",
+    "ability": "Ability",
+    "weakness": "Weakness",
+    "resistance": "Resistance",
+    "retreat": "Retreat",
+    "flavor": "Flavor text",
+    "regulation": "Regulation mark",
+    "evolvesFrom": "Evolves from",
+    "evolvesTo": "Evolves to",
+    "level": "Level",
+    "ancient": "Ancient Trait",
+    "rules": "Card text",
+    "faq": "Questions about this card",
+    "cost": "Cost",
+    "damage": "Damage"
   }
 }

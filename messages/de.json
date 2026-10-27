@@ -317,6 +317,22 @@
     "previous": "Vorherige Karte",
     "next": "Nächste Karte",
     "listTwo": "{a} und {b}",
-    "listLast": "{list} und {last}"
+    "listLast": "{list} und {last}",
+    "gameplay": "Angriffe und Kartentext",
+    "attack": "Angriff",
+    "ability": "Fähigkeit",
+    "weakness": "Schwäche",
+    "resistance": "Resistenz",
+    "retreat": "Rückzug",
+    "flavor": "Flavortext",
+    "regulation": "Regulationsmarke",
+    "evolvesFrom": "Entwickelt sich aus",
+    "evolvesTo": "Entwickelt sich zu",
+    "level": "Level",
+    "ancient": "Uralte Eigenschaft",
+    "rules": "Kartentext",
+    "faq": "Fragen zu dieser Karte",
+    "cost": "Kosten",
+    "damage": "Schaden"
   }
 }

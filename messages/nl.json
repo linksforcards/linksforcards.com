@@ -317,6 +317,22 @@
     "previous": "Vorige kaart",
     "next": "Volgende kaart",
     "listTwo": "{a} en {b}",
-    "listLast": "{list} en {last}"
+    "listLast": "{list} en {last}",
+    "gameplay": "Aanvallen en kaarttekst",
+    "attack": "Aanval",
+    "ability": "Vaardigheid",
+    "weakness": "Zwakte",
+    "resistance": "Weerstand",
+    "retreat": "Terugtocht",
+    "flavor": "Flavortekst",
+    "regulation": "Regulatieteken",
+    "evolvesFrom": "Evolueert uit",
+    "evolvesTo": "Evolueert naar",
+    "level": "Level",
+    "ancient": "Oude eigenschap",
+    "rules": "Kaarttekst",
+    "faq": "Vragen over deze kaart",
+    "cost": "Kosten",
+    "damage": "Schade"
   }
 }
