@@ -1,4 +1,5 @@
 import { numbersMatch } from "./cards";
+import { getSet } from "./catalog";
 import { extractEstimates, fetchSetPriceCards } from "./prices";
 import { str, type Sql } from "./sql";
 
@@ -17,13 +18,16 @@ export async function refreshInventoryPrices(db: Sql): Promise<RefreshResult> {
     [started],
   );
 
-  const sets = await db.query<{ set_id: string }>(`SELECT DISTINCT set_id FROM shipment_cards`);
+  const sets = await db.query<{ set_id: string }>(
+    `SELECT DISTINCT set_id FROM shipment_cards WHERE language IN ('en', 'de', 'fr', 'it', 'es', 'pt')`,
+  );
   let updated = 0;
   let unpriced = 0;
   const failedSets: string[] = [];
 
   for (const setRow of sets) {
     const setId = str(setRow.set_id);
+    if (!getSet(setId)) continue;
     const heldRows = await db.query<{ card_number: string }>(
       `SELECT DISTINCT card_number FROM shipment_cards WHERE set_id = $1`,
       [setId],

@@ -159,6 +159,18 @@ export function cardIsHeld(held: Record<string, readonly string[]>, setId: strin
   return (held[setId] ?? []).some((value) => numbersMatch(number, value));
 }
 
+/** Joins translated printing-language names: German, or French and German. */
+export function formatHeldLanguages(m: Messages, codes: readonly string[]): string {
+  const names = codes
+    .map((code) => m.printLanguages[code as keyof Messages["printLanguages"]] ?? code)
+    .filter((name) => name.length > 0)
+    .sort((a, b) => a.localeCompare(b));
+  if (names.length <= 1) return names[0] ?? "";
+  if (names.length === 2) return fill(m.cardPage.listTwo, { a: names[0] ?? "", b: names[1] ?? "" });
+  const last = names.at(-1) ?? "";
+  return fill(m.cardPage.listLast, { list: names.slice(0, -1).join(", "), last });
+}
+
 export function cardStatus(state: "ok" | "unconfigured" | "error", held: boolean): CardStatus {
   if (state === "error") return "unknown";
   return held ? "have" : "need";

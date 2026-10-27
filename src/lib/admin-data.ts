@@ -3,11 +3,13 @@ import { getSet, getSetCards } from "./catalog";
 import { numbersMatch, parseDex } from "./cards";
 import { GENERATIONS, generationOf, SPECIES_TOTAL } from "./generations";
 import { lineCents } from "./money";
+import { isWesternPrintLanguage } from "./print-languages";
 import { intOrNull, num, str, type Sql } from "./sql";
 import { getThemes, themeCollected } from "./themes";
 import { safeHttpUrl } from "./urls";
 
 export type AdminCard = {
+  language: string;
   setId: string;
   setName: string;
   number: string;
@@ -67,6 +69,7 @@ export type AdminOverview = {
 };
 
 type Line = {
+  language: string;
   setId: string;
   number: string;
   name: string;
@@ -77,6 +80,10 @@ type Line = {
   country: string;
   demo: boolean;
 };
+
+function countsTowardEnglishList(line: { language: string; setId: string }): boolean {
+  return isWesternPrintLanguage(line.language) && Boolean(getSet(line.setId));
+}
 
 type PriceRow = {
   set_id: string;
@@ -96,13 +103,14 @@ export async function readAdmin(db: Sql): Promise<AdminOverview> {
     card_name: string;
     quantity: unknown;
     dex_numbers: string;
+    language: string;
     shop_id: string;
     shop_name: string;
     country: string;
     shop_demo: unknown;
     shipment_demo: unknown;
   }>(
-    `SELECT sc.set_id, sc.card_number, sc.card_name, sc.quantity, sc.dex_numbers,
+    `SELECT sc.set_id, sc.card_number, sc.card_name, sc.quantity, sc.dex_numbers, sc.language,
             sh.id AS shop_id, sh.name AS shop_name, sh.country,
             sh.is_demo AS shop_demo, s.is_demo AS shipment_demo
      FROM shipment_cards sc
@@ -110,6 +118,7 @@ export async function readAdmin(db: Sql): Promise<AdminOverview> {
      JOIN shops sh ON sh.id = s.shop_id`,
   );
   const lines: Line[] = lineRows.map((row) => ({
+    language: str(row.language) || "en",
     setId: str(row.set_id),
     number: str(row.card_number),
     name: str(row.card_name),
@@ -130,11 +139,12 @@ export async function readAdmin(db: Sql): Promise<AdminOverview> {
 
   const grouped = new Map<string, AdminCard>();
   for (const line of lines) {
-    const key = `${line.setId}:${line.number}`;
-    const price = prices.get(key);
+    const key = `${line.language}:${line.setId}:${line.number}`;
+    const price = prices.get(`${line.setId}:${line.number}`);
     const current = grouped.get(key) ?? {
+      language: line.language,
       setId: line.setId,
-      setName: getSet(line.setId)?.name ?? line.setId,
+      setName: isWesternPrintLanguage(line.language) ? (getSet(line.setId)?.name ?? line.setId) : line.setId,
       number: line.number,
       name: line.name,
       qty: 0,
@@ -156,7 +166,12 @@ export async function readAdmin(db: Sql): Promise<AdminOverview> {
     grouped.set(key, current);
   }
 
-  const cards = [...grouped.values()].sort((a, b) => a.setName.localeCompare(b.setName) || a.number.localeCompare(b.number, "en", { numeric: true }));
+  const cards = [...grouped.values()].sort(
+    (a, b) =>
+      a.setName.localeCompare(b.setName) ||
+      a.number.localeCompare(b.number, "en", { numeric: true }) ||
+      a.language.localeCompare(b.language),
+  );
   let copies = 0;
   let cmTotal = 0;
   let tcgTotal = 0;
@@ -165,6 +180,7 @@ export async function readAdmin(db: Sql): Promise<AdminOverview> {
   const fetches: string[] = [];
   for (const card of cards) {
     copies += card.qty;
+    if (!countsTowardEnglishList(card)) continue;
     const cm = lineCents(card.qty, card.cmCents);
     const tcg = lineCents(card.qty, card.tcgCents);
     if (cm == null) cmMissing += 1;
@@ -177,9 +193,10 @@ export async function readAdmin(db: Sql): Promise<AdminOverview> {
 
   const shopTotals = new Map<string, ShopTotal>();
   for (const line of lines) {
-    const price = prices.get(`${line.setId}:${line.number}`);
-    const cmUnit = intOrNull(price?.cardmarket_cents);
-    const tcgUnit = intOrNull(price?.tcgplayer_cents);
+    const priced = countsTowardEnglishList(line);
+    const price = priced ? prices.get(`${line.setId}:${line.number}`) : undefined;
+    const cmUnit = priced ? intOrNull(price?.cardmarket_cents) : null;
+    const tcgUnit = priced ? intOrNull(price?.tcgplayer_cents) : null;
     const current = shopTotals.get(line.shopId) ?? {
       id: line.shopId,
       name: line.shopName,
@@ -192,12 +209,14 @@ export async function readAdmin(db: Sql): Promise<AdminOverview> {
       tcgMissing: 0,
     };
     current.copies += line.qty;
-    const cm = lineCents(line.qty, cmUnit);
-    const tcg = lineCents(line.qty, tcgUnit);
-    if (cm == null) current.cmMissing += 1;
-    else current.cmCents += cm;
-    if (tcg == null) current.tcgMissing += 1;
-    else current.tcgCents += tcg;
+    if (priced) {
+      const cm = lineCents(line.qty, cmUnit);
+      const tcg = lineCents(line.qty, tcgUnit);
+      if (cm == null) current.cmMissing += 1;
+      else current.cmCents += cm;
+      if (tcg == null) current.tcgMissing += 1;
+      else current.tcgCents += tcg;
+    }
     shopTotals.set(line.shopId, current);
   }
 
@@ -211,20 +230,28 @@ export async function readAdmin(db: Sql): Promise<AdminOverview> {
   const marks = new Map(markRows.map((row) => [`${row.binder_kind}:${row.binder_key}`, row]));
 
   const species = new Set<number>();
-  for (const card of cards) for (const dex of card.dex) species.add(dex);
+  for (const card of cards) {
+    if (!countsTowardEnglishList(card)) continue;
+    for (const dex of card.dex) species.add(dex);
+  }
 
   const binders: BinderTotal[] = [];
   for (const generation of GENERATIONS) {
-    const inGen = cards.filter((card) => card.dex.some((dex) => generationOf(dex) === generation.id));
+    const inGen = cards.filter(
+      (card) => countsTowardEnglishList(card) && card.dex.some((dex) => generationOf(dex) === generation.id),
+    );
     const collected = [...species].filter((dex) => dex >= generation.start && dex <= generation.end).length;
     const mark = marks.get(`generation:${generation.id}`);
     if (!inGen.length && !mark) continue;
     binders.push(totalFor(inGen, "generation", String(generation.id), `Generation ${generation.id}`, collected, generation.end - generation.start + 1, mark));
   }
 
-  const setIds = new Set<string>([...cards.map((card) => card.setId), ...markRows.filter((row) => row.binder_kind === "set").map((row) => row.binder_key)]);
+  const setIds = new Set<string>([
+    ...cards.filter((card) => countsTowardEnglishList(card)).map((card) => card.setId),
+    ...markRows.filter((row) => row.binder_kind === "set").map((row) => row.binder_key),
+  ]);
   for (const setId of setIds) {
-    const inSet = cards.filter((card) => card.setId === setId);
+    const inSet = cards.filter((card) => card.setId === setId && countsTowardEnglishList(card));
     const catalog = getSetCards(setId);
     const collected = catalog
       ? catalog.filter((card) => inSet.some((held) => numbersMatch(card.n, held.number))).length
@@ -237,6 +264,7 @@ export async function readAdmin(db: Sql): Promise<AdminOverview> {
 
   const held: Record<string, string[]> = {};
   for (const card of cards) {
+    if (!countsTowardEnglishList(card)) continue;
     const list = held[card.setId] ?? [];
     list.push(card.number);
     held[card.setId] = list;
@@ -323,10 +351,12 @@ export async function listShipments(db: Sql) {
     country: string;
     lines: unknown;
     copies: unknown;
+    languages: string;
   }>(
     `SELECT s.id, s.received_on, s.notes, s.is_demo, s.binders_included, s.created_at,
             sh.name AS shop_name, sh.country,
-            COUNT(sc.id) AS lines, COALESCE(SUM(sc.quantity), 0) AS copies
+            COUNT(sc.id) AS lines, COALESCE(SUM(sc.quantity), 0) AS copies,
+            COALESCE(string_agg(DISTINCT sc.language, ', ' ORDER BY sc.language), '') AS languages
      FROM shipments s
      JOIN shops sh ON sh.id = s.shop_id
      LEFT JOIN shipment_cards sc ON sc.shipment_id = s.id

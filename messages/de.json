@@ -11,6 +11,20 @@
     "Galar",
     "Paldea"
   ],
+  "printLanguages": {
+    "en": "Englisch",
+    "de": "Deutsch",
+    "fr": "Französisch",
+    "it": "Italienisch",
+    "es": "Spanisch",
+    "pt": "Portugiesisch",
+    "ja": "Japanisch",
+    "zh-tw": "Traditionelles Chinesisch",
+    "zh-cn": "Vereinfachtes Chinesisch",
+    "ko": "Koreanisch",
+    "th": "Thailändisch",
+    "id": "Indonesisch"
+  },
   "meta": {
     "homeTitle": "LinksForCards",
     "homeDescription": "Ich bin Magnus Schmidt. Ich sammle Pokémon-Karten in Läden in Europa und den USA, fülle Set- und Generationsbinder und gebe die Binder an Kinder weiter. Diese Seite ist das öffentliche Protokoll.",
@@ -230,7 +244,9 @@
     "letters": "Anfangsbuchstabe",
     "guides": "Notizen",
     "themes": "Themen-Binder",
-    "themesIntro": "Ein Binder für ein Pokémon, einen Künstler oder eine Kartenart. Der Balken ist das, was ich schon habe."
+    "themesIntro": "Ein Binder für ein Pokémon, einen Künstler oder eine Kartenart. Der Balken ist das, was ich schon habe.",
+    "otherPrintings": "Drucke außerhalb der englischen Liste",
+    "otherPrintingsIntro": "Diese Exemplare sind in der Sammlung. Sie haben keine Seite in der englischen Kartenliste."
   },
   "seriesPage": {
     "intro": "{series} hat {count} Sets in dieser Liste. Jede Set-Seite ist die Kartenliste und die Checkliste.",
@@ -349,7 +365,8 @@
     "rules": "Kartentext",
     "faq": "Fragen zu dieser Karte",
     "cost": "Kosten",
-    "damage": "Schaden"
+    "damage": "Schaden",
+    "alsoHeld": "Auch in der Sammlung: {languages}."
   },
   "cardSearch": {
     "kicker": "Kartenliste",

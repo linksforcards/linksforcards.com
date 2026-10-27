@@ -10,7 +10,7 @@ import { RelatedLinks } from "@/components/site/related-links";
 import { SiteLinks } from "@/components/site/site-links";
 import { themeCopy } from "@/content/theme-copy";
 import { getArticle } from "@/lib/articles";
-import { cardRowHref } from "@/lib/card-page";
+import { cardRowHref, formatHeldLanguages } from "@/lib/card-page";
 import { numbersMatch } from "@/lib/cards";
 import { cardImageSrc, getSet, getSetCards, getSets, speciesName, type CardKind } from "@/lib/catalog";
 import { fill, formatDay, formatInt } from "@/lib/format";
@@ -22,7 +22,7 @@ import { pageMetadata } from "@/lib/seo";
 import { seriesSlug } from "@/lib/series";
 import { absoluteUrl } from "@/lib/site";
 import { kindSummary, setFacts } from "@/lib/set-facts";
-import { loadPublic, markFor } from "@/lib/stats";
+import { loadPublic, markFor, otherLanguagesHeld } from "@/lib/stats";
 import { themesForSet } from "@/lib/themes";
 
 export const revalidate = 3600;
@@ -85,12 +85,14 @@ export default async function SetPage({ params }: { params: Promise<{ locale: st
   const title = fill(m.meta.setTitle, { name: set.name });
   const rows = cards.map((card) => {
     const dex = card.dex?.find((number) => number >= 1 && number <= 1025);
+    const alsoHeld = otherLanguagesHeld(snapshot, set.id, card.n);
     return {
       key: card.n,
       title: `${card.n} ${card.name}`,
       detail: [
         kindLabel(card.k, m),
         ...(card.dex ?? []).map((number) => `${formatDexNumber(number)} ${speciesName(number, locale)}`),
+        ...(alsoHeld.length ? [fill(m.cardPage.alsoHeld, { languages: formatHeldLanguages(m, alsoHeld) })] : []),
       ].join(" · "),
       have: held.some((number) => numbersMatch(card.n, number)),
       image: cardImageSrc(set.id, card.n),

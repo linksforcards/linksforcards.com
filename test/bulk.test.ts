@@ -14,6 +14,17 @@ describe("parseBulk", () => {
     ]);
   });
 
+  it("keeps a language and set override, including a manual name", () => {
+    const parsed = parseBulk("4\nDE swsh3 136\nde swsh3 136 x2\nzh-cn CSV1C 001 x2\nzh-cn SV7 001 = 芭瓢蟲\n# note");
+    expect(parsed.errors).toEqual([]);
+    expect(parsed.items).toEqual([
+      { number: "4", quantity: 1 },
+      { number: "136", quantity: 3, language: "de", setId: "swsh3" },
+      { number: "001", quantity: 2, language: "zh-cn", setId: "CSV1C" },
+      { number: "001", quantity: 1, language: "zh-cn", setId: "SV7", name: "芭瓢蟲" },
+    ]);
+  });
+
   it("rejects an empty or oversized range and a bad quantity", () => {
     expect(parseBulk("20-12").errors[0]?.reason).toMatch(/range/i);
     expect(parseBulk("1-200").errors[0]?.reason).toMatch(/151/);

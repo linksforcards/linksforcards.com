@@ -11,6 +11,20 @@
     "Galar",
     "Paldea"
   ],
+  "printLanguages": {
+    "en": "angielski",
+    "de": "niemiecki",
+    "fr": "francuski",
+    "it": "włoski",
+    "es": "hiszpański",
+    "pt": "portugalski",
+    "ja": "japoński",
+    "zh-tw": "chiński tradycyjny",
+    "zh-cn": "chiński uproszczony",
+    "ko": "koreański",
+    "th": "tajski",
+    "id": "indonezyjski"
+  },
   "meta": {
     "homeTitle": "LinksForCards",
     "homeDescription": "Jestem Magnus Schmidt. Zbieram karty Pokémon ze sklepów w Europie i w Stanach Zjednoczonych, kompletuję segregatory setów i generacji i oddaję je dzieciom. Ta strona jest publicznym spisem.",
@@ -230,7 +244,9 @@
     "letters": "Pierwsza litera",
     "guides": "Poradniki",
     "themes": "Segregatory tematyczne",
-    "themesIntro": "Segregator dla jednego Pokémona, jednego artysty albo jednego rodzaju karty. Pasek to to, co już mam."
+    "themesIntro": "Segregator dla jednego Pokémona, jednego artysty albo jednego rodzaju karty. Pasek to to, co już mam.",
+    "otherPrintings": "Wydruki poza angielską listą",
+    "otherPrintingsIntro": "Te egzemplarze są w kolekcji. Nie mają strony na angielskiej liście kart."
   },
   "seriesPage": {
     "intro": "Seria {series} ma {count} setów na tej liście. Każda strona setu to lista kart i lista kontrolna.",
@@ -349,7 +365,8 @@
     "rules": "Tekst karty",
     "faq": "Pytania o tę kartę",
     "cost": "Koszt",
-    "damage": "Obrażenia"
+    "damage": "Obrażenia",
+    "alsoHeld": "Także w kolekcji: {languages}."
   },
   "cardSearch": {
     "kicker": "Lista kart",

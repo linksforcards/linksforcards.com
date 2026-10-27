@@ -11,6 +11,20 @@
     "Galar",
     "Paldea"
   ],
+  "printLanguages": {
+    "en": "anglais",
+    "de": "allemand",
+    "fr": "français",
+    "it": "italien",
+    "es": "espagnol",
+    "pt": "portugais",
+    "ja": "japonais",
+    "zh-tw": "chinois traditionnel",
+    "zh-cn": "chinois simplifié",
+    "ko": "coréen",
+    "th": "thaï",
+    "id": "indonésien"
+  },
   "meta": {
     "homeTitle": "LinksForCards",
     "homeDescription": "Je suis Magnus Schmidt. Je collectionne des cartes Pokémon auprès de boutiques en Europe et aux États-Unis, je complète des classeurs de série et de génération, et je les donne à des enfants. Cette page est le registre public.",
@@ -230,7 +244,9 @@
     "letters": "Première lettre",
     "guides": "Guides",
     "themes": "Classeurs à thème",
-    "themesIntro": "Un classeur pour un Pokémon, un artiste ou un type de carte. La barre, c'est ce que j'ai déjà."
+    "themesIntro": "Un classeur pour un Pokémon, un artiste ou un type de carte. La barre, c'est ce que j'ai déjà.",
+    "otherPrintings": "Tirages hors de la liste anglaise",
+    "otherPrintingsIntro": "Ces exemplaires sont dans la collection. Ils n'ont pas de page dans la liste anglaise."
   },
   "seriesPage": {
     "intro": "{series} compte {count} sets dans cette liste. Chaque page de set est la liste de cartes et la checklist.",
@@ -349,7 +365,8 @@
     "rules": "Texte de la carte",
     "faq": "Questions sur cette carte",
     "cost": "Coût",
-    "damage": "Dégâts"
+    "damage": "Dégâts",
+    "alsoHeld": "Aussi dans la collection : {languages}."
   },
   "cardSearch": {
     "kicker": "Liste de cartes",

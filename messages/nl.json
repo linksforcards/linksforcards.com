@@ -11,6 +11,20 @@
     "Galar",
     "Paldea"
   ],
+  "printLanguages": {
+    "en": "Engels",
+    "de": "Duits",
+    "fr": "Frans",
+    "it": "Italiaans",
+    "es": "Spaans",
+    "pt": "Portugees",
+    "ja": "Japans",
+    "zh-tw": "traditioneel Chinees",
+    "zh-cn": "vereenvoudigd Chinees",
+    "ko": "Koreaans",
+    "th": "Thai",
+    "id": "Indonesisch"
+  },
   "meta": {
     "homeTitle": "LinksForCards",
     "homeDescription": "Ik ben Magnus Schmidt. Ik verzamel Pokémon-kaarten bij winkels in Europa en de Verenigde Staten, maak set- en generatiebinders vol en geef die binders aan kinderen. Deze pagina is het openbare verslag.",
@@ -230,7 +244,9 @@
     "letters": "Eerste letter",
     "guides": "Gidsen",
     "themes": "Thematische binders",
-    "themesIntro": "Een binder voor een Pokémon, een tekenaar of een soort kaart. De balk is wat ik al heb."
+    "themesIntro": "Een binder voor een Pokémon, een tekenaar of een soort kaart. De balk is wat ik al heb.",
+    "otherPrintings": "Drukken buiten de Engelse lijst",
+    "otherPrintingsIntro": "Deze exemplaren zitten in de verzameling. Ze hebben geen pagina in de Engelse kaartenlijst."
   },
   "seriesPage": {
     "intro": "{series} heeft {count} sets in deze lijst. Elke setpagina is de kaartenlijst en de checklist.",
@@ -349,7 +365,8 @@
     "rules": "Kaarttekst",
     "faq": "Vragen over deze kaart",
     "cost": "Kosten",
-    "damage": "Schade"
+    "damage": "Schade",
+    "alsoHeld": "Ook in de verzameling: {languages}."
   },
   "cardSearch": {
     "kicker": "Kaartenlijst",

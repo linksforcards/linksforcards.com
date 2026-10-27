@@ -16,19 +16,42 @@ export function formatDexList(values: number[]): string {
   return [...new Set(values)].filter((value) => value > 0).sort((a, b) => a - b).join(",");
 }
 
-export type BulkItem = { number: string; quantity: number };
+export type BulkItem = {
+  number: string;
+  quantity: number;
+  language?: string;
+  setId?: string;
+  name?: string;
+};
 export type BulkError = { line: number; raw: string; reason: string };
 
 const SINGLE = /^([A-Za-z0-9!?]+)(?:\s*[x*,]\s*(\d+))?$/;
 const RANGE = /^(\d+)\s*-\s*(\d+)(?:\s*[x*,]\s*(\d+))?$/;
+const LANG = "zh-tw|zh-cn|en|de|fr|it|es|pt|ja|ko|th|id";
+const OVERRIDE = new RegExp(
+  `^(${LANG})\\s+([A-Za-z0-9]+(?:\\.[A-Za-z0-9]+)*)\\s+([A-Za-z0-9!?]+)(?:\\s*[x*,]\\s*(\\d+))?(?:\\s*=\\s*(.*))?$`,
+  "i",
+);
 
 function validQty(quantity: number): boolean {
   return Number.isInteger(quantity) && quantity >= 1 && quantity <= 999;
 }
 
+type BulkAcc = { number: string; quantity: number; language?: string; setId?: string; name?: string };
+
+function addItem(totals: Map<string, BulkAcc>, key: string, item: BulkAcc) {
+  const current = totals.get(key);
+  if (!current) {
+    totals.set(key, { ...item });
+    return;
+  }
+  current.quantity += item.quantity;
+  if (!current.name && item.name) current.name = item.name;
+}
+
 export function parseBulk(text: string): { items: BulkItem[]; errors: BulkError[] } {
   const errors: BulkError[] = [];
-  const totals = new Map<string, number>();
+  const totals = new Map<string, BulkAcc>();
   const lines = text.split(/\r?\n/);
   for (let index = 0; index < lines.length; index += 1) {
     const raw = lines[index].trim();
@@ -48,9 +71,38 @@ export function parseBulk(text: string): { items: BulkItem[]; errors: BulkError[
         continue;
       }
       for (let number = start; number <= end; number += 1) {
-        const key = String(number);
-        totals.set(key, (totals.get(key) ?? 0) + quantity);
+        const printed = String(number);
+        addItem(totals, `n:${printed}`, { number: printed, quantity });
       }
+      continue;
+    }
+    const override = OVERRIDE.exec(raw);
+    if (override) {
+      const quantity = override[4] ? Number(override[4]) : 1;
+      if (!validQty(quantity)) {
+        errors.push({ line, raw, reason: "Quantity must be from 1 to 999." });
+        continue;
+      }
+      const named = override[5] != null;
+      const name = named ? override[5].trim() : "";
+      if (named && !name) {
+        errors.push({ line, raw, reason: "Add a name after =." });
+        continue;
+      }
+      if (name.length > 120) {
+        errors.push({ line, raw, reason: "That name is longer than 120 characters." });
+        continue;
+      }
+      const language = override[1].toLowerCase();
+      const setId = override[2];
+      const number = override[3];
+      addItem(totals, `o:${language}:${setId}:${number}`, {
+        number,
+        quantity,
+        language,
+        setId,
+        ...(name ? { name } : {}),
+      });
       continue;
     }
     const single = SINGLE.exec(raw);
@@ -58,7 +110,7 @@ export function parseBulk(text: string): { items: BulkItem[]; errors: BulkError[
       errors.push({
         line,
         raw,
-        reason: "Use a card number, optionally with a quantity: 4, 4 x3, or 12-20.",
+        reason: "Use a card number, optionally with a quantity: 4, 4 x3, or 12-20. Or name the language and set: de swsh3 136.",
       });
       continue;
     }
@@ -67,14 +119,20 @@ export function parseBulk(text: string): { items: BulkItem[]; errors: BulkError[
       errors.push({ line, raw, reason: "Quantity must be from 1 to 999." });
       continue;
     }
-    totals.set(single[1], (totals.get(single[1]) ?? 0) + quantity);
+    addItem(totals, `n:${single[1]}`, { number: single[1], quantity });
   }
   if (totals.size > 2000) {
     errors.push({ line: 0, raw: "", reason: "That is more than 2000 different numbers in one shipment." });
     return { items: [], errors };
   }
   return {
-    items: [...totals.entries()].map(([number, quantity]) => ({ number, quantity })),
+    items: [...totals.values()].map((item) => ({
+      number: item.number,
+      quantity: item.quantity,
+      ...(item.language ? { language: item.language } : {}),
+      ...(item.setId ? { setId: item.setId } : {}),
+      ...(item.name ? { name: item.name } : {}),
+    })),
     errors,
   };
 }

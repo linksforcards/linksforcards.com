@@ -11,6 +11,20 @@
     "Galar",
     "Paldea"
   ],
+  "printLanguages": {
+    "en": "engelsk",
+    "de": "tysk",
+    "fr": "fransk",
+    "it": "italiensk",
+    "es": "spansk",
+    "pt": "portugisisk",
+    "ja": "japansk",
+    "zh-tw": "tradisjonell kinesisk",
+    "zh-cn": "forenklet kinesisk",
+    "ko": "koreansk",
+    "th": "thai",
+    "id": "indonesisk"
+  },
   "meta": {
     "homeTitle": "LinksForCards",
     "homeDescription": "Jeg er Magnus Schmidt. Jeg samler Pokémon-kort fra butikker i Europa og USA, fyller sett- og generasjonspermer og gir permene til barn. Denne siden er den offentlige oversikten.",
@@ -230,7 +244,9 @@
     "letters": "Første bokstav",
     "guides": "Guider",
     "themes": "Temapermer",
-    "themesIntro": "En perm for en Pokémon, en kunstner eller en type kort. Stolpen er det jeg allerede har."
+    "themesIntro": "En perm for en Pokémon, en kunstner eller en type kort. Stolpen er det jeg allerede har.",
+    "otherPrintings": "Trykk utenfor den engelske listen",
+    "otherPrintingsIntro": "Disse eksemplarene er i samlingen. De har ingen side i den engelske kortlisten."
   },
   "seriesPage": {
     "intro": "{series} har {count} sett i denne listen. Hver settside er kortlisten og sjekklisten.",
@@ -349,7 +365,8 @@
     "rules": "Korttekst",
     "faq": "Spørsmål om dette kortet",
     "cost": "Kostnad",
-    "damage": "Skade"
+    "damage": "Skade",
+    "alsoHeld": "Også i samlingen: {languages}."
   },
   "cardSearch": {
     "kicker": "Kortliste",
