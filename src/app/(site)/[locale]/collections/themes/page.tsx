@@ -64,6 +64,9 @@ export default async function ThemesHubPage({ params }: { params: Promise<{ loca
         <p className="lede">{m.collectionsPage.themesIntro}</p>
       </section>
       <p>{m.themesPage.disclaimer}</p>
+      <p>
+        {m.printChecklist.hubLead} <a href={localePath(locale, "/checklists")}>{m.printChecklist.hubLink}</a>.
+      </p>
       <ul className="gen-list">
         {themes.map(({ theme, copy }) => {
           const collected = themeCollected(theme, snapshot.held);

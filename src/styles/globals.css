@@ -817,9 +817,125 @@ caption { text-align: left; padding: 0.75rem 0.65rem 0.25rem; font-weight: 700; 
 }
 .guide-list a { font-family: var(--font-display), Quicksand, sans-serif; font-weight: 700; }
 
+.checklist-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  align-items: center;
+  margin: 0.8rem 0 1rem;
+}
+.checklist-actions .button,
+.checklist-actions button { display: inline-block; }
+
+.print-sheet {
+  background: var(--sheet);
+  color: var(--ink);
+  border: 3px solid var(--ink);
+  border-radius: 24px;
+  box-shadow: 6px 6px 0 var(--ink);
+  padding: 1.15rem 1.2rem 1rem;
+  margin: 0.4rem 0 1.6rem;
+}
+.print-doc-title {
+  font-family: var(--font-display), Quicksand, sans-serif;
+  font-weight: 700;
+  font-size: 1.45rem;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin: 0 0 0.35rem;
+}
+.print-detail, .print-note { margin: 0.15rem 0; }
+.print-note, .print-detail { color: var(--muted); font-size: 0.92rem; }
+.print-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.8rem;
+  align-items: center;
+  margin: 0.7rem 0 0.2rem;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.tick-box {
+  width: 0.85rem;
+  height: 0.85rem;
+  border: 1.5px solid var(--ink);
+  border-radius: 2px;
+  background: #fff;
+  display: inline-block;
+}
+.print-list {
+  list-style: none;
+  margin: 0.4rem 0 0;
+  padding: 0;
+  columns: 1;
+  column-gap: 1.4rem;
+}
+.print-head {
+  break-after: avoid;
+  font-family: var(--font-display), Quicksand, sans-serif;
+  font-weight: 700;
+  font-size: 0.92rem;
+  margin: 0.55rem 0 0.1rem;
+  padding-bottom: 0.08rem;
+  border-bottom: 2px solid var(--ink);
+}
+.print-row {
+  break-inside: avoid;
+  display: grid;
+  grid-template-columns: 0.95rem 3.7rem minmax(0, 1fr);
+  grid-template-areas: "tick num name" "tick num rarity";
+  column-gap: 0.35rem;
+  align-items: start;
+  padding: 0.16rem 0 0.2rem;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.84rem;
+  line-height: 1.25;
+}
+.print-row .tick-box { grid-area: tick; margin-top: 0.12rem; }
+.print-num { grid-area: num; font-weight: 800; font-variant-numeric: tabular-nums; }
+.print-name { grid-area: name; font-weight: 700; }
+.print-rarity { grid-area: rarity; color: var(--muted); font-size: 0.72rem; }
+.print-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 0.9rem;
+  padding-top: 0.4rem;
+  border-top: 2px solid var(--ink);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+@media (min-width: 860px) {
+  .print-list { columns: 2; }
+}
+
 @media print {
   .top, .footer, .filters, .pager, .related, .doodles, .doodle, .skip, .lang-switch, .print-hide {
     display: none !important;
+  }
+  @page { margin: 12mm 10mm 16mm; }
+  body, main, .wrap { background: #fff !important; }
+  main { padding: 0; }
+  .wrap { width: auto; margin: 0; }
+  .print-sheet {
+    border: 0 !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
+    padding: 0 0 12mm !important;
+  }
+  .print-list { columns: 2 !important; }
+  .print-row, .print-head { break-inside: avoid; }
+  .print-footer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0;
+    background: #fff;
   }
   body, .page-head, .banner, .hero {
     background: #fff !important;
