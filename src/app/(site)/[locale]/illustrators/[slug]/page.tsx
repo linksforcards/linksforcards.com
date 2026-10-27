@@ -8,6 +8,7 @@ import { numbersMatch } from "@/lib/cards";
 import { readLocale } from "@/lib/i18n";
 import { buildIllustratorView, illustratorPageGraph } from "@/lib/illustrator-page";
 import { getIllustrator, type Illustrator } from "@/lib/illustrators";
+import { CARD_INDEX_LOCALES } from "@/lib/locales";
 import { localePath } from "@/lib/routing";
 import { pageMetadata } from "@/lib/seo";
 import { loadPublic, type PublicSnapshot } from "@/lib/stats";
@@ -47,7 +48,12 @@ export async function generateMetadata({
   if (!artist) return {};
   const snapshot = await loadPublic();
   const view = buildIllustratorView(locale, m, artist, loggedCount(artist, snapshot));
-  return pageMetadata(locale, view.path, view.title, view.description, { index: view.indexed });
+  return pageMetadata(locale, view.path, view.title, view.description, {
+    index: view.indexed,
+    hreflang: view.indexed,
+    locales: CARD_INDEX_LOCALES,
+    fitTitle: true,
+  });
 }
 
 export default async function IllustratorPage({ params }: { params: Promise<{ locale: string; slug: string }> }) {

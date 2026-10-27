@@ -100,3 +100,14 @@ export const SPECIES_INDEX_LOCALES = ["us", "uk", "de", "fr", "es", "it"] as con
 export function speciesPageIndexed(locale: string): boolean {
   return (SPECIES_INDEX_LOCALES as readonly string[]).includes(locale);
 }
+
+/**
+ * Card pages are indexed for US English, German, French, Spanish, and Italian.
+ * UK English, Dutch, Swedish, Norwegian, Finnish, and Polish stay reachable
+ * from the language menu, with noindex and without a card hreflang entry.
+ */
+export const CARD_INDEX_LOCALES = ["us", "de", "fr", "es", "it"] as const satisfies readonly Locale[];
+
+export function cardPageIndexed(locale: string): boolean {
+  return (CARD_INDEX_LOCALES as readonly string[]).includes(locale);
+}

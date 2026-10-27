@@ -5,7 +5,7 @@ import { fill, formatInt } from "./format";
 import type { Messages } from "./i18n";
 import { type Illustrator, type IllustratorGroup, illustratorPath } from "./illustrators";
 import { breadcrumbNode, ldGraph, pageNode, type Crumb } from "./jsonld";
-import type { Locale } from "./locales";
+import { cardPageIndexed, type Locale } from "./locales";
 import { localePath } from "./routing";
 
 export type IllustratorLink = { href: string; name: string };
@@ -134,7 +134,7 @@ export function buildIllustratorView(
     title,
     description: metaDescription(paragraph),
     paragraph,
-    indexed: artist.indexed,
+    indexed: artist.indexed && cardPageIndexed(locale),
     crumbs,
     have,
     sets: artist.groups.map((group) => ({

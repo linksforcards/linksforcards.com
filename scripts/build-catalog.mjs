@@ -1,11 +1,12 @@
 /**
  * Builds data/catalog from the public Pokémon TCG dataset.
- * Keeps names, collector numbers, supertypes, subtypes, HP, types, rarity,
- * illustrator, and national dex numbers.
+ * Keeps names, collector numbers, and the card-text fields in scripts/card-facts.mjs.
  * Drops images, prices, and every other field on purpose.
  */
 import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { buildCardLookup } from "./build-card-lookup.mjs";
+import { cardFacts, CATALOG_CONTENTS } from "./card-facts.mjs";
 
 const ROOT = path.resolve(import.meta.dirname, "..");
 const OUT = path.join(ROOT, "data", "catalog");
@@ -49,39 +50,6 @@ function kindOf(supertype) {
   if (supertype === "Trainer") return "t";
   if (supertype === "Energy") return "e";
   return "o";
-}
-
-function cleanText(value, max) {
-  if (typeof value !== "string") return "";
-  const text = value.replace(/\s+/g, " ").trim();
-  if (!text || text.length > max) return "";
-  return text;
-}
-
-function cleanList(value) {
-  if (!Array.isArray(value)) return undefined;
-  const items = [];
-  for (const item of value) {
-    const text = cleanText(item, 40);
-    if (text) items.push(text);
-  }
-  return items.length ? items : undefined;
-}
-
-/** Fields the card pages render. Prices and images never land here. */
-function cardFacts(card) {
-  const facts = {};
-  const rarity = cleanText(card.rarity, 80);
-  const artist = cleanText(card.artist, 120);
-  const hp = cleanText(card.hp, 4);
-  const subtypes = cleanList(card.subtypes);
-  const types = cleanList(card.types);
-  if (rarity) facts.r = rarity;
-  if (subtypes) facts.st = subtypes;
-  if (hp && /^\d{1,4}$/.test(hp)) facts.hp = hp;
-  if (types) facts.ty = types;
-  if (artist) facts.a = artist;
-  return facts;
 }
 
 function sortCards(cards) {
@@ -215,8 +183,7 @@ async function main() {
     cards: cardCount,
     maxDexSeen: maxDex,
     generationScope: "National Pokédex numbers 1–1025",
-    contents:
-      "Collector numbers, English card names, supertypes, subtypes, HP, types, rarity, illustrator, and national dex numbers. Prices and images are not stored.",
+    contents: CATALOG_CONTENTS,
     duplicateNumbersCollapsed: duplicates,
   };
   assertNoForbiddenKeys(setSummaries, "sets");
@@ -224,6 +191,7 @@ async function main() {
   await writeFile(path.join(OUT, "sets.json"), JSON.stringify(setSummaries));
   await writeFile(path.join(OUT, "dex.json"), JSON.stringify(dex));
   await writeFile(path.join(OUT, "meta.json"), JSON.stringify(meta, null, 2) + "\n");
+  buildCardLookup();
   console.log(JSON.stringify(meta, null, 2));
   console.log("number charset:", [...numberChars].sort().join(""));
 }

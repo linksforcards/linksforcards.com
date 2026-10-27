@@ -21,7 +21,7 @@ import {
   illustratorPath,
   listIndexedIllustratorPaths,
 } from "../src/lib/illustrators";
-import { sitemapEntries } from "../src/lib/sitemap-data";
+import { renderUrlset, sitemapEntries } from "../src/lib/sitemap-data";
 import { pageMetadata } from "../src/lib/seo";
 import { absoluteUrl } from "../src/lib/site";
 import { speciesName } from "../src/lib/catalog";
@@ -45,12 +45,18 @@ describe("illustrator pages", () => {
     expect(indexed).toContain("/illustrators/mitsuhiro-arita");
     expect(indexed).not.toContain(illustratorPath(thin[0]?.slug ?? ""));
     const sitemap = sitemapEntries("de-illustrators");
+    expect(sitemap?.[0]?.url).toBe(absoluteUrl("/de/illustrators"));
     expect(sitemap?.some((entry) => entry.url === absoluteUrl("/de/illustrators/mitsuhiro-arita"))).toBe(true);
     expect(sitemap?.some((entry) => entry.url.endsWith(`/illustrators/${thin[0]?.slug}`))).toBe(false);
-    const sample = sitemap?.find((entry) => entry.url.endsWith("/illustrators/mitsuhiro-arita"));
-    expect(sample?.languages.de).toBe(absoluteUrl("/de/illustrators/mitsuhiro-arita"));
-    expect(sample?.languages["x-default"]).toBe(absoluteUrl("/illustrators/mitsuhiro-arita"));
-    expect(sample?.languages.fr).toBe(absoluteUrl("/fr/illustrators/mitsuhiro-arita"));
+    expect(sitemap?.every((entry) => entry.languages == null && entry.lastModified == null)).toBe(true);
+    const xml = renderUrlset(sitemap ?? []);
+    expect(xml).not.toContain("hreflang");
+    expect(xml).not.toContain("<lastmod>");
+    expect(Buffer.byteLength(xml)).toBeLessThan(5 * 1024 * 1024);
+    expect(sitemapEntries("uk-illustrators")).toBeNull();
+    expect(sitemapEntries("nl-illustrators")).toBeNull();
+    expect(sitemapEntries("us-database")).toEqual([{ url: absoluteUrl("/cards") }]);
+    expect(sitemapEntries("pl-database")).toBeNull();
   });
 
   it("writes German prose from the catalog and links every card", () => {
@@ -60,6 +66,7 @@ describe("illustrator pages", () => {
     const top = artist.topPokemon[0];
     expect(view.path).toBe("/illustrators/mitsuhiro-arita");
     expect(view.title).toContain("Mitsuhiro Arita");
+    expect(view.indexed).toBe(true);
     expect(view.paragraph).toContain("gezeichnet");
     expect(view.paragraph).toContain("Charizard 4/102");
     expect(view.paragraph).toContain("Base");
@@ -75,6 +82,11 @@ describe("illustrator pages", () => {
     expect(graph).not.toContain("Product");
     const hidden = pageMetadata("de", view.path, view.title, view.description, { index: false });
     expect(hidden.robots).toEqual({ index: false, follow: true });
+    const dutch = buildIllustratorView("nl", getMessages("nl"), artist, 0);
+    const british = buildIllustratorView("uk", getMessages("uk"), artist, 0);
+    expect(dutch.indexed).toBe(false);
+    expect(british.indexed).toBe(false);
+    expect(dutch.paragraph).not.toBe(view.paragraph);
   });
 });
 
@@ -131,9 +143,18 @@ describe("card database", () => {
     const filtered = pageMetadata("us", "/cards", "Pokémon card list", "A list.", { index: false });
     expect(filtered.robots).toEqual({ index: false, follow: true });
     expect(filtered.alternates?.canonical).toBe(absoluteUrl("/cards"));
-    const open = pageMetadata("us", "/cards", "Pokémon card list", "A list.");
+    const open = pageMetadata("us", "/cards", "Pokémon card list", "A list.", {
+      index: true,
+      hreflang: true,
+      locales: ["us", "de", "fr", "es", "it"],
+    });
     expect(open.robots).toBeUndefined();
     expect(open.alternates?.languages?.de).toBe(absoluteUrl("/de/cards"));
+    expect(open.alternates?.languages?.["en-GB"]).toBeUndefined();
+    expect(open.alternates?.languages?.nl).toBeUndefined();
+    const dutchList = pageMetadata("nl", "/cards", "Kaarten", "Een lijst.", { index: false, hreflang: false });
+    expect(dutchList.robots).toEqual({ index: false, follow: true });
+    expect(dutchList.alternates?.languages).toBeUndefined();
   });
 
   it("puts real card links in the first HTML and translates the introduction", () => {

@@ -14,7 +14,11 @@ export async function GET(_request: Request, context: { params: Promise<{ id: st
   const bare = id.endsWith(".xml") ? id.slice(0, -4) : id;
   const entries = sitemapEntries(bare);
   if (!entries) notFound();
-  return new Response(renderUrlset(entries), {
+  const body = renderUrlset(entries);
+  if (Buffer.byteLength(body) > 5 * 1024 * 1024) {
+    throw new Error(`sitemap ${bare} is over 5 MB`);
+  }
+  return new Response(body, {
     headers: {
       "Content-Type": "application/xml; charset=utf-8",
       "Cache-Control": "public, max-age=3600",

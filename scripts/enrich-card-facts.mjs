@@ -1,47 +1,15 @@
 /**
- * Adds rarity, subtypes, HP, types, and illustrator to the pinned catalog.
- * Reads the commit already recorded in data/catalog/meta.json so the card list
- * does not move. Prices and images are dropped. Re-running is safe.
+ * Adds card text from the commit already recorded in data/catalog/meta.json.
+ * The card list does not move. Prices and images are dropped. Re-running is safe.
  */
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { cardFacts, CATALOG_CONTENTS } from "./card-facts.mjs";
 
 const ROOT = path.resolve(import.meta.dirname, "..");
 const OUT = path.join(ROOT, "data", "catalog");
 const REPO = "PokemonTCG/pokemon-tcg-data";
 const CONCURRENCY = 8;
-
-function cleanText(value, max) {
-  if (typeof value !== "string") return "";
-  const text = value.replace(/\s+/g, " ").trim();
-  if (!text || text.length > max) return "";
-  return text;
-}
-
-function cleanList(value) {
-  if (!Array.isArray(value)) return undefined;
-  const items = [];
-  for (const item of value) {
-    const text = cleanText(item, 40);
-    if (text) items.push(text);
-  }
-  return items.length ? items : undefined;
-}
-
-function factsOf(card) {
-  const facts = {};
-  const rarity = cleanText(card.rarity, 80);
-  const artist = cleanText(card.artist, 120);
-  const hp = cleanText(card.hp, 4);
-  const subtypes = cleanList(card.subtypes);
-  const types = cleanList(card.types);
-  if (rarity) facts.r = rarity;
-  if (subtypes) facts.st = subtypes;
-  if (hp && /^\d{1,4}$/.test(hp)) facts.hp = hp;
-  if (types) facts.ty = types;
-  if (artist) facts.a = artist;
-  return facts;
-}
 
 function assertNoForbiddenKeys(value, label) {
   if (!value || typeof value !== "object") return;
@@ -135,7 +103,7 @@ async function main() {
         missingRaw += 1;
         return compact;
       }
-      const facts = factsOf(match);
+      const facts = cardFacts(match);
       if (facts.a) withArtist += 1;
       if (facts.r) withRarity += 1;
       return Object.assign(compact, facts);
@@ -146,8 +114,7 @@ async function main() {
     await writeFile(file, JSON.stringify(next));
   });
 
-  meta.contents =
-    "Collector numbers, English card names, supertypes, subtypes, HP, types, rarity, illustrator, and national dex numbers. Prices and images are not stored.";
+  meta.contents = CATALOG_CONTENTS;
   await writeFile(path.join(OUT, "meta.json"), `${JSON.stringify(meta, null, 2)}\n`);
   console.log(JSON.stringify({ cards, withArtist, withRarity, withPrinted, missingRaw, sets: nextSets.length }, null, 2));
 }

@@ -10,6 +10,7 @@ import { fill, formatInt } from "@/lib/format";
 import { readLocale } from "@/lib/i18n";
 import { illustratorPath, illustratorSummaries } from "@/lib/illustrators";
 import { breadcrumbNode, itemListNode, ldGraph, pageNode } from "@/lib/jsonld";
+import { CARD_INDEX_LOCALES, cardPageIndexed } from "@/lib/locales";
 import { localePath } from "@/lib/routing";
 import { pageMetadata } from "@/lib/seo";
 import { absoluteUrl } from "@/lib/site";
@@ -19,7 +20,13 @@ export const revalidate = 86400;
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale, m } = await readLocale(params);
   const text = illustratorsIndexText(locale, m);
-  return pageMetadata(locale, "/illustrators", text.title, text.description);
+  const indexed = cardPageIndexed(locale);
+  return pageMetadata(locale, "/illustrators", text.title, text.description, {
+    index: indexed,
+    hreflang: indexed,
+    locales: CARD_INDEX_LOCALES,
+    fitTitle: true,
+  });
 }
 
 export default async function IllustratorsPage({ params }: { params: Promise<{ locale: string }> }) {

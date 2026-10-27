@@ -280,7 +280,11 @@
     "moreSets": "De lijst beslaat {count} sets."
   },
   "cardPage": {
-    "title": "{name} {fraction} · {set}-kaart",
+    "title": "{name} {fraction} · {set}",
+    "titleShort": "{name} {fraction}",
+    "description": "{name} {fraction} hoort bij de set {set}.",
+    "descriptionRare": "{name} {fraction} is een {rarity}-kaart in de set {set}.",
+    "descriptionShort": "{name} {fraction}.",
     "lead": "{name} is kaart {fraction} in de set {set}, uit de serie {series}{released}",
     "releasedClause": ", uitgebracht op {date}.",
     "pokemonHp": "De kaart is een {traits}-Pokémon met {hp} HP.",
@@ -322,7 +326,23 @@
     "previous": "Vorige kaart",
     "next": "Volgende kaart",
     "listTwo": "{a} en {b}",
-    "listLast": "{list} en {last}"
+    "listLast": "{list} en {last}",
+    "gameplay": "Aanvallen en kaarttekst",
+    "attack": "Aanval",
+    "ability": "Vaardigheid",
+    "weakness": "Zwakte",
+    "resistance": "Weerstand",
+    "retreat": "Terugtocht",
+    "flavor": "Flavortekst",
+    "regulation": "Regulatieteken",
+    "evolvesFrom": "Evolueert uit",
+    "evolvesTo": "Evolueert naar",
+    "level": "Level",
+    "ancient": "Oude eigenschap",
+    "rules": "Kaarttekst",
+    "faq": "Vragen over deze kaart",
+    "cost": "Kosten",
+    "damage": "Schade"
   },
   "cardSearch": {
     "kicker": "Kaartenlijst",

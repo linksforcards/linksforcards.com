@@ -280,7 +280,11 @@
     "moreSets": "Die Liste umfasst {count} Sets."
   },
   "cardPage": {
-    "title": "{name} {fraction} · {set}-Karte",
+    "title": "{name} {fraction} · {set}",
+    "titleShort": "{name} {fraction}",
+    "description": "{name} {fraction} gehört zum Set {set}.",
+    "descriptionRare": "{name} {fraction} ist eine {rarity}-Karte im Set {set}.",
+    "descriptionShort": "{name} {fraction}.",
     "lead": "{name} ist Karte {fraction} im Set {set}, aus der Serie {series}{released}",
     "releasedClause": ", erschienen am {date}.",
     "pokemonHp": "Die Karte ist ein {traits}-Pokémon mit {hp} HP.",
@@ -322,7 +326,23 @@
     "previous": "Vorherige Karte",
     "next": "Nächste Karte",
     "listTwo": "{a} und {b}",
-    "listLast": "{list} und {last}"
+    "listLast": "{list} und {last}",
+    "gameplay": "Angriffe und Kartentext",
+    "attack": "Angriff",
+    "ability": "Fähigkeit",
+    "weakness": "Schwäche",
+    "resistance": "Resistenz",
+    "retreat": "Rückzug",
+    "flavor": "Flavortext",
+    "regulation": "Regulationsmarke",
+    "evolvesFrom": "Entwickelt sich aus",
+    "evolvesTo": "Entwickelt sich zu",
+    "level": "Level",
+    "ancient": "Uralte Eigenschaft",
+    "rules": "Kartentext",
+    "faq": "Fragen zu dieser Karte",
+    "cost": "Kosten",
+    "damage": "Schaden"
   },
   "cardSearch": {
     "kicker": "Kartenliste",

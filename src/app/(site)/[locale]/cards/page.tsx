@@ -10,6 +10,7 @@ import { decodeHeldBits, parseCardQuery, queryIsFiltered, searchCards, type Card
 import { cardsDatabaseText } from "@/lib/database-page";
 import { readLocale } from "@/lib/i18n";
 import { breadcrumbNode, ldGraph, pageNode } from "@/lib/jsonld";
+import { CARD_INDEX_LOCALES, cardPageIndexed } from "@/lib/locales";
 import { localePath } from "@/lib/routing";
 import { pageMetadata } from "@/lib/seo";
 import { loadPublic } from "@/lib/stats";
@@ -26,7 +27,13 @@ export async function generateMetadata({
   const { locale, m } = await readLocale(params);
   const query = parseCardQuery(await searchParams);
   const text = cardsDatabaseText(locale, m);
-  return pageMetadata(locale, "/cards", text.title, text.description, { index: !queryIsFiltered(query) });
+  const indexed = cardPageIndexed(locale) && !queryIsFiltered(query);
+  return pageMetadata(locale, "/cards", text.title, text.description, {
+    index: indexed,
+    hreflang: indexed,
+    locales: CARD_INDEX_LOCALES,
+    fitTitle: true,
+  });
 }
 
 export default async function CardsDatabasePage({

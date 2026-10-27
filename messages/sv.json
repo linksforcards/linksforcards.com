@@ -280,7 +280,11 @@
     "moreSets": "Listan spänner över {count} set."
   },
   "cardPage": {
-    "title": "{name} {fraction} · {set}-kort",
+    "title": "{name} {fraction} · {set}",
+    "titleShort": "{name} {fraction}",
+    "description": "{name} {fraction} ingår i setet {set}.",
+    "descriptionRare": "{name} {fraction} är ett {rarity}-kort i setet {set}.",
+    "descriptionShort": "{name} {fraction}.",
     "lead": "{name} är kort {fraction} i setet {set}, från serien {series}{released}",
     "releasedClause": ", släppt {date}.",
     "pokemonHp": "Kortet är en {traits}-Pokémon med {hp} HP.",
@@ -322,7 +326,23 @@
     "previous": "Föregående kort",
     "next": "Nästa kort",
     "listTwo": "{a} och {b}",
-    "listLast": "{list} och {last}"
+    "listLast": "{list} och {last}",
+    "gameplay": "Attacker och korttext",
+    "attack": "Attack",
+    "ability": "Förmåga",
+    "weakness": "Svaghet",
+    "resistance": "Motstånd",
+    "retreat": "Reträtt",
+    "flavor": "Flavortext",
+    "regulation": "Regleringsmärke",
+    "evolvesFrom": "Utvecklas från",
+    "evolvesTo": "Utvecklas till",
+    "level": "Nivå",
+    "ancient": "Ancient Trait",
+    "rules": "Korttext",
+    "faq": "Frågor om det här kortet",
+    "cost": "Kostnad",
+    "damage": "Skada"
   },
   "cardSearch": {
     "kicker": "Kortlista",

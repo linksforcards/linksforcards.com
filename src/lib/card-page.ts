@@ -1,20 +1,19 @@
 import type { Graph } from "schema-dts";
+import type { CardFaq } from "@/content/card-story-types";
 import { themeCopy } from "@/content/theme-copy";
 import { numbersMatch } from "./cards";
+import { printingsForDex, type LookupPrinting } from "./card-lookup";
+import { buildCardStory } from "./card-story";
 import { getSet, getSetCards, getSets, speciesName, type CatalogCard, type CatalogSet } from "./catalog";
 import { fill, formatDay } from "./format";
 import { formatDexNumber, generationOf, SPECIES_TOTAL } from "./generations";
 import type { Messages } from "./i18n";
 import { breadcrumbNode, ldGraph, pageNode, type Crumb } from "./jsonld";
 import type { Locale } from "./locales";
+import { illustratorForName, illustratorPath } from "./illustrators";
 import { localePath } from "./routing";
 import { seriesSlug } from "./series";
-import { speciesByDex, type Printing } from "./species-index";
-import { illustratorForName, illustratorPath } from "./illustrators";
-import { cardPath, cardSlug, slugPart } from "./slug";
 import { themesForCard } from "./themes";
-
-export { cardPath, cardSlug, slugPart } from "./slug";
 
 export type CardLink = { href: string; name: string };
 export type PrintingCard = {
@@ -39,7 +38,10 @@ export type ResolvedCard = {
 export type CardView = {
   path: string;
   title: string;
+  description: string;
   paragraph: string;
+  paragraphs: string[];
+  faqs: CardFaq[];
   fraction: string;
   status: CardStatus;
   crumbs: Crumb[];
@@ -63,6 +65,40 @@ export function setPrintedTotal(set: CatalogSet): number {
 
 export function cardFraction(set: CatalogSet, card: { n: string }): string {
   return `${card.n}/${setPrintedTotal(set)}`;
+}
+
+/**
+ * Stable URL piece. Symbols that are not letters are spelled out so two Unown
+ * and two Nidoran cards do not collapse into one slug.
+ */
+export function slugPart(value: string): string {
+  const replaced = value
+    .replace(/♂/g, "-m")
+    .replace(/♀/g, "-f")
+    .replace(/[δ∆Δ]/g, "-delta")
+    .replace(/α/g, "-alpha")
+    .replace(/β/g, "-beta")
+    .replace(/γ/g, "-gamma")
+    .replace(/★/g, "-star")
+    .replace(/◇/g, "-prism")
+    .replace(/!/g, "-excl")
+    .replace(/\?/g, "-qmark")
+    .replace(/['’]/g, "")
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase();
+  return replaced.replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+}
+
+export function cardSlug(setId: string, card: { n: string; name: string }): string {
+  const number = slugPart(card.n);
+  const name = slugPart(card.name);
+  if (!number) return name ? `${setId}-card-${name}` : `${setId}-card`;
+  return name ? `${setId}-${number}-${name}` : `${setId}-${number}`;
+}
+
+export function cardPath(setId: string, card: { n: string; name: string }): string {
+  return `/cards/${cardSlug(setId, card)}`;
 }
 
 export function cardRowHref(locale: string, setId: string, card: { n: string; name: string }, _fallback?: string): string {
@@ -125,27 +161,8 @@ export function cardStatus(state: "ok" | "unconfigured" | "error", held: boolean
   return held ? "have" : "need";
 }
 
-function joinList(m: Messages, items: string[]): string {
-  if (items.length <= 1) return items[0] ?? "";
-  if (items.length === 2) return fill(m.cardPage.listTwo, { a: items[0] ?? "", b: items[1] ?? "" });
-  return fill(m.cardPage.listLast, { list: items.slice(0, -1).join(", "), last: items.at(-1) ?? "" });
-}
-
-function traits(card: CatalogCard): string {
-  return [...(card.st ?? []), ...(card.ty ?? [])].join(" ");
-}
-
-function kindSentence(m: Messages, card: CatalogCard): string {
-  const line = traits(card);
-  if (card.k === "p") {
-    if (line && card.hp) return fill(m.cardPage.pokemonHp, { traits: line, hp: card.hp });
-    if (line) return fill(m.cardPage.pokemon, { traits: line });
-    if (card.hp) return fill(m.cardPage.pokemonPlainHp, { hp: card.hp });
-    return m.cardPage.pokemonPlain;
-  }
-  if (card.k === "t") return line ? fill(m.cardPage.trainer, { traits: line }) : m.cardPage.trainerPlain;
-  if (card.k === "e") return line ? fill(m.cardPage.energy, { traits: line }) : m.cardPage.energyPlain;
-  return line ? fill(m.cardPage.other, { traits: line }) : m.cardPage.otherPlain;
+function pairLine(pair: { t: string; v?: string }): string {
+  return pair.v ? `${pair.t} ${pair.v}` : pair.t;
 }
 
 function speciesLinks(locale: Locale, card: CatalogCard): CardLink[] {
@@ -188,15 +205,13 @@ function binderLinks(locale: Locale, m: Messages, set: CatalogSet, card: Catalog
   return links;
 }
 
-function otherPrintings(setId: string, card: CatalogCard): Printing[] {
+function otherPrintings(setId: string, card: CatalogCard): LookupPrinting[] {
   const seen = new Set<string>();
   const current = `${setId}:${card.n}`;
-  const out: Printing[] = [];
+  const out: LookupPrinting[] = [];
   for (const dex of card.dex ?? []) {
-    const record = speciesByDex(dex);
-    if (!record) continue;
-    for (const printing of record.printings) {
-      const key = `${printing.setId}:${printing.number}`;
+    for (const printing of printingsForDex(dex)) {
+      const key = `${printing.s}:${printing.n}`;
       if (key === current || seen.has(key)) continue;
       seen.add(key);
       out.push(printing);
@@ -214,7 +229,7 @@ function fullestDex(card: CatalogCard): { dex: number; count: number } | null {
   let best: { dex: number; count: number } | null = null;
   for (const dex of card.dex ?? []) {
     if (!Number.isInteger(dex) || dex < 1 || dex > SPECIES_TOTAL) continue;
-    const count = speciesByDex(dex)?.printings.length ?? 0;
+    const count = printingsForDex(dex).length;
     if (!best || count > best.count) best = { dex, count };
   }
   return best;
@@ -234,27 +249,14 @@ export function buildCardView(
 ): CardView {
   const fraction = cardFraction(set, card);
   const path = cardPath(set.id, card);
-  const title = fill(m.cardPage.title, { name: card.name, fraction, set: set.name });
+  const fullTitle = fill(m.cardPage.title, { name: card.name, fraction, set: set.name });
+  const title = fullTitle.length <= 60 ? fullTitle : fill(m.cardPage.titleShort, { name: card.name, fraction });
+  const description = cardMetaDescription(m, set, card, fraction);
   const binders = binderLinks(locale, m, set, card);
   const species = speciesLinks(locale, card);
-  const released = set.releaseDate
-    ? fill(m.cardPage.releasedClause, { date: formatDay(set.releaseDate, locale) })
-    : ".";
-  const sentences = [
-    fill(m.cardPage.lead, { name: card.name, fraction, set: set.name, series: set.series, released }),
-    kindSentence(m, card),
-  ];
-  if (card.r) sentences.push(fill(m.cardPage.rarityLine, { rarity: card.r }));
-  if (card.a) sentences.push(fill(m.cardPage.illustratorLine, { name: card.a }));
-  if (species.length) sentences.push(fill(m.cardPage.speciesLine, { names: joinList(m, species.map((link) => link.name)) }));
-  const numeric = /^(\d+)/.exec(card.n);
-  if (set.printed && numeric && Number(numeric[1]) > set.printed) {
-    sentences.push(fill(m.cardPage.secretLine, { printed: set.printed }));
-  }
-  sentences.push(fill(m.cardPage.belongsLine, { list: joinList(m, binders.map((link) => link.name)) }));
-  if (status === "have") sentences.push(m.cardPage.statusHave);
-  else if (status === "need") sentences.push(m.cardPage.statusNeed);
-  else sentences.push(m.cardPage.statusUnknown);
+  const statusLine =
+    status === "have" ? m.cardPage.statusHave : status === "need" ? m.cardPage.statusNeed : m.cardPage.statusUnknown;
+  const story = buildCardStory(locale, m, set, card, statusLine);
 
   const facts: CardFact[] = [
     { label: m.cardPage.number, value: fraction },
@@ -276,19 +278,25 @@ export function buildCardView(
     });
   }
   if (species.length) facts.push({ label: m.cardPage.pokedex, links: species });
+  if (card.lv) facts.push({ label: m.cardPage.level, value: card.lv });
+  if (card.ef) facts.push({ label: m.cardPage.evolvesFrom, value: card.ef });
+  if (card.et?.length) facts.push({ label: m.cardPage.evolvesTo, value: card.et.join(", ") });
+  if (card.w?.length) facts.push({ label: m.cardPage.weakness, value: card.w.map(pairLine).join(", ") });
+  if (card.rs?.length) facts.push({ label: m.cardPage.resistance, value: card.rs.map(pairLine).join(", ") });
+  if (card.rc != null) facts.push({ label: m.cardPage.retreat, value: String(card.rc) });
+  if (card.rm) facts.push({ label: m.cardPage.regulation, value: card.rm });
 
   const cards = getSetCards(set.id) ?? [];
   const index = cards.findIndex((item) => item.n === card.n);
   const allOthers = otherPrintings(set.id, card);
   const fullest = fullestDex(card);
   const others = allOthers.slice(0, PRINTING_CAP).flatMap((printing) => {
-    const printingSet = getSet(printing.setId);
+    const printingSet = getSet(printing.s);
     if (!printingSet) return [];
-    const full = getSetCards(printing.setId)?.find((item) => item.n === printing.number);
-    const named = full ?? { n: printing.number, name: printing.name };
+    const named = { n: printing.n, name: printing.m };
     return [
       {
-        href: localePath(locale, cardPath(printing.setId, named)),
+        href: localePath(locale, cardPath(printing.s, named)),
         name: named.name,
         fraction: cardFraction(printingSet, named),
         setName: printingSet.name,
@@ -304,7 +312,10 @@ export function buildCardView(
   return {
     path,
     title,
-    paragraph: sentences.join(" "),
+    description,
+    paragraph: story.paragraphs.join(" "),
+    paragraphs: story.paragraphs,
+    faqs: story.faqs,
     fraction,
     status,
     crumbs: [
@@ -337,6 +348,21 @@ export function metaDescription(paragraph: string): string {
   return `${(space > 140 ? cut.slice(0, space) : cut).trimEnd()}…`;
 }
 
+const DESCRIPTION_LIMIT = 155;
+
+/** One short sentence for the meta description. Name and collector number stay in the first clause. */
+export function cardMetaDescription(m: Messages, set: CatalogSet, card: CatalogCard, fraction: string): string {
+  const plain = fill(m.cardPage.description, { name: card.name, fraction, set: set.name });
+  const rare = card.r
+    ? fill(m.cardPage.descriptionRare, { name: card.name, fraction, set: set.name, rarity: card.r })
+    : "";
+  if (rare && rare.length <= DESCRIPTION_LIMIT) return rare;
+  if (plain.length <= DESCRIPTION_LIMIT) return plain;
+  const short = fill(m.cardPage.descriptionShort, { name: card.name, fraction });
+  if (short.length <= DESCRIPTION_LIMIT) return short;
+  return `${short.slice(0, DESCRIPTION_LIMIT - 1).trimEnd()}…`;
+}
+
 export function cardPageGraph(locale: Locale, view: CardView): Graph {
   return ldGraph([
     pageNode({
@@ -344,7 +370,7 @@ export function cardPageGraph(locale: Locale, view: CardView): Graph {
       locale,
       path: view.path,
       name: view.title,
-      description: view.paragraph,
+      description: view.description,
     }),
     breadcrumbNode(view.crumbs),
   ]);

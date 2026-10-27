@@ -1,7 +1,7 @@
 "use server";
 
 import { randomUUID } from "node:crypto";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { redirect } from "next/navigation";
 import { attemptLogin, clearSessionCookie, clientIp, requireSession, writeSessionCookie } from "@/lib/auth";
 import { formatDexList, parseBulk } from "@/lib/cards";
@@ -13,6 +13,7 @@ import { demoToolsEnabled, replaceDemoData } from "@/lib/demo";
 import { clip, isIsoDate, isUuid } from "@/lib/format";
 import { generationById } from "@/lib/generations";
 import { LOCALES } from "@/lib/locales";
+import { PUBLIC_SNAPSHOT_TAG } from "@/lib/stats";
 import { refreshInventoryPrices } from "@/lib/price-refresh";
 import { normalizeWebsite } from "@/lib/urls";
 import { parseBindersIncluded } from "@/lib/country-cup";
@@ -20,6 +21,7 @@ import { parseBindersIncluded } from "@/lib/country-cup";
 export type FormState = { error: string } | null;
 
 function revalidatePublic() {
+  revalidateTag(PUBLIC_SNAPSHOT_TAG);
   revalidatePath("/", "layout");
   for (const locale of LOCALES) revalidatePath(`/${locale}`, "layout");
 }

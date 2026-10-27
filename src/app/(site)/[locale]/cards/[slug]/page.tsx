@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound, permanentRedirect } from "next/navigation";
 import { Breadcrumbs } from "@/components/site/breadcrumbs";
+import { CardCopy, CardFaq, CardGameplay } from "@/components/site/card-body";
 import { BinderChips, NeighborLinks, PrintingGrid } from "@/components/site/card-links";
 import { DoodleCluster } from "@/components/site/doodles";
 import { JsonLd } from "@/components/site/json-ld";
@@ -9,12 +10,12 @@ import {
   buildCardView,
   cardPageGraph,
   cardStatus,
-  metaDescription,
   resolveCardSlug,
   cardIsHeld,
 } from "@/lib/card-page";
 import { fill, formatInt } from "@/lib/format";
 import { readLocale } from "@/lib/i18n";
+import { CARD_INDEX_LOCALES, cardPageIndexed } from "@/lib/locales";
 import { localePath } from "@/lib/routing";
 import { pageMetadata } from "@/lib/seo";
 import { loadPublic } from "@/lib/stats";
@@ -45,7 +46,13 @@ export async function generateMetadata({
   const snapshot = await loadPublic();
   const status = cardStatus(snapshot.state, cardIsHeld(snapshot.held, resolved.set.id, resolved.card.n));
   const view = buildCardView(locale, m, resolved.set, resolved.card, status);
-  return pageMetadata(locale, view.path, view.title, metaDescription(view.paragraph));
+  const indexed = cardPageIndexed(locale);
+  return pageMetadata(locale, view.path, view.title, view.description, {
+    index: indexed,
+    hreflang: indexed,
+    locales: CARD_INDEX_LOCALES,
+    fitTitle: true,
+  });
 }
 
 export default async function CardPage({ params }: { params: Promise<{ locale: string; slug: string }> }) {
@@ -71,7 +78,7 @@ export default async function CardPage({ params }: { params: Promise<{ locale: s
         </p>
         <h1>{view.title}</h1>
       </section>
-      <p className="lede">{view.paragraph}</p>
+      <CardCopy paragraphs={view.paragraphs} />
       <h2>{m.cardPage.facts}</h2>
       <dl className="facts">
         {view.facts.map((fact) => (
@@ -94,6 +101,7 @@ export default async function CardPage({ params }: { params: Promise<{ locale: s
           </div>
         ))}
       </dl>
+      <CardGameplay m={m} card={resolved.card} />
       <h2 id="card-binders">{m.cardPage.bindersHeading}</h2>
       <BinderChips labelledBy="card-binders" links={view.binders} />
       {view.others.length > 0 ? (
@@ -119,6 +127,7 @@ export default async function CardPage({ params }: { params: Promise<{ locale: s
           <NeighborLinks labelledBy="card-neighbors" links={neighbors} />
         </>
       ) : null}
+      <CardFaq m={m} faqs={view.faqs} />
       <SiteLinks locale={locale} m={m} current={view.path} />
     </>
   );
