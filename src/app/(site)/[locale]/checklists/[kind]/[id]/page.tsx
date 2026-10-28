@@ -12,17 +12,8 @@ import { breadcrumbNode, itemListNode, ldGraph, pageNode } from "@/lib/jsonld";
 import { localePath } from "@/lib/routing";
 import { pageMetadata } from "@/lib/seo";
 
-/**
- * One list per set, theme, and generation, in every locale. Pre-rendering them
- * would add thousands of HTML files to a deploy that is already at the Vercel
- * storage limit. The first request renders the page, then it is cached for a day.
- */
-export const revalidate = 86400;
-export const dynamicParams = true;
-
-export function generateStaticParams(): { kind: string; id: string }[] {
-  return [];
-}
+/** One list per set, theme, and generation. The CDN caches it. The build does not prerender them. */
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({
   params,

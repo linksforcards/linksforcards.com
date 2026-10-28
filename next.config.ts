@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { cdnConfigHeaders } from "./src/lib/cdn-cache";
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
@@ -17,8 +18,8 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return {
       beforeFiles: [
-        // Card pages are generated on demand. A middleware rewrite would skip
-        // that cache, so the public US path is mapped here instead.
+        // US English has no public prefix. Map these detail URLs onto /us here
+        // so the request path stays the CDN cache key.
         { source: "/cards/:slug", destination: "/us/cards/:slug" },
         { source: "/illustrators/:slug", destination: "/us/illustrators/:slug" },
         { source: "/checklists/:kind/:id/pdf/:paper", destination: "/us/checklists/:kind/:id/pdf/:paper" },
@@ -45,6 +46,7 @@ const nextConfig: NextConfig = {
         source: "/icon.svg",
         headers: [{ key: "Cache-Control", value: "public, max-age=86400" }],
       },
+      ...cdnConfigHeaders(),
     ];
   },
 };

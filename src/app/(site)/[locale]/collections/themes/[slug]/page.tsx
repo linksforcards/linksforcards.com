@@ -25,7 +25,6 @@ import {
   anchorFor,
   bulkTone,
   getTheme,
-  getThemes,
   relatedThemes,
   resolveThemeCards,
   themeCollected,
@@ -35,8 +34,8 @@ import {
   type Theme,
 } from "@/lib/themes";
 
-export const revalidate = 3600;
-export const dynamicParams = false;
+/** One page per theme. The CDN caches it. */
+export const dynamic = "force-dynamic";
 
 function kindLabel(kind: CardKind, m: Messages): string {
   if (kind === "p") return m.checklist.supertypeP;
@@ -52,10 +51,6 @@ function described(locale: Locale, theme: Theme, template: string): string {
     first: formatDay(theme.first, locale),
     last: formatDay(theme.last, locale),
   });
-}
-
-export function generateStaticParams() {
-  return getThemes().flatMap((theme) => (themeCopy("us", theme.slug) ? [{ slug: theme.slug }] : []));
 }
 
 export async function generateMetadata({

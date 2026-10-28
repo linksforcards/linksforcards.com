@@ -15,7 +15,7 @@ import { shopsForLocale } from "@/lib/shop-locales";
 import { loadPublic } from "@/lib/stats";
 import { safeHttpUrl } from "@/lib/urls";
 
-export const revalidate = 60;
+export const revalidate = 86400;
 export const dynamicParams = false;
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {

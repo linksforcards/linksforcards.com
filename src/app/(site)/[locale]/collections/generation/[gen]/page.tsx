@@ -20,12 +20,8 @@ import { speciesByDex } from "@/lib/species-index";
 import { absoluteUrl } from "@/lib/site";
 import { loadPublic, markFor, speciesInRange } from "@/lib/stats";
 
-export const revalidate = 3600;
-export const dynamicParams = false;
-
-export function generateStaticParams() {
-  return GENERATIONS.map((generation) => ({ gen: String(generation.id) }));
-}
+/** One page per generation. The CDN caches it. */
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({
   params,

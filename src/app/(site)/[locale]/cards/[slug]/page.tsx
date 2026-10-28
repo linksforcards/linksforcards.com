@@ -10,32 +10,25 @@ import { SiteLinks } from "@/components/site/site-links";
 import {
   buildCardView,
   cardPageGraph,
+  cardPageMetadata,
   cardStatus,
   formatHeldLanguages,
   resolveCardSlug,
   cardIsHeld,
 } from "@/lib/card-page";
-import { cardImageAlt, cardImageKind, cardImageUrl } from "@/lib/card-images";
+import { cardImageAlt, cardImageUrl } from "@/lib/card-images";
 import { fill, formatInt } from "@/lib/format";
 import { readLocale } from "@/lib/i18n";
-import { CARD_INDEX_LOCALES, cardPageIndexed } from "@/lib/locales";
 import { localePath } from "@/lib/routing";
-import { pageMetadata } from "@/lib/seo";
 import { loadPublic, otherLanguagesHeld } from "@/lib/stats";
 
 /**
- * About 20,000 cards in every locale. Pre-rendering all of them would
- * multiply the Vercel build. Pages are rendered
- * on the first request and then cached for a day (ISR). Card facts come from
- * the catalog files. Whether a card is logged comes from the shipment table and
- * can lag by up to this window.
+ * About 20,000 cards in every locale. Rendering them on demand and caching the
+ * response at the CDN avoids an ISR write per URL. Card facts come from the
+ * catalog files. Whether a card is logged comes from the shipment table and
+ * can lag by a day, which is the CDN lifetime.
  */
-export const revalidate = 86400;
-export const dynamicParams = true;
-
-export function generateStaticParams(): { slug: string }[] {
-  return [];
-}
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({
   params,
@@ -48,26 +41,7 @@ export async function generateMetadata({
   if (!resolved) return {};
   const snapshot = await loadPublic();
   const status = cardStatus(snapshot.state, cardIsHeld(snapshot.held, resolved.set.id, resolved.card.n));
-  const view = buildCardView(locale, m, resolved.set, resolved.card, status);
-  const indexed = cardPageIndexed(locale);
-  const photo =
-    cardImageKind(resolved.set.id, resolved.card.n) === "tcgdex"
-      ? cardImageUrl(resolved.set.id, resolved.card.n, "high")
-      : null;
-  return pageMetadata(locale, view.path, view.title, view.description, {
-    index: indexed,
-    hreflang: indexed,
-    locales: CARD_INDEX_LOCALES,
-    fitTitle: true,
-    ...(photo
-      ? {
-          image: photo,
-          imageAlt: cardImageAlt(m.checklist.cardAlt, resolved.card.name, resolved.set.name, resolved.card.n),
-          imageWidth: 600,
-          imageHeight: 825,
-        }
-      : {}),
-  });
+  return cardPageMetadata(locale, m, resolved, status);
 }
 
 export default async function CardPage({ params }: { params: Promise<{ locale: string; slug: string }> }) {

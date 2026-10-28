@@ -14,17 +14,8 @@ import { localePath } from "@/lib/routing";
 import { pageMetadata } from "@/lib/seo";
 import { loadPublic, type PublicSnapshot } from "@/lib/stats";
 
-/**
- * One page per illustrator, in every locale. Rendering them during `next build`
- * would multiply the Vercel build the same way the card pages would, so the
- * first request renders the page and then it is cached for a day.
- */
-export const revalidate = 86400;
-export const dynamicParams = true;
-
-export function generateStaticParams(): { slug: string }[] {
-  return [];
-}
+/** One page per illustrator. The CDN caches it. The build does not prerender the catalog. */
+export const dynamic = "force-dynamic";
 
 function loggedCount(artist: Illustrator, snapshot: PublicSnapshot): number | null {
   if (snapshot.state === "error") return null;

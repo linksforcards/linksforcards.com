@@ -18,12 +18,8 @@ import { seriesSlug } from "@/lib/series";
 import { absoluteUrl } from "@/lib/site";
 import { loadPublic } from "@/lib/stats";
 
-export const revalidate = 3600;
-export const dynamicParams = false;
-
-export function generateStaticParams() {
-  return setsBySeries().map((group) => ({ slug: seriesSlug(group.series) }));
-}
+/** One page per series. The CDN caches it. */
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({
   params,

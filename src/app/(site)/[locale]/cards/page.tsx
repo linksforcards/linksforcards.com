@@ -15,7 +15,11 @@ import { localePath } from "@/lib/routing";
 import { pageMetadata } from "@/lib/seo";
 import { loadPublic } from "@/lib/stats";
 
-export const revalidate = 86400;
+/**
+ * Filtered URLs are rendered per request and left uncached, so each query is
+ * not a stored page. Middleware caches the clean /cards URL at the CDN.
+ */
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({
   params,

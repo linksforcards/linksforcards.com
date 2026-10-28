@@ -13,7 +13,7 @@ import { num } from "@/lib/sql";
 import { demoToolsEnabled, replaceDemoData } from "@/lib/demo";
 import { clip, isIsoDate, isUuid } from "@/lib/format";
 import { generationById } from "@/lib/generations";
-import { LOCALES } from "@/lib/locales";
+import { liveRevalidatePaths } from "@/lib/cdn-cache";
 import { PUBLIC_SNAPSHOT_TAG } from "@/lib/stats";
 import { refreshInventoryPrices } from "@/lib/price-refresh";
 import { normalizeWebsite } from "@/lib/urls";
@@ -23,8 +23,7 @@ export type FormState = { error: string } | null;
 
 function revalidatePublic() {
   revalidateTag(PUBLIC_SNAPSHOT_TAG);
-  revalidatePath("/", "layout");
-  for (const locale of LOCALES) revalidatePath(`/${locale}`, "layout");
+  for (const path of liveRevalidatePaths()) revalidatePath(path);
 }
 
 function keepRedirect(error: unknown): void {
