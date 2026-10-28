@@ -2,7 +2,6 @@ import { notFound } from "next/navigation";
 import { renderUrlset, SITEMAP_IDS, sitemapEntries } from "@/lib/sitemap-data";
 
 export const dynamic = "force-static";
-export const revalidate = 86400;
 export const dynamicParams = false;
 
 export function generateStaticParams() {

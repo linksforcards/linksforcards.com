@@ -12,7 +12,6 @@ import { localePath } from "@/lib/routing";
 import { pageMetadata } from "@/lib/seo";
 import { absoluteUrl } from "@/lib/site";
 
-export const revalidate = 3600;
 export const dynamicParams = false;
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {

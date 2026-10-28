@@ -1,12 +1,10 @@
 import { getCardIndexPayload } from "@/lib/card-index";
+import { applyCdnCacheHeaders, CDN_CACHE_CONTROL } from "@/lib/cdn-cache";
 
-export const revalidate = 86400;
+export const dynamic = "force-dynamic";
 
 export function GET() {
-  return Response.json(getCardIndexPayload(), {
-    headers: {
-      "Cache-Control": "public, max-age=86400",
-      "X-Robots-Tag": "noindex",
-    },
-  });
+  const headers = new Headers({ "X-Robots-Tag": "noindex" });
+  applyCdnCacheHeaders(headers, CDN_CACHE_CONTROL);
+  return Response.json(getCardIndexPayload(), { headers });
 }

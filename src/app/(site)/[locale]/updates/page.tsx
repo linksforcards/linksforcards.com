@@ -13,7 +13,7 @@ import { pageMetadata } from "@/lib/seo";
 import { site, substackHref } from "@/lib/site";
 import { loadPublic } from "@/lib/stats";
 
-export const revalidate = 60;
+export const revalidate = 86400;
 export const dynamicParams = false;
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {

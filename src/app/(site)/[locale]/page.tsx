@@ -23,7 +23,7 @@ import { shopsForLocale } from "@/lib/shop-locales";
 import { loadPublic, speciesInRange, type PublicShop } from "@/lib/stats";
 import { getThemes, themeCollected } from "@/lib/themes";
 
-export const revalidate = 60;
+export const revalidate = 86400;
 export const dynamicParams = false;
 
 export function generateStaticParams() {

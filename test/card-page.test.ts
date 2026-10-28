@@ -7,6 +7,7 @@ import {
   cardIsHeld,
   cardMetaDescription,
   cardPageGraph,
+  cardPageMetadata,
   cardPath,
   cardSlug,
   cardStatus,
@@ -325,5 +326,73 @@ describe("card page copy", () => {
     }
     expect(lookup.artists["Mitsuhiro Arita"]).toBe(arita);
     expect(lookup.dex["6"]?.find((printing) => printing.s === "base1" && printing.n === "4")?.hp).toBe("120");
+  });
+});
+
+describe("card page SEO for base1-4-charizard", () => {
+  const resolved = resolveCardSlug("base1-4-charizard");
+  if (!resolved) throw new Error("missing charizard");
+
+  function pageFor(locale: Locale, held = false) {
+    const m = getMessages(locale);
+    const status = cardStatus(held ? "ok" : "unconfigured", held);
+    return {
+      meta: cardPageMetadata(locale, m, resolved, status),
+      view: buildCardView(locale, m, resolved.set, resolved.card, status),
+      m,
+    };
+  }
+
+  it("keeps indexed-locale title, description, canonical, and hreflang off the held flag", () => {
+    const us = pageFor("us");
+    const de = pageFor("de");
+    const held = pageFor("us", true);
+    expect(us.view.title).toBe("Charizard 4/102 · Base");
+    expect(us.meta.title).toBe(us.view.title);
+    expect(us.meta.description).toBe("Charizard 4/102 is a Rare Holo card in the Base set.");
+    expect(us.meta.description).toBe(us.view.description);
+    expect(us.meta.robots).toBeUndefined();
+    expect(us.meta.alternates?.canonical).toBe(absoluteUrl("/cards/base1-4-charizard"));
+    expect(us.meta.alternates?.languages?.en).toBe(absoluteUrl("/cards/base1-4-charizard"));
+    expect(us.meta.alternates?.languages?.["x-default"]).toBe(absoluteUrl("/cards/base1-4-charizard"));
+    expect(us.meta.alternates?.languages?.de).toBe(absoluteUrl("/de/cards/base1-4-charizard"));
+    expect(us.meta.alternates?.languages?.fr).toBe(absoluteUrl("/fr/cards/base1-4-charizard"));
+    expect(us.meta.alternates?.languages?.es).toBe(absoluteUrl("/es/cards/base1-4-charizard"));
+    expect(us.meta.alternates?.languages?.it).toBe(absoluteUrl("/it/cards/base1-4-charizard"));
+    expect(us.meta.alternates?.languages?.nl).toBeUndefined();
+    expect(us.meta.alternates?.languages?.["en-GB"]).toBeUndefined();
+    expect(de.meta.robots).toBeUndefined();
+    expect(de.meta.alternates?.canonical).toBe(absoluteUrl("/de/cards/base1-4-charizard"));
+    expect(de.meta.alternates?.languages?.de).toBe(absoluteUrl("/de/cards/base1-4-charizard"));
+    expect(de.view.title).toContain("Charizard");
+    expect(held.meta.title).toEqual(us.meta.title);
+    expect(held.meta.description).toEqual(us.meta.description);
+    expect(held.meta.alternates).toEqual(us.meta.alternates);
+    expect(held.meta.robots).toEqual(us.meta.robots);
+    expect(us.view.paragraphs.some((paragraph) => paragraph.includes(us.m.cardPage.statusNeed))).toBe(true);
+    expect(held.view.paragraphs.some((paragraph) => paragraph.includes(held.m.cardPage.statusHave))).toBe(true);
+  });
+
+  it("noindexes Dutch, keeps that URL as canonical, and emits WebPage JSON-LD", () => {
+    const nl = pageFor("nl");
+    expect(nl.meta.robots).toEqual({ index: false, follow: true });
+    expect(nl.meta.alternates?.canonical).toBe(absoluteUrl("/nl/cards/base1-4-charizard"));
+    expect(nl.meta.alternates?.languages).toBeUndefined();
+    const graph = JSON.stringify(cardPageGraph("nl", nl.view));
+    expect(graph).toContain("https://linksforcards.com/nl/cards/base1-4-charizard");
+    expect(graph).toContain("WebPage");
+    expect(graph).toContain("BreadcrumbList");
+    expect(graph).not.toContain("FAQPage");
+    expect(graph).not.toContain("Offer");
+    const us = pageFor("us");
+    const usGraph = JSON.stringify(cardPageGraph("us", us.view));
+    expect(usGraph).toContain("https://linksforcards.com/cards/base1-4-charizard");
+    expect(us.view.crumbs[0]?.href).toBe("/");
+    expect(us.view.facts.some((fact) => fact.href === "/collections/set/base1")).toBe(true);
+    const images = us.meta.openGraph?.images;
+    const image = Array.isArray(images) ? images[0] : images;
+    const url = image && typeof image === "object" && "url" in image ? String(image.url) : "";
+    expect(url).toMatch(/^https:\/\/assets\.tcgdex\.net\//);
+    expect(url).not.toContain("/_next/image");
   });
 });

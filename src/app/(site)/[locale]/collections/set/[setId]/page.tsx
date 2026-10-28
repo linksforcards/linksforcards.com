@@ -25,8 +25,8 @@ import { kindSummary, setFacts } from "@/lib/set-facts";
 import { loadPublic, markFor, otherLanguagesHeld } from "@/lib/stats";
 import { themesForSet } from "@/lib/themes";
 
-export const revalidate = 3600;
-export const dynamicParams = false;
+/** One page per set. The CDN caches it. Held cards can lag by a day. */
+export const dynamic = "force-dynamic";
 
 const SAMPLE = 8;
 
@@ -35,10 +35,6 @@ function kindLabel(kind: CardKind, m: Messages): string {
   if (kind === "t") return m.checklist.supertypeT;
   if (kind === "e") return m.checklist.supertypeE;
   return m.checklist.supertypeO;
-}
-
-export function generateStaticParams() {
-  return getSets().map((set) => ({ setId: set.id }));
 }
 
 export async function generateMetadata({

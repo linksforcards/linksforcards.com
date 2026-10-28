@@ -261,9 +261,10 @@ const loadPublicCached = unstable_cache(
 
 /**
  * One tagged snapshot for every page. A miss runs the four registration
- * reads in parallel and stores the result for a day. A failed read is not
- * stored, so the next request tries again. With no database configured, the
- * result is an empty snapshot and nothing is cached.
+ * reads in parallel and stores the result for a day under a single cache key,
+ * not one entry per card. A failed read is not stored, so the next request
+ * tries again. With no database configured, the result is an empty snapshot
+ * and nothing is cached.
  */
 export async function loadPublic(): Promise<PublicSnapshot> {
   if (!databaseUrl() && !localDbAllowed()) return emptyPublic("unconfigured");

@@ -1,7 +1,8 @@
+import type { Metadata } from "next";
 import type { Graph } from "schema-dts";
 import type { CardFaq } from "@/content/card-story-types";
 import { themeCopy } from "@/content/theme-copy";
-import { cardImageAlt, cardImageUrl } from "./card-images";
+import { cardImageAlt, cardImageKind, cardImageUrl } from "./card-images";
 import { numbersMatch } from "./cards";
 import { printingsForDex, type LookupPrinting } from "./card-lookup";
 import { buildCardStory } from "./card-story";
@@ -10,7 +11,8 @@ import { fill, formatDay } from "./format";
 import { formatDexNumber, generationOf, SPECIES_TOTAL } from "./generations";
 import type { Messages } from "./i18n";
 import { breadcrumbNode, ldGraph, pageNode, type Crumb } from "./jsonld";
-import type { Locale } from "./locales";
+import { CARD_INDEX_LOCALES, cardPageIndexed, type Locale } from "./locales";
+import { pageMetadata } from "./seo";
 import { illustratorForName, illustratorPath } from "./illustrators";
 import { localePath } from "./routing";
 import { seriesSlug } from "./series";
@@ -378,6 +380,30 @@ export function cardMetaDescription(m: Messages, set: CatalogSet, card: CatalogC
   const short = fill(m.cardPage.descriptionShort, { name: card.name, fraction });
   if (short.length <= DESCRIPTION_LIMIT) return short;
   return `${short.slice(0, DESCRIPTION_LIMIT - 1).trimEnd()}…`;
+}
+
+/** Title, description, canonical, robots, and hreflang for one card URL. */
+export function cardPageMetadata(locale: Locale, m: Messages, resolved: ResolvedCard, status: CardStatus): Metadata {
+  const view = buildCardView(locale, m, resolved.set, resolved.card, status);
+  const indexed = cardPageIndexed(locale);
+  const photo =
+    cardImageKind(resolved.set.id, resolved.card.n) === "tcgdex"
+      ? cardImageUrl(resolved.set.id, resolved.card.n, "high")
+      : null;
+  return pageMetadata(locale, view.path, view.title, view.description, {
+    index: indexed,
+    hreflang: indexed,
+    locales: CARD_INDEX_LOCALES,
+    fitTitle: true,
+    ...(photo
+      ? {
+          image: photo,
+          imageAlt: cardImageAlt(m.checklist.cardAlt, resolved.card.name, resolved.set.name, resolved.card.n),
+          imageWidth: 600,
+          imageHeight: 825,
+        }
+      : {}),
+  });
 }
 
 export function cardPageGraph(locale: Locale, view: CardView): Graph {

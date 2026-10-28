@@ -26,8 +26,8 @@ import { seriesSlug } from "@/lib/series";
 import { kindSummary, setFacts } from "@/lib/set-facts";
 import { loadPublic } from "@/lib/stats";
 
-export const revalidate = 3600;
-export const dynamicParams = false;
+/** Same CDN lifetime as the other set pages. Held cards can lag by a day. */
+export const dynamic = "force-dynamic";
 
 function kindLabel(kind: CardKind, m: Messages): string {
   if (kind === "p") return m.checklist.supertypeP;

@@ -1,7 +1,6 @@
 import { readFileSync } from "node:fs";
 import path from "node:path";
 import PDFDocument from "pdfkit";
-import { unstable_cache } from "next/cache";
 import { getChecklist, type ChecklistLine, type ChecklistModel, type Paper } from "@/lib/checklists";
 import type { Locale } from "@/lib/locales";
 import { site } from "@/lib/site";
@@ -223,20 +222,8 @@ export function renderChecklistPdf(model: ChecklistModel, paper: Paper, compress
   });
 }
 
-const cachedPdf = unstable_cache(
-  async (locale: string, kind: string, id: string, paper: string) => {
-    const model = getChecklist(locale, kind, id);
-    if (!model) return "";
-    const pdf = await renderChecklistPdf(model, paper as Paper);
-    return pdf.toString("base64");
-  },
-  ["checklist-pdf-v1"],
-  { revalidate: 60 * 60 * 24 * 7 },
-);
-
 export async function checklistPdf(locale: Locale, kind: string, id: string, paper: Paper): Promise<Buffer | null> {
-  if (!getChecklist(locale, kind, id)) return null;
-  const encoded = await cachedPdf(locale, kind, id, paper);
-  if (!encoded) return null;
-  return Buffer.from(encoded, "base64");
+  const model = getChecklist(locale, kind, id);
+  if (!model) return null;
+  return renderChecklistPdf(model, paper);
 }

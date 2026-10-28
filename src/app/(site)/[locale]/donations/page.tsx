@@ -13,7 +13,7 @@ import { localePath } from "@/lib/routing";
 import { pageMetadata } from "@/lib/seo";
 import { loadPublic } from "@/lib/stats";
 
-export const revalidate = 60;
+export const revalidate = 86400;
 export const dynamicParams = false;
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {

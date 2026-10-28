@@ -17,7 +17,6 @@ import { localePath } from "@/lib/routing";
 import { pageMetadata } from "@/lib/seo";
 import { seriesSlug } from "@/lib/series";
 
-export const revalidate = 3600;
 export const dynamicParams = false;
 
 const SPECIES_TOTAL = 1025;

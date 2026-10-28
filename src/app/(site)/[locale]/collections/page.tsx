@@ -24,7 +24,7 @@ import { absoluteUrl } from "@/lib/site";
 import { loadPublic, speciesInRange } from "@/lib/stats";
 import { getThemes, themeCollected } from "@/lib/themes";
 
-export const revalidate = 3600;
+export const revalidate = 86400;
 export const dynamicParams = false;
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {

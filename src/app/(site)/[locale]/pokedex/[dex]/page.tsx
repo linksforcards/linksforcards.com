@@ -13,7 +13,7 @@ import { cardRowHref } from "@/lib/card-page";
 import { numbersMatch } from "@/lib/cards";
 import { cardImageSrc, getSet, speciesName, type CardKind } from "@/lib/catalog";
 import { fill, formatDay, formatInt } from "@/lib/format";
-import { formatDexNumber, SPECIES_TOTAL } from "@/lib/generations";
+import { formatDexNumber } from "@/lib/generations";
 import { readLocale, type Messages } from "@/lib/i18n";
 import { SPECIES_INDEX_LOCALES, speciesPageIndexed } from "@/lib/locales";
 import { breadcrumbNode, itemListNode, ldGraph, pageNode } from "@/lib/jsonld";
@@ -26,18 +26,14 @@ import { absoluteUrl } from "@/lib/site";
 import { loadPublic } from "@/lib/stats";
 import { themesForDex } from "@/lib/themes";
 
-export const revalidate = 3600;
-export const dynamicParams = false;
+/** One page per species. The CDN caches it so the 1,025 × locale set is not an ISR write. */
+export const dynamic = "force-dynamic";
 
 function kindLabel(kind: CardKind, m: Messages): string {
   if (kind === "p") return m.checklist.supertypeP;
   if (kind === "t") return m.checklist.supertypeT;
   if (kind === "e") return m.checklist.supertypeE;
   return m.checklist.supertypeO;
-}
-
-export function generateStaticParams() {
-  return Array.from({ length: SPECIES_TOTAL }, (_, index) => ({ dex: String(index + 1) }));
 }
 
 export async function generateMetadata({
