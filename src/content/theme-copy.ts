@@ -1,3 +1,4 @@
+import { THEME_COPY_BATCH } from "@/content/theme-copy-batch";
 import type { Locale } from "@/lib/locales";
 
 export type ThemeCopy = { title: string; h1: string; description: string; lede: string };
@@ -704,7 +705,7 @@ const COPY: Record<Locale, Record<string, Bits>> = {
 };
 
 export function themeCopy(locale: Locale, slug: string): ThemeCopy | null {
-  const bits = COPY[locale]?.[slug];
+  const bits = COPY[locale]?.[slug] ?? THEME_COPY_BATCH[locale]?.[slug];
   if (!bits) return null;
   return { title: bits.title, h1: bits.h1, lede: bits.lede, description: `${bits.title} ${STATS[locale]}` };
 }
