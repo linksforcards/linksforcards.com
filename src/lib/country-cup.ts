@@ -6,27 +6,6 @@ import { num, str, type Sql } from "./sql";
 /** Points added for each binder in a parcel. Each card is one point. */
 export const BINDER_POINTS = 1000;
 
-const EXCLUDED_REGION = "DK";
-
-/**
- * Names that must never rank. Built in pieces so the public copy stays free of
- * that place name. Matched as whole words after normalizeCountry.
- */
-function excludedNames(): Set<string> {
-  return new Set([
-    "den" + "mark",
-    "dan" + "mark",
-    "dan" + "sk",
-    "dan" + "ish",
-    "dane" + "mark",
-    "dina" + "marca",
-    "dani" + "marca",
-    "dene" + "marken",
-    "tan" + "ska",
-    "dan" + "ia",
-  ]);
-}
-
 /** Full names outside the shop-locale list. Two-letter codes are accepted separately. */
 const EXTRA_ALIASES: Record<string, string> = {
   portugal: "PT",
@@ -52,6 +31,18 @@ const EXTRA_ALIASES: Record<string, string> = {
   brazil: "BR",
   mexico: "MX",
   "new zealand": "NZ",
+  // Not on a language's shop list. These spellings still share one row.
+  ["den" + "mark"]: "DK",
+  ["dan" + "mark"]: "DK",
+  ["dan" + "sk"]: "DK",
+  ["dan" + "ish"]: "DK",
+  ["dane" + "mark"]: "DK",
+  ["dina" + "marca"]: "DK",
+  ["dani" + "marca"]: "DK",
+  ["dene" + "marken"]: "DK",
+  ["tan" + "ska"]: "DK",
+  ["dan" + "ia"]: "DK",
+  ["d k"]: "DK",
 };
 
 const regionNames = new Intl.DisplayNames("en", { type: "region" });
@@ -65,27 +56,15 @@ function isIsoRegion(code: string): boolean {
   }
 }
 
-export function isExcludedCountry(value: string): boolean {
-  const key = normalizeCountry(value);
-  if (!key) return false;
-  if (key.replace(/ /g, "") === "dk") return true;
-  const words = key.split(" ").filter(Boolean);
-  const banned = excludedNames();
-  if (words.some((word) => banned.has(word))) return true;
-  return countryCode(value) === EXCLUDED_REGION;
-}
-
 /** ISO region for a shop country, or null when it should be shown as written. */
 export function cupRegion(value: string): string | null {
-  if (isExcludedCountry(value)) return null;
   const known = countryCode(value);
-  if (known) return known === EXCLUDED_REGION ? null : known;
+  if (known) return known;
   const extra = EXTRA_ALIASES[normalizeCountry(value)];
-  if (extra && extra !== EXCLUDED_REGION && isIsoRegion(extra)) return extra;
+  if (extra && isIsoRegion(extra)) return extra;
   const key = normalizeCountry(value);
   if (/^[a-z]{2}$/.test(key)) {
     const code = key.toUpperCase();
-    if (code === EXCLUDED_REGION) return null;
     if (isIsoRegion(code)) return code;
   }
   return null;
@@ -119,13 +98,13 @@ export function rankCountryCup(rows: { country: string; cards: number; binders: 
   const grouped = new Map<string, CupEntry>();
   for (const row of rows) {
     const country = row.country.trim();
-    if (!country || isExcludedCountry(country)) continue;
+    if (!country) continue;
     const cards = Number.isFinite(row.cards) ? Math.max(0, Math.floor(row.cards)) : 0;
     const binders = Number.isFinite(row.binders) ? Math.max(0, Math.floor(row.binders)) : 0;
     if (cards === 0 && binders === 0) continue;
     const code = cupRegion(country);
     const key = code ?? normalizeCountry(country);
-    if (!key || key === "dk") continue;
+    if (!key) continue;
     const current = grouped.get(key) ?? {
       key,
       code,
@@ -141,11 +120,10 @@ export function rankCountryCup(rows: { country: string; cards: number; binders: 
   }
   return [...grouped.values()]
     .map((entry) => ({ ...entry, points: countryPoints(entry.cards, entry.binders) }))
-    .filter((entry) => entry.points > 0 && entry.code !== EXCLUDED_REGION && !isExcludedCountry(entry.fallback));
+    .filter((entry) => entry.points > 0);
 }
 
 export function cupLabel(entry: Pick<CupEntry, "code" | "fallback">, locale: Locale): string {
-  if (entry.code === EXCLUDED_REGION || isExcludedCountry(entry.fallback) || isExcludedCountry(entry.code ?? "")) return "";
   if (entry.code) {
     try {
       const name = new Intl.DisplayNames(intlLocale(locale), { type: "region" }).of(entry.code);
@@ -154,11 +132,11 @@ export function cupLabel(entry: Pick<CupEntry, "code" | "fallback">, locale: Loc
       /* keep the fallback */
     }
   }
-  return entry.fallback || (entry.code && entry.code !== EXCLUDED_REGION ? entry.code : "");
+  return entry.fallback || entry.code || "";
 }
 
 export function flagFor(code: string | null): string {
-  if (!code || code === EXCLUDED_REGION || !/^[A-Z]{2}$/.test(code)) return "";
+  if (!code || !/^[A-Z]{2}$/.test(code)) return "";
   return [...code].map((char) => String.fromCodePoint(0x1f1e6 - 65 + char.charCodeAt(0))).join("");
 }
 
@@ -203,7 +181,7 @@ export async function readCountryTotals(db: Sql): Promise<{ country: string; car
       cards: num(row.cards),
       binders: num(row.binders),
     }))
-    .filter((row) => row.country.trim() && !isExcludedCountry(row.country));
+    .filter((row) => row.country.trim());
 }
 
 export async function loadCountryCup(): Promise<{ state: "ok" | "unconfigured" | "error"; rows: CupEntry[] }> {
