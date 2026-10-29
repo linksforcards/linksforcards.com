@@ -89,11 +89,77 @@ describe("themed binders", () => {
       "sowsow",
       "atsuko-nishida",
       "atsuko-nishida-later",
+      "kanto-gym-leaders",
+      "misty",
+      "erika",
+      "brock",
+      "sabrina",
+      "blaine",
+      "lt-surge",
+      "giovanni",
+      "n-pokemon",
+      "cynthia",
+      "hop",
+      "lillie",
+      "iono",
+      "ethan",
+      "marnie",
+      "steven",
+      "team-aqua-magma",
+      "team-plasma",
+      "modern-villains",
+      "stadiums",
+      "poke-balls",
+      "professors",
+      "mcdonalds-promos",
+      "pop-series",
+      "card-number-one",
+      "first-151",
+      "living-dex-151",
+      "living-dex-paldea",
+      "box-legendaries",
+      "pseudo-legendaries",
+      "latias-latios",
+      "weather-trio",
+      "creation-trio",
+      "swords-of-justice",
+      "tapus",
+      "lake-guardians",
+      "dog-pokemon",
+      "cat-pokemon",
+      "bird-pokemon",
+      "tiny-pokemon",
+      "giant-pokemon",
+      "nap-time",
+      "night-pokemon",
+      "beach-pokemon",
+      "flower-pokemon",
+      "berry-lovers",
+      "vmax",
+      "rapid-strike",
+      "single-strike",
+      "level-x",
+      "prism-star",
+      "break",
+      "pokemon-legend",
+      "meowth",
+      "magnemite-line",
+      "vulpix-line",
+      "slowpoke-line",
+      "clefairy-line",
+      "dedenne-morpeko",
+      "rayquaza",
+      "togepi-line",
+      "lapras",
+      "rotom",
+      "lugia",
     ]);
     expect(themes.map((theme) => theme.total)).toEqual([
       213, 386, 85, 119, 61, 107, 205, 722, 537, 273, 194, 177, 68, 190, 261, 130, 269, 214, 132, 199, 120, 180, 87, 146,
       238, 141, 134, 115, 119, 163, 196, 139, 125, 130, 105, 109, 109, 102, 92, 140, 69, 73, 62, 96, 34, 32, 83, 281, 229,
-      206, 232, 146, 80, 87, 249, 124, 105, 296, 113,
+      206, 232, 146, 80, 87, 249, 124, 105, 296, 113, 293, 52, 47, 40, 36, 33, 30, 26, 41, 30, 24, 24, 22, 20, 17, 14, 108,
+      122, 42, 265, 122, 86, 136, 153, 161, 151, 151, 120, 117, 110, 67, 125, 111, 75, 55, 27, 137, 81, 157, 147, 135, 171,
+      110, 60, 201, 212, 210, 158, 147, 78, 56, 36, 20, 112, 119, 108, 93, 84, 65, 60, 55, 50, 50, 39,
     ]);
     const pikachu = getTheme("pikachu");
     const charizard = getTheme("charizard");
@@ -142,9 +208,23 @@ describe("themed binders", () => {
       return theme.test;
     };
     for (const theme of getThemes()) {
-      const test = rule(theme.slug);
-      expect(cards.filter(test), theme.slug).toHaveLength(theme.total);
+      const spec = themeRule(theme.slug);
+      const chosen = spec?.select ? spec.select(cards) : cards.filter(spec?.test ?? (() => false));
+      expect(chosen, theme.slug).toHaveLength(theme.total);
     }
+    const living = themeRule("living-dex-151")?.select?.(cards) ?? [];
+    expect(living.map((card) => card.dex[0]).sort((a, b) => a - b)).toEqual(Array.from({ length: 151 }, (_, index) => index + 1));
+    expect(living.every((card) => card.series === "Scarlet & Violet" || card.series === "Mega Evolution")).toBe(true);
+    expect(getTheme("nap-time")?.slug).toBe("nap-time");
+    const sleepy = cards.find((card) => card.attacks.some((name) => /\bSleep\b/.test(name)));
+    const resting = cards.find(
+      (card) => card.attacks.some((name) => /\bRest\b/.test(name)) && !card.attacks.some((name) => /\b(?:Nap|Snore|Yawn|Sleep|Sleepy|Doze|Dozing|Slumber|Lullaby)\b/i.test(name)),
+    );
+    expect(sleepy && themeRule("nap-time")?.test(sleepy)).toBe(true);
+    expect(resting && themeRule("nap-time")?.test(resting)).toBe(false);
+    expect(cards.filter(themeRule("vmax")?.test ?? (() => false)).every((card) => card.subtypes.includes("VMAX"))).toBe(true);
+    const knightOnly = cards.find((card) => card.flavor.includes("Corviknight") && !/\b(?:night|nights|moon|moons|moonlight|moonlit|nocturnal)\b/i.test(card.flavor));
+    expect(knightOnly && themeRule("night-pokemon")?.test(knightOnly)).toBe(false);
     const crownZenithDragon = cards.find((card) => card.setId === "swsh12pt5" && card.types.includes("Dragon"));
     expect(crownZenithDragon?.series).toBe("Sword & Shield");
     expect(rule("dragons")(crownZenithDragon!)).toBe(false);

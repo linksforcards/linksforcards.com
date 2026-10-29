@@ -3,7 +3,8 @@
  * Card type, subtype, and era rules read the local catalog: types (`ty`), subtypes (`st`),
  * and set `series`. Era filters use series, not release date, because Crown Zenith
  * (Sword & Shield) came out after the first Scarlet & Violet promos.
- * Species traits that are not in the catalog (Ghost, Ice, Bug, pink, mythical) are
+ * Attack names and Pokédex flavor text are read from the same catalog (`atk`, `fl`).
+ * Species traits that are not in the catalog (Ghost, Ice, Bug, pink, mythical, birds, dogs, cats, height) are
  * hard-coded dex lists, checked against PokeAPI on 29 Oct 2026:
  * type/ghost, type/ice, and type/bug default forms (national id 1–1025) are 65, 48, and 92;
  * pokemon-color/pink is 60 species; pokemon_species.csv is_mythical is 23 species.
@@ -131,6 +132,76 @@ const svMe = new Set(SV_ME);
 const ghost = new Set(GHOST);
 const pumpkaboo = new Set([710, 711]);
 const nishidaEarly = new Set(NISHIDA_EARLY);
+const swshOnward = new Set(SWSH_ONWARD);
+
+function comparePick(a, b) {
+  const byDate = a.releaseDate.localeCompare(b.releaseDate);
+  if (byDate !== 0) return byDate;
+  const bySet = a.setId.localeCompare(b.setId);
+  if (bySet !== 0) return bySet;
+  return a.number.localeCompare(b.number, "en", { numeric: true });
+}
+
+function compareCards(a, b) {
+  const byDate = a.releaseDate.localeCompare(b.releaseDate);
+  if (byDate !== 0) return byDate;
+  const bySet = a.setId.localeCompare(b.setId);
+  if (bySet !== 0) return bySet;
+  return a.number.localeCompare(b.number, "en");
+}
+
+function namedFor(card, name) {
+  return card.name === name || card.name.startsWith(`${name}'s `) || card.name.startsWith(`${name} & `);
+}
+
+function flavorHas(card, words) {
+  const wanted = words instanceof Set ? words : new Set(words);
+  const tokens = card.flavor.toLowerCase().replace(/['’]s\b/g, "").match(/[a-z]+/g) || [];
+  return tokens.some((token) => wanted.has(token));
+}
+
+function attackHas(card, words) {
+  const wanted = words instanceof Set ? words : new Set(words);
+  return card.attacks.some((name) => {
+    const tokens = name.toLowerCase().match(/[a-z]+/g) || [];
+    return tokens.some((token) => wanted.has(token));
+  });
+}
+
+function firstOfEachDex(dexNumbers, series) {
+  const wanted = new Set(dexNumbers);
+  const eras = series ? new Set(series) : null;
+  return (cards) => {
+    const best = new Map();
+    for (const card of cards) {
+      if (!card.pokemon || card.dex.length !== 1) continue;
+      const dex = card.dex[0];
+      if (!wanted.has(dex)) continue;
+      if (eras && !eras.has(card.series)) continue;
+      const prev = best.get(dex);
+      if (!prev || comparePick(card, prev) < 0) best.set(dex, card);
+    }
+    return [...best.values()];
+  };
+}
+
+const GYM_LEADERS = ["Brock", "Misty", "Lt. Surge", "Erika", "Koga", "Sabrina", "Blaine", "Giovanni", "Janine"];
+const DOGS = [58, 59, 209, 210, 228, 229, 261, 262, 309, 310, 506, 507, 508, 676, 744, 745, 835, 836, 888, 889, 926, 927, 942, 943, 971, 972];
+const CATS = [52, 53, 300, 301, 403, 404, 405, 431, 432, 509, 510, 667, 668, 677, 678, 725, 726, 727, 807, 863];
+/** Flying type and shape wings, minus bats, the Ledyba line, Gligar, Mantine, Lugia, Ho-Oh, and Yveltal. 59 species; the notes said 58. */
+const BIRDS = [16, 17, 18, 21, 22, 83, 142, 144, 145, 146, 163, 164, 177, 178, 198, 225, 227, 276, 277, 278, 279, 333, 334, 396, 397, 398, 430, 441, 468, 519, 520, 521, 561, 566, 567, 580, 581, 627, 628, 629, 630, 661, 662, 663, 722, 723, 731, 732, 733, 741, 821, 822, 823, 845, 931, 940, 941, 962, 973];
+/** Default-form height ≤ 0.2 m. 36 species. */
+const TINY = [50, 177, 298, 406, 412, 433, 492, 590, 595, 602, 669, 670, 682, 702, 707, 742, 743, 746, 755, 764, 778, 789, 790, 808, 821, 840, 854, 855, 868, 919, 944, 953, 955, 1012, 1013, 1024];
+/** Default-form height ≥ 5.0 m. 16 species. */
+const GIANT = [95, 130, 208, 249, 321, 350, 384, 483, 717, 718, 797, 799, 805, 890, 977, 1021];
+const BOX_LEGENDARIES = [249, 250, 382, 383, 384, 483, 484, 487, 643, 644, 646, 716, 717, 718, 791, 792, 800, 888, 889, 890, 1007, 1008];
+const PSEUDO = [...range(246, 248), ...range(371, 373), ...range(374, 376), ...range(443, 445), ...range(633, 635), ...range(704, 706), ...range(782, 784), ...range(885, 887), ...range(996, 998)];
+const NIGHT_WORDS = new Set(["night", "nights", "nocturnal", "moon", "moons", "moonlight", "moonlit"]);
+const BEACH_WORDS = new Set(["beach", "beaches", "shore", "shores", "shoreline", "shorelines", "coast", "coasts", "coastal", "coastline", "sandy", "onshore", "ashore"]);
+const FLOWER_WORDS = new Set(["flower", "flowers", "blossom", "blossoms", "petal", "petals", "bloom", "blooms", "blooming", "pollen", "nectar"]);
+const BERRY_WORDS = new Set(["berry", "berries", "fruit", "fruits", "apple", "apples", "honey"]);
+const NAP_WORDS = new Set(["nap", "snore", "yawn", "sleep", "sleepy", "doze", "dozing", "slumber", "lullaby"]);
+const VILLAIN_NAME = /Team Galactic|Team Flare|Team Skull|Team Yell|Team Star|\bCyrus\b|\bLysandre\b|\bGuzma\b/;
 
 export const THEMES = [
   spec("pikachu", "species", [25], "Pokémon whose nationalPokedexNumbers include 25"),
@@ -286,6 +357,190 @@ export const THEMES = [
     rule: "artist is Atsuko Nishida and set series is outside Base through HeartGold & SoulSilver",
     test: (card) => card.artist === "atsuko nishida" && !nishidaEarly.has(card.series),
   },
+  {
+    slug: "kanto-gym-leaders",
+    index: "all",
+    dex: [],
+    rule: "English name is a Kanto Gym Leader, or starts with that leader's name plus \"'s \" or \" & \"",
+    test: (card) => GYM_LEADERS.some((name) => namedFor(card, name)),
+  },
+  { slug: "misty", index: "all", dex: [], rule: "English name is Misty, or starts with \"Misty's \" or \"Misty & \"", test: (card) => namedFor(card, "Misty") },
+  { slug: "erika", index: "all", dex: [], rule: "English name is Erika, or starts with \"Erika's \" or \"Erika & \"", test: (card) => namedFor(card, "Erika") },
+  { slug: "brock", index: "all", dex: [], rule: "English name is Brock, or starts with \"Brock's \" or \"Brock & \"", test: (card) => namedFor(card, "Brock") },
+  { slug: "sabrina", index: "all", dex: [], rule: "English name is Sabrina, or starts with \"Sabrina's \" or \"Sabrina & \"", test: (card) => namedFor(card, "Sabrina") },
+  { slug: "blaine", index: "all", dex: [], rule: "English name is Blaine, or starts with \"Blaine's \" or \"Blaine & \"", test: (card) => namedFor(card, "Blaine") },
+  { slug: "lt-surge", index: "all", dex: [], rule: "English name is Lt. Surge, or starts with \"Lt. Surge's \" or \"Lt. Surge & \"", test: (card) => namedFor(card, "Lt. Surge") },
+  { slug: "giovanni", index: "all", dex: [], rule: "English name is Giovanni, or starts with \"Giovanni's \" or \"Giovanni & \"", test: (card) => namedFor(card, "Giovanni") },
+  { slug: "n-pokemon", index: "all", dex: [], rule: "English name is N, or starts with \"N's \" or \"N & \"", test: (card) => namedFor(card, "N") },
+  { slug: "cynthia", index: "all", dex: [], rule: "English name is Cynthia, or starts with \"Cynthia's \" or \"Cynthia & \"", test: (card) => namedFor(card, "Cynthia") },
+  { slug: "hop", index: "all", dex: [], rule: "English name is Hop, or starts with \"Hop's \" or \"Hop & \"", test: (card) => namedFor(card, "Hop") },
+  { slug: "lillie", index: "all", dex: [], rule: "English name is Lillie, or starts with \"Lillie's \" or \"Lillie & \"", test: (card) => namedFor(card, "Lillie") },
+  { slug: "iono", index: "all", dex: [], rule: "English name is Iono, or starts with \"Iono's \" or \"Iono & \"", test: (card) => namedFor(card, "Iono") },
+  { slug: "ethan", index: "all", dex: [], rule: "English name is Ethan, or starts with \"Ethan's \" or \"Ethan & \"", test: (card) => namedFor(card, "Ethan") },
+  { slug: "marnie", index: "all", dex: [], rule: "English name is Marnie, or starts with \"Marnie's \" or \"Marnie & \"", test: (card) => namedFor(card, "Marnie") },
+  { slug: "steven", index: "all", dex: [], rule: "English name is Steven, or starts with \"Steven's \" or \"Steven & \"", test: (card) => namedFor(card, "Steven") },
+  {
+    slug: "team-aqua-magma",
+    index: "all",
+    dex: [],
+    rule: "English name contains Team Aqua, Team Magma, Archie, or Maxie",
+    test: (card) => /Team Aqua|Team Magma|Archie|Maxie/.test(card.name),
+  },
+  {
+    slug: "team-plasma",
+    index: "all",
+    dex: [],
+    rule: "Subtype Team Plasma, or English name contains Team Plasma, Ghetsis, or Colress",
+    test: (card) => card.subtypes.includes("Team Plasma") || /Team Plasma|Ghetsis|Colress/.test(card.name),
+  },
+  {
+    slug: "modern-villains",
+    index: "all",
+    dex: [],
+    rule: "English name contains Team Galactic, Team Flare, Team Skull, Team Yell, Team Star, Cyrus, Lysandre, or Guzma",
+    test: (card) => VILLAIN_NAME.test(card.name),
+  },
+  {
+    slug: "stadiums",
+    index: "all",
+    dex: [],
+    rule: "Subtype Stadium",
+    test: (card) => card.subtypes.includes("Stadium"),
+  },
+  {
+    slug: "poke-balls",
+    index: "all",
+    dex: [],
+    rule: "Trainer card whose English name contains the word Ball",
+    test: (card) => card.trainer && /\bBall\b/.test(card.name),
+  },
+  {
+    slug: "professors",
+    index: "all",
+    dex: [],
+    rule: "Trainer card whose English name contains Professor or starts with Prof.",
+    test: (card) => card.trainer && (card.name.includes("Professor") || card.name.startsWith("Prof.")),
+  },
+  {
+    slug: "mcdonalds-promos",
+    index: "all",
+    dex: [],
+    rule: "Set id starts with mcd",
+    test: (card) => card.setId.startsWith("mcd"),
+  },
+  {
+    slug: "pop-series",
+    index: "all",
+    dex: [],
+    rule: "Set id is pop1 through pop9",
+    test: (card) => /^pop[1-9]$/.test(card.setId),
+  },
+  {
+    slug: "card-number-one",
+    index: "all",
+    dex: [],
+    rule: "Collector number is 1",
+    test: (card) => card.number === "1",
+  },
+  {
+    slug: "first-151",
+    index: "all",
+    dex: range(1, 151),
+    rule: "Earliest single-dex English Pokémon card for each national dex number 1–151",
+    select: firstOfEachDex(range(1, 151)),
+  },
+  {
+    slug: "living-dex-151",
+    index: "all",
+    dex: range(1, 151),
+    rule: "Earliest single-dex Scarlet & Violet or Mega Evolution Pokémon card for each national dex number 1–151",
+    select: firstOfEachDex(range(1, 151), SV_ME),
+  },
+  {
+    slug: "living-dex-paldea",
+    index: "all",
+    dex: range(906, 1025),
+    rule: "Earliest single-dex Scarlet & Violet or Mega Evolution Pokémon card for each national dex number 906–1025",
+    select: firstOfEachDex(range(906, 1025), SV_ME),
+  },
+  dexInSeries("box-legendaries", "species", BOX_LEGENDARIES, SV_ME, "Box-art legendary species and set series Scarlet & Violet or Mega Evolution"),
+  dexInSeries("pseudo-legendaries", "species", PSEUDO, SV_ME, "Pseudo-legendary lines other than Dratini, and set series Scarlet & Violet or Mega Evolution"),
+  spec("latias-latios", "species", [380, 381], "Pokémon whose nationalPokedexNumbers include 380 or 381"),
+  spec("weather-trio", "species", [382, 383, 384], "Pokémon whose nationalPokedexNumbers include 382, 383, or 384"),
+  spec("creation-trio", "species", [483, 484, 487], "Pokémon whose nationalPokedexNumbers include 483, 484, or 487"),
+  spec("swords-of-justice", "species", [638, 639, 640, 647], "Pokémon whose nationalPokedexNumbers include 638, 639, 640, or 647"),
+  spec("tapus", "species", [785, 786, 787, 788], "Pokémon whose nationalPokedexNumbers include 785, 786, 787, or 788"),
+  spec("lake-guardians", "species", [480, 481, 482], "Pokémon whose nationalPokedexNumbers include 480, 481, or 482"),
+  dexInSeries("dog-pokemon", "species", DOGS, SV_ME, "Canine species and set series Scarlet & Violet or Mega Evolution"),
+  dexInSeries("cat-pokemon", "species", CATS, SV_ME, "Feline species, without the Sprigatito line, and set series Scarlet & Violet or Mega Evolution"),
+  {
+    slug: "bird-pokemon",
+    index: "species",
+    dex: [...BIRDS],
+    rule: "Flying wing-shaped species, without bats, Ledyba, gliders, Mantine, Lugia, Ho-Oh, or Yveltal; Scarlet & Violet or Mega Evolution; rarity Common, Uncommon, or Rare",
+    test: (card) => hasDex(card, new Set(BIRDS)) && svMe.has(card.series) && BULK.has(card.rarity),
+  },
+  dexInSeries("tiny-pokemon", "species", TINY, SV_ME, "Species at most 0.2 m tall and set series Scarlet & Violet or Mega Evolution"),
+  dexInSeries("giant-pokemon", "species", GIANT, SWSH_ONWARD, "Species at least 5 m tall and set series Sword & Shield, Scarlet & Violet, or Mega Evolution"),
+  {
+    slug: "nap-time",
+    index: "all",
+    dex: [],
+    rule: "Pokémon attack name contains a whole word Nap, Snore, Yawn, Sleep, Sleepy, Doze, Dozing, Slumber, or Lullaby",
+    test: (card) => card.pokemon && attackHas(card, NAP_WORDS),
+  },
+  {
+    slug: "night-pokemon",
+    index: "all",
+    dex: [],
+    rule: "Pokédex flavor text has night, nights, nocturnal, moon, moons, moonlight, or moonlit, and set series is Sword & Shield, Scarlet & Violet, or Mega Evolution",
+    test: (card) => swshOnward.has(card.series) && flavorHas(card, NIGHT_WORDS),
+  },
+  {
+    slug: "beach-pokemon",
+    index: "all",
+    dex: [],
+    rule: "Pokédex flavor text has beach, shore, shoreline, coast, coastal, sandy, onshore, or ashore as a whole word",
+    test: (card) => flavorHas(card, BEACH_WORDS),
+  },
+  {
+    slug: "flower-pokemon",
+    index: "all",
+    dex: [],
+    rule: "Pokédex flavor text has flower, blossom, petal, bloom, pollen, or nectar as a whole word",
+    test: (card) => flavorHas(card, FLOWER_WORDS),
+  },
+  {
+    slug: "berry-lovers",
+    index: "all",
+    dex: [],
+    rule: "Pokédex flavor text has berry, berries, fruit, apple, or honey as a whole word",
+    test: (card) => flavorHas(card, BERRY_WORDS),
+  },
+  { slug: "vmax", index: "all", dex: [], rule: "Subtype VMAX", test: (card) => card.subtypes.includes("VMAX") },
+  { slug: "rapid-strike", index: "all", dex: [], rule: "Subtype Rapid Strike", test: (card) => card.subtypes.includes("Rapid Strike") },
+  { slug: "single-strike", index: "all", dex: [], rule: "Subtype Single Strike", test: (card) => card.subtypes.includes("Single Strike") },
+  { slug: "level-x", index: "all", dex: [], rule: "Subtype Level-Up", test: (card) => card.subtypes.includes("Level-Up") },
+  {
+    slug: "prism-star",
+    index: "all",
+    dex: [],
+    rule: "Subtype Prism Star or Star",
+    test: (card) => card.subtypes.includes("Prism Star") || card.subtypes.includes("Star"),
+  },
+  { slug: "break", index: "all", dex: [], rule: "Subtype BREAK", test: (card) => card.subtypes.includes("BREAK") },
+  { slug: "pokemon-legend", index: "all", dex: [], rule: "Subtype LEGEND", test: (card) => card.subtypes.includes("LEGEND") },
+  spec("meowth", "species", [52, 53, 863], "Pokémon whose nationalPokedexNumbers include 52, 53, or 863"),
+  spec("magnemite-line", "species", [81, 82, 462], "Pokémon whose nationalPokedexNumbers include 81, 82, or 462"),
+  spec("vulpix-line", "species", [37, 38], "Pokémon whose nationalPokedexNumbers include 37 or 38"),
+  spec("slowpoke-line", "species", [79, 80, 199], "Pokémon whose nationalPokedexNumbers include 79, 80, or 199"),
+  spec("clefairy-line", "species", [35, 36, 173], "Pokémon whose nationalPokedexNumbers include 35, 36, or 173"),
+  spec("dedenne-morpeko", "species", [702, 877], "Pokémon whose nationalPokedexNumbers include 702 or 877"),
+  spec("rayquaza", "species", [384], "Pokémon whose nationalPokedexNumbers include 384"),
+  spec("togepi-line", "species", [175, 176, 468], "Pokémon whose nationalPokedexNumbers include 175, 176, or 468"),
+  spec("lapras", "species", [131], "Pokémon whose nationalPokedexNumbers include 131"),
+  spec("rotom", "species", [479], "Pokémon whose nationalPokedexNumbers include 479"),
+  spec("lugia", "species", [249], "Pokémon whose nationalPokedexNumbers include 249"),
 ];
 
 export function themeRule(slug) {
@@ -313,6 +568,7 @@ export async function loadCatalogCards() {
         number,
         name,
         pokemon: card.k === "p",
+        trainer: card.k === "t",
         dex,
         artist: String(card.a ?? "").trim().toLowerCase(),
         rarity: String(card.r ?? ""),
@@ -320,6 +576,8 @@ export async function loadCatalogCards() {
         types: Array.isArray(card.ty) ? card.ty : [],
         subtypes: Array.isArray(card.st) ? card.st : [],
         series: String(set.series ?? ""),
+        attacks: Array.isArray(card.atk) ? card.atk.map((move) => String(move?.n ?? "")) : [],
+        flavor: String(card.fl ?? ""),
       });
     }
   }
@@ -339,13 +597,7 @@ function assertNoForbiddenKeys(value, label) {
 
 export function buildThemeRecords(cards) {
   return THEMES.map((theme) => {
-    const selected = cards.filter((card) => theme.test(card)).sort((a, b) => {
-      const byDate = a.releaseDate.localeCompare(b.releaseDate);
-      if (byDate !== 0) return byDate;
-      const bySet = a.setId.localeCompare(b.setId);
-      if (bySet !== 0) return bySet;
-      return a.number.localeCompare(b.number, "en");
-    });
+    const selected = (theme.select ? theme.select(cards) : cards.filter((card) => theme.test(card))).sort(compareCards);
     let bulk = 0;
     let chase = 0;
     const sets = new Set();
