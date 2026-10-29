@@ -7,21 +7,50 @@ import {
   countryPoints,
   cupLabel,
   flagFor,
-  isExcludedCountry,
   orderCountryCup,
   parseBindersIncluded,
   rankCountryCup,
   readCountryTotals,
   type CupEntry,
 } from "../src/lib/country-cup";
+import { formatInt } from "../src/lib/format";
 import { getMessages } from "../src/lib/i18n";
-import { LOCALES } from "../src/lib/locales";
+import { LOCALES, type Locale } from "../src/lib/locales";
 import { listShipments } from "../src/lib/admin-data";
 import { createMemoryDatabase } from "../src/lib/pglite-db";
 import { applySchema } from "../src/lib/sql";
 import type { Sql } from "../src/lib/sql";
 
-const hiddenPlace = ["Den" + "mark", "Dan" + "mark", "Dä" + "nemark", "Dane" + "mark", "Dina" + "marca", "Dani" + "marca", "Dene" + "marken", "Tan" + "ska", "Dan" + "ia", "DK", "dk", "D.K."];
+const denmarkSpellings = [
+  "Den" + "mark",
+  "Dan" + "mark",
+  "Dä" + "nemark",
+  "Dane" + "mark",
+  "Dina" + "marca",
+  "Dani" + "marca",
+  "Dene" + "marken",
+  "Tan" + "ska",
+  "Dan" + "ia",
+  "Dan" + "sk",
+  "Dan" + "ish",
+  "DK",
+  "dk",
+  "D.K.",
+];
+
+const denmarkLabels: Record<Locale, string> = {
+  us: "Denmark",
+  uk: "Denmark",
+  de: "Dänemark",
+  fr: "Danemark",
+  it: "Danimarca",
+  es: "Dinamarca",
+  nl: "Denemarken",
+  sv: "Danmark",
+  no: "Danmark",
+  fi: "Tanska",
+  pl: "Dania",
+};
 
 function entry(country: string, cards: number, binders: number): CupEntry {
   const ranked = rankCountryCup([{ country, cards, binders }]);
@@ -110,25 +139,32 @@ describe("country cup scoring", () => {
     ]);
     expect(cupLabel(entry("United States", 1, 0), "us")).toBe("United States");
     expect(flagFor("PT")).toBe("🇵🇹");
-    expect(flagFor("DK")).toBe("");
+    expect(flagFor("DK")).toBe("🇩🇰");
     expect(flagFor(null)).toBe("");
   });
 
-  it("drops the excluded country for every spelling and never adds its points elsewhere", () => {
-    for (const name of hiddenPlace) {
-      expect(isExcludedCountry(name), name).toBe(true);
-      const ranked = rankCountryCup([
-        { country: name, cards: 80, binders: 4 },
-        { country: "Sweden", cards: 1, binders: 0 },
-      ]);
-      expect(ranked).toEqual([expect.objectContaining({ code: "SE", cards: 1, binders: 0, points: 1 })]);
-      const dumped = JSON.stringify(ranked).toLowerCase();
-      expect(dumped).not.toContain("den" + "mark");
-      expect(dumped).not.toContain("dan" + "mark");
-      expect(dumped).not.toContain(name.toLowerCase());
+  it("ranks Denmark for every spelling, with the same points, a flag, and a localized name", () => {
+    const ranked = orderCountryCup(
+      rankCountryCup([
+        ...denmarkSpellings.map((country, index) => ({
+          country,
+          cards: index === 0 ? 4 : 1,
+          binders: index === 0 ? 2 : 0,
+        })),
+        { country: "Sweden", cards: 3, binders: 0 },
+      ]),
+      "us",
+    );
+    const cards = 4 + (denmarkSpellings.length - 1);
+    expect(ranked.map((row) => ({ code: row.code, cards: row.cards, binders: row.binders, points: row.points }))).toEqual([
+      { code: "DK", cards, binders: 2, points: cards + 2000 },
+      { code: "SE", cards: 3, binders: 0, points: 3 },
+    ]);
+    expect(flagFor(ranked[0]?.code ?? null)).toBe("🇩🇰");
+    expect(ranked[0]?.fallback).toBe("");
+    for (const locale of LOCALES) {
+      expect(cupLabel(ranked[0]!, locale), locale).toBe(denmarkLabels[locale]);
     }
-    expect(isExcludedCountry("Germany")).toBe(false);
-    expect(isExcludedCountry("Kingdom of " + hiddenPlace[0])).toBe(true);
   });
 });
 
@@ -138,13 +174,13 @@ describe("country cup from logged parcels", () => {
     const germany = await addShop(db, "Secret Alpine Cards", "Germany");
     const alsoGermany = await addShop(db, "Secret Station Cards", "DE", { pub: false });
     const portugal = await addShop(db, "Secret Tagus Cards", "Portugal");
-    const blocked = await addShop(db, "Secret Harbour Cards", hiddenPlace[0]);
+    const harbour = await addShop(db, "Secret Harbour Cards", denmarkSpellings[0]!);
     const demo = await addShop(db, "DEMO — Corner Shop Cards", "Netherlands", { demo: true });
 
     await addParcel(db, germany, [24, 1], 1);
     await addParcel(db, alsoGermany, [5], 2);
     await addParcel(db, portugal, [3, 3, 3], 1);
-    await addParcel(db, blocked, [40, 40], 3);
+    await addParcel(db, harbour, [40, 40], 3);
     await addParcel(db, demo, [9], 4, true);
 
     const totals = await readCountryTotals(db);
@@ -152,7 +188,7 @@ describe("country cup from logged parcels", () => {
     expect(dumped).not.toContain("Secret");
     expect(dumped).not.toContain("example.com");
     expect(dumped).not.toContain("hidden@");
-    expect(dumped.toLowerCase()).not.toContain("den" + "mark");
+    expect(dumped).toContain(denmarkSpellings[0]);
     expect(dumped).not.toContain("Netherlands");
 
     const listed = await listShipments(db);
@@ -163,6 +199,7 @@ describe("country cup from logged parcels", () => {
 
     const ranked = orderCountryCup(rankCountryCup(totals), "us");
     expect(ranked.map((row) => ({ name: cupLabel(row, "us"), cards: row.cards, binders: row.binders, points: row.points }))).toEqual([
+      { name: "Denmark", cards: 80, binders: 3, points: 3080 },
       { name: "Germany", cards: 30, binders: 3, points: 3030 },
       { name: "Portugal", cards: 9, binders: 1, points: 1009 },
     ]);
@@ -170,7 +207,7 @@ describe("country cup from logged parcels", () => {
     await db.exec(`ALTER TABLE shipments DROP COLUMN binders_included`);
     await applySchema(db);
     const rebound = await readCountryTotals(db);
-    expect(orderCountryCup(rankCountryCup(rebound), "us").map((row) => row.points)).toEqual([30, 9]);
+    expect(orderCountryCup(rankCountryCup(rebound), "us").map((row) => row.points)).toEqual([80, 30, 9]);
     await db.query(`UPDATE shipments SET binders_included = 1 WHERE shop_id = $1`, [germany]);
     const restored = await readCountryTotals(db);
     expect(rankCountryCup(restored).find((row) => row.code === "DE")?.points).toBe(1030);
@@ -208,12 +245,12 @@ describe("country cup HTML", () => {
     expect(getMessages("uk").home.cupEmpty).toBe("Which country will be first on the board?");
   });
 
-  it("puts localized names and scores in the server markup and leaves shops and the excluded country out", () => {
+  it("puts localized names and scores in the server markup and leaves shops out", () => {
     const rows = orderCountryCup(
       rankCountryCup([
         { country: "Germany", cards: 24, binders: 1 },
         { country: "France", cards: 4, binders: 0 },
-        { country: hiddenPlace[0], cards: 99, binders: 8 },
+        { country: denmarkSpellings[0]!, cards: 99, binders: 8 },
       ]),
       "de",
     );
@@ -225,38 +262,36 @@ describe("country cup HTML", () => {
         failed: false,
       }),
     );
+    expect(html).toContain("Dänemark");
+    expect(html).toContain("🇩🇰");
     expect(html).toContain("Deutschland");
     expect(html).toContain("Frankreich");
+    expect(html).toContain("8.099");
     expect(html).toContain("1.024");
+    expect(html).toContain("99 Karten");
+    expect(html).toContain("8 Binder");
     expect(html).toContain("24 Karten");
     expect(html).toContain("1 Binder");
     expect(html).toContain("1.000");
     expect(html).not.toContain("Secret");
     expect(html).not.toContain("example.com");
-    expect(html.toLowerCase()).not.toContain("den" + "mark");
-    expect(html).not.toContain("99");
-    expect(html).not.toContain("8.099");
     expect(html).not.toContain("<script");
 
-    const blockedOnly = renderToStaticMarkup(
-      createElement(CountryCup, {
-        locale: "us",
-        copy: copyFor("us"),
-        rows: [
-          {
-            key: "DK",
-            code: "DK",
-            fallback: hiddenPlace[0],
-            cards: 9,
-            binders: 1,
-            points: 1009,
-          },
-        ],
-        failed: false,
-      }),
-    );
-    expect(blockedOnly).toContain("Which country will be first on the board?");
-    expect(blockedOnly.toLowerCase()).not.toContain("den" + "mark");
-    expect(blockedOnly).not.toContain("1,009");
+    for (const locale of LOCALES) {
+      const localRows = orderCountryCup(rankCountryCup([{ country: "DK", cards: 5, binders: 1 }]), locale);
+      const localHtml = renderToStaticMarkup(
+        createElement(CountryCup, {
+          locale,
+          copy: copyFor(locale),
+          rows: localRows,
+          failed: false,
+        }),
+      );
+      expect(localHtml, locale).toContain("🇩🇰");
+      expect(localHtml, locale).toContain(denmarkLabels[locale]);
+      expect(localHtml, locale).toContain(formatInt(1005, locale));
+      expect(localHtml, locale).not.toContain("example.com");
+      expect(localHtml, locale).not.toContain("<script");
+    }
   });
 });
