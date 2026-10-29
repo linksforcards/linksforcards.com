@@ -5,6 +5,7 @@ import { themeCopy, themeCopyLocales } from "../src/content/theme-copy";
 import { getSetCards } from "../src/lib/catalog";
 import { LOCALES, SPECIES_INDEX_LOCALES } from "../src/lib/locales";
 import { bulkTone, getTheme, getThemes, themeFromCurated, themeIndexed, themeHreflangLocales } from "../src/lib/themes";
+import { loadCatalogCards, themeRule } from "../scripts/build-themes.mjs";
 
 const plural: Record<string, RegExp[]> = {
   en: [/\bwe\b/i, /\bour\b/i, /\bours\b/i],
@@ -41,8 +42,59 @@ describe("themed binders", () => {
       "team-rocket",
       "delta-species",
       "baby-pokemon",
+      "paldea-starters",
+      "halloween-ghosts",
+      "pikachu-friends",
+      "paradox-pokemon",
+      "kanto-starters",
+      "fossil-pokemon",
+      "legendary-birds",
+      "sweets-and-snacks",
+      "dragons",
+      "winter-ice",
+      "legendary-beasts",
+      "mew-mewtwo",
+      "mythical-modern",
+      "galarian-forms",
+      "alolan-forms",
+      "hisuian-paldean-forms",
+      "mega-evolution",
+      "johto-starters",
+      "hoenn-starters",
+      "sinnoh-starters",
+      "unova-starters",
+      "kalos-starters",
+      "alola-starters",
+      "galar-starters",
+      "dratini-line",
+      "magikarp-gyarados",
+      "lucario-riolu",
+      "gardevoir-line",
+      "greninja-line",
+      "jigglypuff-line",
+      "psyduck",
+      "unown",
+      "mimikyu",
+      "ditto",
+      "winter-holiday",
+      "bug-catcher",
+      "pink-pokemon",
+      "fire-basics-modern",
+      "special-illustration-rares",
+      "tera-pokemon",
+      "trainer-gallery",
+      "ultra-beasts",
+      "tomokazu-komiya",
+      "saya-tsuruta",
+      "sowsow",
+      "atsuko-nishida",
+      "atsuko-nishida-later",
     ]);
-    expect(themes.map((theme) => theme.total)).toEqual([213, 386, 85, 119, 61, 107, 205, 722, 537, 273, 194, 177]);
+    expect(themes.map((theme) => theme.total)).toEqual([
+      213, 386, 85, 119, 61, 107, 205, 722, 537, 273, 194, 177, 68, 190, 261, 130, 269, 214, 132, 199, 120, 180, 87, 146,
+      238, 141, 134, 115, 119, 163, 196, 139, 125, 130, 105, 109, 109, 102, 92, 140, 69, 73, 62, 96, 34, 32, 83, 281, 229,
+      206, 232, 146, 80, 87, 249, 124, 105, 296, 113,
+    ]);
     const pikachu = getTheme("pikachu");
     const charizard = getTheme("charizard");
     expect(pikachu?.cards.some((card) => card.setId === "base1" && card.number === "58")).toBe(true);
@@ -72,6 +124,68 @@ describe("themed binders", () => {
       expect(pikachu && themeIndexed(pikachu, locale)).toBe(SPECIES_INDEX_LOCALES.includes(locale as (typeof SPECIES_INDEX_LOCALES)[number]));
       expect(yuka && themeIndexed(yuka, locale)).toBe(true);
     }
+    for (const theme of getThemes()) {
+      const species = theme.index === "species";
+      expect(themeHreflangLocales(theme)).toEqual(species ? SPECIES_INDEX_LOCALES : undefined);
+      for (const locale of LOCALES) {
+        const indexed = species ? SPECIES_INDEX_LOCALES.includes(locale as (typeof SPECIES_INDEX_LOCALES)[number]) : true;
+        expect(themeIndexed(theme, locale), `${theme.slug}/${locale}`).toBe(indexed);
+      }
+    }
+  });
+
+  it("selects the new binders by dex, printed type, subtype, rarity, and series", async () => {
+    const cards = await loadCatalogCards();
+    const rule = (slug: string) => {
+      const theme = themeRule(slug);
+      if (!theme) throw new Error(slug);
+      return theme.test;
+    };
+    for (const theme of getThemes()) {
+      const test = rule(theme.slug);
+      expect(cards.filter(test), theme.slug).toHaveLength(theme.total);
+    }
+    const crownZenithDragon = cards.find((card) => card.setId === "swsh12pt5" && card.types.includes("Dragon"));
+    expect(crownZenithDragon?.series).toBe("Sword & Shield");
+    expect(rule("dragons")(crownZenithDragon!)).toBe(false);
+    expect(cards.some((card) => rule("dragons")(card) && card.series === "Scarlet & Violet")).toBe(true);
+    const fireStage = cards.find(
+      (card) => card.types.includes("Fire") && card.subtypes.includes("Stage 1") && card.series === "Scarlet & Violet",
+    );
+    expect(fireStage).toBeTruthy();
+    expect(rule("fire-basics-modern")(fireStage!)).toBe(false);
+    expect(cards.filter(rule("fire-basics-modern")).every((card) => card.types.includes("Fire") && card.subtypes.includes("Basic"))).toBe(true);
+    expect(cards.filter(rule("tera-pokemon")).every((card) => card.subtypes.includes("Tera"))).toBe(true);
+    const oldPumpkaboo = cards.find((card) => card.dex.includes(710) && card.series === "XY");
+    expect(rule("halloween-ghosts")(oldPumpkaboo!)).toBe(true);
+    const chaseGhost = cards.find(
+      (card) =>
+        card.series === "Scarlet & Violet" &&
+        card.pokemon &&
+        card.dex.some((number) => number === 94) &&
+        !["Common", "Uncommon", "Rare"].includes(card.rarity),
+    );
+    expect(chaseGhost).toBeTruthy();
+    expect(rule("halloween-ghosts")(chaseGhost!)).toBe(false);
+    const megaSignal = cards.find((card) => card.name === "Mega Signal");
+    const xyMega = cards.find((card) => card.series === "XY" && card.subtypes.includes("MEGA"));
+    expect(rule("mega-evolution")(megaSignal!)).toBe(true);
+    expect(rule("mega-evolution")(xyMega!)).toBe(false);
+    const oldMew = cards.find(
+      (card) => card.dex.includes(151) && !["Sword & Shield", "Scarlet & Violet", "Mega Evolution"].includes(card.series),
+    );
+    expect(oldMew).toBeTruthy();
+    expect(rule("mythical-modern")(oldMew!)).toBe(false);
+    expect(cards.some((card) => rule("mythical-modern")(card) && card.series === "Scarlet & Violet")).toBe(true);
+    const nishida = cards.filter((card) => card.artist === "atsuko nishida");
+    const early = nishida.filter(rule("atsuko-nishida"));
+    const later = nishida.filter(rule("atsuko-nishida-later"));
+    expect(early.length + later.length).toBe(nishida.length);
+    expect(early.some((card) => later.includes(card))).toBe(false);
+    expect(early.every((card) => card.series !== "Black & White" && card.series !== "Scarlet & Violet")).toBe(true);
+    expect(later.some((card) => card.series === "Black & White")).toBe(true);
+    expect(cards.filter(rule("galarian-forms")).every((card) => card.name.includes("Galarian"))).toBe(true);
+    expect(cards.filter(rule("special-illustration-rares")).every((card) => card.rarity === "Special Illustration Rare")).toBe(true);
   });
 
   it("keeps the target phrases and the first-person voice in every language", () => {
